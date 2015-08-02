@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.reporter;
+package io.gravitee.gateway.api.service;
 
-import io.gravitee.gateway.api.Request;
-import io.gravitee.gateway.api.Response;
-import io.gravitee.gateway.api.service.Service;
+import io.gravitee.common.component.LifecycleComponent;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface Reporter extends Service {
-
-    void report(Request request, Response response);
+public interface Service<T extends Service> extends LifecycleComponent<T> {
 }
