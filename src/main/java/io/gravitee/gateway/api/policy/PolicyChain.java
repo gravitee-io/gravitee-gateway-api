@@ -17,6 +17,7 @@ package io.gravitee.gateway.api.policy;
 
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
+import io.gravitee.gateway.api.handler.Handler;
 
 /**
  *
@@ -26,9 +27,5 @@ public interface PolicyChain {
 
     void doNext(Request request, Response response);
 
-    void sendError(int statusCode);
-
-    void sendError(int statusCode, Throwable throwable);
-
-    void sendError(Throwable throwable);
+    void failWith(PolicyResult policyResult);
 }
