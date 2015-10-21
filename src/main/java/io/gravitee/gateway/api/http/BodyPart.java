@@ -13,32 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.http;
 
-import io.gravitee.common.http.HttpHeaders;
-import io.gravitee.gateway.api.http.BodyPart;
+import java.nio.ByteBuffer;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface Response {
+public interface BodyPart {
 
-    Response status(int statusCode);
+    int length();
 
-    int status();
+    byte[] getBodyPartAsBytes();
 
-
-    Response chunked(boolean chunked);
-
-    boolean chunked();
-
-
-    /**
-     * @return the headers in the response.
-     */
-    HttpHeaders headers();
-
-    Response write(BodyPart bodyPart);
-
-    void end();
+    ByteBuffer getBodyPartAsByteBuffer();
 }

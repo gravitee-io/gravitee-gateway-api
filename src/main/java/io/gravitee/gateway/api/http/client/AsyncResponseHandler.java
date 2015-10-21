@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.http.client;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.http.BodyPart;
@@ -21,24 +21,13 @@ import io.gravitee.gateway.api.http.BodyPart;
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface Response {
+public interface AsyncResponseHandler {
 
-    Response status(int statusCode);
+    void onStatusReceived(int status);
 
-    int status();
+    void onHeadersReceived(HttpHeaders headers);
 
+    void onBodyPartReceived(BodyPart bodyPart);
 
-    Response chunked(boolean chunked);
-
-    boolean chunked();
-
-
-    /**
-     * @return the headers in the response.
-     */
-    HttpHeaders headers();
-
-    Response write(BodyPart bodyPart);
-
-    void end();
+    void onComplete();
 }
