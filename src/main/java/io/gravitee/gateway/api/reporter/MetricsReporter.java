@@ -15,11 +15,12 @@
  */
 package io.gravitee.gateway.api.reporter;
 
-import io.gravitee.common.service.Service;
+import io.gravitee.gateway.api.metrics.Metrics;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface Reporter extends Service {
+public interface MetricsReporter extends Reporter {
 
+    void report(Metrics metrics);
 }
