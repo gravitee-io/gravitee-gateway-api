@@ -18,10 +18,12 @@ package io.gravitee.gateway.api.http.client;
 import io.gravitee.common.component.LifecycleComponent;
 import io.gravitee.gateway.api.Request;
 
+import java.net.URI;
+
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
 public interface HttpClient extends LifecycleComponent<HttpClient> {
 
-    void invoke(Request request, AsyncResponseHandler clientResponseHandler);
+    void invoke(Request request, URI endpointUri, AsyncResponseHandler clientResponseHandler);
 }
