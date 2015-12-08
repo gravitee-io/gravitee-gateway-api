@@ -22,18 +22,32 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.gravitee.gateway</groupId>
-        <artifactId>gravitee-gateway</artifactId>
-        <version>0.4.0-SNAPSHOT</version>
+        <groupId>io.gravitee</groupId>
+        <artifactId>gravitee-parent</artifactId>
+        <version>3</version>
     </parent>
 
+    <groupId>io.gravitee.gateway</groupId>
     <artifactId>gravitee-gateway-api</artifactId>
+    <version>0.4.0-SNAPSHOT</version>
+
     <name>Gravitee IO - Gateway - API</name>
+
+    <properties>
+        <gravitee-common.version>0.2.0</gravitee-common.version>
+        <gravitee-reporter-api.version>0.4.0-SNAPSHOT</gravitee-reporter-api.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.gravitee.common</groupId>
             <artifactId>gravitee-common</artifactId>
+            <version>${gravitee-common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gravitee.reporter</groupId>
+            <artifactId>gravitee-reporter-api</artifactId>
+            <version>${gravitee-reporter-api.version}</version>
         </dependency>
     </dependencies>
 </project>
