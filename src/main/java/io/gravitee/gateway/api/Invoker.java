@@ -15,27 +15,14 @@
  */
 package io.gravitee.gateway.api;
 
-import io.gravitee.common.http.HttpHeaders;
-import io.gravitee.gateway.api.http.BodyPart;
-import io.gravitee.reporter.api.metrics.Metrics;
+import io.gravitee.gateway.api.handler.Handler;
+
+import java.net.URI;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface Response {
+public interface Invoker {
 
-    Response status(int statusCode);
-
-    int status();
-
-    /**
-     * @return the headers in the response.
-     */
-    HttpHeaders headers();
-
-    Response write(BodyPart bodyPart);
-
-    void end();
-
-    Metrics metrics();
+    ClientRequest invoke(Request request, URI endpointUri, Handler<ClientResponse> result);
 }
