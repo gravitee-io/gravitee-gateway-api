@@ -17,12 +17,10 @@ package io.gravitee.gateway.api;
 
 import io.gravitee.gateway.api.handler.Handler;
 
-import java.net.URI;
-
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
 public interface Invoker {
 
-    ClientRequest invoke(Request request, URI endpointUri, Handler<ClientResponse> result);
+    ClientRequest invoke(Request request, Handler<ClientResponse> result);
 }
