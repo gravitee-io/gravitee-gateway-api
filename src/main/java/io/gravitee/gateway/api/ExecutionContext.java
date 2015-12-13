@@ -15,10 +15,53 @@
  */
 package io.gravitee.gateway.api;
 
+import java.util.Enumeration;
+
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
 public interface ExecutionContext {
 
+    String ATTR_APPLICATION = "gravitee.attribute.application";
+    String ATTR_API_KEY = "gravitee.attribute.api-key";
+
     <T> T getComponent(Class<T> componentClass);
+
+    /*
+     * Execution attributes management.
+     * This is a copy of the ServletRequest API.
+     */
+
+    /**
+     * Stores an attribute in this request. Attributes are reset between requests.
+     *
+     * @param name a String specifying the name of the attribute
+     * @param value the Object to be stored
+     */
+    void setAttribute(String name, Object value);
+
+    /**
+     * Removes an attribute from this request. This method is not generally needed as attributes only persist as
+     * long as the request is being handled.
+     *
+     * @param name a String specifying the name of the attribute to remove
+     */
+    void removeAttribute(String name);
+
+    /**
+     * Returns the value of the named attribute as an Object, or <code>null</code> if no attribute of the given
+     * name exists.
+     *
+     * @param name a String specifying the name of the attribute
+     * @return an Object containing the value of the attribute, or null if the attribute does not exist
+     */
+    Object getAttribute(String name);
+
+    /**
+     * Returns an Enumeration containing the names of the attributes available to this request. This method returns
+     * an empty Enumeration if the request has no attributes available to it.
+     *
+     * @return an Enumeration of strings containing the names of the request's attributes
+     */
+    Enumeration<String> getAttributeNames();
 }
