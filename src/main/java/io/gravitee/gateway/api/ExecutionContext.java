@@ -15,6 +15,8 @@
  */
 package io.gravitee.gateway.api;
 
+import io.gravitee.gateway.api.expression.TemplateEngine;
+
 import java.util.Enumeration;
 
 /**
@@ -24,6 +26,7 @@ public interface ExecutionContext {
 
     String ATTR_APPLICATION = "gravitee.attribute.application";
     String ATTR_API_KEY = "gravitee.attribute.api-key";
+    String ATTR_BODY_CONTENT = "gravitee.attribute.body-content";
 
     <T> T getComponent(Class<T> componentClass);
 
@@ -64,4 +67,6 @@ public interface ExecutionContext {
      * @return an Enumeration of strings containing the names of the request's attributes
      */
     Enumeration<String> getAttributeNames();
+
+    TemplateEngine getTemplateEngine();
 }
