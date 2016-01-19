@@ -26,7 +26,8 @@ public interface ExecutionContext {
 
     String ATTR_APPLICATION = "gravitee.attribute.application";
     String ATTR_API_KEY = "gravitee.attribute.api-key";
-    String ATTR_BODY_CONTENT = "gravitee.attribute.body-content";
+    String ATTR_REQUEST_BODY_CONTENT = "gravitee.attr.request.body-content";
+    String ATTR_REQUEST_METHOD = "gravitee.attr.request.method";
 
     <T> T getComponent(Class<T> componentClass);
 

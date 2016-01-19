@@ -22,5 +22,5 @@ import io.gravitee.gateway.api.handler.Handler;
  */
 public interface Invoker {
 
-    ClientRequest invoke(Request request, Handler<ClientResponse> result);
+    ClientRequest invoke(ExecutionContext executionContext, Request request, Handler<ClientResponse> result);
 }
