@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.http;
+package io.gravitee.gateway.api.http.loadbalancer;
+
+import io.gravitee.gateway.api.Request;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface BodyPart<T> {
+public interface LoadBalancer {
 
-    int length();
-
-    byte[] getBodyPartAsBytes();
-
-    T getBodyPart();
+    String chooseEndpoint(Request request);
 }
