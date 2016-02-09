@@ -13,14 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.http;
 
-import io.gravitee.gateway.api.handler.Handler;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
+ * @author GraviteeSource Team
  */
-public interface Invoker {
+public class StringBodyPart implements BodyPart<ByteBuffer> {
 
-    ClientRequest invoke(ExecutionContext executionContext, Request serverRequest, Handler<ClientResponse> result);
+    private final byte[] bytes;
+
+    public StringBodyPart(String body) {
+        bytes = body.getBytes(Charset.forName("UTF-8"));
+    }
+
+    @Override
+    public int length() {
+        return bytes.length;
+    }
+
+    @Override
+    public byte[] getBodyPartAsBytes() {
+        return bytes;
+    }
+
+    @Override
+    public ByteBuffer getBodyPart() {
+        return ByteBuffer.wrap(bytes);
+    }
 }
