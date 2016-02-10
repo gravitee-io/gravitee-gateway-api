@@ -24,6 +24,7 @@ import java.util.Enumeration;
  */
 public interface ExecutionContext {
 
+    String ATTR_RESOLVED_PATH = "gravitee.attribute.resolved-path";
     String ATTR_APPLICATION = "gravitee.attribute.application";
     String ATTR_API_KEY = "gravitee.attribute.api-key";
     String ATTR_REQUEST_BODY_CONTENT = "gravitee.attr.request.body-content";
