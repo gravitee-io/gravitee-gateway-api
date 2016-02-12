@@ -15,12 +15,15 @@
  */
 package io.gravitee.gateway.api;
 
+import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.http.BodyPart;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
 public interface ClientRequest {
+
+    ClientRequest connectTimeoutHandler(Handler<Throwable> timeoutHandler);
 
     ClientRequest write(BodyPart bodyPart);
 
