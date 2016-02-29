@@ -20,6 +20,7 @@ import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.http.BodyPart;
+import io.gravitee.reporter.api.http.RequestMetrics;
 
 import java.time.Instant;
 import java.util.Map;
@@ -88,4 +89,6 @@ public interface Request {
     Request bodyHandler(Handler<BodyPart> bodyHandler);
 
     Request endHandler(Handler<Void> handler);
+
+    RequestMetrics metrics();
 }
