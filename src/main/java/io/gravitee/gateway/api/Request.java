@@ -18,8 +18,8 @@ package io.gravitee.gateway.api;
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.handler.Handler;
-import io.gravitee.gateway.api.http.BodyPart;
 import io.gravitee.reporter.api.http.RequestMetrics;
 
 import java.time.Instant;
@@ -86,7 +86,7 @@ public interface Request {
      */
     String localAddress();
 
-    Request bodyHandler(Handler<BodyPart> bodyHandler);
+    Request bodyHandler(Handler<Buffer> bodyHandler);
 
     Request endHandler(Handler<Void> handler);
 

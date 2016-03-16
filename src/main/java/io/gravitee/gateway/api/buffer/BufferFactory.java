@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.http;
+package io.gravitee.gateway.api.buffer;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david at gravitee.io)
+ * @author GraviteeSource Team
  */
-public interface BodyPart<T> {
+public interface BufferFactory {
 
-    int length();
+    Buffer buffer(int initialSizeHint);
 
-    byte[] getBodyPartAsBytes();
+    Buffer buffer();
 
-    T getBodyPart();
+    Buffer buffer(String str);
+
+    Buffer buffer(String str, String enc);
+
+    Buffer buffer(byte[] bytes);
 }

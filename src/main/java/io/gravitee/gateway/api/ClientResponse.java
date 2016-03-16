@@ -16,13 +16,13 @@
 package io.gravitee.gateway.api;
 
 import io.gravitee.common.http.HttpHeaders;
-import io.gravitee.gateway.api.http.BodyPart;
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.ReadStream;
 
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface ClientResponse extends ReadStream<BodyPart> {
+public interface ClientResponse extends ReadStream<Buffer> {
 
     int status();
 

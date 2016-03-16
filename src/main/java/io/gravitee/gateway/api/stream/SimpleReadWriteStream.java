@@ -21,7 +21,7 @@ import io.gravitee.gateway.api.handler.Handler;
  * @author David BRASSELY (david at gravitee.io)
  * @author GraviteeSource Team
  */
-public class SimpleReadWriteStream<T> implements ReadWriteStream<T> {
+public abstract class SimpleReadWriteStream<T> implements ReadWriteStream<T> {
 
     protected Handler<T> bodyHandler;
     protected Handler<Void> endHandler;
