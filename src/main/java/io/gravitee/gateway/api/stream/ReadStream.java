@@ -13,18 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.stream;
 
-import io.gravitee.common.http.HttpHeaders;
-import io.gravitee.gateway.api.http.BodyPart;
-import io.gravitee.gateway.api.stream.ReadStream;
+import io.gravitee.gateway.api.handler.Handler;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * Stream reader.
+ *
+ * Mainly inspired from Vertx.io
+ * @see io.vertx.core.streams.ReadStream
+ *
+ * @author David BRASSELY (david at gravitee.io)
+ * @author GraviteeSource Team
  */
-public interface ClientResponse extends ReadStream<BodyPart> {
+public interface ReadStream<T> {
 
-    int status();
+    ReadStream<T> bodyHandler(Handler<T> bodyHandler);
 
-    HttpHeaders headers();
+    ReadStream<T> endHandler(Handler<Void> endHandler);
 }

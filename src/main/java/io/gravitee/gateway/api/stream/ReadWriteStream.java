@@ -13,18 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
-
-import io.gravitee.common.http.HttpHeaders;
-import io.gravitee.gateway.api.http.BodyPart;
-import io.gravitee.gateway.api.stream.ReadStream;
+package io.gravitee.gateway.api.stream;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david at gravitee.io)
+ * @author GraviteeSource Team
  */
-public interface ClientResponse extends ReadStream<BodyPart> {
-
-    int status();
-
-    HttpHeaders headers();
+public interface ReadWriteStream<T> extends ReadStream<T>, WriteStream<T> {
 }
