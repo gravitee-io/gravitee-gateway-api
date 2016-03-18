@@ -49,6 +49,12 @@ public interface Buffer {
         return factory.buffer(bytes);
     }
 
+    Buffer appendBuffer(Buffer buff);
+
+    Buffer appendString(String str, String enc);
+
+    Buffer appendString(String str);
+
     String toString();
 
     String toString(String enc);
@@ -58,6 +64,8 @@ public interface Buffer {
     byte[] getBytes();
 
     int length();
+
+    Object getNativeBuffer();
 
     BufferFactory factory = ServiceLoaderHelper.loadFactory(BufferFactory.class);
 }
