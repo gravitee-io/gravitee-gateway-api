@@ -13,23 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
-
-import io.gravitee.common.http.HttpHeaders;
-import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.stream.WriteStream;
+package io.gravitee.gateway.api.stream.exception;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david at gravitee.io)
+ * @author GraviteeSource Team
  */
-public interface Response extends WriteStream<Buffer> {
+public class TransformationException extends Exception {
 
-    Response status(int statusCode);
+    public TransformationException() {
+    }
 
-    int status();
+    public TransformationException(Throwable cause) {
+        super(cause);
+    }
 
-    /**
-     * @return the headers in the response.
-     */
-    HttpHeaders headers();
+    public TransformationException(String message) {
+        super(message);
+    }
+
+    public TransformationException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

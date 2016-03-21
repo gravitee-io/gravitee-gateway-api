@@ -19,7 +19,7 @@ import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.handler.Handler;
+import io.gravitee.gateway.api.stream.ReadStream;
 import io.gravitee.reporter.api.http.RequestMetrics;
 
 import java.time.Instant;
@@ -30,7 +30,7 @@ import java.util.Map;
  *
  * @author David BRASSELY (brasseld at gmail.com)
  */
-public interface Request {
+public interface Request extends ReadStream<Buffer> {
 
     String id();
 
@@ -85,10 +85,6 @@ public interface Request {
      * @return a <code>String</code> containing the IP address on which the request was received.
      */
     String localAddress();
-
-    Request bodyHandler(Handler<Buffer> bodyHandler);
-
-    Request endHandler(Handler<Void> handler);
 
     RequestMetrics metrics();
 }
