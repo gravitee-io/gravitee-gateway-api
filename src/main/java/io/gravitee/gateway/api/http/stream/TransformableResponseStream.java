@@ -33,8 +33,7 @@ public abstract class TransformableResponseStream extends TransformableStream {
     private final Response response;
 
     public TransformableResponseStream(Response response) {
-        super();
-        this.response = response;
+        this(response, -1);
     }
 
     public TransformableResponseStream(Response response, int contentLength) {
@@ -47,7 +46,7 @@ public abstract class TransformableResponseStream extends TransformableStream {
         Buffer content;
 
         try {
-            content = transform();
+            content = transform().apply(buffer);
 
             // Set content length (remove useless transfer encoding header)
             response.headers().remove(HttpHeaders.TRANSFER_ENCODING);

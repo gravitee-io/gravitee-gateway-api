@@ -19,7 +19,7 @@ package io.gravitee.gateway.api.stream.exception;
  * @author David BRASSELY (david at gravitee.io)
  * @author GraviteeSource Team
  */
-public class TransformationException extends Exception {
+public class TransformationException extends RuntimeException {
 
     public TransformationException() {
     }
