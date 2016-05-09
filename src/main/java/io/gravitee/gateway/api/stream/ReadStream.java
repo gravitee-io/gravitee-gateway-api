@@ -31,4 +31,12 @@ public interface ReadStream<T> {
     ReadStream<T> bodyHandler(Handler<T> bodyHandler);
 
     ReadStream<T> endHandler(Handler<Void> endHandler);
+
+    default ReadStream<T> pause() {
+        return this;
+    }
+
+    default ReadStream<T> resume() {
+        return this;
+    }
 }
