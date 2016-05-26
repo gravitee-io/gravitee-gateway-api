@@ -18,9 +18,10 @@ package io.gravitee.gateway.api.http.loadbalancer;
 import io.gravitee.gateway.api.Request;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david at gravitee.io)
+ * @author GraviteeSource Team
  */
-public interface LoadBalancer {
+public interface LoadBalancerStrategy {
 
     String chooseEndpoint(Request request);
 }
