@@ -20,7 +20,8 @@ import io.gravitee.gateway.api.expression.TemplateEngine;
 import java.util.Enumeration;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author GraviteeSource Team
  */
 public interface ExecutionContext {
 
@@ -29,6 +30,8 @@ public interface ExecutionContext {
     String ATTR_APPLICATION = "gravitee.attribute.application";
     String ATTR_API = "gravitee.attribute.api";
     String ATTR_API_KEY = "gravitee.attribute.api-key";
+    String ATTR_SUBSCRIPTION = "gravitee.attribute.subscription";
+    String ATTR_PLAN = "gravitee.attribute.plan";
     String ATTR_REQUEST_BODY_CONTENT = "gravitee.attribute.request.body-content";
     String ATTR_REQUEST_METHOD = "gravitee.attribute.request.method";
     String ATTR_REQUEST_ENDPOINT = "gravitee.attribute.request.endpoint";
