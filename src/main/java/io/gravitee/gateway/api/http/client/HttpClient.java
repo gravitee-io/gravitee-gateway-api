@@ -16,21 +16,24 @@
 package io.gravitee.gateway.api.http.client;
 
 import io.gravitee.common.component.LifecycleComponent;
+import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.gateway.api.ClientRequest;
 import io.gravitee.gateway.api.ClientResponse;
-import io.gravitee.gateway.api.Request;
+import io.gravitee.gateway.api.Connector;
 import io.gravitee.gateway.api.handler.Handler;
+
+import java.net.URI;
 
 /**
  * An HttpClient is an extension of the {@link LifecycleComponent} to provide lifecyle methods.
  * HTTP client initialization must be done in <code>start()</code> and must be closed from the <code>stop()</code>
  * method.
  *
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface HttpClient extends LifecycleComponent<HttpClient> {
+public interface HttpClient extends Connector, LifecycleComponent<HttpClient> {
 
-    ClientRequest request(String host, int port, HttpMethod method, String requestURI, Request serverRequest, Handler<ClientResponse> responseHandler);
+    ClientRequest request(HttpMethod method, URI uri, HttpHeaders headers, Handler<ClientResponse> responseHandler);
 }
