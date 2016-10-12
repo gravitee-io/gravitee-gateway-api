@@ -13,20 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.http.loadbalancer;
+package io.gravitee.gateway.api;
 
 /**
+ * A simple marker interface to define a way to invoke / call something.
+ *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface LoadBalancerStrategy {
-
-    /**
-     * Select next endpoint and return the endpoint name.
-     * If no endpoint can be selected (no endpoint with the UP state), the value
-     * <code>null</code> is returned.
-     *
-     * @return Endpoint name or <code>null</code> if none can be selected.
-     */
-    String next();
+public interface Connector {
 }

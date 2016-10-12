@@ -13,20 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.http.loadbalancer;
+package io.gravitee.gateway.api.endpoint;
+
+import io.gravitee.gateway.api.Connector;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface LoadBalancerStrategy {
+public interface Endpoint<T extends Connector> {
 
     /**
-     * Select next endpoint and return the endpoint name.
-     * If no endpoint can be selected (no endpoint with the UP state), the value
-     * <code>null</code> is returned.
-     *
-     * @return Endpoint name or <code>null</code> if none can be selected.
+     * Endpoint name.
+     * @return Endpoint name.
      */
-    String next();
+    String name();
+
+    /**
+     * Endpoint target.
+     * @return Endpoint target.
+     */
+    String target();
+
+    /**
+     * The {@link Connector} used to invoke the endpoint.
+     * @return {@link Connector} used to invoke the endpoint.
+     */
+    T connector();
 }
