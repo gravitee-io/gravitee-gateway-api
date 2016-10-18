@@ -34,8 +34,8 @@
     <name>Gravitee IO - Gateway - API</name>
 
     <properties>
-        <gravitee-common.version>0.11.0</gravitee-common.version>
-        <gravitee-reporter-api.version>0.10.0</gravitee-reporter-api.version>
+        <gravitee-common.version>1.0.0-SNAPSHOT</gravitee-common.version>
+        <gravitee-reporter-api.version>1.0.0-SNAPSHOT</gravitee-reporter-api.version>
     </properties>
 
     <dependencies>
