@@ -28,21 +28,41 @@ import java.util.Map;
 /**
  * Represents a server-side HTTP request.
  *
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author GraviteeSource Team
  */
 public interface Request extends ReadStream<Buffer> {
 
     String id();
 
     /**
+     * The URL the client used to make the request.
+     *
      * @return the URI of the request.
      */
     String uri();
 
     /**
+     * Returns the part of this request's URL from the protocol name up to the query string in the first line
+     * of the HTTP request.
+     *
      * @return The path part of the uri.
      */
     String path();
+
+    /**
+     * Return the <code>path</code> without the <code>context-path</code>.
+     *
+     * @return
+     */
+    String pathInfo();
+
+    /**
+     * Returns the portion of the request URI that indicates the context of the request.
+     *
+     * @return
+     */
+    String contextPath();
 
     /**
      * @return the query parameters in the request
