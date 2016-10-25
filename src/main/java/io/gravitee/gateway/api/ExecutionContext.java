@@ -25,17 +25,18 @@ import java.util.Enumeration;
  */
 public interface ExecutionContext {
 
-    String ATTR_CONTEXT_PATH = "gravitee.attribute.context-path";
-    String ATTR_RESOLVED_PATH = "gravitee.attribute.resolved-path";
-    String ATTR_APPLICATION = "gravitee.attribute.application";
-    String ATTR_API = "gravitee.attribute.api";
-    String ATTR_API_KEY = "gravitee.attribute.api-key";
-    String ATTR_SUBSCRIPTION = "gravitee.attribute.subscription";
-    String ATTR_PLAN = "gravitee.attribute.plan";
-    String ATTR_REQUEST_BODY_CONTENT = "gravitee.attribute.request.body-content";
-    String ATTR_REQUEST_METHOD = "gravitee.attribute.request.method";
-    String ATTR_REQUEST_ENDPOINT = "gravitee.attribute.request.endpoint";
-    String ATTR_INVOKER = "gravitee.attribute.request.invoker";
+    String ATTR_PREFIX = "gravitee.attribute.";
+
+    String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
+    String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
+    String ATTR_APPLICATION = ATTR_PREFIX + "application";
+    String ATTR_API = ATTR_PREFIX + "api";
+    String ATTR_API_KEY = ATTR_PREFIX + "api-key";
+    String ATTR_SUBSCRIPTION = ATTR_PREFIX + "subscription";
+    String ATTR_PLAN = ATTR_PREFIX + "plan";
+    String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
+    String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
+    String ATTR_INVOKER = ATTR_PREFIX + "request.invoker";
 
     <T> T getComponent(Class<T> componentClass);
 
