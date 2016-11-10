@@ -36,6 +36,13 @@ public interface Request extends ReadStream<Buffer> {
     String id();
 
     /**
+     * Propagated transaction id between multiple requests.
+     *
+     * @return Transaction ID.
+     */
+    String transactionId();
+
+    /**
      * The URL the client used to make the request.
      *
      * @return the URI of the request.
