@@ -15,25 +15,25 @@
  */
 package io.gravitee.gateway.api.http.stream;
 
-import io.gravitee.gateway.api.Request;
+import io.gravitee.gateway.api.Response;
 import io.gravitee.gateway.api.stream.TransformableStream;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public final class TransformableRequestStreamBuilder extends TransformableStreamBuilder<Request> {
+public final class TransformableResponseStreamBuilder extends TransformableStreamBuilder<Response> {
 
-    private TransformableRequestStreamBuilder(Request request) {
-        super(request);
+    private TransformableResponseStreamBuilder(Response response) {
+        super(response);
     }
 
-    public static TransformableRequestStreamBuilder on(Request request) {
-        return new TransformableRequestStreamBuilder(request);
+    public static TransformableResponseStreamBuilder on(Response response) {
+        return new TransformableResponseStreamBuilder(response);
     }
 
     @Override
     public TransformableStream build() {
-        return new TransformableRequestStream(container, contentLength);
+        return new TransformableResponseStream(container, contentLength);
     }
 }

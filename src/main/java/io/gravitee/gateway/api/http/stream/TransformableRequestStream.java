@@ -25,15 +25,11 @@ import io.gravitee.gateway.api.stream.exception.TransformationException;
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public abstract class TransformableRequestStream extends TransformableStream {
+public class TransformableRequestStream extends TransformableStream {
 
     private final Request request;
 
-    public TransformableRequestStream(Request request) {
-        this(request, -1);
-    }
-
-    public TransformableRequestStream(Request request, int contentLength) {
+    TransformableRequestStream(Request request, int contentLength) {
         super(contentLength);
         this.request = request;
     }
@@ -50,7 +46,7 @@ public abstract class TransformableRequestStream extends TransformableStream {
             request.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
 
             // Set the content-type if settled
-            String contentType = to();
+            String contentType = contentType();
             if (contentType != null && !contentType.isEmpty()) {
                 request.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
             }
@@ -61,6 +57,4 @@ public abstract class TransformableRequestStream extends TransformableStream {
         super.flush(content);
         super.end();
     }
-
-    protected abstract String to();
 }
