@@ -16,17 +16,18 @@
 package io.gravitee.gateway.api.stream;
 
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.stream.exception.TransformationException;
 
 import java.util.function.Function;
 
 /**
- * @author David BRASSELY (david at gravitee.io)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
 public abstract class TransformableStream extends BufferedReadWriteStream {
 
     protected final Buffer buffer;
+    private String contentType;
+    private Function<Buffer, Buffer> transform;
 
     public TransformableStream(int length) {
         buffer = (length != -1) ? Buffer.buffer(length) : Buffer.buffer();
@@ -47,5 +48,19 @@ public abstract class TransformableStream extends BufferedReadWriteStream {
         return this;
     }
 
-    protected abstract Function<Buffer, Buffer> transform() throws TransformationException;
+    void contentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String contentType() {
+        return this.contentType;
+    }
+
+    void transform(Function<Buffer, Buffer> transform) {
+        this.transform = transform;
+    }
+
+    public Function<Buffer, Buffer> transform() {
+        return transform;
+    }
 }

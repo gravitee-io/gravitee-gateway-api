@@ -25,18 +25,14 @@ import io.gravitee.gateway.api.stream.TransformableStream;
 import io.gravitee.gateway.api.stream.exception.TransformationException;
 
 /**
- * @author David BRASSELY (david at gravitee.io)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public abstract class TransformableResponseStream extends TransformableStream {
+public class TransformableResponseStream extends TransformableStream {
 
     private final Response response;
 
-    public TransformableResponseStream(Response response) {
-        this(response, -1);
-    }
-
-    public TransformableResponseStream(Response response, int contentLength) {
+    TransformableResponseStream(Response response, int contentLength) {
         super(contentLength);
         this.response = response;
     }
@@ -53,7 +49,7 @@ public abstract class TransformableResponseStream extends TransformableStream {
             response.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
 
             // Set the content-type if settled
-            String contentType = to();
+            String contentType = contentType();
             if (contentType != null && !contentType.isEmpty()) {
                 response.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
             }
@@ -67,6 +63,4 @@ public abstract class TransformableResponseStream extends TransformableStream {
         super.flush(content);
         super.end();
     }
-
-    protected abstract String to();
 }
