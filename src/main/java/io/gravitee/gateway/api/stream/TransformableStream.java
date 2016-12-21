@@ -26,8 +26,8 @@ import java.util.function.Function;
 public abstract class TransformableStream extends BufferedReadWriteStream {
 
     protected final Buffer buffer;
-    private String contentType;
-    private Function<Buffer, Buffer> transform;
+    protected String contentType;
+    protected Function<Buffer, Buffer> transform;
 
     public TransformableStream(int length) {
         buffer = (length != -1) ? Buffer.buffer(length) : Buffer.buffer();

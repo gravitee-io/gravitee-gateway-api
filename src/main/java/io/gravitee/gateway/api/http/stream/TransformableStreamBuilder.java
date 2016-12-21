@@ -28,7 +28,7 @@ public abstract class TransformableStreamBuilder<T> {
 
     protected final T container;
     protected String contentType;
-    protected Function<Buffer, Buffer> function;
+    protected Function<Buffer, Buffer> transform;
     protected int contentLength = -1;
 
     protected TransformableStreamBuilder(T container) {
@@ -46,7 +46,7 @@ public abstract class TransformableStreamBuilder<T> {
     }
 
     public TransformableStreamBuilder transform(Function<Buffer, Buffer> function) {
-        this.function = function;
+        this.transform = function;
         return this;
     }
 

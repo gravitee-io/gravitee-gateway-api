@@ -34,6 +34,6 @@ public final class TransformableResponseStreamBuilder extends TransformableStrea
 
     @Override
     public TransformableStream build() {
-        return new TransformableResponseStream(container, contentLength);
+        return new TransformableResponseStream(this);
     }
 }

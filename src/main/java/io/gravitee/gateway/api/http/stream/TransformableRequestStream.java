@@ -18,20 +18,16 @@ package io.gravitee.gateway.api.http.stream;
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.stream.TransformableStream;
 import io.gravitee.gateway.api.stream.exception.TransformationException;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public class TransformableRequestStream extends TransformableStream {
+public class TransformableRequestStream extends TransformableSourceStream<Request> {
 
-    private final Request request;
-
-    TransformableRequestStream(Request request, int contentLength) {
-        super(contentLength);
-        this.request = request;
+    TransformableRequestStream(TransformableRequestStreamBuilder builder) {
+        super(builder);
     }
 
     @Override
@@ -42,13 +38,13 @@ public class TransformableRequestStream extends TransformableStream {
             content = transform().apply(buffer);
 
             // Set content length (remove useless transfer encoding header)
-            request.headers().remove(HttpHeaders.TRANSFER_ENCODING);
-            request.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
+            source.headers().remove(HttpHeaders.TRANSFER_ENCODING);
+            source.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
 
             // Set the content-type if settled
             String contentType = contentType();
             if (contentType != null && !contentType.isEmpty()) {
-                request.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
+                source.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
             }
         } catch (TransformationException tex) {
             content = Buffer.buffer(tex.getMessage());

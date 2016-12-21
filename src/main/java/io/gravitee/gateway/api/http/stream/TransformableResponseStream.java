@@ -21,20 +21,16 @@ import io.gravitee.common.http.HttpStatusCode;
 import io.gravitee.common.http.MediaType;
 import io.gravitee.gateway.api.Response;
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.stream.TransformableStream;
 import io.gravitee.gateway.api.stream.exception.TransformationException;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public class TransformableResponseStream extends TransformableStream {
+public class TransformableResponseStream extends TransformableSourceStream<Response> {
 
-    private final Response response;
-
-    TransformableResponseStream(Response response, int contentLength) {
-        super(contentLength);
-        this.response = response;
+    TransformableResponseStream(TransformableResponseStreamBuilder builder) {
+        super(builder);
     }
 
     @Override
@@ -45,19 +41,19 @@ public class TransformableResponseStream extends TransformableStream {
             content = transform().apply(buffer);
 
             // Set content length (remove useless transfer encoding header)
-            response.headers().remove(HttpHeaders.TRANSFER_ENCODING);
-            response.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
+            source.headers().remove(HttpHeaders.TRANSFER_ENCODING);
+            source.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
 
             // Set the content-type if settled
             String contentType = contentType();
             if (contentType != null && !contentType.isEmpty()) {
-                response.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
+                source.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
             }
         } catch (TransformationException tex) {
             content = Buffer.buffer(tex.getMessage());
-            response.status(HttpStatusCode.INTERNAL_SERVER_ERROR_500);
-            response.headers().set(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN);
-            response.headers().set(HttpHeaders.CONNECTION, HttpHeadersValues.CONNECTION_CLOSE);
+            source.status(HttpStatusCode.INTERNAL_SERVER_ERROR_500);
+            source.headers().set(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN);
+            source.headers().set(HttpHeaders.CONNECTION, HttpHeadersValues.CONNECTION_CLOSE);
         }
 
         super.flush(content);
