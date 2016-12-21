@@ -20,6 +20,7 @@ import io.gravitee.gateway.api.handler.Handler;
 /**
  * @author David BRASSELY (brasseld at gmail.com)
  */
+@FunctionalInterface
 public interface Invoker {
 
     ClientRequest invoke(ExecutionContext executionContext, Request serverRequest, Handler<ClientResponse> result);

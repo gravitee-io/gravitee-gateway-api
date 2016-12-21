@@ -22,12 +22,16 @@ import io.gravitee.common.http.MediaType;
 import io.gravitee.gateway.api.Response;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.exception.TransformationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
 public class TransformableResponseStream extends TransformableSourceStream<Response> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransformableResponseStream.class);
 
     TransformableResponseStream(TransformableResponseStreamBuilder builder) {
         super(builder);
@@ -50,6 +54,7 @@ public class TransformableResponseStream extends TransformableSourceStream<Respo
                 source.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
             }
         } catch (TransformationException tex) {
+            LOGGER.error("Unexpected error while transforming response content", tex);
             content = Buffer.buffer(tex.getMessage());
             source.status(HttpStatusCode.INTERNAL_SERVER_ERROR_500);
             source.headers().set(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN);

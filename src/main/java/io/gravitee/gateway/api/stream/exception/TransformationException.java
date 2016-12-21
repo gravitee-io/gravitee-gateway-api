@@ -22,6 +22,7 @@ package io.gravitee.gateway.api.stream.exception;
 public class TransformationException extends RuntimeException {
 
     public TransformationException() {
+        super();
     }
 
     public TransformationException(Throwable cause) {

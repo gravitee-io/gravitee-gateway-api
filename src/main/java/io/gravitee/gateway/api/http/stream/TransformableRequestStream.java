@@ -19,12 +19,16 @@ import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.exception.TransformationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
 public class TransformableRequestStream extends TransformableSourceStream<Request> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(TransformableRequestStream.class);
 
     TransformableRequestStream(TransformableRequestStreamBuilder builder) {
         super(builder);
@@ -47,6 +51,7 @@ public class TransformableRequestStream extends TransformableSourceStream<Reques
                 source.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
             }
         } catch (TransformationException tex) {
+            LOGGER.error("Unexpected error while transforming request content", tex);
             content = Buffer.buffer(tex.getMessage());
         }
 

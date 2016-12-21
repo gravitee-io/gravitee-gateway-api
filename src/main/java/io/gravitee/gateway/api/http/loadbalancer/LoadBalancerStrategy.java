@@ -19,6 +19,7 @@ package io.gravitee.gateway.api.http.loadbalancer;
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
+@FunctionalInterface
 public interface LoadBalancerStrategy {
 
     /**

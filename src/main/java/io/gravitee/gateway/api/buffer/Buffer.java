@@ -55,6 +55,7 @@ public interface Buffer {
 
     Buffer appendString(String str);
 
+    @Override
     String toString();
 
     String toString(String enc);
