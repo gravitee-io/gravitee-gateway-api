@@ -16,6 +16,7 @@
 package io.gravitee.gateway.api.endpoint;
 
 import io.gravitee.gateway.api.Connector;
+import io.gravitee.gateway.api.http.loadbalancer.LoadBalancerStrategy;
 
 import java.util.Map;
 import java.util.Set;
@@ -33,4 +34,6 @@ public interface EndpointManager<T extends Connector> {
     Set<String> endpoints();
 
     Map<String, String> targetByEndpoint();
+
+    LoadBalancerStrategy loadbalancer();
 }
