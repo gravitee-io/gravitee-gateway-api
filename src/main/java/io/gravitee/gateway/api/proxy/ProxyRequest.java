@@ -13,18 +13,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.proxy;
 
-import io.gravitee.gateway.api.handler.Handler;
-import io.gravitee.gateway.api.proxy.ProxyRequestConnection;
-import io.gravitee.gateway.api.proxy.ProxyResponse;
+import io.gravitee.common.http.HttpHeaders;
+import io.gravitee.common.http.HttpMethod;
+
+import java.net.URI;
+import java.util.Map;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-@FunctionalInterface
-public interface Invoker {
+public interface ProxyRequest {
 
-    ProxyRequestConnection invoke(ExecutionContext executionContext, Request serverRequest, Handler<ProxyResponse> result);
+    /**
+     * @return Incoming request ID.
+     */
+    String id();
+
+    /**
+     * @return Incoming transaction ID.
+     */
+    String transaction();
+
+    /**
+     * @return the target URI of the request.
+     */
+    URI uri();
+
+    /**
+     * @return the query parameters in the request
+     */
+    Map<String, String> parameters();
+
+    /**
+     * @return the HTTP method for the request.
+     */
+    HttpMethod method();
+
+    /**
+     * @return the headers in the request.
+     */
+    HttpHeaders headers();
 }
