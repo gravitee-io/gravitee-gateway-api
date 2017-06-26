@@ -13,18 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.proxy;
 
-import io.gravitee.gateway.api.handler.Handler;
-import io.gravitee.gateway.api.proxy.ProxyRequestConnection;
-import io.gravitee.gateway.api.proxy.ProxyResponse;
+import io.gravitee.common.http.HttpHeaders;
+import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.api.stream.ReadStream;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-@FunctionalInterface
-public interface Invoker {
+public interface ProxyResponse extends ReadStream<Buffer> {
 
-    ProxyRequestConnection invoke(ExecutionContext executionContext, Request serverRequest, Handler<ProxyResponse> result);
+    /**
+     * @return HTTP status code.
+     */
+    int status();
+
+    /**
+     * @return the headers in the response.
+     */
+    HttpHeaders headers();
 }

@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.proxy;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.stream.WriteStream;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author GraviteeSource Team
  */
-public interface ClientRequest extends WriteStream<Buffer> {
+public interface ProxyRequestConnection extends WriteStream<Buffer> {
 
-    ClientRequest connectTimeoutHandler(Handler<Throwable> timeoutHandler);
+    ProxyRequestConnection connectTimeoutHandler(Handler<Throwable> timeoutHandler);
 }

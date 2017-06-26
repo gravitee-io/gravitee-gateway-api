@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.connector;
 
-import io.gravitee.common.http.HttpHeaders;
-import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.stream.ReadStream;
+import io.gravitee.gateway.api.ExecutionContext;
+import io.gravitee.gateway.api.Request;
+import io.gravitee.gateway.api.handler.Handler;
+import io.gravitee.gateway.api.proxy.ProxyRequestConnection;
+import io.gravitee.gateway.api.proxy.ProxyResponse;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author GraviteeSource Team
  */
-public interface ClientResponse extends ReadStream<Buffer> {
+public interface Connector {
 
-    int status();
-
-    HttpHeaders headers();
+    ProxyRequestConnection handle(ExecutionContext executionContext, Request request, Handler<ProxyResponse> result);
 }
