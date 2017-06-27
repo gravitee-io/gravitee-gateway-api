@@ -19,7 +19,7 @@ import io.gravitee.common.component.LifecycleComponent;
 import io.gravitee.gateway.api.Connector;
 import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
-import io.gravitee.gateway.api.proxy.ProxyRequestConnection;
+import io.gravitee.gateway.api.proxy.ProxyConnection;
 import io.gravitee.gateway.api.proxy.ProxyResponse;
 
 /**
@@ -32,5 +32,5 @@ import io.gravitee.gateway.api.proxy.ProxyResponse;
  */
 public interface HttpClient extends Connector, LifecycleComponent<HttpClient> {
 
-    ProxyRequestConnection request(ProxyRequest request, Handler<ProxyResponse> responseHandler);
+    ProxyConnection request(ProxyRequest request, Handler<ProxyResponse> responseHandler);
 }
