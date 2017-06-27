@@ -25,7 +25,11 @@ import io.gravitee.gateway.api.stream.WriteStream;
  */
 public interface ProxyConnection extends WriteStream<Buffer> {
 
-    ProxyConnection cancel();
+    default ProxyConnection cancel() {
+        return this;
+    }
 
-    ProxyConnection connectTimeoutHandler(Handler<Throwable> timeoutHandler);
+    default ProxyConnection connectTimeoutHandler(Handler<Throwable> timeoutHandler) {
+        return this;
+    }
 }
