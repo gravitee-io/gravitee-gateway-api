@@ -18,7 +18,7 @@ package io.gravitee.gateway.api.connector;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.handler.Handler;
-import io.gravitee.gateway.api.proxy.ProxyRequestConnection;
+import io.gravitee.gateway.api.proxy.ProxyConnection;
 import io.gravitee.gateway.api.proxy.ProxyResponse;
 
 /**
@@ -27,5 +27,5 @@ import io.gravitee.gateway.api.proxy.ProxyResponse;
  */
 public interface Connector {
 
-    ProxyRequestConnection handle(ExecutionContext executionContext, Request request, Handler<ProxyResponse> result);
+    ProxyConnection handle(ExecutionContext executionContext, Request request, Handler<ProxyResponse> result);
 }
