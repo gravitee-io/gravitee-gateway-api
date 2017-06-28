@@ -17,6 +17,7 @@ package io.gravitee.gateway.api.proxy;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
+import io.gravitee.gateway.api.Request;
 
 import java.net.URI;
 import java.util.Map;
@@ -26,16 +27,6 @@ import java.util.Map;
  * @author GraviteeSource Team
  */
 public interface ProxyRequest {
-
-    /**
-     * @return Incoming request ID.
-     */
-    String id();
-
-    /**
-     * @return Incoming transaction ID.
-     */
-    String transaction();
 
     /**
      * @return the target URI of the request.
@@ -56,4 +47,9 @@ public interface ProxyRequest {
      * @return the headers in the request.
      */
     HttpHeaders headers();
+
+    /**
+     * @return the incoming (gateway) request.
+     */
+    Request request();
 }

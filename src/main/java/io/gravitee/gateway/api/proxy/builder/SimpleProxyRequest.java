@@ -33,12 +33,10 @@ class SimpleProxyRequest implements ProxyRequest {
     private Map<String, String> parameters;
     private HttpMethod method;
     private HttpHeaders headers;
-    private String id;
-    private String transaction;
+    private final Request request;
 
     SimpleProxyRequest(Request request) {
-        this.id = request.id();
-        this.transaction = request.transactionId();
+        this.request = request;
     }
 
     public void setUri(URI uri) {
@@ -78,12 +76,7 @@ class SimpleProxyRequest implements ProxyRequest {
     }
 
     @Override
-    public String id() {
-        return id;
-    }
-
-    @Override
-    public String transaction() {
-        return transaction;
+    public Request request() {
+        return request;
     }
 }
