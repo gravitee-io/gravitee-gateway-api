@@ -34,7 +34,7 @@
     <name>Gravitee.io APIM - Gateway - API</name>
 
     <properties>
-        <gravitee-common.version>1.4.0</gravitee-common.version>
+        <gravitee-common.version>1.5.0-SNAPSHOT</gravitee-common.version>
         <gravitee-reporter-api.version>1.6.0</gravitee-reporter-api.version>
     </properties>
 
