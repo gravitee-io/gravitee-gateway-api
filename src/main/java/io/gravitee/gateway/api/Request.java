@@ -18,12 +18,12 @@ package io.gravitee.gateway.api;
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
+import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.ReadStream;
 import io.gravitee.reporter.api.http.RequestMetrics;
 
 import java.time.Instant;
-import java.util.Map;
 
 /**
  * Represents a server-side HTTP request.
@@ -74,7 +74,7 @@ public interface Request extends ReadStream<Buffer> {
     /**
      * @return the query parameters in the request
      */
-    Map<String, String> parameters();
+    MultiValueMap<String, String> parameters();
 
     /**
      * @return the headers in the request.
