@@ -29,7 +29,11 @@ public interface ProxyConnection extends WriteStream<Buffer> {
         return this;
     }
 
-    default ProxyConnection connectTimeoutHandler(Handler<Throwable> timeoutHandler) {
+    default ProxyConnection exceptionHandler(Handler<Throwable> exceptionHandler) {
+        return this;
+    }
+
+    default ProxyConnection responseHandler(Handler<ProxyResponse> responseHandler) {
         return this;
     }
 }

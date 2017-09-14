@@ -15,9 +15,10 @@
  */
 package io.gravitee.gateway.api;
 
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.proxy.ProxyConnection;
-import io.gravitee.gateway.api.proxy.ProxyResponse;
+import io.gravitee.gateway.api.stream.ReadStream;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -26,5 +27,5 @@ import io.gravitee.gateway.api.proxy.ProxyResponse;
 @FunctionalInterface
 public interface Invoker {
 
-    ProxyConnection invoke(ExecutionContext executionContext, Request serverRequest, Handler<ProxyResponse> result);
+    Request invoke(ExecutionContext executionContext, Request serverRequest, ReadStream<Buffer> stream, Handler<ProxyConnection> connectionHandler);
 }
