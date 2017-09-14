@@ -51,5 +51,6 @@ public interface ProxyRequest {
     /**
      * @return the incoming (gateway) request.
      */
+    //TODO: remove request: only used for metrics purpose
     Request request();
 }

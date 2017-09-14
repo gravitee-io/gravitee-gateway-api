@@ -17,10 +17,8 @@ package io.gravitee.gateway.api.http.client;
 
 import io.gravitee.common.component.LifecycleComponent;
 import io.gravitee.gateway.api.Connector;
-import io.gravitee.gateway.api.handler.Handler;
-import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.gateway.api.proxy.ProxyConnection;
-import io.gravitee.gateway.api.proxy.ProxyResponse;
+import io.gravitee.gateway.api.proxy.ProxyRequest;
 
 /**
  * An HttpClient is an extension of the {@link LifecycleComponent} to provide lifecyle methods.
@@ -32,5 +30,5 @@ import io.gravitee.gateway.api.proxy.ProxyResponse;
  */
 public interface HttpClient extends Connector, LifecycleComponent<HttpClient> {
 
-    ProxyConnection request(ProxyRequest request, Handler<ProxyResponse> responseHandler);
+    ProxyConnection request(ProxyRequest request);
 }
