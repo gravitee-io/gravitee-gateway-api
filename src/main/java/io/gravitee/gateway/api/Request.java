@@ -21,7 +21,7 @@ import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.ReadStream;
-import io.gravitee.reporter.api.http.RequestMetrics;
+import io.gravitee.reporter.api.http.Metrics;
 
 import java.time.Instant;
 
@@ -113,5 +113,5 @@ public interface Request extends ReadStream<Buffer> {
      */
     String localAddress();
 
-    RequestMetrics metrics();
+    Metrics metrics();
 }
