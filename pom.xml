@@ -36,6 +36,7 @@
     <properties>
         <gravitee-common.version>1.6.0</gravitee-common.version>
         <gravitee-reporter-api.version>1.8.0</gravitee-reporter-api.version>
+        <gravitee-policy-api.version>1.2.0</gravitee-policy-api.version>
     </properties>
 
     <dependencies>
@@ -48,6 +49,11 @@
             <groupId>io.gravitee.reporter</groupId>
             <artifactId>gravitee-reporter-api</artifactId>
             <version>${gravitee-reporter-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gravitee.policy</groupId>
+            <artifactId>gravitee-policy-api</artifactId>
+            <version>${gravitee-policy-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
