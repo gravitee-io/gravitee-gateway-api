@@ -17,6 +17,7 @@ package io.gravitee.gateway.api.http.stream;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.TransformableStream;
+import io.gravitee.policy.api.PolicyChain;
 
 import java.util.function.Function;
 
@@ -28,6 +29,7 @@ public abstract class TransformableStreamBuilder<T> {
 
     protected final T container;
     protected String contentType;
+    protected PolicyChain policyChain;
     protected Function<Buffer, Buffer> transform;
     protected int contentLength = -1;
 
@@ -47,6 +49,11 @@ public abstract class TransformableStreamBuilder<T> {
 
     public TransformableStreamBuilder transform(Function<Buffer, Buffer> function) {
         this.transform = function;
+        return this;
+    }
+
+    public TransformableStreamBuilder chain(PolicyChain policyChain) {
+        this.policyChain = policyChain;
         return this;
     }
 

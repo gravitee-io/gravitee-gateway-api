@@ -30,5 +30,6 @@ abstract class TransformableSourceStream<T> extends TransformableStream {
         this.source = builder.container;
         this.contentType = builder.contentType;
         this.transform = builder.transform;
+        this.policyChain = builder.policyChain;
     }
 }

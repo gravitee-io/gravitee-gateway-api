@@ -16,11 +16,12 @@
 package io.gravitee.gateway.api.http.stream;
 
 import io.gravitee.common.http.HttpHeaders;
+import io.gravitee.common.http.HttpStatusCode;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.exception.TransformationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.gravitee.policy.api.PolicyResult;
+import io.gravitee.reporter.api.log.Log;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -28,34 +29,44 @@ import org.slf4j.LoggerFactory;
  */
 public class TransformableRequestStream extends TransformableSourceStream<Request> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransformableRequestStream.class);
-
     TransformableRequestStream(TransformableRequestStreamBuilder builder) {
         super(builder);
     }
 
     @Override
     public void end() {
-        Buffer content;
-
         try {
-            content = transform().apply(buffer);
+            Buffer content = transform().apply(buffer);
 
             // Set content length (remove useless transfer encoding header)
             source.headers().remove(HttpHeaders.TRANSFER_ENCODING);
-            source.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
+            if (content != null) {
+                source.headers().set(HttpHeaders.CONTENT_LENGTH, Integer.toString(content.length()));
+            }
 
             // Set the content-type if settled
             String contentType = contentType();
             if (contentType != null && !contentType.isEmpty()) {
                 source.headers().set(HttpHeaders.CONTENT_TYPE, contentType);
             }
-        } catch (TransformationException tex) {
-            LOGGER.error("Unexpected error while transforming request content", tex);
-            content = Buffer.buffer(tex.getMessage());
-        }
 
-        super.flush(content);
-        super.end();
+            if (content != null) {
+                super.flush(content);
+            }
+
+            super.end();
+        } catch (TransformationException tex) {
+            source.metrics().setMessage(tex.getMessage());
+            Log log = source.metrics().getLog();
+            if (log != null) {
+                log.setProxyRequest(null);
+            }
+
+            if (policyChain != null) {
+                policyChain.streamFailWith(PolicyResult.failure(HttpStatusCode.INTERNAL_SERVER_ERROR_500, tex.getMessage()));
+            } else {
+                super.end();
+            }
+        }
     }
 }
