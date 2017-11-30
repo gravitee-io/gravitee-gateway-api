@@ -15,6 +15,8 @@
  */
 package io.gravitee.gateway.api.stream;
 
+import io.gravitee.gateway.api.handler.Handler;
+
 /**
  * Stream writer.
  *
@@ -34,4 +36,8 @@ public interface WriteStream<T> {
         write(t);
         end();
     }
+
+    default WriteStream<T> drainHandler(Handler<Void> drainHandler) { return this; }
+
+    default boolean writeQueueFull() { return false; }
 }
