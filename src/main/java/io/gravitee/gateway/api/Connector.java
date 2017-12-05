@@ -15,11 +15,17 @@
  */
 package io.gravitee.gateway.api;
 
+import io.gravitee.common.component.LifecycleComponent;
+import io.gravitee.gateway.api.proxy.ProxyConnection;
+import io.gravitee.gateway.api.proxy.ProxyRequest;
+
 /**
  * A simple marker interface to define a way to invoke / call something.
  *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Connector {
+public interface Connector extends LifecycleComponent<Connector> {
+
+    ProxyConnection request(ProxyRequest request);
 }
