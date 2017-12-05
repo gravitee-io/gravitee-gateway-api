@@ -15,13 +15,14 @@
  */
 package io.gravitee.gateway.api.endpoint;
 
+import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.Connector;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Endpoint<T extends Connector> {
+public interface Endpoint {
 
     /**
      * Endpoint name.
@@ -36,8 +37,29 @@ public interface Endpoint<T extends Connector> {
     String target();
 
     /**
+     * Endpoint weight.
+     *
+     * @return
+     */
+    int weight();
+
+    /**
+     * Default HTTP headers set on the endpoint.
+     *
+     * @return {@link HttpHeaders}
+     */
+    HttpHeaders headers();
+
+    /**
      * The {@link Connector} used to invoke the endpoint.
      * @return {@link Connector} used to invoke the endpoint.
      */
-    T connector();
+    Connector connector();
+
+    /**
+     * Does the endpoint can be reach ?
+     *
+     * @return
+     */
+    boolean available();
 }

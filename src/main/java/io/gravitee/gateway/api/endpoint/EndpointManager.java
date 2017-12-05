@@ -15,25 +15,18 @@
  */
 package io.gravitee.gateway.api.endpoint;
 
-import io.gravitee.gateway.api.Connector;
-import io.gravitee.gateway.api.http.loadbalancer.LoadBalancerStrategy;
-
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface EndpointManager<T extends Connector> {
+public interface EndpointManager {
 
-    Endpoint<T> get(String endpointName);
+    Endpoint get(String endpointName);
 
-    Endpoint<T> getOrDefault(String endpointName);
-
-    Set<String> endpoints();
+    Collection<Endpoint> endpoints();
 
     Map<String, String> targetByEndpoint();
-
-    LoadBalancerStrategy loadbalancer();
 }
