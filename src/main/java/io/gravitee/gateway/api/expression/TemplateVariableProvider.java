@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.endpoint;
-
-import java.util.Collection;
+package io.gravitee.gateway.api.expression;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface EndpointManager {
+public interface TemplateVariableProvider {
 
-    Endpoint get(String endpointName);
-
-    Collection<Endpoint> endpoints();
+    void provide(TemplateContext context);
 }
