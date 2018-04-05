@@ -17,7 +17,7 @@ package io.gravitee.gateway.api.proxy;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
-import io.gravitee.gateway.api.Request;
+import io.gravitee.reporter.api.http.Metrics;
 
 import java.net.URI;
 import java.util.Map;
@@ -44,13 +44,18 @@ public interface ProxyRequest {
     HttpMethod method();
 
     /**
+     * The raw method in case the method() returns HttpMethod.OTHER
+     * @return
+     */
+    String rawMethod();
+
+    /**
      * @return the headers in the request.
      */
     HttpHeaders headers();
 
     /**
-     * @return the incoming (gateway) request.
+     * @return the metrics attached to the request.
      */
-    //TODO: remove request: only used for metrics purpose
-    Request request();
+    Metrics metrics();
 }
