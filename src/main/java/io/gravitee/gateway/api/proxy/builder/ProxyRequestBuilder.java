@@ -32,6 +32,7 @@ public class ProxyRequestBuilder {
     private URI uri;
     private Map<String, String> parameters;
     private HttpMethod method;
+    private String rawMethod;
     private HttpHeaders headers;
     private Request request;
 
@@ -58,15 +59,21 @@ public class ProxyRequestBuilder {
         return this;
     }
 
+    public ProxyRequestBuilder rawMethod(String rawMethod) {
+        this.rawMethod = rawMethod;
+        return this;
+    }
+
     public ProxyRequestBuilder headers(HttpHeaders headers) {
         this.headers = headers;
         return this;
     }
 
     public ProxyRequest build() {
-        SimpleProxyRequest proxyRequest = new SimpleProxyRequest(this.request);
+        ProxyRequestImpl proxyRequest = new ProxyRequestImpl(this.request.metrics());
         proxyRequest.setUri(this.uri);
         proxyRequest.setMethod(this.method);
+        proxyRequest.setRawMethod(this.rawMethod);
         proxyRequest.setParameters(this.parameters);
         proxyRequest.setHeaders(this.headers);
         return proxyRequest;

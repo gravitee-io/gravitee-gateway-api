@@ -87,6 +87,11 @@ public interface Request extends ReadStream<Buffer> {
     HttpMethod method();
 
     /**
+     * @return The raw HTTP method in case of an unknown (ie. OTHER) HttpMethod.
+     */
+    String rawMethod();
+
+    /**
      * @return the HTTP version of the request
      */
     HttpVersion version();

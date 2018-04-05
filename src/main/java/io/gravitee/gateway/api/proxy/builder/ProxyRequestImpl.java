@@ -17,8 +17,8 @@ package io.gravitee.gateway.api.proxy.builder;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
-import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
+import io.gravitee.reporter.api.http.Metrics;
 
 import java.net.URI;
 import java.util.Map;
@@ -27,16 +27,17 @@ import java.util.Map;
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-class SimpleProxyRequest implements ProxyRequest {
+class ProxyRequestImpl implements ProxyRequest {
 
     private URI uri;
     private Map<String, String> parameters;
     private HttpMethod method;
+    private String rawMethod;
     private HttpHeaders headers;
-    private final Request request;
+    private final Metrics metrics;
 
-    SimpleProxyRequest(Request request) {
-        this.request = request;
+    ProxyRequestImpl(Metrics metrics) {
+        this.metrics = metrics;
     }
 
     public void setUri(URI uri) {
@@ -55,6 +56,10 @@ class SimpleProxyRequest implements ProxyRequest {
         this.headers = headers;
     }
 
+    public void setRawMethod(String rawMethod) {
+        this.rawMethod = rawMethod;
+    }
+
     @Override
     public URI uri() {
         return uri;
@@ -71,12 +76,17 @@ class SimpleProxyRequest implements ProxyRequest {
     }
 
     @Override
+    public String rawMethod() {
+        return rawMethod;
+    }
+
+    @Override
     public HttpHeaders headers() {
         return headers;
     }
 
     @Override
-    public Request request() {
-        return request;
+    public Metrics metrics() {
+        return metrics;
     }
 }
