@@ -15,7 +15,6 @@
  */
 package io.gravitee.gateway.api.endpoint;
 
-import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.Connector;
 
 /**
@@ -42,13 +41,6 @@ public interface Endpoint {
      * @return
      */
     int weight();
-
-    /**
-     * Default HTTP headers set on the endpoint.
-     *
-     * @return {@link HttpHeaders}
-     */
-    HttpHeaders headers();
 
     /**
      * The {@link Connector} used to invoke the endpoint.

@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.http.loadbalancer;
+package io.gravitee.gateway.api.lb;
+
+import io.gravitee.gateway.api.endpoint.Endpoint;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -29,5 +31,5 @@ public interface LoadBalancerStrategy {
      *
      * @return Endpoint name or <code>null</code> if none can be selected.
      */
-    String next();
+    Endpoint next();
 }
