@@ -21,6 +21,7 @@ import java.util.Enumeration;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author Azize ELAMRANI (azize.elamrani at graviteesource.com)
  * @author GraviteeSource Team
  */
 public interface ExecutionContext {
@@ -31,8 +32,6 @@ public interface ExecutionContext {
     String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     String ATTR_APPLICATION = ATTR_PREFIX + "application";
     String ATTR_API = ATTR_PREFIX + "api";
-//    String ATTR_API_KEY = ATTR_PREFIX + "api-key";
-//    String ATTR_SUBSCRIPTION = ATTR_PREFIX + "subscription";
     String ATTR_USER_ID = ATTR_PREFIX + "user-id";
     String ATTR_PLAN = ATTR_PREFIX + "plan";
     String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
