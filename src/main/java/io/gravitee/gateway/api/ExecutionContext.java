@@ -37,6 +37,10 @@ public interface ExecutionContext {
     String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
     String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
     String ATTR_INVOKER = ATTR_PREFIX + "request.invoker";
+    String ATTR_QUOTA_COUNT = ATTR_PREFIX + "quota.count";
+    String ATTR_QUOTA_REMAINING = ATTR_PREFIX + "quota.remaining";
+    String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
+    String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
 
     <T> T getComponent(Class<T> componentClass);
 
