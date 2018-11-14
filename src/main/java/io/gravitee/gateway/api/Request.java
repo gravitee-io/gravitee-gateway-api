@@ -23,8 +23,6 @@ import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.ReadStream;
 import io.gravitee.reporter.api.http.Metrics;
 
-import java.time.Instant;
-
 /**
  * Represents a server-side HTTP request.
  *
@@ -104,7 +102,7 @@ public interface Request extends ReadStream<Buffer> {
      *
      * @return the instant timestamp for the request.
      */
-    Instant timestamp();
+    long timestamp();
 
     /**
      * Returns the Internet Protocol (IP) address of the client or last proxy that sent the request.
