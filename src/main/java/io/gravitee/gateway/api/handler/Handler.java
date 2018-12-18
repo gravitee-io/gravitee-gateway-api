@@ -18,7 +18,8 @@ package io.gravitee.gateway.api.handler;
 /**
  * A generic event handler
  *
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author GraviteeSource Team
  */
 @FunctionalInterface
 public interface Handler<T> {

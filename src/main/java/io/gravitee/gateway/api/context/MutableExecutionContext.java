@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.context;
 
-import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.handler.Handler;
-import io.gravitee.gateway.api.proxy.ProxyConnection;
-import io.gravitee.gateway.api.stream.ReadStream;
+import io.gravitee.gateway.api.ExecutionContext;
+import io.gravitee.gateway.api.Request;
+import io.gravitee.gateway.api.Response;
 
-/**
- * @author David BRASSELY (david.brassely at graviteesource.com)
- * @author GraviteeSource Team
- */
-@FunctionalInterface
-public interface Invoker {
+public interface MutableExecutionContext extends ExecutionContext {
 
-    void invoke(ExecutionContext context, ReadStream<Buffer> stream, Handler<ProxyConnection> connectionHandler);
+    MutableExecutionContext request(Request request);
+
+    MutableExecutionContext response(Response response);
 }
