@@ -16,11 +16,17 @@
 package io.gravitee.gateway.api.expression;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author GraviteeSource Team
  */
 public interface TemplateEngine {
 
-    String convert(String expression);
+    @Deprecated
+    default String convert(String expression) {
+        return getValue(expression, String.class);
+    }
+
+    <T> T getValue(String expression, Class<T> clazz);
 
     TemplateContext getTemplateContext();
 }
