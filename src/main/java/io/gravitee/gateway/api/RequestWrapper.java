@@ -24,6 +24,8 @@ import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.stream.ReadStream;
 import io.gravitee.reporter.api.http.Metrics;
 
+import javax.net.ssl.SSLSession;
+
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
@@ -134,5 +136,10 @@ public abstract class RequestWrapper implements Request {
     @Override
     public Metrics metrics() {
         return request.metrics();
+    }
+
+    @Override
+    public SSLSession sslSession() {
+        return request.sslSession();
     }
 }
