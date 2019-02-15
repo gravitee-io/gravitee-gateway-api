@@ -23,6 +23,8 @@ import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.ReadStream;
 import io.gravitee.reporter.api.http.Metrics;
 
+import javax.net.ssl.SSLSession;
+
 /**
  * Represents a server-side HTTP request.
  *
@@ -117,6 +119,13 @@ public interface Request extends ReadStream<Buffer> {
      * @return a <code>String</code> containing the IP address on which the request was received.
      */
     String localAddress();
+
+    /**
+     * @return SSLSession associated to the request. Returns <code>null</code> if not an SSL connection.
+     * @see javax.net.ssl.SSLSession
+     *
+     */
+    SSLSession sslSession();
 
     Metrics metrics();
 }
