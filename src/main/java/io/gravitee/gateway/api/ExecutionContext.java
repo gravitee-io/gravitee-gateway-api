@@ -15,7 +15,8 @@
  */
 package io.gravitee.gateway.api;
 
-import io.gravitee.gateway.api.expression.TemplateEngine;
+
+import io.gravitee.el.TemplateEngine;
 
 import java.util.Enumeration;
 
