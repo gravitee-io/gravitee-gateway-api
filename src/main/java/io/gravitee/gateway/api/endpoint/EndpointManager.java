@@ -15,15 +15,17 @@
  */
 package io.gravitee.gateway.api.endpoint;
 
-import java.util.Collection;
-
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
 public interface EndpointManager {
 
-    Endpoint get(String endpointName);
-
-    Collection<Endpoint> endpoints();
+    /**
+     * Get an endpoint reference to access the underlying connector.
+     *
+     * @param name The name of the endpoint (single endpoint or group endpoint).
+     * @return Endpoint reference. Can be <code>null</code>.
+     */
+    Endpoint get(String name);
 }
