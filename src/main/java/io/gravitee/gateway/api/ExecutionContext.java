@@ -42,6 +42,7 @@ public interface ExecutionContext {
     String ATTR_QUOTA_REMAINING = ATTR_PREFIX + "quota.remaining";
     String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
     String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
+    String ATTR_USER = ATTR_PREFIX + "user";
 
     <T> T getComponent(Class<T> componentClass);
 
