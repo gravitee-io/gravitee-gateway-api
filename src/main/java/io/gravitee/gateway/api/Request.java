@@ -128,4 +128,6 @@ public interface Request extends ReadStream<Buffer> {
     SSLSession sslSession();
 
     Metrics metrics();
+
+    boolean ended();
 }

@@ -142,4 +142,9 @@ public abstract class RequestWrapper implements Request {
     public SSLSession sslSession() {
         return request.sslSession();
     }
+
+    @Override
+    public boolean ended() {
+        return request.ended();
+    }
 }
