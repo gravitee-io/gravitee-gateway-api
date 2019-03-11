@@ -51,6 +51,8 @@ public interface Buffer {
 
     Buffer appendBuffer(Buffer buff);
 
+    Buffer appendBuffer(Buffer buff, int length);
+
     Buffer appendString(String str, String enc);
 
     Buffer appendString(String str);
