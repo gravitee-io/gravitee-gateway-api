@@ -33,7 +33,7 @@ public interface ExecutionContext {
     String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     String ATTR_APPLICATION = ATTR_PREFIX + "application";
     String ATTR_API = ATTR_PREFIX + "api";
-    String ATTR_USER_ID = ATTR_PREFIX + "user-id";
+    String ATTR_SUBSCRIPTION_ID = ATTR_PREFIX + "user-id";
     String ATTR_PLAN = ATTR_PREFIX + "plan";
     String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
     String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
