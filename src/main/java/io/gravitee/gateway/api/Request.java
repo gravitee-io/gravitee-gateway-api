@@ -20,6 +20,7 @@ import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.stream.ReadStream;
 import io.gravitee.reporter.api.http.Metrics;
 
@@ -130,4 +131,17 @@ public interface Request extends ReadStream<Buffer> {
     Metrics metrics();
 
     boolean ended();
+
+    /**
+     * Define an {@code Handler} when the request timeout has been reached
+     * @param timeoutHandler The handler to call when the timeout has been reached
+     * @return The current request
+     */
+    Request timeoutHandler(Handler<Long> timeoutHandler);
+
+    /**
+     * Returns the timeout handler
+     * @return
+     */
+    Handler<Long> timeoutHandler();
 }
