@@ -20,7 +20,10 @@ import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.WriteStream;
 
 /**
- * @author David BRASSELY (brasseld at gmail.com)
+ * Represents a server-side HTTP response.
+ *
+ * @author David BRASSELY (david.brassely at graviteesource.com)
+ * @author GraviteeSource Team
  */
 public interface Response extends WriteStream<Buffer> {
 
@@ -32,4 +35,9 @@ public interface Response extends WriteStream<Buffer> {
      * @return the headers in the response.
      */
     HttpHeaders headers();
+
+    /**
+     * @return has the response already ended?
+     */
+    boolean ended();
 }

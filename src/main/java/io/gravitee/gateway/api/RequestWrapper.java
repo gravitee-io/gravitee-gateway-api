@@ -147,4 +147,14 @@ public abstract class RequestWrapper implements Request {
     public boolean ended() {
         return request.ended();
     }
+
+    @Override
+    public Request timeoutHandler(Handler<Long> timeoutHandler) {
+        return request.timeoutHandler(timeoutHandler);
+    }
+
+    @Override
+    public Handler<Long> timeoutHandler() {
+        return request.timeoutHandler();
+    }
 }
