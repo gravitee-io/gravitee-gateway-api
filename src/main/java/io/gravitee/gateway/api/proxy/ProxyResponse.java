@@ -34,4 +34,11 @@ public interface ProxyResponse extends ReadStream<Buffer> {
      * @return the headers in the response.
      */
     HttpHeaders headers();
+
+    /**
+     * Is the response connected to an upstream or it is a 'direct' response from the proxy itself.
+     *
+     * @return
+     */
+    default boolean connected() { return true;}
 }
