@@ -13,30 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.stream;
+package io.gravitee.gateway.api.ws;
 
 import io.gravitee.gateway.api.handler.Handler;
 
 /**
- * Stream reader.
- *
- * Mainly inspired from Vertx.io
- * @see io.vertx.core.streams.ReadStream
+ * Represents a server-side WebSocket request.
  *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface ReadStream<T> {
+public interface WebSocket {
 
-    ReadStream<T> bodyHandler(Handler<T> bodyHandler);
+    /**
+     * Upgrade the HTTP request to a WS connection
+     * @return
+     */
+    WebSocket upgrade();
 
-    ReadStream<T> endHandler(Handler<Void> endHandler);
+    /**
+     * WS connection has been rejected by upstream.
+     * @param statusCode
+     * @return
+     */
+    WebSocket reject(int statusCode);
 
-    default ReadStream<T> pause() {
-        return this;
-    }
+    WebSocket write(WebSocketFrame frame);
 
-    default ReadStream<T> resume() {
-        return this;
-    }
+    WebSocket close();
+
+    WebSocket frameHandler(Handler<WebSocketFrame> frameHandler);
+
+    WebSocket closeHandler(Handler<Void> closeHandler);
+
+    boolean upgraded();
 }

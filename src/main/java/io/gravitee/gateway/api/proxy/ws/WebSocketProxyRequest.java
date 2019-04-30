@@ -13,30 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.stream;
+package io.gravitee.gateway.api.proxy.ws;
 
 import io.gravitee.gateway.api.handler.Handler;
+import io.gravitee.gateway.api.proxy.ProxyRequest;
+import io.gravitee.gateway.api.ws.WebSocketFrame;
 
 /**
- * Stream reader.
- *
- * Mainly inspired from Vertx.io
- * @see io.vertx.core.streams.ReadStream
- *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface ReadStream<T> {
+public interface WebSocketProxyRequest extends ProxyRequest {
 
-    ReadStream<T> bodyHandler(Handler<T> bodyHandler);
+    WebSocketProxyRequest upgrade();
 
-    ReadStream<T> endHandler(Handler<Void> endHandler);
+    WebSocketProxyRequest reject(int statusCode);
 
-    default ReadStream<T> pause() {
-        return this;
-    }
+    WebSocketProxyRequest write(WebSocketFrame frame);
 
-    default ReadStream<T> resume() {
-        return this;
-    }
+    WebSocketProxyRequest close();
+
+    WebSocketProxyRequest frameHandler(Handler<WebSocketFrame> handler);
+
+    WebSocketProxyRequest closeHandler(Handler<Void> handler);
 }

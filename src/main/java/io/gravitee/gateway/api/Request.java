@@ -22,6 +22,7 @@ import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.stream.ReadStream;
+import io.gravitee.gateway.api.ws.WebSocket;
 import io.gravitee.reporter.api.http.Metrics;
 
 import javax.net.ssl.SSLSession;
@@ -144,4 +145,8 @@ public interface Request extends ReadStream<Buffer> {
      * @return
      */
     Handler<Long> timeoutHandler();
+
+    boolean isWebSocket();
+
+    WebSocket websocket();
 }

@@ -27,7 +27,7 @@ import java.util.Map;
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-class ProxyRequestImpl implements ProxyRequest {
+public class ProxyRequestImpl implements ProxyRequest {
 
     private URI uri;
     private Map<String, String> parameters;
@@ -36,7 +36,7 @@ class ProxyRequestImpl implements ProxyRequest {
     private HttpHeaders headers;
     private final Metrics metrics;
 
-    ProxyRequestImpl(Metrics metrics) {
+    protected ProxyRequestImpl(Metrics metrics) {
         this.metrics = metrics;
     }
 
@@ -88,5 +88,10 @@ class ProxyRequestImpl implements ProxyRequest {
     @Override
     public Metrics metrics() {
         return metrics;
+    }
+
+    @Override
+    public boolean isWebSocket() {
+        return false;
     }
 }

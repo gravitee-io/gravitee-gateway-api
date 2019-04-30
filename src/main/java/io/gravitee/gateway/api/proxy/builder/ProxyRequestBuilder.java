@@ -19,6 +19,7 @@ import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
+import io.gravitee.gateway.api.proxy.ws.WebSocketProxyRequestImpl;
 
 import java.net.URI;
 import java.util.Map;
@@ -70,12 +71,20 @@ public class ProxyRequestBuilder {
     }
 
     public ProxyRequest build() {
-        ProxyRequestImpl proxyRequest = new ProxyRequestImpl(this.request.metrics());
+        ProxyRequestImpl proxyRequest;
+
+        if (! request.isWebSocket()) {
+            proxyRequest = new ProxyRequestImpl(this.request.metrics());
+        } else {
+            proxyRequest = new WebSocketProxyRequestImpl(this.request.websocket(), this.request.metrics());
+        }
+
         proxyRequest.setUri(this.uri);
         proxyRequest.setMethod(this.method);
         proxyRequest.setRawMethod(this.rawMethod);
         proxyRequest.setParameters(this.parameters);
         proxyRequest.setHeaders(this.headers);
+
         return proxyRequest;
     }
 }

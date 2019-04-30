@@ -13,30 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.stream;
+package io.gravitee.gateway.api.ws;
 
-import io.gravitee.gateway.api.handler.Handler;
+import io.gravitee.gateway.api.buffer.Buffer;
 
 /**
- * Stream reader.
- *
- * Mainly inspired from Vertx.io
- * @see io.vertx.core.streams.ReadStream
+ * Represents a WebSocket frame.
  *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface ReadStream<T> {
+public interface WebSocketFrame {
 
-    ReadStream<T> bodyHandler(Handler<T> bodyHandler);
+    Type type();
 
-    ReadStream<T> endHandler(Handler<Void> endHandler);
+    /**
+     * This one is only valid in case of a <code>TEXT</code> or <code>BINARY</code> frame type.
+     * @return
+     */
+    Buffer data();
 
-    default ReadStream<T> pause() {
-        return this;
-    }
-
-    default ReadStream<T> resume() {
-        return this;
+    enum Type {
+        // Continuation / 0
+        CONTINUATION,
+        // Text / 1
+        TEXT,
+        // Binary / 2
+        BINARY,
+        // Connection Close / 8
+        CLOSE,
+        // Ping / 9
+        PING,
+        // Pong / 10
+        PONG
     }
 }
