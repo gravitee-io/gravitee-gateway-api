@@ -44,6 +44,7 @@ public interface ExecutionContext {
     String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
     String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
     String ATTR_USER = ATTR_PREFIX + "user";
+    String ATTR_USER_ROLES = ATTR_PREFIX + "user.roles";
 
     Request request();
 
