@@ -34,7 +34,7 @@ public interface ProxyResponse extends ReadStream<Buffer> {
      * Reason-Phrase is intended to give a short textual description of the Status-Code.
      * @return
      */
-    default String reason() { return null; }
+    String reason();
 
     /**
      * @return the headers in the response.
