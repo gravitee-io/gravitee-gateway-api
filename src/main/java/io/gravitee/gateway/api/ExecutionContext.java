@@ -24,6 +24,7 @@ import java.util.Map;
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author Azize ELAMRANI (azize.elamrani at graviteesource.com)
+ * @author Nicolas GERAUD (nicolas.geraud at graviteesource.com)
  * @author GraviteeSource Team
  */
 public interface ExecutionContext {
@@ -44,7 +45,6 @@ public interface ExecutionContext {
     String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
     String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
     String ATTR_USER = ATTR_PREFIX + "user";
-    String ATTR_ENDPOINT_RESOLVER_USE_RAW_PATH = ATTR_PREFIX + "useRawPath";
 
     Request request();
 
