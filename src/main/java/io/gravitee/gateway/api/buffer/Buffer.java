@@ -51,12 +51,6 @@ public interface Buffer {
 
     Buffer appendBuffer(Buffer buff);
 
-    Buffer appendBuffer(Buffer buff, int length);
-
-    Buffer appendString(String str, String enc);
-
-    Buffer appendString(String str);
-
     @Override
     String toString();
 
@@ -71,4 +65,6 @@ public interface Buffer {
     Object getNativeBuffer();
 
     BufferFactory factory = ServiceLoaderHelper.loadFactory(BufferFactory.class);
+
+    Buffer appendBuffer(Buffer buffer, int length);
 }
