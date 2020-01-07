@@ -89,9 +89,4 @@ public class ProxyRequestImpl implements ProxyRequest {
     public Metrics metrics() {
         return metrics;
     }
-
-    @Override
-    public boolean isWebSocket() {
-        return false;
-    }
 }

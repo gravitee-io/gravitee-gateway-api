@@ -58,10 +58,4 @@ public interface ProxyRequest {
      * @return the metrics attached to the request.
      */
     Metrics metrics();
-
-    /**
-     * If the request a websocket request ?
-     * @return
-     */
-    boolean isWebSocket();
 }

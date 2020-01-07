@@ -21,6 +21,7 @@ import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.handler.Handler;
+import io.gravitee.gateway.api.http2.HttpFrame;
 import io.gravitee.gateway.api.stream.ReadStream;
 import io.gravitee.gateway.api.ws.WebSocket;
 import io.gravitee.reporter.api.http.Metrics;
@@ -149,4 +150,12 @@ public interface Request extends ReadStream<Buffer> {
     boolean isWebSocket();
 
     WebSocket websocket();
+
+    /**
+     * For HTTP/2 request
+     *
+     * @param frameHandler The handler to call when getting a custom HTTP Frame
+     * @return
+     */
+    Request customFrameHandler(Handler<HttpFrame> frameHandler);
 }

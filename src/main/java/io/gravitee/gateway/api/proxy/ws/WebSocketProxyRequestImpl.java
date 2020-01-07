@@ -66,9 +66,4 @@ public class WebSocketProxyRequestImpl extends ProxyRequestImpl implements WebSo
         this.websocket.closeHandler(handler);
         return this;
     }
-
-    @Override
-    public boolean isWebSocket() {
-        return true;
-    }
 }
