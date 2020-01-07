@@ -17,6 +17,7 @@ package io.gravitee.gateway.api.proxy;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.handler.Handler;
+import io.gravitee.gateway.api.http2.HttpFrame;
 import io.gravitee.gateway.api.stream.WriteStream;
 
 /**
@@ -24,6 +25,19 @@ import io.gravitee.gateway.api.stream.WriteStream;
  * @author GraviteeSource Team
  */
 public interface ProxyConnection extends WriteStream<Buffer> {
+
+    /**
+     * Write custom HTTP Frame to upstream.
+     *
+     * //TODO: How-to make this specific to HTTP/2 proxy connection only?
+     * // This should be handle when the gateway will be able to manage other connectors
+     *
+     * @param frame
+     * @return
+     */
+    default ProxyConnection writeCustomFrame(HttpFrame frame) {
+        return this;
+    }
 
     default ProxyConnection cancel() {
         return this;

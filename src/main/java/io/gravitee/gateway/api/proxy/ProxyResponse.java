@@ -17,6 +17,8 @@ package io.gravitee.gateway.api.proxy;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.api.handler.Handler;
+import io.gravitee.gateway.api.http2.HttpFrame;
 import io.gravitee.gateway.api.stream.ReadStream;
 
 /**
@@ -47,4 +49,14 @@ public interface ProxyResponse extends ReadStream<Buffer> {
      * @return
      */
     default boolean connected() { return true;}
+
+    /**
+     * For HTTP/2 request
+     *
+     * @param frameHandler The handler to call when getting a custom HTTP Frame.
+     * @return
+     */
+    default ProxyResponse customFrameHandler(Handler<HttpFrame> frameHandler) { return this; }
+
+    default HttpHeaders trailers() { return null; }
 }

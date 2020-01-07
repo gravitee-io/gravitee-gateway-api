@@ -13,46 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.http2;
 
-import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.http2.HttpFrame;
-import io.gravitee.gateway.api.stream.WriteStream;
 
 /**
- * Represents a server-side HTTP response.
- *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Response extends WriteStream<Buffer> {
+class HttpFrameImpl implements HttpFrame {
 
-    Response status(int statusCode);
+    private final int type;
 
-    int status();
+    private final int flags;
 
-    /**
-     * Reason-Phrase is intended to give a short textual description of the Status-Code.
-     * @return
-     */
-    String reason();
+    private final Buffer payload;
 
-    Response reason(String message);
+    HttpFrameImpl(int type, int flags, Buffer payload) {
+        this.type = type;
+        this.flags = flags;
+        this.payload = payload;
+    }
 
-    /**
-     * @return the headers in the response.
-     */
-    HttpHeaders headers();
+    @Override
+    public int type() {
+        return type;
+    }
 
-    /**
-     * @return has the response already ended?
-     */
-    boolean ended();
+    @Override
+    public int flags() {
+        return flags;
+    }
 
-    HttpHeaders trailers();
-    
-    default Response writeCustomFrame(HttpFrame frame) {
-        return this;
+    @Override
+    public Buffer payload() {
+        return payload;
     }
 }
