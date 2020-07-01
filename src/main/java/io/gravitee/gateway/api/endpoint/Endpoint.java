@@ -49,9 +49,21 @@ public interface Endpoint {
     Connector connector();
 
     /**
-     * Does the endpoint can be reach ?
+     * Can the endpoint be reach ?
      *
      * @return
      */
     boolean available();
+
+    /**
+     * When an endpoint is marked as a secondary endpoint, it can be selected by the load-balancer only when no
+     * more primary endpoint are available.
+     *
+     * @return
+     */
+    boolean primary();
+
+    void addEndpointAvailabilityListener(EndpointAvailabilityListener listener);
+
+    void removeEndpointAvailabilityListener(EndpointAvailabilityListener listener);
 }
