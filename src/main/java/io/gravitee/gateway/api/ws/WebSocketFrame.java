@@ -33,6 +33,8 @@ public interface WebSocketFrame {
      */
     Buffer data();
 
+    boolean isFinal();
+    
     enum Type {
         // Continuation / 0
         CONTINUATION,
