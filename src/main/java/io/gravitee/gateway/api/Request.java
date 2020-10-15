@@ -80,6 +80,11 @@ public interface Request extends ReadStream<Buffer> {
     MultiValueMap<String, String> parameters();
 
     /**
+     * @return the path parameters in the request
+     */
+    MultiValueMap<String, String> pathParameters();
+
+    /**
      * @return the headers in the request.
      */
     HttpHeaders headers();

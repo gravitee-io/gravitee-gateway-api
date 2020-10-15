@@ -96,6 +96,11 @@ public abstract class RequestWrapper implements Request {
     }
 
     @Override
+    public MultiValueMap<String, String> pathParameters() {
+        return request.pathParameters();
+    }
+
+    @Override
     public HttpHeaders headers() {
         return request.headers();
     }
