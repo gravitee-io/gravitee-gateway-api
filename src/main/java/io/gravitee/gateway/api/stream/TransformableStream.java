@@ -31,6 +31,10 @@ public abstract class TransformableStream extends BufferedReadWriteStream {
     protected PolicyChain policyChain;
     protected Function<Buffer, Buffer> transform;
 
+    // Flag that indicates that the end of the stream has already been pushed
+    // Mainly use to avoid repeating chunk when running failover requests
+    private boolean ended;
+
     public TransformableStream(int length) {
         buffer = (length != -1) ? Buffer.buffer(length) : Buffer.buffer();
     }
@@ -41,13 +45,21 @@ public abstract class TransformableStream extends BufferedReadWriteStream {
 
     @Override
     public TransformableStream write(Buffer chunk) {
-        buffer.appendBuffer(chunk);
+        if (! ended) {
+            buffer.appendBuffer(chunk);
+        }
         return this;
     }
 
     protected TransformableStream flush(Buffer chunk) {
         super.write(chunk);
         return this;
+    }
+
+    @Override
+    public void end() {
+        super.end();
+        ended = true;
     }
 
     void contentType(String contentType) {
