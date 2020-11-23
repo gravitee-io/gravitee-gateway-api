@@ -59,4 +59,8 @@ public interface ProxyResponse extends ReadStream<Buffer> {
     default ProxyResponse customFrameHandler(Handler<HttpFrame> frameHandler) { return this; }
 
     default HttpHeaders trailers() { return null; }
+
+    default ProxyResponse cancelHandler(Handler<Void> cancelHandler) { return this; }
+
+    default void cancel() {}
 }
