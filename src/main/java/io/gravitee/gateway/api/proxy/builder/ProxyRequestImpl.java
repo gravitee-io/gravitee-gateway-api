@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class ProxyRequestImpl implements ProxyRequest {
 
-    private URI uri;
+    private String uri;
     private Map<String, String> parameters;
     private HttpMethod method;
     private String rawMethod;
@@ -40,7 +40,7 @@ public class ProxyRequestImpl implements ProxyRequest {
         this.metrics = metrics;
     }
 
-    public void setUri(URI uri) {
+    public void setUri(String uri) {
         this.uri = uri;
     }
 
@@ -61,7 +61,7 @@ public class ProxyRequestImpl implements ProxyRequest {
     }
 
     @Override
-    public URI uri() {
+    public String uri() {
         return uri;
     }
 

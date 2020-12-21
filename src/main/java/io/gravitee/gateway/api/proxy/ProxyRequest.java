@@ -31,7 +31,7 @@ public interface ProxyRequest {
     /**
      * @return the target URI of the request.
      */
-    URI uri();
+    String uri();
 
     /**
      * @return the query parameters in the request

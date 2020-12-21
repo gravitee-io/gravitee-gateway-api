@@ -30,7 +30,7 @@ import java.util.Map;
  */
 public class ProxyRequestBuilder {
 
-    private URI uri;
+    private String uri;
     private Map<String, String> parameters;
     private HttpMethod method;
     private String rawMethod;
@@ -45,7 +45,7 @@ public class ProxyRequestBuilder {
         return new ProxyRequestBuilder(request);
     }
 
-    public ProxyRequestBuilder uri(URI uri) {
+    public ProxyRequestBuilder uri(String uri) {
         this.uri = uri;
         return this;
     }
