@@ -17,6 +17,7 @@ package io.gravitee.gateway.api.proxy;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
+import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.reporter.api.http.Metrics;
 
 import java.net.URI;
@@ -36,7 +37,7 @@ public interface ProxyRequest {
     /**
      * @return the query parameters in the request
      */
-    Map<String, String> parameters();
+    MultiValueMap<String, String> parameters();
 
     /**
      * @return the HTTP method for the request.

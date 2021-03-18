@@ -17,12 +17,12 @@ package io.gravitee.gateway.api.proxy.builder;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
+import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.gateway.api.proxy.ws.WebSocketProxyRequestImpl;
 
-import java.net.URI;
-import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -30,19 +30,31 @@ import java.util.Map;
  */
 public class ProxyRequestBuilder {
 
+    // Pattern reuse for duplicate slash removal
+    private static final Pattern DUPLICATE_SLASH_REMOVER = Pattern.compile("(?<!(https?:|wss?:|grpcs?:))[//]+");
+    private static final String URI_PATH_SEPARATOR = "/";
+
     private String uri;
-    private Map<String, String> parameters;
+    private MultiValueMap<String, String> parameters;
     private HttpMethod method;
     private String rawMethod;
     private HttpHeaders headers;
-    private Request request;
+    private final Request request;
 
-    private ProxyRequestBuilder(Request request) {
+    private ProxyRequestBuilder(final Request request) {
         this.request = request;
     }
 
     public static ProxyRequestBuilder from(Request request) {
-        return new ProxyRequestBuilder(request);
+        ProxyRequestBuilder builder = new ProxyRequestBuilder(request);
+
+        builder.uri(request.uri());
+        builder.headers(request.headers());
+        builder.method(request.method());
+        builder.rawMethod(request.rawMethod());
+        builder.parameters(request.parameters());
+
+        return builder;
     }
 
     public ProxyRequestBuilder uri(String uri) {
@@ -50,7 +62,7 @@ public class ProxyRequestBuilder {
         return this;
     }
 
-    public ProxyRequestBuilder parameters(Map<String, String> parameters) {
+    public ProxyRequestBuilder parameters(MultiValueMap<String, String> parameters) {
         this.parameters = parameters;
         return this;
     }
@@ -79,7 +91,8 @@ public class ProxyRequestBuilder {
             proxyRequest = new WebSocketProxyRequestImpl(this.request.websocket(), this.request.metrics());
         }
 
-        proxyRequest.setUri(this.uri);
+        // Remove duplicate slash
+        proxyRequest.setUri(DUPLICATE_SLASH_REMOVER.matcher(this.uri).replaceAll(URI_PATH_SEPARATOR));
         proxyRequest.setMethod(this.method);
         proxyRequest.setRawMethod(this.rawMethod);
         proxyRequest.setParameters(this.parameters);
