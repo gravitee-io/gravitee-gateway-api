@@ -51,7 +51,6 @@ public class ProxyRequestBuilder {
         builder.uri(request.uri());
         builder.headers(request.headers());
         builder.method(request.method());
-        builder.rawMethod(request.rawMethod());
         builder.parameters(request.parameters());
 
         return builder;

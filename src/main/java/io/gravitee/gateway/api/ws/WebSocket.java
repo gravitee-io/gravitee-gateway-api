@@ -17,6 +17,8 @@ package io.gravitee.gateway.api.ws;
 
 import io.gravitee.gateway.api.handler.Handler;
 
+import java.util.concurrent.CompletableFuture;
+
 /**
  * Represents a server-side WebSocket request.
  *
@@ -29,7 +31,7 @@ public interface WebSocket {
      * Upgrade the HTTP request to a WS connection
      * @return
      */
-    WebSocket upgrade();
+    CompletableFuture<WebSocket> upgrade();
 
     /**
      * WS connection has been rejected by upstream.

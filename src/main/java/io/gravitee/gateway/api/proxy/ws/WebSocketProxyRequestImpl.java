@@ -21,6 +21,9 @@ import io.gravitee.gateway.api.ws.WebSocket;
 import io.gravitee.gateway.api.ws.WebSocketFrame;
 import io.gravitee.reporter.api.http.Metrics;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+
 public class WebSocketProxyRequestImpl extends ProxyRequestImpl implements WebSocketProxyRequest {
 
     private final WebSocket websocket;
@@ -32,9 +35,8 @@ public class WebSocketProxyRequestImpl extends ProxyRequestImpl implements WebSo
     }
 
     @Override
-    public WebSocketProxyRequest upgrade() {
-        websocket.upgrade();
-        return this;
+    public CompletableFuture<WebSocketProxyRequest> upgrade() {
+        return websocket.upgrade().thenApply(webSocket -> WebSocketProxyRequestImpl.this);
     }
 
     @Override
