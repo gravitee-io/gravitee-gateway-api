@@ -16,6 +16,7 @@
 package io.gravitee.gateway.api;
 
 import io.gravitee.common.component.LifecycleComponent;
+import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.proxy.ProxyConnection;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 
@@ -27,5 +28,5 @@ import io.gravitee.gateway.api.proxy.ProxyRequest;
  */
 public interface Connector extends LifecycleComponent<Connector> {
 
-    ProxyConnection request(ProxyRequest request);
+    void request(ProxyRequest request, Handler<ProxyConnection> proxyConnectionHandler);
 }
