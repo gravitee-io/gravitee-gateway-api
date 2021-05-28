@@ -19,6 +19,7 @@ import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
+import io.gravitee.tracing.api.Tracer;
 
 import java.util.Collections;
 import java.util.Enumeration;
@@ -91,6 +92,11 @@ public class SimpleExecutionContext implements MutableExecutionContext {
 
     @Override
     public TemplateEngine getTemplateEngine() {
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public Tracer getTracer() {
         throw new IllegalStateException();
     }
 
