@@ -24,6 +24,7 @@ jobs:
                 echo $issue_url
                 issue_name=$(echo $issue_url | awk -F '[][]' '{print $2}')
                 echo $issue_name
+                echo "Borko"
 
 workflows:
   test-sequential:
