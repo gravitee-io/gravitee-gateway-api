@@ -20,9 +20,10 @@ jobs:
                 cc_cred=$(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
                 pr_data=$(echo $CIRCLE_PULL_REQUESTS | rev | awk -F '/' '{print $1 FS $3}' | rev)
                 url_part=$(echo $(echo $pr_data | awk -F '/' '{print $1}')/pulls/$(echo $pr_data | awk -F '/' '{print $2}'))
-                issue_url=$(curl -s -u graviteeio:$gh_cred https://api.github.com/repos/gravitee-io/$url_part | jq '.body')
-                echo $issue_url
-                issue_name=$(echo $issue_url | awk -F '[][]' '{print $2}')
+                # issue_url=$(curl -s -u graviteeio:$gh_cred https://api.github.com/repos/gravitee-io/$url_part | jq '.body')
+                curl -s -u graviteeio:$gh_cred https://api.github.com/repos/gravitee-io/$url_part
+                # echo $issue_url
+                # issue_name=$(echo $issue_url | awk -F '[][]' '{print $2}')
 
 workflows:
   test-sequential:
