@@ -23,10 +23,11 @@ jobs:
                 echo $url_part
                 issue_url=$(curl -s -u graviteeio:$gh_cred https://api.github.com/repos/gravitee-io/$url_part | jq '.body')
                 # curl -s -u graviteeio:$gh_cred https://api.github.com/repos/gravitee-io/$url_part
-                # echo $issue_url
+                echo $issue_url
                 issue_number=$(echo $issue_url | rev | awk -F '/' '{print $1}')
-                echo $issue_number
+                # echo $issue_number
                 pr_search=$(curl -s -u Novachevski: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 "https://api.github.com/repos/Novachevski/issues/issues/$issue_number/timeline?per_page=100" -H "Accept: application/vnd.github.mockingbird-preview")
+                echo $pr_search
 
 workflows:
   test-sequential:
