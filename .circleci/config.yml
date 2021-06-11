@@ -23,8 +23,8 @@ jobs:
                 echo $url_part
                 issue_url=$(curl -s -u graviteeio:$gh_cred https://api.github.com/repos/gravitee-io/$url_part | jq '.body')
                 # curl -s -u graviteeio:$gh_cred https://api.github.com/repos/gravitee-io/$url_part
-                echo $issue_url
-                issue_name=$(echo $issue_url | awk -F '[][]' '{print $2}')
+                # echo $issue_url
+                issue_name=$(echo $issue_url | awk -F '[][]' '{print $2}' | rev | awk -F '/' '{print $1 FS $3}' | rev)
                 echo $issue_name
 
 workflows:
