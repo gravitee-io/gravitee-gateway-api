@@ -35,10 +35,8 @@ jobs:
                 # echo $release
                 for repo in $repos; do 
                 clean_repo=$(echo $repo | xargs)
-                echo $clean_repo
                 location=$(echo $release | jq '.buildDependencies[]' |grep -n $clean_repo | awk '{print $1}');
-                echo "================================================"
-                echo $location
+                echo $location$clean_repo
                 done
 workflows:
   test-sequential:
