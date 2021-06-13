@@ -4,11 +4,9 @@ orbs:
   secrethub: secrethub/cli@1.1.0
 
 parameters:
-  greeting:
-    type: string
-    default: "Hello"
-    description: "Greeting"
-
+    greeting:
+        type: string
+        description: "Greeting"
 jobs:
   prepare:
     docker:
