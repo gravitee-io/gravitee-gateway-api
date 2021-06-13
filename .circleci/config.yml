@@ -35,29 +35,8 @@ jobs:
                 # echo $release
                 for repo in $repos; do 
                 clean_repo=$(echo $repo | xargs)
-                # echo $somes
-                location=$(echo $release | jq '.buildDependencies[]' |grep -n $clean_repo | awk '{print $1}');
-                # echo $location$repo
-                tempi=$(echo $builds |jq -r --arg repo "$clean_repo" '.[] |{reponame, build_url, status} | select(.reponame==$repo)')
-                # echo $tempi
-                if [ -z "$tempi" ]; then sleep 1; else project_list+=($location$repo); fi
+                echo $clean_repo
                 done
-                for neso in ${project_list[@]}; do echo $neso; done
-                echo "=============================================="
-                IFS=$'\n' sorted=($(sort \<<<"${project_list[*]}"))
-                unset IFS
-                for cice in ${sorted[@]}; do echo $cice; done
-                for i in "${!sorted[@]}"; do
-                item=$(echo "${sorted[$i]}" | awk -F ':' '{print $2}')
-                # echo $item
-                if [[ "${item}" = "${CIRCLE_PROJECT_REPONAME}" ]]; then
-                    rank="${i}";
-                fi
-                done
-                echo "=============================================="
-                echo "I am rank $rank"
-                echo "=============================================="
-
 workflows:
   test-sequential:
     jobs:
