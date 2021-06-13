@@ -28,8 +28,8 @@ jobs:
                 repos=$(echo $pr_search | jq -r '.[] | select(.source.issue.pull_request != null) | select(.source.issue.state == "open") | select(.source.type == "issue") |.source.issue.repository.name')
                 builds=$(curl -s -H "Circle-Token:$cc_cred"  https://circleci.com/api/v1.1/recent-builds?limit=15&shallow=true)
                 release=$(curl -s -u Novachevski:$gh_cred https://raw.githubusercontent.com/gravitee-io/release/master/release.json)
-                # echo $release
-                echo $builds
+                # # echo $release
+                # echo $builds
                 for repo in $repos; do 
                 clean_repo=$(echo $repo | xargs)
                 location=$(echo $release | jq '.buildDependencies[]' |grep -n $clean_repo | awk '{print $1}');
@@ -39,6 +39,20 @@ jobs:
                 if [ -z "$tempi" ]; then sleep 1; else project_list+=($location$repo); fi
                 done
                 for neso in ${project_list[@]}; do echo $neso; done
+                echo "=============================================="
+                IFS=$'\n' sorted=($(sort \<<<"${project_list[*]}"))
+                unset IFS
+                for cice in ${sorted[@]}; do echo $cice; done
+                for i in "${!sorted[@]}"; do
+                item=$(echo "${sorted[$i]}" | awk -F ':' '{print $2}')
+                # echo $item
+                if [[ "${item}" = "${CIRCLE_PROJECT_REPONAME}" ]]; then
+                    rank="${i}";
+                fi
+                done
+                echo "=============================================="
+                echo "I am rank $rank"
+                echo "=============================================="
 workflows:
   test-sequential:
     jobs:
