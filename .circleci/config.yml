@@ -14,11 +14,11 @@ jobs:
       - image: cimg/base:2021.05
     steps:
       - secrethub/install
-      - sequential_builds
+      - sequential_builds:
+         greeting: "Hello"
                 
 workflows:
   test-sequential:
     jobs:
       - prepare:
           context: cicd-orchestrator
-          greeting: "Hello"
