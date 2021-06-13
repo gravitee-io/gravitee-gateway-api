@@ -4,10 +4,10 @@ orbs:
   secrethub: secrethub/cli@1.1.0
 
 parameters:
-    greeting:
+    gh_cred:
         type: string
         default: ""
-        description: "Greeting"
+        description: "gh cred"
 jobs:
   prepare:
     docker:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - secrethub/install
       - gravitee/sequential_builds:
-         greeting: secrethub read graviteeio/cicd/graviteebot/github_personal_access_token
+         gh_cred: secrethub read graviteeio/cicd/graviteebot/github_personal_access_token
                 
 workflows:
   test-sequential:
