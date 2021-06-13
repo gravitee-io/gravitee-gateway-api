@@ -17,7 +17,7 @@ jobs:
       - secrethub/install
       - run: |
               cc_cred=$(secrethub read graviteeio/cicd/graviteebot/circleci/api/token)
-              curl -s -H "Circle-Token:$cc_cred" https://circleci.com/api/v1.1/recent-builds?limit=15&shallow=true
+              curl -s -H "Circle-Token":$cc_cred https://circleci.com/api/v1.1/recent-builds?limit=15&shallow=true
       # - run: |
       #           gh_cred=$(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
       #           cc_cred=$(secrethub read graviteeio/cicd/graviteebot/circleci/api/token)
