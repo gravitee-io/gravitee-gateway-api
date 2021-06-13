@@ -14,7 +14,7 @@ jobs:
       - image: cimg/base:2021.05
     steps:
       - secrethub/install
-      - sequential_builds:
+      - gravitee/sequential_builds:
          greeting: "Hello"
                 
 workflows:
