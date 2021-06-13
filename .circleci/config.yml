@@ -8,6 +8,10 @@ parameters:
         type: string
         default: ""
         description: "gh cred"
+    cc_cred:
+        type: string
+        default: ""
+        description: "cc cred"
 jobs:
   prepare:
     docker:
@@ -16,6 +20,7 @@ jobs:
       - secrethub/install
       - gravitee/sequential_builds:
          gh_cred: secrethub read graviteeio/cicd/graviteebot/github_personal_access_token
+         cc_cred: secrethub read graviteeio/cicd/admin/circleci/nicolas/token
                 
 workflows:
   test-sequential:
