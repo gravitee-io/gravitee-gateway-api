@@ -21,6 +21,7 @@ jobs:
       - gravitee/sequential_builds:
          gh_cred: $(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
          cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
+      - run: echo "well, hello there !!!"
 workflows:
   test-sequential:
     jobs:
