@@ -6,6 +6,7 @@ orbs:
 parameters:
     greeting:
         type: string
+        default: ""
         description: "Greeting"
 jobs:
   prepare:
