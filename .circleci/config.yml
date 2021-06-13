@@ -26,7 +26,7 @@ jobs:
                 # echo $issue_url
                 issue_number=$(echo $issue_url | rev | awk -F'"' '$0=$2' | awk -F '/' '{print $1}'| rev)
                 echo $issue_number
-                pr_search=$(curl -s -u graviteeio:$gh_cred "https://api.github.com/repos/Novachevski/issues/issues/$issue_number/timeline?per_page=100" -H "Accept: application/vnd.github.mockingbird-preview")
+                pr_search=$(curl -s -u graviteeio:$gh_cred "https://api.github.com/repos/Novachevski/issues/issues/5716/timeline?per_page=100" -H "Accept: application/vnd.github.mockingbird-preview")
                 echo $pr_search
 
 workflows:
