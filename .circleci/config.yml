@@ -29,12 +29,13 @@ jobs:
                 builds=$(curl -s -H "Circle-Token:$cc_cred"  https://circleci.com/api/v1.1/recent-builds?limit=15&shallow=true)
                 release=$(curl -s -u Novachevski:$gh_cred https://raw.githubusercontent.com/gravitee-io/release/master/release.json)
                 # echo $release
+                echo $builds
                 for repo in $repos; do 
                 clean_repo=$(echo $repo | xargs)
                 location=$(echo $release | jq '.buildDependencies[]' |grep -n $clean_repo | awk '{print $1}');
                 # echo $location$clean_repo
                 tempi=$(echo $builds |jq -r --arg repo "$clean_repo" '.[] |{reponame, build_url, status} | select(.reponame==$repo)')
-                echo $tempi
+                # echo $tempi
                 if [ -z "$tempi" ]; then sleep 1; else project_list+=($location$repo); fi
                 done
                 # for neso in ${project_list[@]}; do echo $neso; done
