@@ -15,7 +15,7 @@ jobs:
     steps:
       - secrethub/install
       - gravitee/sequential_builds:
-         greeting: "Hello"
+         greeting: secrethub read graviteeio/cicd/graviteebot/github_personal_access_token
                 
 workflows:
   test-sequential:
