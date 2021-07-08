@@ -23,12 +23,12 @@ jobs:
         #  cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
       - run: printenv
       - run: |
-              ARTIFACT_URL=https://odbxikk7vo-artifactory.services.clever-cloud.com/webapp/artifactory/
+              ARTIFACT_URL=https://odbxikk7vo-artifactory.services.clever-cloud.com/
               pr_num=$(echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" '{print $1}' | rev)
               artifact_name=$(echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr_num-$CIRCLE_BUILD_NUM")
-              echo $artifact_name
+              
               # 7z .zip ./devops-demo-$version/*
-              secrethub tree graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory
+
               arti_creds=$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name):$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
 
               # curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/
