@@ -18,7 +18,7 @@ jobs:
       - image: cimg/base:2021.05
     steps:
       - secrethub/install
-      - gravitee/sequential_builds:
+      # - gravitee/sequential_builds:
         #  gh_cred: $(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
         #  cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
       - run: printenv
