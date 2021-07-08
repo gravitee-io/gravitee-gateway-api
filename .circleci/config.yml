@@ -28,7 +28,7 @@ jobs:
               artifact_name=$(echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr_num-$CIRCLE_BUILD_NUM")
               echo $artifact_name
               # 7z .zip ./devops-demo-$version/*
-              arti_creds= read graviteeio/cicd/infra/maven/dry-run/artifactory/user-name: read graviteeio/cicd/infra/maven/dry-run/artifactory/user-pwd
+              read graviteeio/cicd/infra/maven/dry-run/artifactory/user-name
 
               # curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/
               curl -u $arti_creds $ARTIFACT_URL/api/repositories
