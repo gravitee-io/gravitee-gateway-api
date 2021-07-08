@@ -29,7 +29,7 @@ jobs:
               echo $artifact_name
               # 7z .zip ./devops-demo-$version/*
               secrethub tree graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory
-              # arti_creds=$(secrethub read graviteeio/cicd/infra/maven/dry-run/artifactory/user-name):$(secrethub read graviteeio/cicd/infra/maven/dry-run/artifactory/user-pwd)
+              arti_creds=$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name):$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
 
               # curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/
               # curl -u $arti_creds $ARTIFACT_URL/api/repositories
