@@ -26,10 +26,10 @@ jobs:
               ARTIFACT_URL=https://odbxikk7vo-artifactory.services.clever-cloud.com/webapp/
               pr_num=$(echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" '{print $1}' | rev)
               artifact_name=$($CIRCLE_PROJECT_REPONAME-1.0.0-$pr_num-$CIRCLE_BUILD_NUM)
-              echo "$artifact_name"
+              echo $artifact_name
               # 7z .zip ./devops-demo-$version/*
 
-              curl -u $artifactory_creds -T $artifact_name $ARTIFACT_URL
+              # curl -u $artifactory_creds -T $artifact_name $ARTIFACT_URL
 workflows:
   test-sequential:
     jobs:
