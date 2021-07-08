@@ -32,7 +32,7 @@ jobs:
               arti_creds=$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name):$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
 
               # curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/
-              # curl -u $arti_creds $ARTIFACT_URL/api/repositories
+              curl -u $arti_creds $ARTIFACT_URL/api/repositories
 workflows:
   test-sequential:
     jobs:
