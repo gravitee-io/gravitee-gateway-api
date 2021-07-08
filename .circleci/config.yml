@@ -25,7 +25,7 @@ jobs:
       - run: |
               pr_num=$(echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" '{print $1}' | rev)
               # artifact_name=$CIRCLE_PROJECT_REPONAME-1.0.0-$pr-num-$CIRCLE_BUILD_NUM
-              echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr-num-$CIRCLE_BUILD_NUM"
+              echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr_num-$CIRCLE_BUILD_NUM"
               # 7z a gravitee-demo-${version}.zip ./devops-demo-$version/*
 
               # curl -u $artifactory_creds -T $artifact_name "artifactory_url"
