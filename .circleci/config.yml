@@ -23,12 +23,12 @@ jobs:
         #  cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
       - run: printenv
       - run: |
-              pr_num=echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" '{print $1}' | rev
-              echo "$CIRCLE_PROJECT_REPONAME"
-              # echo $artifact_name
+              pr_num=$(echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" '{print $1}' | rev)
+              # artifact_name=$CIRCLE_PROJECT_REPONAME-1.0.0-$pr-num-$CIRCLE_BUILD_NUM
+              echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr-num-$CIRCLE_BUILD_NUM"
               # 7z a gravitee-demo-${version}.zip ./devops-demo-$version/*
 
-              # curl -u $artifactory_creds -T $artifact_name "$artifactory_url"
+              # curl -u $artifactory_creds -T $artifact_name "artifactory_url"
 workflows:
   test-sequential:
     jobs:
