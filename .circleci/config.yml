@@ -22,6 +22,7 @@ jobs:
         #  gh_cred: $(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
         #  cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
       - run: printenv
+      - run: echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" $1
 workflows:
   test-sequential:
     jobs:
