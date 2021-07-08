@@ -21,6 +21,7 @@ jobs:
       - gravitee/artifact_publishing:
          arti_user: $(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name)
          arti_pass: $(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
+      - run: echo "Borko"
       # - gravitee/sequential_builds:
         #  gh_cred: $(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
         #  cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
