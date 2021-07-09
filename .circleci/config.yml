@@ -3,15 +3,15 @@ orbs:
   gravitee: gravitee-io/gravitee@dev:1.0.25
   secrethub: secrethub/cli@1.1.0
 
-parameters:
-    gh_cred:
-        type: string
-        default: ""
-        description: "gh cred"
-    cc_cred:
-        type: string
-        default: ""
-        description: "cc cred"
+# parameters:
+#     gh_cred:
+#         type: string
+#         default: ""
+#         description: "gh cred"
+#     cc_cred:
+#         type: string
+#         default: ""
+#         description: "cc cred"
 jobs:
   prepare:
     docker:
@@ -22,17 +22,18 @@ jobs:
       #    arti_user: $(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name)
       #    arti_pass: $(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
       # - gravitee/sequential_builds:
-        #  gh_cred: $(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
-        #  cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
-      - run: |
-              ARTIFACT_URL=https://odbxikk7vo-artifactory.services.clever-cloud.com/
-              pr_num=$(echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" '{print $1}' | rev)
-              artifact_name=$(echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr_num-$CIRCLE_BUILD_NUM")
+      #    gh_cred: $(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
+      #    cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
+      # - run: |
+      #         ARTIFACT_URL=https://odbxikk7vo-artifactory.services.clever-cloud.com/
+      #         pr_num=$(echo $CIRCLE_PULL_REQUEST | rev | awk  -F "/" '{print $1}' | rev)
+      #         artifact_name=$(echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr_num-$CIRCLE_BUILD_NUM")
               
-              arti_creds=$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name):$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
+      #         arti_creds=$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name):$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
 
-              # curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/
-              curl -u $arti_creds $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
+      #         curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
+      #         curl -u $arti_creds $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
+      - run: echo "Borko"
 workflows:
   arti-naming:
     jobs:
