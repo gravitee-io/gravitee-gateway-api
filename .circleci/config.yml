@@ -30,7 +30,7 @@ jobs:
               artifact_name=$(echo "$CIRCLE_PROJECT_REPONAME-1.0.0-$pr_num-$CIRCLE_BUILD_NUM")
               arti_creds=$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-name):$(secrethub read graviteeio/cicd/graviteebot/infra/maven/dry-run/artifactory/user-pwd)
 
-              zip $artifact_name.zip src/main/java/io/gravitee/gateway/api/ws
+              zip $artifact_name.zip ../src/main/java/io/gravitee/gateway/api/ws/
 
               # curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
               curl -u $arti_creds $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
