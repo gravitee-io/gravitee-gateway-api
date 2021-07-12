@@ -35,7 +35,7 @@ jobs:
               zip $artifact_name.zip src/main/java/io/gravitee/gateway/api/ws/
 
 
-              curl -u $arti_creds -T $artifact_name $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
+              curl -u $arti_creds -T $artifact_name.zip $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
               curl -u $arti_creds $ARTIFACT_URL/list/dry-run-releases/io/gravitee/repository/gravitee-repository-test/
       - run: echo "Hello"
 workflows:
