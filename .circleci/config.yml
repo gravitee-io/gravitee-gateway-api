@@ -24,6 +24,7 @@ jobs:
       # - gravitee/sequential_builds:
       #    gh_cred: $(secrethub read graviteeio/cicd/graviteebot/github_personal_access_token)
       #    cc_cred: $(secrethub read graviteeio/cicd/admin/circleci/nicolas/token)
+      - checkout
       - run: ls
       - run: |
               ARTIFACT_URL=https://odbxikk7vo-artifactory.services.clever-cloud.com
