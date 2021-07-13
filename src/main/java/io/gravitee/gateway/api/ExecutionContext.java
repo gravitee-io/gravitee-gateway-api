@@ -17,6 +17,7 @@ package io.gravitee.gateway.api;
 
 
 import io.gravitee.el.TemplateEngine;
+import io.gravitee.tracing.api.Tracer;
 
 import java.util.Enumeration;
 import java.util.Map;
@@ -95,4 +96,6 @@ public interface ExecutionContext {
     Map<String, Object> getAttributes();
 
     TemplateEngine getTemplateEngine();
+
+    Tracer getTracer();
 }

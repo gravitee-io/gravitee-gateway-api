@@ -29,12 +29,13 @@
 
     <groupId>io.gravitee.gateway</groupId>
     <artifactId>gravitee-gateway-api</artifactId>
-    <version>1.27.0-SNAPSHOT</version>
+    <version>1.26.1-SNAPSHOT</version>
 
     <name>Gravitee.io APIM - Gateway - API</name>
 
     <properties>
         <gravitee-bom.version>1.0</gravitee-bom.version>
+        <gravitee-tracing-api.version>1.0.0-SNAPSHOT</gravitee-tracing-api.version>
         <gravitee-common.version>1.16.2</gravitee-common.version>
         <gravitee-reporter-api.version>1.19.0</gravitee-reporter-api.version>
         <gravitee-policy-api.version>1.6.0</gravitee-policy-api.version>
@@ -59,6 +60,11 @@
             <groupId>io.gravitee.common</groupId>
             <artifactId>gravitee-common</artifactId>
             <version>${gravitee-common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.gravitee.tracing</groupId>
+            <artifactId>gravitee-tracing-api</artifactId>
+            <version>${gravitee-tracing-api.version}</version>
         </dependency>
         <dependency>
             <groupId>io.gravitee.reporter</groupId>
