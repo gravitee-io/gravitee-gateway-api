@@ -81,6 +81,10 @@ public class EvaluableRequest {
         return request.headers();
     }
 
+    public String getMethod() {
+        return request.method().name();
+    }
+
     public String getScheme() {
         return request.scheme();
     }
