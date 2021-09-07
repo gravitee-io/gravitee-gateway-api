@@ -48,6 +48,8 @@ public interface ExecutionContext {
     String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
     String ATTR_USER = ATTR_PREFIX + "user";
     String ATTR_USER_ROLES = ATTR_PREFIX + "user.roles";
+    String ATTR_ORGANIZATION = ATTR_PREFIX + "organization";
+    String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
 
     Request request();
 
