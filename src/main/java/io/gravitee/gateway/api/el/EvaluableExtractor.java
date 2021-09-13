@@ -18,20 +18,15 @@ package io.gravitee.gateway.api.el;
 import io.gravitee.common.http.HttpHeaders;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONStyle;
-import org.springframework.util.MultiValueMap;
 
 import java.beans.Introspector;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Parameter;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -45,18 +40,45 @@ public class EvaluableExtractor {
     }
 
     public void run() throws IOException {
-        Map<String, Object> all = new HashMap<>();
+        Map<String, Object> all = new TreeMap<>();
 
-        Map<String, HashMap<String, Object>> request = new HashMap<>();
+        Map<String, TreeMap<String, Object>> request = new TreeMap<>();
         for (Method declaredMethod : EvaluableRequest.class.getDeclaredMethods()) {
             if (declaredMethod.getName().startsWith("get")) {
                 String name = Introspector.decapitalize(declaredMethod.getName().replace("get", ""));
-                request.put(name, getChild(declaredMethod));
+                if (!name.equals("ssl")) {
+                    request.put(name, getChild(declaredMethod));
+                } else {
+                    TreeMap<String, Object> ssl = new TreeMap<>();
+                    for (Method declaredSSLMethod : EvaluableSSLSession.class.getDeclaredMethods()) {
+                        if (declaredSSLMethod.getName().startsWith("get")) {
+                            String sslAttributeName = Introspector.decapitalize(declaredSSLMethod.getName().replace("get", ""));
+                            if (!sslAttributeName.equals("client") && !sslAttributeName.equals("server")) {
+                                ssl.put(sslAttributeName, getChild(declaredSSLMethod));
+                            } else {
+                                TreeMap<String, Object> principal = new TreeMap<>();
+                                for (Method declaredSSLPrincipalMethod : EvaluableSSLPrincipal.class.getDeclaredMethods()) {
+                                    if (declaredSSLPrincipalMethod.getName().startsWith("get")) {
+                                        String principalAttributeName = Introspector.decapitalize(declaredSSLPrincipalMethod.getName().replace("get", ""));
+                                        if (!principalAttributeName.equals("all") && !principalAttributeName.equals("")) {
+                                            principal.put(principalAttributeName, getChild(declaredSSLPrincipalMethod));
+                                        } else {
+                                            principal.put(declaredSSLPrincipalMethod.getName()+"(String attributeName)", getChild(declaredSSLPrincipalMethod));
+                                        }
+                                    }
+                                }
+                                ssl.put(sslAttributeName, principal);
+                            }
+                        }
+                    }
+
+                    request.put(name, ssl);
+                }
             }
         }
         all.put("request", request);
 
-        Map<String, HashMap<String, Object>> response = new HashMap<>();
+        Map<String, TreeMap<String, Object>> response = new HashMap<>();
         for (Method declaredMethod : EvaluableResponse.class.getDeclaredMethods()) {
             if (declaredMethod.getName().startsWith("get")) {
                 String name = Introspector.decapitalize(declaredMethod.getName().replace("get", ""));
@@ -107,9 +129,9 @@ public class EvaluableExtractor {
         return _enums;
     }
 
-    private HashMap<String, Object> getChild(Method declaredMethod) {
+    private TreeMap<String, Object> getChild(Method declaredMethod) {
         Class<?> returnType = declaredMethod.getReturnType();
-        HashMap<String, Object> map = new HashMap<>();
+        TreeMap<String, Object> map = new TreeMap<>();
         map.put("_type", returnType.getSimpleName());
         return map;
     }

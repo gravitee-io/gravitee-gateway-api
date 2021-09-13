@@ -104,4 +104,8 @@ public class EvaluableRequest {
     public String getContent() {
         return content;
     }
+
+    public EvaluableSSLSession getSsl() {
+        return new EvaluableSSLSession(request.sslSession());
+    }
 }
