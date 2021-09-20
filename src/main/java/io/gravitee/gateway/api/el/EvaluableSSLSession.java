@@ -28,6 +28,8 @@ public class EvaluableSSLSession {
 
     private final SSLSession sslSession;
 
+    public static final EmptyEvaluableSSLPrincipal EMPTY_EVALUABLE_SSL_PRINCIPAL = new EmptyEvaluableSSLPrincipal();
+
     public EvaluableSSLSession(final SSLSession sslSession) {
         this.sslSession = sslSession;
     }
@@ -47,21 +49,20 @@ public class EvaluableSSLSession {
     }
 
     public EvaluableSSLPrincipal getClient() {
-        if (sslSession != null) {
-            try {
+        try {
+            if (sslSession != null && sslSession.getPeerPrincipal() != null) {
                 return new EvaluableSSLPrincipal(sslSession.getPeerPrincipal());
-            } catch (SSLPeerUnverifiedException ignored) {
-
             }
+        } catch (SSLPeerUnverifiedException ignored) {
+
         }
-        return null;
+        return EMPTY_EVALUABLE_SSL_PRINCIPAL;
     }
 
     public EvaluableSSLPrincipal getServer() {
-        if (sslSession != null) {
+        if (sslSession != null && sslSession.getLocalPrincipal() != null) {
             return new EvaluableSSLPrincipal(sslSession.getLocalPrincipal());
         }
-        return null;
+        return EMPTY_EVALUABLE_SSL_PRINCIPAL;
     }
-
 }

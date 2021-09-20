@@ -60,11 +60,10 @@ public class EvaluableExtractor {
                                 for (Method declaredSSLPrincipalMethod : EvaluableSSLPrincipal.class.getDeclaredMethods()) {
                                     if (declaredSSLPrincipalMethod.getName().startsWith("get")) {
                                         String principalAttributeName = Introspector.decapitalize(declaredSSLPrincipalMethod.getName().replace("get", ""));
-                                        if (!principalAttributeName.equals("all") && !principalAttributeName.equals("")) {
-                                            principal.put(principalAttributeName, getChild(declaredSSLPrincipalMethod));
-                                        } else {
-                                            principal.put(declaredSSLPrincipalMethod.getName()+"(String attributeName)", getChild(declaredSSLPrincipalMethod));
-                                        }
+                                        principal.put(principalAttributeName, getChild(declaredSSLPrincipalMethod));
+                                    } else if (declaredSSLPrincipalMethod.getName().startsWith("is")) {
+                                        String principalAttributeName = Introspector.decapitalize(declaredSSLPrincipalMethod.getName().replace("is", ""));
+                                        principal.put(principalAttributeName, getChild(declaredSSLPrincipalMethod));
                                     }
                                 }
                                 ssl.put(sslAttributeName, principal);
