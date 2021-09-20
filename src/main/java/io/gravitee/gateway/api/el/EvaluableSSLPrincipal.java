@@ -15,15 +15,19 @@
  */
 package io.gravitee.gateway.api.el;
 
+import io.gravitee.common.util.LinkedCaseInsensitiveMultiValueMap;
+import io.gravitee.common.util.LinkedMultiValueMap;
+import io.gravitee.common.util.MultiValueMap;
 import org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import org.bouncycastle.asn1.x500.RDN;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.bouncycastle.asn1.x500.style.IETFUtils;
 
+import javax.net.ssl.SSLSession;
 import javax.security.auth.x500.X500Principal;
 import java.security.Principal;
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * @author Florent CHAMFROY (florent.chamfroy at graviteesource.com)
@@ -42,14 +46,15 @@ import java.util.Arrays;
  *   If DN = "CN=John Doe, OU=Test, OU=Test2, OU=Test3, O=ACME, C=US"
  *   Then {#request.ssl.client.ou} => Test
  *
- * To get all values, you may use the <i>getAll</i> method
- *     {#request.ssl.client.getAll('ou')[0]} => Test
- *     {#request.ssl.client.getAll('ou')[1]} => Test2
- *     {#request.ssl.client.getAll('ou')[2]} => Test3
+ * To get all values, you may use the <i>attributes</i> field, which is an array
+ *     {#request.ssl.client.attributes['ou'][0]} => Test
+ *     {#request.ssl.client.attributes['ou'][1]} => Test2
+ *     {#request.ssl.client.attributes['ou'][2]} => Test3
  */
 public class EvaluableSSLPrincipal {
     private final X500Principal principal;
     private X500Name x500Name;
+    private MultiValueMap<String, String> attributes;
 
     public EvaluableSSLPrincipal(Principal principal) {
         this.principal = (X500Principal) principal;
@@ -211,24 +216,22 @@ public class EvaluableSSLPrincipal {
 
     /**
      * Allow to fetch an attribute from its name (e.g.: CN) or attribute (e.g.: 2.5.4.6).
-     * In case the value is an array, only the first item of this array is returned
-     * @param attributeName
-     * @return the first value (or the first item if value is an array) in principal DN for the given attribute.
+     * The value returned is always an array of String
+     * @return a case insensitive MultiValueMap of all available attributes. Meaning that, if "key" is an existing key, then getAttributes().get("KEY") returns the same value
      */
-    public String get(String attributeName) {
-        final ASN1ObjectIdentifier asn1ObjectIdentifier = BCStyle.INSTANCE.attrNameToOID(attributeName);
-        return readFirstRDNByType(asn1ObjectIdentifier);
+    public MultiValueMap<String, String> getAttributes() {
+        if (attributes == null) {
+            attributes = computeSSLAttributes();
+        }
+        return attributes;
     }
 
     /**
-     * Allow to fetch an attribute from its name (e.g.: CN) or attribute (e.g.: 2.5.4.6).
-     * The value returned is always an array of String
-     * @param attributeName
-     * @return all values in principal DN for the given attribute.
+     *
+     * @return true if the principal exists and is defined
      */
-    public String[] getAll(String attributeName) {
-        final ASN1ObjectIdentifier asn1ObjectIdentifier = BCStyle.INSTANCE.attrNameToOID(attributeName);
-        return readAllRDNsByType(asn1ObjectIdentifier);
+    public boolean isDefined() {
+        return this.principal != null;
     }
 
     private String readFirstRDNByType(ASN1ObjectIdentifier objectIdentifier) {
@@ -239,15 +242,42 @@ public class EvaluableSSLPrincipal {
         return null;
     }
 
-    private String[] readAllRDNsByType(ASN1ObjectIdentifier objectIdentifier) {
-        RDN[] rdns = readRdnsFromPrincipalName(objectIdentifier);
-        return Arrays.stream(rdns).map(rdn -> IETFUtils.valueToString(rdn.getFirst().getValue())).toArray(String[]::new);
-    }
-
     private RDN[] readRdnsFromPrincipalName(ASN1ObjectIdentifier objectIdentifier) {
         if (x500Name == null) {
             x500Name = new X500Name(principal.getName());
         }
         return x500Name.getRDNs(objectIdentifier);
+    }
+
+    private MultiValueMap<String, String> computeSSLAttributes() {
+        class AccessibleBCStyle extends BCStyle {
+            Hashtable<ASN1ObjectIdentifier, String> getDefaultSymbols() {
+                return this.defaultSymbols;
+            }
+        }
+        AccessibleBCStyle bcStyle = new AccessibleBCStyle();
+
+        LinkedCaseInsensitiveMultiValueMap computedAttributes = new LinkedCaseInsensitiveMultiValueMap<>();
+
+        RDN[] rdns = readAllRdnsFromPrincipalName();
+        Arrays.stream(rdns).forEach(rdn -> {
+            final ASN1ObjectIdentifier type = rdn.getFirst().getType();
+            final String value = IETFUtils.valueToString(rdn.getFirst().getValue());
+            computedAttributes.add(type.getId(), value);
+
+            final String symbol = bcStyle.getDefaultSymbols().get(type);
+            if (symbol != null) {
+                computedAttributes.add(symbol, value);
+            }
+        });
+
+        return computedAttributes;
+    }
+
+    private RDN[] readAllRdnsFromPrincipalName() {
+        if (x500Name == null) {
+            x500Name = new X500Name(principal.getName());
+        }
+        return x500Name.getRDNs();
     }
 }

@@ -22,6 +22,9 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import javax.security.auth.x500.X500Principal;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -56,10 +59,10 @@ public class EvaluableSSLSessionTest {
     @Test
     public void shouldGetNoAttributeIfNoSSLSession() {
         EvaluableSSLSession evaluableSSLSession = new EvaluableSSLSession(null);
-        assertNull(evaluableSSLSession.getClient());
+        assertEquals(EvaluableSSLSession.EMPTY_EVALUABLE_SSL_PRINCIPAL, evaluableSSLSession.getClient());
         assertNull(evaluableSSLSession.getClientHost());
         assertNull(evaluableSSLSession.getClientPort());
-        assertNull(evaluableSSLSession.getServer());
+        assertEquals(EvaluableSSLSession.EMPTY_EVALUABLE_SSL_PRINCIPAL, evaluableSSLSession.getServer());
     }
 
     @Test
@@ -139,12 +142,12 @@ public class EvaluableSSLSessionTest {
         final EvaluableSSLPrincipal client = evaluableSSLSession.getClient();
         assertNotNull(client);
 
-        final String[] expectedOu = {"Webserver Team", "And another team"};
-        assertArrayEquals(expectedOu, client.getAll("2.5.4.11"));
-        assertArrayEquals(expectedOu, client.getAll("OU"));
+        final List<String> expectedOu = Arrays.asList("Webserver Team", "And another team");
+        assertEquals(expectedOu, client.getAttributes().get("2.5.4.11"));
+        assertEquals(expectedOu, client.getAttributes().get("OU"));
+        assertEquals(expectedOu, client.getAttributes().get("ou"));
+        assertEquals(expectedOu, client.getAttributes().get("Ou"));
+        assertEquals(expectedOu, client.getAttributes().get("oU"));
 
-        final String expectedC = "AU";
-        assertEquals(expectedC, client.get("2.5.4.6"));
-        assertEquals(expectedC, client.get("C"));
     }
 }
