@@ -15,15 +15,14 @@
  */
 package io.gravitee.gateway.api.el;
 
+import java.io.IOException;
+import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.net.ssl.SSLSession;
+import javax.security.auth.x500.X500Principal;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import javax.net.ssl.SSLPeerUnverifiedException;
-import javax.net.ssl.SSLSession;
-import javax.security.auth.x500.X500Principal;
-import java.io.IOException;
 
 public class EvaluableExtractorTest {
 

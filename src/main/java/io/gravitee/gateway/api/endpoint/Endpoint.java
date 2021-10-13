@@ -22,7 +22,6 @@ import io.gravitee.gateway.api.Connector;
  * @author GraviteeSource Team
  */
 public interface Endpoint {
-
     /**
      * Endpoint name.
      * @return Endpoint name.

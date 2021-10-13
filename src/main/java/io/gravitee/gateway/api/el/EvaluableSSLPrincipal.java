@@ -18,16 +18,15 @@ package io.gravitee.gateway.api.el;
 import io.gravitee.common.util.LinkedCaseInsensitiveMultiValueMap;
 import io.gravitee.common.util.LinkedMultiValueMap;
 import io.gravitee.common.util.MultiValueMap;
+import java.security.Principal;
+import java.util.*;
+import javax.net.ssl.SSLSession;
+import javax.security.auth.x500.X500Principal;
 import org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import org.bouncycastle.asn1.x500.RDN;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.bouncycastle.asn1.x500.style.IETFUtils;
-
-import javax.net.ssl.SSLSession;
-import javax.security.auth.x500.X500Principal;
-import java.security.Principal;
-import java.util.*;
 
 /**
  * @author Florent CHAMFROY (florent.chamfroy at graviteesource.com)
@@ -52,6 +51,7 @@ import java.util.*;
  *     {#request.ssl.client.attributes['ou'][2]} => Test3
  */
 public class EvaluableSSLPrincipal {
+
     private final X500Principal principal;
     private X500Name x500Name;
     private MultiValueMap<String, String> attributes;
@@ -251,6 +251,7 @@ public class EvaluableSSLPrincipal {
 
     private MultiValueMap<String, String> computeSSLAttributes() {
         class AccessibleBCStyle extends BCStyle {
+
             Hashtable<ASN1ObjectIdentifier, String> getDefaultSymbols() {
                 return this.defaultSymbols;
             }
@@ -260,16 +261,20 @@ public class EvaluableSSLPrincipal {
         LinkedCaseInsensitiveMultiValueMap computedAttributes = new LinkedCaseInsensitiveMultiValueMap<>();
 
         RDN[] rdns = readAllRdnsFromPrincipalName();
-        Arrays.stream(rdns).forEach(rdn -> {
-            final ASN1ObjectIdentifier type = rdn.getFirst().getType();
-            final String value = IETFUtils.valueToString(rdn.getFirst().getValue());
-            computedAttributes.add(type.getId(), value);
+        Arrays
+            .stream(rdns)
+            .forEach(
+                rdn -> {
+                    final ASN1ObjectIdentifier type = rdn.getFirst().getType();
+                    final String value = IETFUtils.valueToString(rdn.getFirst().getValue());
+                    computedAttributes.add(type.getId(), value);
 
-            final String symbol = bcStyle.getDefaultSymbols().get(type);
-            if (symbol != null) {
-                computedAttributes.add(symbol, value);
-            }
-        });
+                    final String symbol = bcStyle.getDefaultSymbols().get(type);
+                    if (symbol != null) {
+                        computedAttributes.add(symbol, value);
+                    }
+                }
+            );
 
         return computedAttributes;
     }

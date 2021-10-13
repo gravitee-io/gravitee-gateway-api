@@ -15,10 +15,9 @@
  */
 package io.gravitee.gateway.api.el;
 
-import org.bouncycastle.asn1.x500.style.BCStyle;
-
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
+import org.bouncycastle.asn1.x500.style.BCStyle;
 
 /**
  * @author Florent CHAMFROY (florent.chamfroy at graviteesource.com)
@@ -53,9 +52,7 @@ public class EvaluableSSLSession {
             if (sslSession != null && sslSession.getPeerPrincipal() != null) {
                 return new EvaluableSSLPrincipal(sslSession.getPeerPrincipal());
             }
-        } catch (SSLPeerUnverifiedException ignored) {
-
-        }
+        } catch (SSLPeerUnverifiedException ignored) {}
         return EMPTY_EVALUABLE_SSL_PRINCIPAL;
     }
 

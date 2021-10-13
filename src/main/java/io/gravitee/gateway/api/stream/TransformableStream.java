@@ -17,7 +17,6 @@ package io.gravitee.gateway.api.stream;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.policy.api.PolicyChain;
-
 import java.util.function.Function;
 
 /**
@@ -45,7 +44,7 @@ public abstract class TransformableStream extends BufferedReadWriteStream {
 
     @Override
     public TransformableStream write(Buffer chunk) {
-        if (! ended) {
+        if (!ended) {
             buffer.appendBuffer(chunk);
         }
         return this;

@@ -20,7 +20,6 @@ package io.gravitee.gateway.api.endpoint;
  * @author GraviteeSource Team
  */
 public interface EndpointManager {
-
     /**
      * Get an endpoint reference to access the underlying connector.
      *

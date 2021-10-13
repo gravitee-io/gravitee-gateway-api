@@ -15,10 +15,8 @@
  */
 package io.gravitee.gateway.api;
 
-
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.tracing.api.Tracer;
-
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -29,7 +27,6 @@ import java.util.Map;
  * @author GraviteeSource Team
  */
 public interface ExecutionContext {
-
     String ATTR_PREFIX = "gravitee.attribute.";
 
     String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";

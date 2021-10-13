@@ -20,6 +20,5 @@ package io.gravitee.gateway.api.endpoint;
  * @author GraviteeSource Team
  */
 public interface EndpointAvailabilityListener {
-
     void onAvailabilityChange(Endpoint endpoint, boolean available);
 }
