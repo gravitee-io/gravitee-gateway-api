@@ -16,7 +16,6 @@
 package io.gravitee.gateway.api.buffer;
 
 import io.gravitee.common.util.ServiceLoaderHelper;
-
 import java.nio.charset.Charset;
 
 /**
@@ -28,7 +27,6 @@ import java.nio.charset.Charset;
  * @author GraviteeSource Team
  */
 public interface Buffer {
-
     static Buffer buffer() {
         return factory.buffer();
     }

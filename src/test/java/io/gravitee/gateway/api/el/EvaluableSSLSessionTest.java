@@ -15,35 +15,34 @@
  */
 package io.gravitee.gateway.api.el;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import javax.net.ssl.SSLPeerUnverifiedException;
-import javax.net.ssl.SSLSession;
-import javax.security.auth.x500.X500Principal;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+import java.util.List;
+import javax.net.ssl.SSLPeerUnverifiedException;
+import javax.net.ssl.SSLSession;
+import javax.security.auth.x500.X500Principal;
+import org.junit.Before;
+import org.junit.Test;
+
 public class EvaluableSSLSessionTest {
 
-    private static final String CLIENT_DN = "C=AU,ST=Victoria,L=South Melbourne,O=The Legion of the Bouncy Castle,OU=Webserver Team,OU=And another team,CN=www2.connect4.com.au,E=webmaster@connect4.com.au";
+    private static final String CLIENT_DN =
+        "C=AU,ST=Victoria,L=South Melbourne,O=The Legion of the Bouncy Castle,OU=Webserver Team,OU=And another team,CN=www2.connect4.com.au,E=webmaster@connect4.com.au";
     private static final String CLIENT_HOST = "my_domain";
     private static final int CLIENT_PORT = 1234;
 
-    private static final String SERVER_DN = "emailAddress=contact@graviteesource.com,CN=localhost,OU=GraviteeSource,O=GraviteeSource,L=Lille,ST=France,C=FR";
-
+    private static final String SERVER_DN =
+        "emailAddress=contact@graviteesource.com,CN=localhost,OU=GraviteeSource,O=GraviteeSource,L=Lille,ST=France,C=FR";
 
     private SSLSession sslSession;
     private X500Principal clientPrincipal;
     private X500Principal serverPrincipal;
 
     @Before
-    public void init() throws SSLPeerUnverifiedException{
+    public void init() throws SSLPeerUnverifiedException {
         sslSession = mock(SSLSession.class);
         clientPrincipal = mock(X500Principal.class);
         serverPrincipal = mock(X500Principal.class);
@@ -99,7 +98,6 @@ public class EvaluableSSLSessionTest {
         assertNull(client.getBusinessCategory());
 
         assertEquals(CLIENT_DN, client.getDn());
-
     }
 
     @Test
@@ -148,6 +146,5 @@ public class EvaluableSSLSessionTest {
         assertEquals(expectedOu, client.getAttributes().get("ou"));
         assertEquals(expectedOu, client.getAttributes().get("Ou"));
         assertEquals(expectedOu, client.getAttributes().get("oU"));
-
     }
 }

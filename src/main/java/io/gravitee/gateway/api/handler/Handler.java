@@ -23,6 +23,5 @@ package io.gravitee.gateway.api.handler;
  */
 @FunctionalInterface
 public interface Handler<T> {
-
     void handle(T result);
 }

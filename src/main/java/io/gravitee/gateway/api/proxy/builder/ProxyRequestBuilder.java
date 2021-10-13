@@ -21,7 +21,6 @@ import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.gateway.api.proxy.ws.WebSocketProxyRequestImpl;
-
 import java.util.regex.Pattern;
 
 /**
@@ -35,7 +34,7 @@ public class ProxyRequestBuilder {
     private static final String URI_PATH_SEPARATOR = "/";
 
     private String uri;
-    private MultiValueMap<String, String> parameters;
+    private MultiValueMap<String, String> parameters, pathParameters;
     private HttpMethod method;
     private String rawMethod;
     private HttpHeaders headers;
@@ -52,6 +51,7 @@ public class ProxyRequestBuilder {
         builder.headers(request.headers());
         builder.method(request.method());
         builder.parameters(request.parameters());
+        builder.pathParameters(request.pathParameters());
 
         return builder;
     }
@@ -63,6 +63,11 @@ public class ProxyRequestBuilder {
 
     public ProxyRequestBuilder parameters(MultiValueMap<String, String> parameters) {
         this.parameters = parameters;
+        return this;
+    }
+
+    public ProxyRequestBuilder pathParameters(MultiValueMap<String, String> pathParameters) {
+        this.pathParameters = pathParameters;
         return this;
     }
 
@@ -84,7 +89,7 @@ public class ProxyRequestBuilder {
     public ProxyRequest build() {
         ProxyRequestImpl proxyRequest;
 
-        if (! request.isWebSocket()) {
+        if (!request.isWebSocket()) {
             proxyRequest = new ProxyRequestImpl(this.request.metrics());
         } else {
             proxyRequest = new WebSocketProxyRequestImpl(this.request.websocket(), this.request.metrics());
@@ -95,6 +100,7 @@ public class ProxyRequestBuilder {
         proxyRequest.setMethod(this.method);
         proxyRequest.setRawMethod(this.rawMethod);
         proxyRequest.setParameters(this.parameters);
+        proxyRequest.setPathParameters(this.pathParameters);
         proxyRequest.setHeaders(this.headers);
 
         return proxyRequest;

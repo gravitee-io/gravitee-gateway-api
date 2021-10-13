@@ -16,9 +16,6 @@
 package io.gravitee.gateway.api.el;
 
 import io.gravitee.common.http.HttpHeaders;
-import net.minidev.json.JSONObject;
-import net.minidev.json.JSONStyle;
-
 import java.beans.Introspector;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -28,6 +25,8 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.stream.Collectors;
+import net.minidev.json.JSONObject;
+import net.minidev.json.JSONStyle;
 
 /**
  * @author Guillaume CUSNIEUX (guillaume.cusnieux at graviteesource.com)
@@ -59,10 +58,14 @@ public class EvaluableExtractor {
                                 TreeMap<String, Object> principal = new TreeMap<>();
                                 for (Method declaredSSLPrincipalMethod : EvaluableSSLPrincipal.class.getDeclaredMethods()) {
                                     if (declaredSSLPrincipalMethod.getName().startsWith("get")) {
-                                        String principalAttributeName = Introspector.decapitalize(declaredSSLPrincipalMethod.getName().replace("get", ""));
+                                        String principalAttributeName = Introspector.decapitalize(
+                                            declaredSSLPrincipalMethod.getName().replace("get", "")
+                                        );
                                         principal.put(principalAttributeName, getChild(declaredSSLPrincipalMethod));
                                     } else if (declaredSSLPrincipalMethod.getName().startsWith("is")) {
-                                        String principalAttributeName = Introspector.decapitalize(declaredSSLPrincipalMethod.getName().replace("is", ""));
+                                        String principalAttributeName = Introspector.decapitalize(
+                                            declaredSSLPrincipalMethod.getName().replace("is", "")
+                                        );
                                         principal.put(principalAttributeName, getChild(declaredSSLPrincipalMethod));
                                     }
                                 }
@@ -94,7 +97,7 @@ public class EvaluableExtractor {
 
         Map<String, Object> context = new HashMap<>();
         Map<String, Object> attributes = new HashMap<>();
-        String[] attrs = new String[]{"context-path", "resolved-path", "application", "api", "user-id", "plan", "api-key"};
+        String[] attrs = new String[] { "context-path", "resolved-path", "application", "api", "user-id", "plan", "api-key" };
         for (String attr : attrs) {
             Map m = new HashMap();
             m.put("_type", String.class.getSimpleName());
@@ -114,16 +117,22 @@ public class EvaluableExtractor {
         Map<String, Object> _enums = new HashMap<>();
 
         Field[] declaredFields = HttpHeaders.class.getDeclaredFields();
-        _enums.put(HttpHeaders.class.getSimpleName(), Arrays.stream(declaredFields)
-            .filter(f -> Modifier.isPublic(f.getModifiers()))
-            .map(field -> {
-                try {
-                    return field.get(null);
-                } catch (IllegalAccessException e) {
-                    return field.getName();
-                }
-            })
-            .collect(Collectors.toList()));
+        _enums.put(
+            HttpHeaders.class.getSimpleName(),
+            Arrays
+                .stream(declaredFields)
+                .filter(f -> Modifier.isPublic(f.getModifiers()))
+                .map(
+                    field -> {
+                        try {
+                            return field.get(null);
+                        } catch (IllegalAccessException e) {
+                            return field.getName();
+                        }
+                    }
+                )
+                .collect(Collectors.toList())
+        );
 
         return _enums;
     }
@@ -134,5 +143,4 @@ public class EvaluableExtractor {
         map.put("_type", returnType.getSimpleName());
         return map;
     }
-
 }

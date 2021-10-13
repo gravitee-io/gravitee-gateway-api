@@ -40,7 +40,7 @@ public abstract class SimpleReadWriteStream<T> implements ReadWriteStream<T> {
 
     @Override
     public SimpleReadWriteStream<T> write(T content) {
-        if(this.bodyHandler != null) {
+        if (this.bodyHandler != null) {
             this.bodyHandler.handle(content);
         }
 
@@ -49,7 +49,7 @@ public abstract class SimpleReadWriteStream<T> implements ReadWriteStream<T> {
 
     @Override
     public void end() {
-        if(this.endHandler != null) {
+        if (this.endHandler != null) {
             this.endHandler.handle(null);
         }
     }

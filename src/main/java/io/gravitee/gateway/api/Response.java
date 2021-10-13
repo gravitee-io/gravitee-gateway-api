@@ -28,12 +28,13 @@ import io.gravitee.gateway.api.stream.WriteStream;
  * @author GraviteeSource Team
  */
 public interface Response extends WriteStream<Buffer> {
-
     Response status(int statusCode);
 
     int status();
 
-    default Response endHandler(Handler<Void> endHandler) { return this;}
+    default Response endHandler(Handler<Void> endHandler) {
+        return this;
+    }
 
     /**
      * Reason-Phrase is intended to give a short textual description of the Status-Code.
@@ -54,7 +55,7 @@ public interface Response extends WriteStream<Buffer> {
     boolean ended();
 
     HttpHeaders trailers();
-    
+
     default Response writeCustomFrame(HttpFrame frame) {
         return this;
     }

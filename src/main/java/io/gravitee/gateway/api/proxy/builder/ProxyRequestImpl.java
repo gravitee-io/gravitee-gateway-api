@@ -28,7 +28,7 @@ import io.gravitee.reporter.api.http.Metrics;
 public class ProxyRequestImpl implements ProxyRequest {
 
     private String uri;
-    private MultiValueMap<String, String> parameters;
+    private MultiValueMap<String, String> parameters, pathParameters;
     private HttpMethod method;
     private String rawMethod;
     private HttpHeaders headers;
@@ -44,6 +44,10 @@ public class ProxyRequestImpl implements ProxyRequest {
 
     public void setParameters(MultiValueMap<String, String> parameters) {
         this.parameters = parameters;
+    }
+
+    public void setPathParameters(MultiValueMap<String, String> pathParameters) {
+        this.pathParameters = pathParameters;
     }
 
     public void setMethod(HttpMethod method) {
@@ -66,6 +70,11 @@ public class ProxyRequestImpl implements ProxyRequest {
     @Override
     public MultiValueMap<String, String> parameters() {
         return parameters;
+    }
+
+    @Override
+    public MultiValueMap<String, String> pathParameters() {
+        return pathParameters;
     }
 
     @Override

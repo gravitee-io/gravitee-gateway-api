@@ -20,7 +20,6 @@ package io.gravitee.gateway.api.buffer;
  * @author GraviteeSource Team
  */
 public interface BufferFactory {
-
     Buffer buffer(int initialSizeHint);
 
     Buffer buffer();

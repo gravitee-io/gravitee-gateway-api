@@ -17,7 +17,6 @@ package io.gravitee.gateway.api.el;
 
 import io.gravitee.common.util.LinkedMultiValueMap;
 import io.gravitee.common.util.MultiValueMap;
-
 import java.util.Collections;
 
 public class EmptyEvaluableSSLPrincipal extends EvaluableSSLPrincipal {

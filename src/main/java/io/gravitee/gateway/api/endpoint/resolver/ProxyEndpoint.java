@@ -19,7 +19,6 @@ import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.endpoint.Endpoint;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.gateway.api.proxy.builder.ProxyRequestBuilder;
-
 import java.util.function.Function;
 
 /**
@@ -27,7 +26,6 @@ import java.util.function.Function;
  * @author GraviteeSource Team
  */
 public interface ProxyEndpoint extends Endpoint {
-
     default ProxyRequest createProxyRequest(Request request) {
         return createProxyRequest(request, null);
     }

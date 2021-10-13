@@ -20,7 +20,6 @@ package io.gravitee.gateway.api.endpoint.resolver;
  * @author GraviteeSource Team
  */
 public interface EndpointResolver {
-
     /**
      * A reference to the best endpoint / endpoint group according to the target.
      *

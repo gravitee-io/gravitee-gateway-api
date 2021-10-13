@@ -13,23 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api;
+package io.gravitee.gateway.api.processor;
 
-import io.gravitee.common.component.LifecycleComponent;
-import io.gravitee.gateway.api.handler.Handler;
-import io.gravitee.gateway.api.proxy.ProxyConnection;
-import io.gravitee.gateway.api.proxy.ProxyRequest;
+import java.util.Map;
 
 /**
- * A simple marker interface to define a way to invoke / call something.
- *
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Connector extends LifecycleComponent<Connector> {
-    default void request(ProxyRequest request, Handler<ProxyConnection> proxyConnectionHandler) {
-        request(request, null, proxyConnectionHandler);
-    }
+public interface ProcessorFailure {
+    int statusCode();
 
-    void request(ProxyRequest request, ExecutionContext context, Handler<ProxyConnection> proxyConnectionHandler);
+    String message();
+
+    String key();
+
+    Map<String, Object> parameters();
+
+    String contentType();
 }

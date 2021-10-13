@@ -22,7 +22,6 @@ import io.gravitee.gateway.api.buffer.Buffer;
  * @author GraviteeSource Team
  */
 public interface HttpFrame {
-
     /**
      * @return the 8-bit type of the frame
      */
