@@ -17,6 +17,7 @@ package io.gravitee.gateway.api;
 
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.http2.HttpFrame;
 import io.gravitee.gateway.api.stream.WriteStream;
 
@@ -31,6 +32,8 @@ public interface Response extends WriteStream<Buffer> {
     Response status(int statusCode);
 
     int status();
+
+    default Response endHandler(Handler<Void> endHandler) { return this;}
 
     /**
      * Reason-Phrase is intended to give a short textual description of the Status-Code.
