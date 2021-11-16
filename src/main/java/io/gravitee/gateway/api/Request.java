@@ -156,4 +156,12 @@ public interface Request extends ReadStream<Buffer> {
      * @return
      */
     Request customFrameHandler(Handler<HttpFrame> frameHandler);
+
+    /**
+     * Allows to retrieve the request host.
+     * This method should be preferred over retrieving the host from http headers.
+     *
+     * @return the host.
+     */
+    String host();
 }
