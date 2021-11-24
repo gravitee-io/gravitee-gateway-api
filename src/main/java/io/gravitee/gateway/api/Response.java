@@ -33,7 +33,9 @@ public interface Response extends WriteStream<Buffer> {
 
     int status();
 
-    default Response endHandler(Handler<Void> endHandler) { return this;}
+    default void end() { }
+
+    default Response endHandler(Handler<Void> endHandler) { return this; }
 
     /**
      * Reason-Phrase is intended to give a short textual description of the Status-Code.
@@ -54,7 +56,7 @@ public interface Response extends WriteStream<Buffer> {
     boolean ended();
 
     HttpHeaders trailers();
-    
+
     default Response writeCustomFrame(HttpFrame frame) {
         return this;
     }
