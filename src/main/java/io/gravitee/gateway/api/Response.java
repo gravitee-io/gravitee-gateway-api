@@ -32,6 +32,8 @@ public interface Response extends WriteStream<Buffer> {
 
     int status();
 
+    default void end() {}
+
     default Response endHandler(Handler<Void> endHandler) {
         return this;
     }
