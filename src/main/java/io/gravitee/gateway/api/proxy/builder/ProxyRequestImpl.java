@@ -15,9 +15,9 @@
  */
 package io.gravitee.gateway.api.proxy.builder;
 
-import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.util.MultiValueMap;
+import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.reporter.api.http.Metrics;
 

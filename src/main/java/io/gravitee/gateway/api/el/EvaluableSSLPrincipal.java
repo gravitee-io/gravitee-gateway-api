@@ -16,11 +16,10 @@
 package io.gravitee.gateway.api.el;
 
 import io.gravitee.common.util.LinkedCaseInsensitiveMultiValueMap;
-import io.gravitee.common.util.LinkedMultiValueMap;
 import io.gravitee.common.util.MultiValueMap;
 import java.security.Principal;
-import java.util.*;
-import javax.net.ssl.SSLSession;
+import java.util.Arrays;
+import java.util.Hashtable;
 import javax.security.auth.x500.X500Principal;
 import org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import org.bouncycastle.asn1.x500.RDN;
