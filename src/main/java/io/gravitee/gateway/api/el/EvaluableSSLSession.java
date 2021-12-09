@@ -17,7 +17,6 @@ package io.gravitee.gateway.api.el;
 
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
-import org.bouncycastle.asn1.x500.style.BCStyle;
 
 /**
  * @author Florent CHAMFROY (florent.chamfroy at graviteesource.com)

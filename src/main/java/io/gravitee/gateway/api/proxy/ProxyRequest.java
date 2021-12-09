@@ -15,12 +15,10 @@
  */
 package io.gravitee.gateway.api.proxy;
 
-import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.util.MultiValueMap;
+import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.reporter.api.http.Metrics;
-import java.net.URI;
-import java.util.Map;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
