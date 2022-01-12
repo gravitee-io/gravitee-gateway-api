@@ -32,6 +32,7 @@ public class ProxyRequestBuilder {
     // Pattern reuse for duplicate slash removal
     private static final Pattern DUPLICATE_SLASH_REMOVER = Pattern.compile("(?<!(https?:|wss?:|grpcs?:))[//]+");
     private static final String URI_PATH_SEPARATOR = "/";
+    private static final String URI_DUPLICATED_PATH_SEPARATOR = "//";
 
     private String uri;
     private MultiValueMap<String, String> parameters, pathParameters;
@@ -95,8 +96,12 @@ public class ProxyRequestBuilder {
             proxyRequest = new WebSocketProxyRequestImpl(this.request.websocket(), this.request.metrics());
         }
 
-        // Remove duplicate slash
-        proxyRequest.setUri(DUPLICATE_SLASH_REMOVER.matcher(this.uri).replaceAll(URI_PATH_SEPARATOR));
+        // Remove duplicate slash if needed
+        if (this.uri.indexOf(URI_DUPLICATED_PATH_SEPARATOR, 8) != -1) {
+            proxyRequest.setUri(DUPLICATE_SLASH_REMOVER.matcher(this.uri).replaceAll(URI_PATH_SEPARATOR));
+        } else {
+            proxyRequest.setUri(this.uri);
+        }
         proxyRequest.setMethod(this.method);
         proxyRequest.setRawMethod(this.rawMethod);
         proxyRequest.setParameters(this.parameters);
