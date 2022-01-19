@@ -2,5 +2,5 @@
 
 ifdef::env-github[]
 image:https://ci.gravitee.io/buildStatus/icon?job=gravitee-io/gravitee-gateway-api/master["Build status", link="https://ci.gravitee.io/job/gravitee-io/job/gravitee-gateway-api/"]
-image:https://badges.gitter.im/Join Chat.svg["Gitter", link="https://gitter.im/gravitee-io/gravitee-io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+https://community.gravitee.io?utm_source=readme[Join the community forum]
 endif::[]
