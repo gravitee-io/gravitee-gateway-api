@@ -122,15 +122,13 @@ public class EvaluableExtractor {
             Arrays
                 .stream(declaredFields)
                 .filter(f -> Modifier.isPublic(f.getModifiers()))
-                .map(
-                    field -> {
-                        try {
-                            return field.get(null);
-                        } catch (IllegalAccessException e) {
-                            return field.getName();
-                        }
+                .map(field -> {
+                    try {
+                        return field.get(null);
+                    } catch (IllegalAccessException e) {
+                        return field.getName();
                     }
-                )
+                })
                 .collect(Collectors.toList())
         );
 
