@@ -15,7 +15,9 @@
  */
 package io.gravitee.gateway.api.el;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -24,8 +26,8 @@ import java.util.List;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import javax.security.auth.x500.X500Principal;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class EvaluableSSLSessionTest {
 
@@ -41,7 +43,7 @@ public class EvaluableSSLSessionTest {
     private X500Principal clientPrincipal;
     private X500Principal serverPrincipal;
 
-    @Before
+    @BeforeEach
     public void init() throws SSLPeerUnverifiedException {
         sslSession = mock(SSLSession.class);
         clientPrincipal = mock(X500Principal.class);
