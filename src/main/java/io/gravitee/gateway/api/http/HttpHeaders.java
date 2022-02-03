@@ -91,4 +91,24 @@ public interface HttpHeaders extends Iterable<Map.Entry<String, String>> {
     default boolean containsAllKeys(Collection<String> names) {
         return names().containsAll(names.stream().map(String::toLowerCase).collect(Collectors.toList()));
     }
+
+    /**
+     * Indicates if this instance of HttpHeaders is deeply equal to another one.
+     * Comparison is made on size equality, key-set equality, then on equality of collection of values for each key.
+     * @param other the other HttpHeaders instance to compare with this one
+     * @return true if instance are deeply equal, else returns false
+     */
+    default boolean deeplyEquals(HttpHeaders other) {
+        if (this.size() != other.size() || !this.names().containsAll(other.names())) {
+            return false;
+        }
+
+        for (String name : this.names()) {
+            final List<String> otherValues = other.getAll(name);
+            if (!otherValues.equals(this.getAll(name))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
