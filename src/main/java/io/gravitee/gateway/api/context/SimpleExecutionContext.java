@@ -119,5 +119,10 @@ public class SimpleExecutionContext implements MutableExecutionContext {
             Object value = super.get(key);
             return (value != null) ? value : super.get(ExecutionContext.ATTR_PREFIX + key);
         }
+
+        @Override
+        public boolean containsKey(Object key) {
+            return super.containsKey(key) || super.containsKey(ExecutionContext.ATTR_PREFIX + key);
+        }
     }
 }
