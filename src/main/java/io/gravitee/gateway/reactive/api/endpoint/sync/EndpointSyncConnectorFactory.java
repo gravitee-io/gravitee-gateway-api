@@ -13,28 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.buffer;
+package io.gravitee.gateway.reactive.api.endpoint.sync;
 
-import io.netty.buffer.ByteBuf;
+import io.gravitee.gateway.reactive.api.Type;
+import io.gravitee.gateway.reactive.api.endpoint.EndpointConnectorFactory;
+import java.util.List;
 
-/**
- * @author David BRASSELY (david at gravitee.io)
- * @author GraviteeSource Team
- */
-public interface BufferFactory {
-    Buffer buffer(ByteBuf nativeBuffer);
-
-    Buffer buffer(io.vertx.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(io.vertx.reactivex.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(int initialSizeHint);
-
-    Buffer buffer();
-
-    Buffer buffer(String str);
-
-    Buffer buffer(String str, String enc);
-
-    Buffer buffer(byte[] bytes);
+public interface EndpointSyncConnectorFactory extends EndpointConnectorFactory<EndpointSyncConnector> {
+    @Override
+    default List<Type> supportedApi() {
+        return List.of(Type.SYNC);
+    }
 }

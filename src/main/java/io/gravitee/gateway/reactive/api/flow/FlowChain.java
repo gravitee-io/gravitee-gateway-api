@@ -13,28 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.buffer;
-
-import io.netty.buffer.ByteBuf;
+package io.gravitee.gateway.reactive.api.flow;
 
 /**
- * @author David BRASSELY (david at gravitee.io)
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface BufferFactory {
-    Buffer buffer(ByteBuf nativeBuffer);
-
-    Buffer buffer(io.vertx.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(io.vertx.reactivex.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(int initialSizeHint);
-
-    Buffer buffer();
-
-    Buffer buffer(String str);
-
-    Buffer buffer(String str, String enc);
-
-    Buffer buffer(byte[] bytes);
-}
+public interface FlowChain {}

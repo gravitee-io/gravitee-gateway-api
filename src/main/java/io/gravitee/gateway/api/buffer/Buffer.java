@@ -16,6 +16,8 @@
 package io.gravitee.gateway.api.buffer;
 
 import io.gravitee.common.util.ServiceLoaderHelper;
+import io.netty.buffer.ByteBuf;
+import io.reactivex.annotations.NonNull;
 import java.nio.charset.Charset;
 
 /**
@@ -29,6 +31,18 @@ import java.nio.charset.Charset;
 public interface Buffer {
     static Buffer buffer() {
         return factory.buffer();
+    }
+
+    static Buffer buffer(io.vertx.core.buffer.Buffer vertxBuffer) {
+        return factory.buffer(vertxBuffer);
+    }
+
+    static Buffer buffer(io.vertx.reactivex.core.buffer.Buffer vertxBuffer) {
+        return factory.buffer(vertxBuffer.getDelegate());
+    }
+
+    static Buffer buffer(ByteBuf nativeBuffer) {
+        return factory.buffer(nativeBuffer);
     }
 
     static Buffer buffer(int initialSizeHint) {
@@ -47,6 +61,7 @@ public interface Buffer {
         return factory.buffer(bytes);
     }
 
+    @NonNull
     Buffer appendBuffer(Buffer buff);
 
     Buffer appendBuffer(Buffer buff, int length);
@@ -66,7 +81,7 @@ public interface Buffer {
 
     int length();
 
-    Object getNativeBuffer();
+    ByteBuf getNativeBuffer();
 
     BufferFactory factory = ServiceLoaderHelper.loadFactory(BufferFactory.class);
 }

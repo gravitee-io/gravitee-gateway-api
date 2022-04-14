@@ -13,28 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.buffer;
+package io.gravitee.gateway.reactive.api.context;
 
-import io.netty.buffer.ByteBuf;
+public interface RequestExecutionContext extends ExecutionContext {
+    /**
+     * Get the current request stuck to this execution context.
+     *
+     * @return the request attached to this execution context.
+     */
+    Request request();
 
-/**
- * @author David BRASSELY (david at gravitee.io)
- * @author GraviteeSource Team
- */
-public interface BufferFactory {
-    Buffer buffer(ByteBuf nativeBuffer);
-
-    Buffer buffer(io.vertx.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(io.vertx.reactivex.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(int initialSizeHint);
-
-    Buffer buffer();
-
-    Buffer buffer(String str);
-
-    Buffer buffer(String str, String enc);
-
-    Buffer buffer(byte[] bytes);
+    /**
+     * Get the current response stuck to this execution context.
+     *
+     * @return the response attached to this execution context.
+     */
+    Response response();
 }
