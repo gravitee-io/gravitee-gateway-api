@@ -13,28 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.buffer;
+package io.gravitee.gateway.reactive.api.message;
 
-import io.netty.buffer.ByteBuf;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
 
-/**
- * @author David BRASSELY (david at gravitee.io)
- * @author GraviteeSource Team
- */
-public interface BufferFactory {
-    Buffer buffer(ByteBuf nativeBuffer);
-
-    Buffer buffer(io.vertx.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(io.vertx.reactivex.core.buffer.Buffer vertxBuffer);
-
-    Buffer buffer(int initialSizeHint);
-
-    Buffer buffer();
-
-    Buffer buffer(String str);
-
-    Buffer buffer(String str, String enc);
-
-    Buffer buffer(byte[] bytes);
+public interface MessageFlow {
+    Completable flow(final Flowable<Message> messageFlow);
+    Completable onMessage(final FlowableTransformer<Message, Message> messagesTransformer);
+    Completable consume();
 }
