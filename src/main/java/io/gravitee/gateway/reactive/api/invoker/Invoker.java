@@ -13,28 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.policy;
+package io.gravitee.gateway.reactive.api.invoker;
 
-import io.gravitee.gateway.reactive.api.context.async.AsyncExecutionContext;
 import io.gravitee.gateway.reactive.api.context.sync.SyncExecutionContext;
 import io.reactivex.Completable;
 
-public interface Policy {
+/**
+ * Dedicated interface inspired from original {@link io.gravitee.gateway.api.Invoker} interface allowing to invoke an invoker in a reactive manner.
+ *
+ * <b>WARN</b>: the Invoker concept will certainly be replaced by {@link io.gravitee.gateway.reactive.api.endpoint.EndpointConnector}.
+ * <b>Implementing a new Invoker may not be a good choice!</b>
+ *
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ * @author GraviteeSource Team
+ */
+public interface Invoker {
     String getId();
 
-    default Completable onRequest(final SyncExecutionContext ctx) {
-        return Completable.complete();
-    }
-
-    default Completable onResponse(final SyncExecutionContext ctx) {
-        return Completable.complete();
-    }
-
-    default Completable onAsyncRequest(final AsyncExecutionContext ctx) {
-        return Completable.complete();
-    }
-
-    default Completable onAsyncResponse(final AsyncExecutionContext ctx) {
-        return Completable.complete();
-    }
+    Completable invoke(SyncExecutionContext ctx);
 }

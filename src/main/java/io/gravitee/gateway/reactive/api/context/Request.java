@@ -19,12 +19,14 @@ import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.http.HttpHeaders;
+import io.gravitee.reporter.api.http.Metrics;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import javax.net.ssl.SSLSession;
 
 public interface Request<T> {
     Flowable<T> content();
+
     Completable content(Flowable<T> content);
 
     String id();
@@ -119,4 +121,8 @@ public interface Request<T> {
      * @see javax.net.ssl.SSLSession
      */
     SSLSession sslSession();
+
+    Metrics metrics();
+
+    boolean ended();
 }

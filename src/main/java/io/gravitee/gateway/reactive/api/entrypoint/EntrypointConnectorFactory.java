@@ -17,7 +17,6 @@ package io.gravitee.gateway.reactive.api.entrypoint;
 
 import io.gravitee.gateway.reactive.api.Type;
 import java.util.List;
-import java.util.Map;
 
 public interface EntrypointConnectorFactory<T extends EntrypointConnector<?>> {
     String id();
