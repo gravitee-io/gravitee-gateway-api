@@ -13,39 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
+package io.gravitee.gateway.reactive.api.el;
 
 import io.gravitee.gateway.api.http.HttpHeaders;
-import io.reactivex.Completable;
-import io.reactivex.Flowable;
+import io.gravitee.gateway.reactive.api.context.Response;
 
-public interface Response<T> {
-    Flowable<T> content();
+public class EvaluableResponse {
 
-    Completable content(Flowable<T> content);
+    private final Response<?> response;
+    private final String content;
 
-    Response<T> status(int statusCode);
+    public EvaluableResponse(final Response<?> response) {
+        this(response, null);
+    }
 
-    int status();
+    public EvaluableResponse(final Response<?> response, final String content) {
+        this.response = response;
+        this.content = content;
+    }
 
-    /**
-     * @return Reason-Phrase is intended to give a short textual description of the Status-Code.
-     */
-    String reason();
+    public int getStatus() {
+        return response.status();
+    }
 
-    Response<T> reason(final String message);
+    public HttpHeaders getHeaders() {
+        return response.headers();
+    }
 
-    /**
-     * @return the headers in the response.
-     */
-    HttpHeaders headers();
-
-    HttpHeaders trailers();
-
-    Completable end();
-
-    /**
-     * @return has the response already ended?
-     */
-    boolean ended();
+    public String getContent() {
+        return content;
+    }
 }

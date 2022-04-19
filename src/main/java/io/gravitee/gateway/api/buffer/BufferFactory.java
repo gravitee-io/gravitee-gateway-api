@@ -15,11 +15,19 @@
  */
 package io.gravitee.gateway.api.buffer;
 
+import io.netty.buffer.ByteBuf;
+
 /**
  * @author David BRASSELY (david at gravitee.io)
  * @author GraviteeSource Team
  */
 public interface BufferFactory {
+    Buffer buffer(ByteBuf nativeBuffer);
+
+    Buffer buffer(io.vertx.core.buffer.Buffer vertxBuffer);
+
+    Buffer buffer(io.vertx.reactivex.core.buffer.Buffer vertxBuffer);
+
     Buffer buffer(int initialSizeHint);
 
     Buffer buffer();
