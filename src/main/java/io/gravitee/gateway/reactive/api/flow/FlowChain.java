@@ -13,15 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.endpoint;
+package io.gravitee.gateway.reactive.api.flow;
 
-import io.gravitee.gateway.reactive.api.Type;
-import java.util.List;
-
-public interface EndpointConnectorFactory<T extends EndpointConnector<?>> {
-    String id();
-
-    List<Type> supportedApi();
-
-    T createConnector(final String config);
-}
+/**
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ * @author GraviteeSource Team
+ */
+public interface FlowChain {}

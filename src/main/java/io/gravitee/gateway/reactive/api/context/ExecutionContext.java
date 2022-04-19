@@ -16,31 +16,176 @@
 package io.gravitee.gateway.reactive.api.context;
 
 import io.gravitee.el.TemplateEngine;
+import io.gravitee.gateway.reactive.api.ExecutionFailure;
 import io.gravitee.tracing.api.Tracer;
 import java.util.Map;
 import java.util.Set;
 
 public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>> {
+    String ATTR_PREFIX = "gravitee.attribute.";
+
+    String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
+    String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
+    String ATTR_APPLICATION = ATTR_PREFIX + "application";
+    String ATTR_API = ATTR_PREFIX + "api";
+    String ATTR_API_DEPLOYED_AT = ATTR_PREFIX + "api.deployed-at";
+    String ATTR_SUBSCRIPTION_ID = ATTR_PREFIX + "user-id";
+    String ATTR_PLAN = ATTR_PREFIX + "plan";
+    String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
+    String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
+    String ATTR_INVOKER = ATTR_PREFIX + "request.invoker";
+    String ATTR_QUOTA_COUNT = ATTR_PREFIX + "quota.count";
+    String ATTR_QUOTA_REMAINING = ATTR_PREFIX + "quota.remaining";
+    String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
+    String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
+    String ATTR_USER = ATTR_PREFIX + "user";
+    String ATTR_USER_ROLES = ATTR_PREFIX + "user.roles";
+    String ATTR_ORGANIZATION = ATTR_PREFIX + "organization";
+    String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
+
+    /**
+     * Adapted ExecutionContext for V3 compatibility.
+     */
+    String ATTR_ADAPTED_CONTEXT = ATTR_PREFIX + "contextAdapter";
+
+    /**
+     * Marks the current execution to be interrupted in order to inform all actors involved in the request processing that the execution has been interrupted and the response can be sent "as is" to the downstream.
+     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain may not be executed).
+     */
+    void interrupt();
+
+    /**
+     * Marks the current execution to be resumed.
+     * This allows to resume the execution flow when necessary (ex: execute an high level flow such as platform flow).
+     */
+    void resume();
+
+    /**
+     * Same as {@link #interrupt()} but with an {@link ExecutionFailure} object that can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
+     */
+    void interruptWith(ExecutionFailure failure);
+
+    /**
+     * Indicates if the execution is interrupted.
+     * An execution interrupted does not indicate that the response is really ended and has been push to the downstream.
+     * Instead, it indicates that an actor of the request processing has indicated that the execution has been interrupted and other steps should potentially be discarded.
+     *
+     * @return a boolean indicated the response has been interrupted or not.
+     */
     boolean isInterrupted();
 
     // TODO will need to be introduce in future
     // ExecutableApi executableApi();
 
+    /**
+     * Get the current request stuck to this execution context.
+     * The type of request depends on the type of execution context ({@link io.gravitee.gateway.reactive.api.context.sync.SyncRequest}, {@link io.gravitee.gateway.reactive.api.context.async.AsyncRequest}).
+     *
+     * @return the request attached to this execution context.
+     */
     RQ request();
 
+    /**
+     * Get the current response stuck to this execution context.
+     * The type of response depends on the type of execution context ({@link io.gravitee.gateway.reactive.api.context.sync.SyncResponse}, {@link io.gravitee.gateway.reactive.api.context.async.AsyncResponse}).
+     *
+     * @return the response attached to this execution context.
+     */
     RS response();
 
     <T> T getComponent(Class<T> componentClass);
 
-    void putAttribute(final String name, final Object value);
+    /**
+     * Same a {@link #putAttribute(String, Object)}.
+     *
+     * @param name a String specifying the name of the attribute.
+     * @param value the Object to be stored.
+     */
+    void setAttribute(String name, Object value);
 
-    void removeAttribute(final String name);
+    /**
+     * Stores an attribute in this request. Attributes are reset between requests.
+     *
+     * @param name a String specifying the name of the attribute.
+     * @param value the Object to be stored.
+     */
+    void putAttribute(String name, Object value);
 
-    Object getAttribute(final String name);
+    /**
+     * Removes an attribute from this request. This method is not generally needed as attributes only persist as
+     * long as the request is being handled.
+     *
+     * @param name a String specifying the name of the attribute to remove
+     */
+    void removeAttribute(String name);
 
+    /**
+     * Returns the value of the named attribute as an Object, or <code>null</code> if no attribute of the given
+     * name exists.
+     *
+     * @param name a String specifying the name of the attribute
+     * @return an Object containing the value of the attribute, or null if the attribute does not exist
+     */
+    <T> T getAttribute(String name);
+
+    /**
+     * Returns an Enumeration containing the names of the attributes available to this request. This method returns
+     * an empty Enumeration if the request has no attributes available to it.
+     *
+     * @return an Enumeration of strings containing the names of the request's attributes
+     */
     Set<String> getAttributeNames();
 
-    Map<String, Object> getAttributes();
+    /**
+     * Get all attributes available.
+     *
+     * @param <T> the expected type of the values. Specify {@link Object} if you expect values of any types.
+     * @return the list of all the attributes.
+     */
+    <T> Map<String, T> getAttributes();
+
+    /**
+     * Same a {@link #putAttribute(String, Object)}.
+     *
+     * @param name a String specifying the name of the attribute.
+     * @param value the Object to be stored.
+     */
+    void setInternalAttribute(String name, Object value);
+
+    /**
+     * Stores an attribute in this request. Attributes are reset between requests.
+     *
+     * @param name a String specifying the name of the attribute.
+     * @param value the Object to be stored.
+     */
+    void putInternalAttribute(String name, Object value);
+
+    /**
+     * Removes an attribute from this request. This method is not generally needed as attributes only persist as
+     * long as the request is being handled.
+     *
+     * @param name a String specifying the name of the attribute to remove
+     */
+    void removeInternalAttribute(String name);
+
+    /**
+     * Returns the value of the named attribute as an Object, or <code>null</code> if no attribute of the given
+     * name exists.
+     *
+     * @param name a String specifying the name of the attribute
+     * @return an Object containing the value of the attribute, or null if the attribute does not exist
+     */
+    <T> T getInternalAttribute(String name);
+
+    /**
+     * Get all internal attributes available.
+     * Internal attributes are intended to not be manipulated by end-users.
+     * You can safely use internal attribute to temporary store useful objects required during different phases of the execution.
+     *
+     * @param <T> the expected type of the values. Specify {@link Object} if you expect values of any types.
+     * @return the list of all the internal attributes.
+     */
+    <T> Map<String, T> getInternalAttributes();
 
     TemplateEngine getTemplateEngine();
 
