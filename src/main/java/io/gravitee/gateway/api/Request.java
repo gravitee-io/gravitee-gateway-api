@@ -164,4 +164,11 @@ public interface Request extends ReadStream<Buffer> {
      * @return the host.
      */
     String host();
+
+    /**
+     *
+     * @param closeHandler The handler to call when the underlying connection is closed
+     * @return the request
+     */
+    Request closeHandler(Handler<Void> closeHandler);
 }

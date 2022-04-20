@@ -17,6 +17,7 @@ package io.gravitee.gateway.api.proxy;
 
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.util.MultiValueMap;
+import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.reporter.api.http.Metrics;
 
@@ -60,4 +61,6 @@ public interface ProxyRequest {
      * @return the metrics attached to the request.
      */
     Metrics metrics();
+
+    ProxyRequest closeHandler(Handler<Void> closeHandler);
 }

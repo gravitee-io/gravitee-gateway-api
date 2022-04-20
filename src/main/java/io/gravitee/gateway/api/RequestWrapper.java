@@ -178,4 +178,9 @@ public abstract class RequestWrapper implements Request {
     public String host() {
         return request.host();
     }
+
+    @Override
+    public Request closeHandler(Handler<Void> closeHandler) {
+        return request.closeHandler(closeHandler);
+    }
 }
