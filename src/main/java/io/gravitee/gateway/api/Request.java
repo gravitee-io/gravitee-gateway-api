@@ -158,6 +158,13 @@ public interface Request extends ReadStream<Buffer> {
     Request customFrameHandler(Handler<HttpFrame> frameHandler);
 
     /**
+     *
+     * @param closeHandler The handler to call when the underlying connection is closed
+     * @return the request
+     */
+    Request closeHandler(Handler<Void> closeHandler);
+
+    /**
      * Allows to retrieve the request host.
      * This method should be preferred over retrieving the host from http headers.
      *
