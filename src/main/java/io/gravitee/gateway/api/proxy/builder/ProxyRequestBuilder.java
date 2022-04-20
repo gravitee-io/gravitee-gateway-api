@@ -84,9 +84,9 @@ public class ProxyRequestBuilder {
         ProxyRequestImpl proxyRequest;
 
         if (!request.isWebSocket()) {
-            proxyRequest = new ProxyRequestImpl(this.request.metrics());
+            proxyRequest = new ProxyRequestImpl(this.request);
         } else {
-            proxyRequest = new WebSocketProxyRequestImpl(this.request.websocket(), this.request.metrics());
+            proxyRequest = new WebSocketProxyRequestImpl(this.request);
         }
 
         // Remove duplicate slash
