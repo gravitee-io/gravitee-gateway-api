@@ -24,7 +24,6 @@ import io.gravitee.gateway.api.buffer.Buffer;
  * @author GraviteeSource Team
  */
 public interface WebSocketFrame {
-
     Type type();
 
     /**
@@ -34,7 +33,7 @@ public interface WebSocketFrame {
     Buffer data();
 
     boolean isFinal();
-    
+
     enum Type {
         // Continuation / 0
         CONTINUATION,
@@ -47,6 +46,6 @@ public interface WebSocketFrame {
         // Ping / 9
         PING,
         // Pong / 10
-        PONG
+        PONG,
     }
 }
