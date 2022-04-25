@@ -20,7 +20,6 @@ import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
 
 public interface MutableExecutionContext extends ExecutionContext {
-
     MutableExecutionContext request(Request request);
 
     MutableExecutionContext response(Response response);

@@ -18,7 +18,6 @@ package io.gravitee.gateway.api.proxy.ws;
 import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.gateway.api.ws.WebSocketFrame;
-
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -26,7 +25,6 @@ import java.util.concurrent.CompletableFuture;
  * @author GraviteeSource Team
  */
 public interface WebSocketProxyRequest extends ProxyRequest {
-
     CompletableFuture<WebSocketProxyRequest> upgrade();
 
     WebSocketProxyRequest reject(int statusCode);

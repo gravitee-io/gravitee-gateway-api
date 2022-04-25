@@ -16,7 +16,6 @@
 package io.gravitee.gateway.api.ws;
 
 import io.gravitee.gateway.api.handler.Handler;
-
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -26,7 +25,6 @@ import java.util.concurrent.CompletableFuture;
  * @author GraviteeSource Team
  */
 public interface WebSocket {
-
     /**
      * Upgrade the HTTP request to a WS connection
      * @return

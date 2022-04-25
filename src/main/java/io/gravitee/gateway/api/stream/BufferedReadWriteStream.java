@@ -21,5 +21,4 @@ import io.gravitee.gateway.api.buffer.Buffer;
  * @author David BRASSELY (david at gravitee.io)
  * @author GraviteeSource Team
  */
-public class BufferedReadWriteStream extends SimpleReadWriteStream<Buffer> {
-}
+public class BufferedReadWriteStream extends SimpleReadWriteStream<Buffer> {}

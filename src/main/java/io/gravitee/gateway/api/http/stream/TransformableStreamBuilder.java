@@ -18,7 +18,6 @@ package io.gravitee.gateway.api.http.stream;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.stream.TransformableStream;
 import io.gravitee.policy.api.PolicyChain;
-
 import java.util.function.Function;
 
 /**

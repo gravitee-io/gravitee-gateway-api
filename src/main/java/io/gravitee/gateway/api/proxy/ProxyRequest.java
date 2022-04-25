@@ -19,7 +19,6 @@ import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.reporter.api.http.Metrics;
-
 import java.net.URI;
 import java.util.Map;
 
@@ -28,7 +27,6 @@ import java.util.Map;
  * @author GraviteeSource Team
  */
 public interface ProxyRequest {
-
     /**
      * @return the target URI of the request.
      */
