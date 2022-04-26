@@ -26,7 +26,6 @@ import io.gravitee.gateway.api.stream.ReadStream;
  * @author GraviteeSource Team
  */
 public interface ProxyResponse extends ReadStream<Buffer> {
-
     /**
      * @return HTTP status code.
      */
@@ -36,7 +35,9 @@ public interface ProxyResponse extends ReadStream<Buffer> {
      * Reason-Phrase is intended to give a short textual description of the Status-Code.
      * @return
      */
-    default String reason() { return null; }
+    default String reason() {
+        return null;
+    }
 
     /**
      * @return the headers in the response.
@@ -48,7 +49,9 @@ public interface ProxyResponse extends ReadStream<Buffer> {
      *
      * @return
      */
-    default boolean connected() { return true;}
+    default boolean connected() {
+        return true;
+    }
 
     /**
      * For HTTP/2 request
@@ -56,11 +59,17 @@ public interface ProxyResponse extends ReadStream<Buffer> {
      * @param frameHandler The handler to call when getting a custom HTTP Frame.
      * @return
      */
-    default ProxyResponse customFrameHandler(Handler<HttpFrame> frameHandler) { return this; }
+    default ProxyResponse customFrameHandler(Handler<HttpFrame> frameHandler) {
+        return this;
+    }
 
-    default HttpHeaders trailers() { return null; }
+    default HttpHeaders trailers() {
+        return null;
+    }
 
-    default ProxyResponse cancelHandler(Handler<Void> cancelHandler) { return this; }
+    default ProxyResponse cancelHandler(Handler<Void> cancelHandler) {
+        return this;
+    }
 
     default void cancel() {}
 }

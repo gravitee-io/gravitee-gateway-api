@@ -25,7 +25,6 @@ import io.gravitee.gateway.api.stream.WriteStream;
  * @author GraviteeSource Team
  */
 public interface ProxyConnection extends WriteStream<Buffer> {
-
     /**
      * Write custom HTTP Frame to upstream.
      *
@@ -43,7 +42,9 @@ public interface ProxyConnection extends WriteStream<Buffer> {
         return this;
     }
 
-    default ProxyConnection cancelHandler(Handler<Void> cancelHandler) { return this; }
+    default ProxyConnection cancelHandler(Handler<Void> cancelHandler) {
+        return this;
+    }
 
     default ProxyConnection exceptionHandler(Handler<Throwable> exceptionHandler) {
         return this;

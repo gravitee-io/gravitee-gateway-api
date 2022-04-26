@@ -28,14 +28,15 @@ import io.gravitee.gateway.api.stream.WriteStream;
  * @author GraviteeSource Team
  */
 public interface Response extends WriteStream<Buffer> {
-
     Response status(int statusCode);
 
     int status();
 
-    default void end() { }
+    default void end() {}
 
-    default Response endHandler(Handler<Void> endHandler) { return this; }
+    default Response endHandler(Handler<Void> endHandler) {
+        return this;
+    }
 
     /**
      * Reason-Phrase is intended to give a short textual description of the Status-Code.

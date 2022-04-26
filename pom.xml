@@ -29,7 +29,7 @@
 
     <groupId>io.gravitee.gateway</groupId>
     <artifactId>gravitee-gateway-api</artifactId>
-    <version>1.28.3-SNAPSHOT</version>
+    <version>1.28.3</version>
 
     <name>Gravitee.io APIM - Gateway - API</name>
 
@@ -115,6 +115,23 @@
                 <source>8</source>
             </configuration>
         </plugin>
+          <plugin>
+              <groupId>com.hubspot.maven.plugins</groupId>
+              <artifactId>prettier-maven-plugin</artifactId>
+              <version>0.17</version>
+              <configuration>
+                  <nodeVersion>12.13.0</nodeVersion>
+                  <prettierJavaVersion>1.6.1</prettierJavaVersion>
+              </configuration>
+              <executions>
+                  <execution>
+                      <phase>validate</phase>
+                      <goals>
+                          <goal>check</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
       </plugins>
     </build>
 </project>

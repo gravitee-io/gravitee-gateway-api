@@ -21,7 +21,6 @@ import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.gateway.api.proxy.ws.WebSocketProxyRequestImpl;
-
 import java.util.regex.Pattern;
 
 /**
@@ -84,10 +83,10 @@ public class ProxyRequestBuilder {
     public ProxyRequest build() {
         ProxyRequestImpl proxyRequest;
 
-        if (! request.isWebSocket()) {
-            proxyRequest = new ProxyRequestImpl(this.request.metrics());
+        if (!request.isWebSocket()) {
+            proxyRequest = new ProxyRequestImpl(this.request);
         } else {
-            proxyRequest = new WebSocketProxyRequestImpl(this.request.websocket(), this.request.metrics());
+            proxyRequest = new WebSocketProxyRequestImpl(this.request);
         }
 
         // Remove duplicate slash

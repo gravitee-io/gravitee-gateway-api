@@ -27,7 +27,6 @@ import io.gravitee.gateway.api.handler.Handler;
  * @author GraviteeSource Team
  */
 public interface WriteStream<T> {
-
     WriteStream<T> write(T content);
 
     void end();
@@ -37,7 +36,11 @@ public interface WriteStream<T> {
         end();
     }
 
-    default WriteStream<T> drainHandler(Handler<Void> drainHandler) { return this; }
+    default WriteStream<T> drainHandler(Handler<Void> drainHandler) {
+        return this;
+    }
 
-    default boolean writeQueueFull() { return false; }
+    default boolean writeQueueFull() {
+        return false;
+    }
 }

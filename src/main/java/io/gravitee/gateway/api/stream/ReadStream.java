@@ -27,7 +27,6 @@ import io.gravitee.gateway.api.handler.Handler;
  * @author GraviteeSource Team
  */
 public interface ReadStream<T> {
-
     ReadStream<T> bodyHandler(Handler<T> bodyHandler);
 
     ReadStream<T> endHandler(Handler<Void> endHandler);

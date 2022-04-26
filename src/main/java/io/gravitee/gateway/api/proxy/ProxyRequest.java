@@ -18,8 +18,8 @@ package io.gravitee.gateway.api.proxy;
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.util.MultiValueMap;
+import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.reporter.api.http.Metrics;
-
 import java.net.URI;
 import java.util.Map;
 
@@ -28,7 +28,6 @@ import java.util.Map;
  * @author GraviteeSource Team
  */
 public interface ProxyRequest {
-
     /**
      * @return the target URI of the request.
      */
@@ -59,4 +58,6 @@ public interface ProxyRequest {
      * @return the metrics attached to the request.
      */
     Metrics metrics();
+
+    ProxyRequest closeHandler(Handler<Void> closeHandler);
 }

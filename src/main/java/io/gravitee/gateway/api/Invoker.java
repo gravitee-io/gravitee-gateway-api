@@ -26,6 +26,5 @@ import io.gravitee.gateway.api.stream.ReadStream;
  */
 @FunctionalInterface
 public interface Invoker {
-
     void invoke(ExecutionContext context, ReadStream<Buffer> stream, Handler<ProxyConnection> connectionHandler);
 }
