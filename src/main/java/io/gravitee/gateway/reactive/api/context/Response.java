@@ -20,10 +20,6 @@ import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
 public interface Response<T> {
-    Flowable<T> content();
-
-    Completable content(Flowable<T> content);
-
     Response<T> status(int statusCode);
 
     int status();
@@ -45,7 +41,27 @@ public interface Response<T> {
     Completable end();
 
     /**
-     * @return has the response already ended?
+     * Indicates if the response is ended or not.
+     * Ended response means the response has been fully push to the client, including response body.
+     *
+     * @return <code>true</code> if the response has been fully pushed to the client, <code>false</code> else.
      */
     boolean ended();
+
+    /**
+     * Get the response content as a {@link Flowable} of T representing each chunk of data.
+     * For example, for {@link io.gravitee.gateway.reactive.api.context.sync.SyncResponse}, chunks are {@link io.gravitee.gateway.api.buffer.Buffer}
+     * and for {@link io.gravitee.gateway.reactive.api.context.async.AsyncResponse}, it will be {@link io.gravitee.gateway.reactive.api.context.async.Message}
+     *
+     * @return a {@link Flowable} representing the data manipulated by the response.
+     */
+    Flowable<T> content();
+
+    /**
+     * Replaces the response content with the given {@link Flowable}.
+     * The implementation must guaranty the reactive chain will be preserved by composing with the previous response content to make sure it will be well consumed and replaced.
+     *
+     * @return a {@link Completable} that can be used to continue the reactive chain.
+     */
+    Completable content(Flowable<T> content);
 }

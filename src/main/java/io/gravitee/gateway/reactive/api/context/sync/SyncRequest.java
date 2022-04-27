@@ -125,7 +125,7 @@ public interface SyncRequest extends Request<Buffer> {
 
     /**
      * Applies a transformation on the complete body.
-     * This is convenient way to retrieve the whole body and apply a transformation once.
+     * This is a convenient way to retrieve the whole body and apply a transformation once.
      *
      * The following code:
      * <code>
