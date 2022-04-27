@@ -105,13 +105,47 @@ public interface SyncResponse extends Response<Buffer> {
     Flowable<Buffer> getChunkedBody();
 
     /**
-     * End the response.
+     * Ends the response.
      *
      * @return an observable that can be easily chained.
      */
     Completable end();
 
-    Completable onBuffer(final FlowableTransformer<Buffer, Buffer> bufferTransformer);
+    /**
+     * Applies a transformation on each body chunks.
+     * This is useful to apply a transformation directly on the response chunks in a convenient way.
+     *
+     * The following code:
+     * <code>
+     *     response.setChunkBody(request.getChunkBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
+     * </code>
+     *
+     * is equivalent with:
+     * <code>
+     *     response.onChunk(chunks -> chunks.map(chunk -> Buffer.buffer(chunk.toString().toUpperCase()));
+     * </code>
+     *
+     * @param chunkTransformer the transformer that will be applied.
+     * @return a {@link Completable} that can be chained with the rest of the execution flow.
+     */
+    Completable onChunk(final FlowableTransformer<Buffer, Buffer> chunkTransformer);
 
-    Completable onBody(final FlowableTransformer<Buffer, Buffer> bodyTransformer);
+    /**
+     * Applies a transformation on the complete body.
+     * This is a convenient way to retrieve the whole body and apply a transformation once.
+     *
+     * The following code:
+     * <code>
+     *     response.setBody(request.getBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
+     * </code>
+     *
+     * is equivalent with:
+     * <code>
+     *     response.onBody(body -> body.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase()));
+     * </code>
+     *
+     * @param bodyTransformer the transformer that will be applied.
+     * @return a {@link Completable} that can be chained with the rest of the execution flow.
+     */
+    Completable onBody(final MaybeTransformer<Buffer, Buffer> bodyTransformer);
 }

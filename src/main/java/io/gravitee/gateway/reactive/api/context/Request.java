@@ -25,10 +25,6 @@ import io.reactivex.Flowable;
 import javax.net.ssl.SSLSession;
 
 public interface Request<T> {
-    Flowable<T> content();
-
-    Completable content(Flowable<T> content);
-
     String id();
 
     /**
@@ -124,5 +120,27 @@ public interface Request<T> {
 
     Metrics metrics();
 
+    /**
+     * Indicates if that request is ended or not meaning that all the request headers and the request body have been fully read.
+     *
+     * @return <code>true</code> if the headers and body have been read, <code>false</code> else.
+     */
     boolean ended();
+
+    /**
+     * Gets the request content as a {@link Flowable} of T representing each chunk of data.
+     * For example, for {@link io.gravitee.gateway.reactive.api.context.sync.SyncRequest}, chunks are {@link io.gravitee.gateway.api.buffer.Buffer}
+     * and for {@link io.gravitee.gateway.reactive.api.context.async.AsyncRequest}, it will be {@link io.gravitee.gateway.reactive.api.context.async.Message}
+     *
+     * @return a {@link Flowable} representing the data manipulated by the request.
+     */
+    Flowable<T> content();
+
+    /**
+     * Replaces the request content with the given {@link Flowable}.
+     * The implementation must guaranty the reactive chain will be preserved by composing with the previous request content to make sure it will be well consumed and replaced.
+     *
+     * @return a {@link Completable} that can be used to continue the reactive chain.
+     */
+    Completable content(Flowable<T> content);
 }
