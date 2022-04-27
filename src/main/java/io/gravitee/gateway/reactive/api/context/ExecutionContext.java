@@ -24,6 +24,8 @@ import java.util.Set;
 public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>> {
     String ATTR_PREFIX = "gravitee.attribute.";
 
+    String ATTR_INTERNAL_PREFIX = "gravitee.internal.attribute.";
+
     String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
     String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     String ATTR_APPLICATION = ATTR_PREFIX + "application";
@@ -46,7 +48,7 @@ public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>>
     /**
      * Adapted ExecutionContext for V3 compatibility.
      */
-    String ATTR_ADAPTED_CONTEXT = ATTR_PREFIX + "contextAdapter";
+    String ATTR_ADAPTED_CONTEXT = ATTR_INTERNAL_PREFIX + "contextAdapter";
 
     /**
      * Marks the current execution to be interrupted in order to inform all actors involved in the request processing that the execution has been interrupted and the response can be sent "as is" to the downstream.
@@ -105,6 +107,7 @@ public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>>
 
     /**
      * Stores an attribute in this request. Attributes are reset between requests.
+     * <b>Note</b>: prefer use of {@link #putInternalAttribute(String, Object)} in case the attribute is not set by the user itself.
      *
      * @param name a String specifying the name of the attribute.
      * @param value the Object to be stored.
@@ -115,16 +118,18 @@ public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>>
      * Removes an attribute from this request. This method is not generally needed as attributes only persist as
      * long as the request is being handled.
      *
-     * @param name a String specifying the name of the attribute to remove
+     * @param name the name of the attribute to remove.
      */
     void removeAttribute(String name);
 
     /**
-     * Returns the value of the named attribute as an Object, or <code>null</code> if no attribute of the given
+     * Returns the value of the attribute cast in the expected type T, or <code>null</code> if no attribute for the given
      * name exists.
      *
-     * @param name a String specifying the name of the attribute
-     * @return an Object containing the value of the attribute, or null if the attribute does not exist
+     * @param name the name of the attribute.
+     * @param <T> the expected type of the attribute value. Specify {@link Object} if you expect value of any type.
+     *
+     * @return an Object containing the value of the attribute, or null if the attribute does not exist.
      */
     <T> T getAttribute(String name);
 
@@ -132,47 +137,48 @@ public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>>
      * Returns an Enumeration containing the names of the attributes available to this request. This method returns
      * an empty Enumeration if the request has no attributes available to it.
      *
-     * @return an Enumeration of strings containing the names of the request's attributes
+     * @return a set of strings containing the names of the request's attributes.
      */
     Set<String> getAttributeNames();
 
     /**
      * Get all attributes available.
      *
-     * @param <T> the expected type of the values. Specify {@link Object} if you expect values of any types.
+     * @param <T> the expected type of the attribute values. Specify {@link Object} if you expect values of any types.
      * @return the list of all the attributes.
      */
     <T> Map<String, T> getAttributes();
 
     /**
-     * Same a {@link #putAttribute(String, Object)}.
+     * Same as {@link #putInternalAttribute(String, Object)}
      *
-     * @param name a String specifying the name of the attribute.
+     * @param name the name of the attribute.
      * @param value the Object to be stored.
      */
     void setInternalAttribute(String name, Object value);
 
     /**
-     * Stores an attribute in this request. Attributes are reset between requests.
+     * Stores an internal attribute in this request. Attributes are reset between requests.
+     * Internal attributes can be used to avoid mixin with attribute set by the user during the request processing.
      *
-     * @param name a String specifying the name of the attribute.
+     * @param name the name of the attribute.
      * @param value the Object to be stored.
      */
     void putInternalAttribute(String name, Object value);
 
     /**
-     * Removes an attribute from this request. This method is not generally needed as attributes only persist as
-     * long as the request is being handled.
+     * Removes an internal attribute from this request.
      *
-     * @param name a String specifying the name of the attribute to remove
+     * @param name the name of the internal attribute to remove.
      */
     void removeInternalAttribute(String name);
 
     /**
-     * Returns the value of the named attribute as an Object, or <code>null</code> if no attribute of the given
+     * Returns the value of the internal attribute cast in the expected type T, or <code>null</code> if no attribute for the given
      * name exists.
      *
-     * @param name a String specifying the name of the attribute
+     * @param name a String specifying the name of the attribute.
+     * @param <T> the expected type of the attribute value. Specify {@link Object} if you expect value of any type.
      * @return an Object containing the value of the attribute, or null if the attribute does not exist
      */
     <T> T getInternalAttribute(String name);
@@ -187,7 +193,17 @@ public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>>
      */
     <T> Map<String, T> getInternalAttributes();
 
+    /**
+     * Get the {@link TemplateEngine} that can be used to evaluate EL expressions.
+     *
+     * @return the El {@link TemplateEngine}.
+     */
     TemplateEngine getTemplateEngine();
 
+    /**
+     * Get the {@link Tracer} that can be used to contribute to tracing.
+     *
+     * @return the {@link Tracer} associated to the current request.
+     */
     Tracer getTracer();
 }
