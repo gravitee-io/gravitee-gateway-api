@@ -27,9 +27,13 @@ import io.gravitee.gateway.api.proxy.ProxyRequest;
  * @author GraviteeSource Team
  */
 public interface Connector extends LifecycleComponent<Connector> {
+<<<<<<< HEAD
     default void request(ProxyRequest request, Handler<ProxyConnection> proxyConnectionHandler) {
         request(request, null, proxyConnectionHandler);
     }
 
     void request(ProxyRequest request, ExecutionContext context, Handler<ProxyConnection> proxyConnectionHandler);
+=======
+    void request(ProxyRequest request, Handler<ProxyConnection> proxyConnectionHandler);
+>>>>>>> 1.27.4
 }

@@ -27,6 +27,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONStyle;
+<<<<<<< HEAD
+=======
+import org.springframework.util.MultiValueMap;
+>>>>>>> 1.27.4
 
 /**
  * @author Guillaume CUSNIEUX (guillaume.cusnieux at graviteesource.com)
@@ -122,6 +126,7 @@ public class EvaluableExtractor {
             Arrays
                 .stream(declaredFields)
                 .filter(f -> Modifier.isPublic(f.getModifiers()))
+<<<<<<< HEAD
                 .map(
                     field -> {
                         try {
@@ -131,6 +136,15 @@ public class EvaluableExtractor {
                         }
                     }
                 )
+=======
+                .map(field -> {
+                    try {
+                        return field.get(null);
+                    } catch (IllegalAccessException e) {
+                        return field.getName();
+                    }
+                })
+>>>>>>> 1.27.4
                 .collect(Collectors.toList())
         );
 

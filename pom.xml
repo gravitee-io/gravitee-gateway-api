@@ -115,6 +115,7 @@
                 <source>8</source>
             </configuration>
         </plugin>
+<<<<<<< HEAD
 
           <plugin>
               <groupId>com.hubspot.maven.plugins</groupId>
@@ -128,13 +129,29 @@
               <executions>
                   <execution>
                       <phase>verify</phase>
+=======
+          <plugin>
+              <groupId>com.hubspot.maven.plugins</groupId>
+              <artifactId>prettier-maven-plugin</artifactId>
+              <version>0.17</version>
+              <configuration>
+                  <nodeVersion>12.13.0</nodeVersion>
+                  <prettierJavaVersion>1.6.1</prettierJavaVersion>
+              </configuration>
+              <executions>
+                  <execution>
+                      <phase>validate</phase>
+>>>>>>> 1.27.4
                       <goals>
                           <goal>check</goal>
                       </goals>
                   </execution>
               </executions>
           </plugin>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1.27.4
       </plugins>
     </build>
 </project>

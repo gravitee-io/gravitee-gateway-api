@@ -15,21 +15,30 @@
  */
 package io.gravitee.gateway.api.proxy.ws;
 
+import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.proxy.builder.ProxyRequestImpl;
 import io.gravitee.gateway.api.ws.WebSocket;
 import io.gravitee.gateway.api.ws.WebSocketFrame;
+<<<<<<< HEAD
 import io.gravitee.reporter.api.http.Metrics;
+=======
+>>>>>>> 1.27.4
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 
 public class WebSocketProxyRequestImpl extends ProxyRequestImpl implements WebSocketProxyRequest {
 
     private final WebSocket websocket;
 
+<<<<<<< HEAD
     public WebSocketProxyRequestImpl(final WebSocket websocket, final Metrics metrics) {
         super(metrics);
         this.websocket = websocket;
+=======
+    public WebSocketProxyRequestImpl(final Request request) {
+        super(request);
+        this.websocket = request.websocket();
+>>>>>>> 1.27.4
     }
 
     @Override

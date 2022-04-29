@@ -90,9 +90,13 @@ public class ProxyRequestBuilder {
         ProxyRequestImpl proxyRequest;
 
         if (!request.isWebSocket()) {
+<<<<<<< HEAD
             proxyRequest = new ProxyRequestImpl(this.request.metrics());
+=======
+            proxyRequest = new ProxyRequestImpl(this.request);
+>>>>>>> 1.27.4
         } else {
-            proxyRequest = new WebSocketProxyRequestImpl(this.request.websocket(), this.request.metrics());
+            proxyRequest = new WebSocketProxyRequestImpl(this.request);
         }
 
         // Remove duplicate slash

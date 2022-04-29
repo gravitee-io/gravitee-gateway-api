@@ -173,4 +173,12 @@ public abstract class RequestWrapper implements Request {
     public Request customFrameHandler(Handler<HttpFrame> frameHandler) {
         return request.customFrameHandler(frameHandler);
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public Request closeHandler(Handler<Void> closeHandler) {
+        return request.closeHandler(closeHandler);
+    }
+>>>>>>> 1.27.4
 }

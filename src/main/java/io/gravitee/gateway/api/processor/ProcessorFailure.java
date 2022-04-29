@@ -16,6 +16,7 @@
 package io.gravitee.gateway.api.processor;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -31,4 +32,6 @@ public interface ProcessorFailure {
     Map<String, Object> parameters();
 
     String contentType();
+
+    Optional<Throwable> cause();
 }

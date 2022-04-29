@@ -18,6 +18,8 @@ package io.gravitee.gateway.api.proxy.builder;
 import io.gravitee.common.http.HttpHeaders;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.util.MultiValueMap;
+import io.gravitee.gateway.api.Request;
+import io.gravitee.gateway.api.handler.Handler;
 import io.gravitee.gateway.api.proxy.ProxyRequest;
 import io.gravitee.reporter.api.http.Metrics;
 
@@ -32,10 +34,10 @@ public class ProxyRequestImpl implements ProxyRequest {
     private HttpMethod method;
     private String rawMethod;
     private HttpHeaders headers;
-    private final Metrics metrics;
+    private final Request request;
 
-    protected ProxyRequestImpl(Metrics metrics) {
-        this.metrics = metrics;
+    protected ProxyRequestImpl(final Request request) {
+        this.request = request;
     }
 
     public void setUri(String uri) {
@@ -94,6 +96,12 @@ public class ProxyRequestImpl implements ProxyRequest {
 
     @Override
     public Metrics metrics() {
-        return metrics;
+        return request.metrics();
+    }
+
+    @Override
+    public ProxyRequest closeHandler(Handler<Void> closeHandler) {
+        request.closeHandler(closeHandler);
+        return this;
     }
 }
