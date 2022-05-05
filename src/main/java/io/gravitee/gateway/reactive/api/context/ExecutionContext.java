@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
+import io.gravitee.definition.model.Api;
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.reactive.api.ExecutionFailure;
 import io.gravitee.tracing.api.Tracer;
@@ -78,6 +79,13 @@ public interface ExecutionContext {
 
     // TODO will need to be introduce in future
     // ExecutableApi executableApi();
+
+    /**
+     * Get the api to this execution context.
+     *
+     * @return the api attached to this execution context.
+     */
+    Api api();
 
     <T> T getComponent(Class<T> componentClass);
 
