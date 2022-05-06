@@ -20,6 +20,7 @@ import io.gravitee.gateway.reactive.api.context.RequestExecutionContext;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Maybe;
 
 public interface Policy {
     String getId();
@@ -32,8 +33,8 @@ public interface Policy {
         return Completable.complete();
     }
 
-    default Flowable<Message> onMessage(final ExecutionContext ctx, final Message message) {
-        return Flowable.just(message);
+    default Maybe<Message> onMessage(final ExecutionContext ctx, final Message message) {
+        return Maybe.just(message);
     }
 
     default Flowable<Message> onMessageFlow(final ExecutionContext ctx, final Flowable<Message> messageFlow) {
