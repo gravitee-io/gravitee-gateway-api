@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context.async;
+package io.gravitee.gateway.reactive.api.context;
 
-import io.gravitee.gateway.reactive.api.context.Request;
-import io.reactivex.Completable;
-import io.reactivex.FlowableTransformer;
+import io.gravitee.gateway.reactive.api.message.MessageFlow;
 
-public interface AsyncRequest extends Request<Message> {
-    Completable onMessage(final FlowableTransformer<Message, Message> messagesTransformer);
+public interface MessageExecutionContext extends RequestExecutionContext {
+    MessageFlow incomingMessageFlow();
+
+    MessageFlow outgoingMessageFlow();
 }

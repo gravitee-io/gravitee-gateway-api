@@ -18,13 +18,13 @@ package io.gravitee.gateway.reactive.api.context;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.reporter.api.http.Metrics;
-import io.reactivex.Completable;
-import io.reactivex.Flowable;
+import io.reactivex.*;
 import javax.net.ssl.SSLSession;
 
-public interface Request<T> {
+public interface Request {
     String id();
 
     /**
@@ -128,19 +128,124 @@ public interface Request<T> {
     boolean ended();
 
     /**
-     * Gets the request content as a {@link Flowable} of T representing each chunk of data.
-     * For example, for {@link io.gravitee.gateway.reactive.api.context.sync.SyncRequest}, chunks are {@link io.gravitee.gateway.api.buffer.Buffer}
-     * and for {@link io.gravitee.gateway.reactive.api.context.async.AsyncRequest}, it will be {@link io.gravitee.gateway.reactive.api.context.async.Message}
+     * Get the current body request as a {@link Maybe}.
      *
-     * @return a {@link Flowable} representing the data manipulated by the request.
+     * By getting the body as a {@link Maybe}, the current body chunks will be merged together to reconstruct the entire body in provide it in the form of a single {@link Buffer}
+     * This is useful when the entire body is required to apply some transformation or any manipulation.
+     *
+     * <b>WARN:</b> beware that the entire body content will be loaded in memory. You should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
+     *
+     * @return a {@link Maybe} observable containing the current entire body request or empty if request body as not been set yet.
+     * @see #bodyOrEmpty()
+     * @see #body(Maybe)
+     * @see #chunks(Flowable)
      */
-    Flowable<T> content();
+    Maybe<Buffer> body();
 
     /**
-     * Replaces the request content with the given {@link Flowable}.
-     * The implementation must guaranty the reactive chain will be preserved by composing with the previous request content to make sure it will be well consumed and replaced.
+     * Same as {@link #body()} but returns a {@link Single} of {@link Buffer} instead.
+     *
+     * If no body request as been set yet, it returns a {@link Single} with an empty {@link Buffer}.
+     * It is a convenient way that avoid checking if the body is set or not prior to manipulate it.
+     *
+     * @return a {@link Single} observable containing the current entire body request or empty an {@link Buffer) if request body as not been set yet.
+     * @see #body()
+     * @see #body(Maybe)
+     * @see #chunks(Flowable)
+     */
+    Single<Buffer> bodyOrEmpty();
+
+    /**
+     * Set the current body request as a {@link Maybe}.
+     * This is useful when you want to replace the current body request with a specific content, ex:
+     *
+     * <code>
+     *     request.body(Maybe.just("My custom content");
+     * </code>
+     *
+     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
      *
      * @return a {@link Completable} that can be used to continue the reactive chain.
+     * @see #body()
+     * @see #chunks(Flowable)
      */
-    Completable content(Flowable<T> content);
+    Completable body(final Maybe<Buffer> buffer);
+
+    /**
+     * Set the current body request as a {@link Buffer}.
+     * This is useful when you want to replace the current body request with a specific content that doesn't come from a reactive chain, ex:
+     *
+     * <code>
+     *     request.body(Buffer.buffer("My custom content");
+     * </code>
+     *
+     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
+     *
+     * @return a {@link Completable} that can be used to continue the reactive chain.
+     * @see #body()
+     * @see #chunks(Flowable)
+     */
+    Completable body(final Buffer buffer);
+
+    /**
+     * Set the current request body chunks from a {@link Flowable} of {@link Buffer}.
+     * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
+     *
+     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
+     *
+     * @param chunks the flowable of chunks representing the request body that will be pushed to the upstream.
+     *
+     * @return a {@link Completable} that can be chained with the rest of the execution flow.
+     * @see #body()
+     * @see #body(Maybe)
+     */
+    Completable chunks(final Flowable<Buffer> chunks);
+
+    /**
+     * Get the current request body chunks as {@link Flowable} of {@link Buffer}.
+     * This is useful when you want to manipulate the entire body without having to load it in memory.
+     *
+     * <b>WARN:</b> you should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
+     *
+     * @return a {@link Flowable} containing the current body request chunks.
+     */
+    Flowable<Buffer> chunks();
+
+    /**
+     * Applies a transformation on each body chunks.
+     * This is useful to apply a transformation directly on the request chunks in a convenient way.
+     *
+     * The following code:
+     * <code>
+     *     request.chunks(request.getChunkBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
+     * </code>
+     *
+     * is equivalent with:
+     * <code>
+     *     request.onChunk(chunks -> chunks.map(chunk -> Buffer.buffer(chunk.toString().toUpperCase()));
+     * </code>
+     *
+     * @param chunkTransformer the transformer that will be applied.
+     * @return a {@link Completable} that can be chained with the rest of the execution flow.
+     */
+    Completable onChunk(final FlowableTransformer<Buffer, Buffer> chunkTransformer);
+
+    /**
+     * Applies a transformation on the complete body.
+     * This is convenient way to retrieve the whole body and apply a transformation once.
+     *
+     * The following code:
+     * <code>
+     *     request.body(request.getBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
+     * </code>
+     *
+     * is equivalent with:
+     * <code>
+     *     request.onBody(body -> body.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase()));
+     * </code>
+     *
+     * @param bodyTransformer the transformer that will be applied.
+     * @return a {@link Completable} that can be chained with the rest of the execution flow.
+     */
+    Completable onBody(final MaybeTransformer<Buffer, Buffer> bodyTransformer);
 }

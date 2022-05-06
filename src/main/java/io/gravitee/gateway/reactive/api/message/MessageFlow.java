@@ -13,8 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context.sync;
+package io.gravitee.gateway.reactive.api.message;
 
-import io.gravitee.gateway.reactive.api.context.ExecutionContext;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
 
-public interface SyncExecutionContext extends ExecutionContext<SyncRequest, SyncResponse> {}
+public interface MessageFlow {
+    Completable flow(final Flowable<Message> messageFlow);
+    Completable onMessage(final FlowableTransformer<Message, Message> messagesTransformer);
+    Completable consume();
+}

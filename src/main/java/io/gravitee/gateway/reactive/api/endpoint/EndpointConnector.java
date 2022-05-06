@@ -18,6 +18,6 @@ package io.gravitee.gateway.reactive.api.endpoint;
 import io.gravitee.gateway.reactive.api.context.ExecutionContext;
 import io.reactivex.Completable;
 
-public interface EndpointConnector<T extends ExecutionContext<?, ?>> {
+public interface EndpointConnector<T extends ExecutionContext> {
     Completable connect(final T executionContext);
 }
