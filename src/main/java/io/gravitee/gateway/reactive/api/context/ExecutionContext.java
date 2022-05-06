@@ -21,7 +21,7 @@ import io.gravitee.tracing.api.Tracer;
 import java.util.Map;
 import java.util.Set;
 
-public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>> {
+public interface ExecutionContext {
     String ATTR_PREFIX = "gravitee.attribute.";
 
     String ATTR_INTERNAL_PREFIX = "gravitee.internal.attribute.";
@@ -78,22 +78,6 @@ public interface ExecutionContext<RQ extends Request<?>, RS extends Response<?>>
 
     // TODO will need to be introduce in future
     // ExecutableApi executableApi();
-
-    /**
-     * Get the current request stuck to this execution context.
-     * The type of request depends on the type of execution context ({@link io.gravitee.gateway.reactive.api.context.sync.SyncRequest}, {@link io.gravitee.gateway.reactive.api.context.async.AsyncRequest}).
-     *
-     * @return the request attached to this execution context.
-     */
-    RQ request();
-
-    /**
-     * Get the current response stuck to this execution context.
-     * The type of response depends on the type of execution context ({@link io.gravitee.gateway.reactive.api.context.sync.SyncResponse}, {@link io.gravitee.gateway.reactive.api.context.async.AsyncResponse}).
-     *
-     * @return the response attached to this execution context.
-     */
-    RS response();
 
     <T> T getComponent(Class<T> componentClass);
 

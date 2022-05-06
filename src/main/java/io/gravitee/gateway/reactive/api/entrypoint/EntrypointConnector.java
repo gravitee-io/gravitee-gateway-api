@@ -18,7 +18,7 @@ package io.gravitee.gateway.reactive.api.entrypoint;
 import io.gravitee.gateway.reactive.api.context.ExecutionContext;
 import io.reactivex.Completable;
 
-public interface EntrypointConnector<T extends ExecutionContext<?, ?>> {
+public interface EntrypointConnector<T extends ExecutionContext> {
     Completable handleRequest(final T executionContext);
 
     Completable handleResponse(final T executionContext);

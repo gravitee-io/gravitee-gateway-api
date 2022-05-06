@@ -16,7 +16,7 @@
 package io.gravitee.gateway.reactive.api;
 
 /**
- * An execution phase allows to know in which phase of the whole request processing a given action occurs.
+ * An execution phase allows knowing in which phase of the whole request processing a given action occurs.
  * The execution phase is mainly useful during the flow and policy chain executions.
  *
  *

@@ -20,14 +20,14 @@ import io.gravitee.gateway.reactive.api.context.Response;
 
 public class EvaluableResponse {
 
-    private final Response<?> response;
+    private final Response response;
     private final String content;
 
-    public EvaluableResponse(final Response<?> response) {
+    public EvaluableResponse(final Response response) {
         this(response, null);
     }
 
-    public EvaluableResponse(final Response<?> response, final String content) {
+    public EvaluableResponse(final Response response, final String content) {
         this.response = response;
         this.content = content;
     }
