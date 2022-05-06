@@ -136,7 +136,7 @@ public interface Request {
      * <b>WARN:</b> beware that the entire body content will be loaded in memory. You should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
      *
      * @return a {@link Maybe} observable containing the current entire body request or empty if request body as not been set yet.
-     * @see #bodyOrEmpty() ()
+     * @see #bodyOrEmpty()
      * @see #body(Maybe)
      * @see #chunks(Flowable)
      */
@@ -149,9 +149,9 @@ public interface Request {
      * It is a convenient way that avoid checking if the body is set or not prior to manipulate it.
      *
      * @return a {@link Single} observable containing the current entire body request or empty an {@link Buffer) if request body as not been set yet.
-     * @see #getBody()
-     * @see #setBody(Maybe)
-     * @see #setChunkedBody(Flowable)
+     * @see #body()
+     * @see #body(Maybe)
+     * @see #chunks(Flowable)
      */
     Single<Buffer> bodyOrEmpty();
 
@@ -160,7 +160,7 @@ public interface Request {
      * This is useful when you want to replace the current body request with a specific content, ex:
      *
      * <code>
-     *     request.setBody(Maybe.just("My custom content");
+     *     request.body(Maybe.just("My custom content");
      * </code>
      *
      * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
@@ -176,7 +176,7 @@ public interface Request {
      * This is useful when you want to replace the current body request with a specific content that doesn't come from a reactive chain, ex:
      *
      * <code>
-     *     request.setBody(Buffer.buffer("My custom content");
+     *     request.body(Buffer.buffer("My custom content");
      * </code>
      *
      * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
@@ -217,7 +217,7 @@ public interface Request {
      *
      * The following code:
      * <code>
-     *     request.setChunkBody(request.getChunkBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
+     *     request.chunks(request.getChunkBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
      * </code>
      *
      * is equivalent with:
@@ -236,7 +236,7 @@ public interface Request {
      *
      * The following code:
      * <code>
-     *     request.setBody(request.getBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
+     *     request.body(request.getBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
      * </code>
      *
      * is equivalent with:

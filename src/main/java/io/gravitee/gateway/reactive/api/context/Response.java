@@ -79,7 +79,7 @@ public interface Response {
      * This is useful when you want to replace the current body response with a specific content, ex:
      *
      * <code>
-     *     response.setBody(Maybe.just("My custom content");
+     *     response.body(Maybe.just("My custom content");
      * </code>
      *
      * <b>WARN:</b> replacing the response body will "drain" the previous response that was in place.
@@ -95,7 +95,7 @@ public interface Response {
      * This is useful when you want to replace the current body response with a specific content that doesn't come from a reactive chain, ex:
      *
      * <code>
-     *     response.setBody(Buffer.buffer("My custom content");
+     *     response.body(Buffer.buffer("My custom content");
      * </code>
      *
      * <b>WARN:</b> replacing the response body will "drain" the previous response that was in place.
