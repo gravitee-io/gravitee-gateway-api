@@ -15,26 +15,28 @@
  */
 package io.gravitee.gateway.reactive.api.policy;
 
-import io.gravitee.gateway.reactive.api.context.async.AsyncExecutionContext;
-import io.gravitee.gateway.reactive.api.context.sync.SyncExecutionContext;
+import io.gravitee.gateway.reactive.api.context.ExecutionContext;
+import io.gravitee.gateway.reactive.api.context.RequestExecutionContext;
+import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 
 public interface Policy {
     String getId();
 
-    default Completable onRequest(final SyncExecutionContext ctx) {
+    default Completable onRequest(final RequestExecutionContext ctx) {
         return Completable.complete();
     }
 
-    default Completable onResponse(final SyncExecutionContext ctx) {
+    default Completable onResponse(final RequestExecutionContext ctx) {
         return Completable.complete();
     }
 
-    default Completable onAsyncRequest(final AsyncExecutionContext ctx) {
-        return Completable.complete();
+    default Flowable<Message> onMessage(final ExecutionContext ctx, final Message message) {
+        return Flowable.just(message);
     }
 
-    default Completable onAsyncResponse(final AsyncExecutionContext ctx) {
-        return Completable.complete();
+    default Flowable<Message> onMessageFlow(final ExecutionContext ctx, final Flowable<Message> messageFlow) {
+        return messageFlow;
     }
 }

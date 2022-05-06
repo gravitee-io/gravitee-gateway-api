@@ -15,7 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.entrypoint.async;
 
-import io.gravitee.gateway.reactive.api.context.async.AsyncExecutionContext;
+import io.gravitee.gateway.reactive.api.context.MessageExecutionContext;
 import io.gravitee.gateway.reactive.api.entrypoint.EntrypointConnector;
 
-public interface EntrypointAsyncConnector extends EntrypointConnector<AsyncExecutionContext> {}
+public interface EntrypointAsyncConnector extends EntrypointConnector<MessageExecutionContext> {}

@@ -13,8 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context.async;
+package io.gravitee.gateway.reactive.api.context;
 
-import io.gravitee.gateway.reactive.api.context.ExecutionContext;
+public interface RequestExecutionContext extends ExecutionContext {
+    /**
+     * Get the current request stuck to this execution context.
+     *
+     * @return the request attached to this execution context.
+     */
+    Request request();
 
-public interface AsyncExecutionContext extends ExecutionContext<AsyncRequest, AsyncResponse> {}
+    /**
+     * Get the current response stuck to this execution context.
+     *
+     * @return the response attached to this execution context.
+     */
+    Response response();
+}
