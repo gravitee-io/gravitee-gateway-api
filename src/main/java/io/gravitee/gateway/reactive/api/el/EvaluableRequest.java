@@ -22,14 +22,14 @@ import io.gravitee.gateway.reactive.api.context.Request;
 
 public class EvaluableRequest {
 
-    private final Request<?> request;
+    private final Request request;
     private final String content;
 
-    public EvaluableRequest(final Request<?> request) {
+    public EvaluableRequest(final Request request) {
         this(request, null);
     }
 
-    public EvaluableRequest(final Request<?> request, final String content) {
+    public EvaluableRequest(final Request request, final String content) {
         this.request = request;
         this.content = content;
     }

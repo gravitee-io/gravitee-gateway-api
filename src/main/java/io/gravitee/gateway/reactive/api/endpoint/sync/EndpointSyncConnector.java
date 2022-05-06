@@ -15,7 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.endpoint.sync;
 
-import io.gravitee.gateway.reactive.api.context.sync.SyncExecutionContext;
+import io.gravitee.gateway.reactive.api.context.RequestExecutionContext;
 import io.gravitee.gateway.reactive.api.endpoint.EndpointConnector;
 
-public interface EndpointSyncConnector extends EndpointConnector<SyncExecutionContext> {}
+public interface EndpointSyncConnector extends EndpointConnector<RequestExecutionContext> {}

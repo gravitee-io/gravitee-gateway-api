@@ -15,7 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.invoker;
 
-import io.gravitee.gateway.reactive.api.context.sync.SyncExecutionContext;
+import io.gravitee.gateway.reactive.api.context.RequestExecutionContext;
 import io.reactivex.Completable;
 
 /**
@@ -30,5 +30,5 @@ import io.reactivex.Completable;
 public interface Invoker {
     String getId();
 
-    Completable invoke(SyncExecutionContext ctx);
+    Completable invoke(RequestExecutionContext ctx);
 }
