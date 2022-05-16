@@ -28,7 +28,6 @@ import java.util.Map;
  */
 public interface ExecutionContext {
     String ATTR_PREFIX = "gravitee.attribute.";
-
     String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
     String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     String ATTR_APPLICATION = ATTR_PREFIX + "application";
@@ -47,6 +46,7 @@ public interface ExecutionContext {
     String ATTR_USER_ROLES = ATTR_PREFIX + "user.roles";
     String ATTR_ORGANIZATION = ATTR_PREFIX + "organization";
     String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
+    String ATTR_FAILURE_ATTRIBUTE = ATTR_PREFIX + "failure";
 
     Request request();
 
