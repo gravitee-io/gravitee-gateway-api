@@ -18,6 +18,7 @@ package io.gravitee.gateway.reactive.api.context;
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.reactive.api.ExecutionFailure;
 import io.gravitee.tracing.api.Tracer;
+import io.reactivex.Completable;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,6 +26,7 @@ public interface ExecutionContext {
     String ATTR_PREFIX = "gravitee.attribute.";
 
     String ATTR_INTERNAL_PREFIX = "gravitee.internal.attribute.";
+    String ATTR_INTERNAL_EXECUTION_FAILURE = ATTR_INTERNAL_PREFIX + "execution-failure";
 
     String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
     String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
@@ -51,26 +53,20 @@ public interface ExecutionContext {
     String ATTR_ADAPTED_CONTEXT = ATTR_INTERNAL_PREFIX + "contextAdapter";
 
     /**
-     * Marks the current execution to be interrupted in order to inform all actors involved in the request processing that the execution has been interrupted and the response can be sent "as is" to the downstream.
-     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain may not be executed).
+     * Interrupted the current execution while indicating that the response can be sent "as is" to the downstream.
+     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
      */
-    void interrupt();
+    Completable interrupt();
 
     /**
-     * Marks the current execution to be resumed.
-     * This allows to resume the execution flow when necessary (ex: execute an high level flow such as platform flow).
+     * Same as {@link #interrupt()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
      */
-    void resume();
+    Completable interruptWith(final ExecutionFailure failure);
 
     /**
-     * Same as {@link #interrupt()} but with an {@link ExecutionFailure} object that can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
-     */
-    void interruptWith(ExecutionFailure failure);
-
-    /**
-     * Indicates if the execution is interrupted.
+     * Indicates if the execution has been interrupted.
      * An execution interrupted does not indicate that the response is really ended and has been push to the downstream.
-     * Instead, it indicates that an actor of the request processing has indicated that the execution has been interrupted and other steps should potentially be discarded.
+     * Instead, it indicates that an actor of the request processing has indicated that the execution has been interrupted with or without {@link ExecutionFailure}  and other steps should potentially be discarded.
      *
      * @return a boolean indicated the response has been interrupted or not.
      */

@@ -23,58 +23,56 @@ import java.util.Map;
  */
 public class ExecutionFailure {
 
-    protected int statusCode;
+    private int statusCode;
+    private String message;
+    private String key;
+    private Map<String, Object> parameters;
+    private String contentType;
 
-    protected String message;
+    public ExecutionFailure() {}
 
-    protected String key;
-
-    protected Map<String, Object> parameters;
-
-    protected String contentType;
-
-    public ExecutionFailure(int statusCode, String key) {
-        this.statusCode = statusCode;
-        this.key = key;
-    }
-
-    public int getStatusCode() {
+    public int statusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(int statusCode) {
+    public ExecutionFailure statusCode(int statusCode) {
         this.statusCode = statusCode;
+        return this;
     }
 
-    public String getMessage() {
+    public String message() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public ExecutionFailure message(String message) {
         this.message = message;
+        return this;
     }
 
-    public String getKey() {
+    public String key() {
         return key;
     }
 
-    public void setKey(String key) {
+    public ExecutionFailure key(String key) {
         this.key = key;
+        return this;
     }
 
-    public Map<String, Object> getParameters() {
+    public Map<String, Object> parameters() {
         return parameters;
     }
 
-    public void setParameters(Map<String, Object> parameters) {
+    public ExecutionFailure parameters(Map<String, Object> parameters) {
         this.parameters = parameters;
+        return this;
     }
 
-    public String getContentType() {
+    public String contentType() {
         return contentType;
     }
 
-    public void setContentType(String contentType) {
+    public ExecutionFailure contentType(String contentType) {
         this.contentType = contentType;
+        return this;
     }
 }
