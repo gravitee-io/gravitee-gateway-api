@@ -63,15 +63,6 @@ public interface ExecutionContext {
      */
     Completable interruptWith(final ExecutionFailure failure);
 
-    /**
-     * Indicates if the execution has been interrupted.
-     * An execution interrupted does not indicate that the response is really ended and has been push to the downstream.
-     * Instead, it indicates that an actor of the request processing has indicated that the execution has been interrupted with or without {@link ExecutionFailure}  and other steps should potentially be discarded.
-     *
-     * @return a boolean indicated the response has been interrupted or not.
-     */
-    boolean isInterrupted();
-
     // TODO will need to be introduce in future
     // ExecutableApi executableApi();
 
