@@ -170,11 +170,4 @@ public interface ExecutionContext {
      * @return the El {@link TemplateEngine}.
      */
     TemplateEngine getTemplateEngine();
-
-    /**
-     * Get the {@link Tracer} that can be used to contribute to tracing.
-     *
-     * @return the {@link Tracer} associated to the current request.
-     */
-    Tracer getTracer();
 }
