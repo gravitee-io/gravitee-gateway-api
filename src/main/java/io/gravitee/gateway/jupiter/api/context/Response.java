@@ -80,7 +80,7 @@ public interface Response {
      *
      <b>WARN:</b> replacing the request body will "drain" the previous request that was in place but occurs outside the reactive chain.
      * You should consider using {@link #onBody(MaybeTransformer)} to change the body during the chain execution.
-     * 
+     *
      * @see #onBody(MaybeTransformer)
      * @see #chunks(Flowable)
      */

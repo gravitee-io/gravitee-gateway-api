@@ -39,7 +39,7 @@
         <gravitee-common.version>1.24.0</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-reporter-api.version>1.21.0</gravitee-reporter-api.version>
-        <gravitee-expression-language.version>1.7.2</gravitee-expression-language.version>
+        <gravitee-expression-language.version>1.10.1</gravitee-expression-language.version>
     </properties>
 
     <dependencyManagement>
@@ -101,17 +101,14 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-buffer</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-core</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-rx-java2</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <!-- Unit Tests -->
