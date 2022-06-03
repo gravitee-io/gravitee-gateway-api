@@ -84,11 +84,10 @@ public interface Response {
      *
      * <b>WARN:</b> replacing the response body will "drain" the previous response that was in place.
      *
-     * @return a {@link Completable} that can be used to continue the reactive chain.
      * @see #body()
      * @see #chunks(Flowable)
      */
-    Completable body(Maybe<Buffer> buffer);
+    void body(Maybe<Buffer> buffer);
 
     /**
      * Set the current body response as a {@link Buffer}.
@@ -100,11 +99,10 @@ public interface Response {
      *
      * <b>WARN:</b> replacing the response body will "drain" the previous response that was in place.
      *
-     * @return a {@link Completable} that can be used to continue the reactive chain.
      * @see #body(Maybe)
      * @see #chunks(Flowable)
      */
-    Completable body(final Buffer buffer);
+    void body(final Buffer buffer);
 
     /**
      * Set the current response body chunks from a {@link Flowable} of {@link Buffer}.
@@ -118,7 +116,7 @@ public interface Response {
      * @see #body()
      * @see #body(Maybe)
      */
-    Completable chunks(final Flowable<Buffer> chunks);
+    void chunks(final Flowable<Buffer> chunks);
 
     /**
      * Get the current response body chunks as {@link Flowable} of {@link Buffer}.
@@ -130,9 +128,9 @@ public interface Response {
      */
     Flowable<Buffer> chunks();
 
-    Completable onChunk(final FlowableTransformer<Buffer, Buffer> bufferTransformer);
+    void onChunk(final FlowableTransformer<Buffer, Buffer> bufferTransformer);
 
-    Completable onBody(final MaybeTransformer<Buffer, Buffer> bodyTransformer);
+    void onBody(final MaybeTransformer<Buffer, Buffer> bodyTransformer);
 
     /**
      * End the response.

@@ -165,11 +165,10 @@ public interface Request {
      *
      * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
      *
-     * @return a {@link Completable} that can be used to continue the reactive chain.
      * @see #body()
      * @see #chunks(Flowable)
      */
-    Completable body(final Maybe<Buffer> buffer);
+    void body(final Maybe<Buffer> buffer);
 
     /**
      * Set the current body request as a {@link Buffer}.
@@ -181,11 +180,10 @@ public interface Request {
      *
      * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
      *
-     * @return a {@link Completable} that can be used to continue the reactive chain.
      * @see #body()
      * @see #chunks(Flowable)
      */
-    Completable body(final Buffer buffer);
+    void body(final Buffer buffer);
 
     /**
      * Set the current request body chunks from a {@link Flowable} of {@link Buffer}.
@@ -195,11 +193,10 @@ public interface Request {
      *
      * @param chunks the flowable of chunks representing the request body that will be pushed to the upstream.
      *
-     * @return a {@link Completable} that can be chained with the rest of the execution flow.
      * @see #body()
      * @see #body(Maybe)
      */
-    Completable chunks(final Flowable<Buffer> chunks);
+    void chunks(final Flowable<Buffer> chunks);
 
     /**
      * Get the current request body chunks as {@link Flowable} of {@link Buffer}.
@@ -226,9 +223,8 @@ public interface Request {
      * </code>
      *
      * @param chunkTransformer the transformer that will be applied.
-     * @return a {@link Completable} that can be chained with the rest of the execution flow.
      */
-    Completable onChunk(final FlowableTransformer<Buffer, Buffer> chunkTransformer);
+    void onChunk(final FlowableTransformer<Buffer, Buffer> chunkTransformer);
 
     /**
      * Applies a transformation on the complete body.
@@ -245,7 +241,6 @@ public interface Request {
      * </code>
      *
      * @param bodyTransformer the transformer that will be applied.
-     * @return a {@link Completable} that can be chained with the rest of the execution flow.
      */
-    Completable onBody(final MaybeTransformer<Buffer, Buffer> bodyTransformer);
+    void onBody(final MaybeTransformer<Buffer, Buffer> bodyTransformer);
 }
