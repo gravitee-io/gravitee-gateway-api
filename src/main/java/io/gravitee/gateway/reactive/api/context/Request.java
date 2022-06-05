@@ -118,6 +118,11 @@ public interface Request {
      */
     SSLSession sslSession();
 
+    /**
+     * Get the metrics associated to the request.
+     *
+     * @return a {@link Metrics} object.
+     */
     Metrics metrics();
 
     /**
@@ -137,8 +142,6 @@ public interface Request {
      *
      * @return a {@link Maybe} observable containing the current entire body request or empty if request body as not been set yet.
      * @see #bodyOrEmpty()
-     * @see #body(Maybe)
-     * @see #chunks(Flowable)
      */
     Maybe<Buffer> body();
 
@@ -150,26 +153,8 @@ public interface Request {
      *
      * @return a {@link Single} observable containing the current entire body request or empty an {@link Buffer) if request body as not been set yet.
      * @see #body()
-     * @see #body(Maybe)
-     * @see #chunks(Flowable)
      */
     Single<Buffer> bodyOrEmpty();
-
-    /**
-     * Set the current body request as a {@link Maybe}.
-     * This is useful when you want to replace the current body request with a specific content, ex:
-     *
-     * <code>
-     *     request.body(Maybe.just("My custom content");
-     * </code>
-     *
-     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
-     *
-     * @return a {@link Completable} that can be used to continue the reactive chain.
-     * @see #body()
-     * @see #chunks(Flowable)
-     */
-    Completable body(final Maybe<Buffer> buffer);
 
     /**
      * Set the current body request as a {@link Buffer}.
@@ -179,27 +164,29 @@ public interface Request {
      *     request.body(Buffer.buffer("My custom content");
      * </code>
      *
-     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
+     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place but occurs outside the reactive chain.
+     * You should consider using {@link #onBody(MaybeTransformer)} to change the body during the chain execution.
      *
-     * @return a {@link Completable} that can be used to continue the reactive chain.
-     * @see #body()
+     * @see #onBody(MaybeTransformer)
      * @see #chunks(Flowable)
      */
-    Completable body(final Buffer buffer);
+    void body(final Buffer buffer);
 
     /**
-     * Set the current request body chunks from a {@link Flowable} of {@link Buffer}.
-     * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
+     * Applies a transformation on the complete body given as a single {@link Buffer}.
      *
-     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
+     * Ex:
+     * <code>
+     *     request.onBody(body -> body.map(buffer ->Buffer.buffer(buffer.toString().toUpperCase())));
+     * </code>
      *
-     * @param chunks the flowable of chunks representing the request body that will be pushed to the upstream.
+     * <b>IMPORTANT: applying a transformation on the body content loads the whole body in memory.
+     * It's up to the consumer to make sure it is safe to do that without consuming too much memory.</b>
      *
-     * @return a {@link Completable} that can be chained with the rest of the execution flow.
-     * @see #body()
-     * @see #body(Maybe)
+     * @param onBody the transformation that will be applied on the body.
+     * @return a {@link Completable} that completes once the body transformation has occurred.
      */
-    Completable chunks(final Flowable<Buffer> chunks);
+    Completable onBody(MaybeTransformer<Buffer, Buffer> onBody);
 
     /**
      * Get the current request body chunks as {@link Flowable} of {@link Buffer}.
@@ -212,40 +199,32 @@ public interface Request {
     Flowable<Buffer> chunks();
 
     /**
-     * Applies a transformation on each body chunks.
-     * This is useful to apply a transformation directly on the request chunks in a convenient way.
+     * Set the current request body chunks from a {@link Flowable} of {@link Buffer}.
+     * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
      *
-     * The following code:
-     * <code>
-     *     request.chunks(request.getChunkBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
-     * </code>
+     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
      *
-     * is equivalent with:
-     * <code>
-     *     request.onChunk(chunks -> chunks.map(chunk -> Buffer.buffer(chunk.toString().toUpperCase()));
-     * </code>
+     * @param chunks the flowable of chunks representing the request body that will be pushed to the upstream.
      *
-     * @param chunkTransformer the transformer that will be applied.
-     * @return a {@link Completable} that can be chained with the rest of the execution flow.
+     * @see #body()
      */
-    Completable onChunk(final FlowableTransformer<Buffer, Buffer> chunkTransformer);
+    void chunks(final Flowable<Buffer> chunks);
 
     /**
-     * Applies a transformation on the complete body.
-     * This is convenient way to retrieve the whole body and apply a transformation once.
-     *
-     * The following code:
+     * Applies a transformation on each body chunks and completes when all the chunks have been processed.
+     * Ex:
      * <code>
-     *     request.body(request.getBody().flatMap(chunk -> Buffer.buffer(chunk.toString().toUpperCase())));
+     *     request.onChunk(chunks -> chunks.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase())));
      * </code>
      *
-     * is equivalent with:
-     * <code>
-     *     request.onBody(body -> body.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase()));
-     * </code>
+     * <b>IMPORTANT: applying a transformation on the body chunks loads the whole body in memory.
+     * It's up to the consumer to make sure it is safe to do that without consuming too much memory.</b>
      *
-     * @param bodyTransformer the transformer that will be applied.
-     * @return a {@link Completable} that can be chained with the rest of the execution flow.
+     * <b>IMPORTANT: applying a transformation on chunks completes when all chunks have been transformed.
+     * If used in a policy chain, it means that the next policy will start once all chunks have been transformed</b>
+     *
+     * @param onChunk the transformer that will be applied.
+     * @return a {@link Completable} that completes once the body transformation has occurred on all the chunks.
      */
-    Completable onBody(final MaybeTransformer<Buffer, Buffer> bodyTransformer);
+    Completable onChunk(final FlowableTransformer<Buffer, Buffer> onChunk);
 }
