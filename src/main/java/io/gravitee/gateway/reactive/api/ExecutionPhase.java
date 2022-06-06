@@ -49,7 +49,7 @@ public enum ExecutionPhase {
      *
      * For an HTTP request, it represents the policies executed <b>before</b> the endpoint is invoked by the gateway.
      */
-    REQUEST,
+    REQUEST("request"),
 
     /**
      * This phase represents the actions occurring from the downstream to the upstream in an async execution context.
@@ -64,7 +64,7 @@ public enum ExecutionPhase {
      *
      * </pre>
      */
-    ASYNC_REQUEST,
+    ASYNC_REQUEST("async_request"),
 
     /**
      * This phase represents the actions occurring from the upstream to the downstream in a sync execution context.
@@ -81,7 +81,7 @@ public enum ExecutionPhase {
      *
      * For an HTTP request, it represents the policies executed <b>after</b> the endpoint has been invoked by the gateway.
      */
-    RESPONSE,
+    RESPONSE("response"),
 
     /**
      * This phase represents the actions occurring from the upstream to the downstream in an async execution context.
@@ -96,5 +96,15 @@ public enum ExecutionPhase {
      *
      * </pre>
      */
-    ASYNC_RESPONSE,
+    ASYNC_RESPONSE("async_response");
+
+    private final String label;
+
+    ExecutionPhase(final String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
 }
