@@ -18,6 +18,7 @@ package io.gravitee.gateway.jupiter.api.hook;
 import io.gravitee.gateway.jupiter.api.ExecutionFailure;
 import io.gravitee.gateway.jupiter.api.ExecutionPhase;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
+import io.reactivex.Completable;
 import io.reactivex.annotations.Nullable;
 
 /**
@@ -29,23 +30,33 @@ import io.reactivex.annotations.Nullable;
 public interface Hook {
     String id();
 
-    default void pre(final String id, final RequestExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {}
+    default Completable pre(final String id, final RequestExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {
+        return Completable.complete();
+    }
 
-    default void post(final String id, final RequestExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {}
+    default Completable post(final String id, final RequestExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {
+        return Completable.complete();
+    }
 
-    default void error(
+    default Completable error(
         final String id,
         final RequestExecutionContext ctx,
         @Nullable final ExecutionPhase executionPhase,
         final Throwable throwable
-    ) {}
+    ) {
+        return Completable.complete();
+    }
 
-    default void interrupt(final String id, final RequestExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {}
+    default Completable interrupt(final String id, final RequestExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {
+        return Completable.complete();
+    }
 
-    default void interruptWith(
+    default Completable interruptWith(
         final String id,
         final RequestExecutionContext ctx,
         @Nullable final ExecutionPhase executionPhase,
         final ExecutionFailure failure
-    ) {}
+    ) {
+        return Completable.complete();
+    }
 }
