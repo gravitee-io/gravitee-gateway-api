@@ -1,3 +1,14 @@
+# [1.33.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.32.2...1.33.0) (2022-06-10)
+
+
+### Features
+
+* **jupiter:** add hook mechanism to deal with tracing ([44fb045](https://github.com/gravitee-io/gravitee-gateway-api/commit/44fb045643577bfc9c6c9a2889d66d4c8d878b24))
+* **jupiter:** add jupiter entities ([e118db4](https://github.com/gravitee-io/gravitee-gateway-api/commit/e118db4f4bc313e512b833334b02207ff7b393fd))
+* **jupiter:** add SecurityPolicy ([528495d](https://github.com/gravitee-io/gravitee-gateway-api/commit/528495d592df50b84c452f037f0bf84b10b6ab60))
+* **jupiter:** better handling of request and response body ([dcbc602](https://github.com/gravitee-io/gravitee-gateway-api/commit/dcbc602d4dc76b27ea7824301de0fb5b9cec5a2f))
+* **jupiter:** handle interruption mechanism ([180dbc1](https://github.com/gravitee-io/gravitee-gateway-api/commit/180dbc1e0ec8a606ea07bcfc36af1cb28fdfb0b7))
+
 ## [1.32.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.32.1...1.32.2) (2022-04-27)
 
 
