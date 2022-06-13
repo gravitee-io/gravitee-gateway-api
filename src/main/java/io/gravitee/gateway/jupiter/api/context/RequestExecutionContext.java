@@ -16,6 +16,10 @@
 package io.gravitee.gateway.jupiter.api.context;
 
 public interface RequestExecutionContext extends ExecutionContext {
+    String TEMPLATE_ATTRIBUTE_REQUEST = "request";
+    String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
+    String TEMPLATE_ATTRIBUTE_CONTEXT = "context";
+
     /**
      * Get the current request stuck to this execution context.
      *

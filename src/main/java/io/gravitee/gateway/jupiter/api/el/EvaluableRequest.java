@@ -19,11 +19,14 @@ import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.el.EvaluableSSLSession;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.jupiter.api.context.Request;
+import java.util.Map;
 
 public class EvaluableRequest {
 
     private final Request request;
-    private final String content;
+    private String content;
+    private Map<String, Object> jsonContent;
+    private Map<String, Object> xmlContent;
 
     public EvaluableRequest(final Request request) {
         this(request, null);
@@ -106,7 +109,27 @@ public class EvaluableRequest {
         return content;
     }
 
+    public Map<String, Object> getJsonContent() {
+        return jsonContent;
+    }
+
     public EvaluableSSLSession getSsl() {
         return new EvaluableSSLSession(request.sslSession());
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setJsonContent(Map<String, Object> jsonContent) {
+        this.jsonContent = jsonContent;
+    }
+
+    public Map<String, Object> getXmlContent() {
+        return xmlContent;
+    }
+
+    public void setXmlContent(Map<String, Object> xmlContent) {
+        this.xmlContent = xmlContent;
     }
 }

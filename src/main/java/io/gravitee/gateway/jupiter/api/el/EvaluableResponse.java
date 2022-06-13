@@ -17,11 +17,14 @@ package io.gravitee.gateway.jupiter.api.el;
 
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.jupiter.api.context.Response;
+import java.util.Map;
 
 public class EvaluableResponse {
 
     private final Response response;
-    private final String content;
+    private String content;
+    private Map<String, Object> jsonContent;
+    private Map<String, Object> xmlContent;
 
     public EvaluableResponse(final Response response) {
         this(response, null);
@@ -42,5 +45,25 @@ public class EvaluableResponse {
 
     public String getContent() {
         return content;
+    }
+
+    public Map<String, Object> getJsonContent() {
+        return jsonContent;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setJsonContent(Map<String, Object> jsonContent) {
+        this.jsonContent = jsonContent;
+    }
+
+    public Map<String, Object> getXmlContent() {
+        return xmlContent;
+    }
+
+    public void setXmlContent(Map<String, Object> xmlContent) {
+        this.xmlContent = xmlContent;
     }
 }
