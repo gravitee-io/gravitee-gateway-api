@@ -1,3 +1,10 @@
+# [1.34.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.33.0...1.34.0) (2022-06-20)
+
+
+### Features
+
+* **jupiter:** request & response content support in EL ([6e7821b](https://github.com/gravitee-io/gravitee-gateway-api/commit/6e7821ba02c842f1419f969fea2d057a1d0fabd5))
+
 # [1.33.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.32.2...1.33.0) (2022-06-10)
 
 
