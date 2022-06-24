@@ -26,6 +26,7 @@ public interface ExecutionContext {
 
     String ATTR_INTERNAL_PREFIX = "gravitee.internal.attribute.";
     String ATTR_INTERNAL_EXECUTION_FAILURE = ATTR_INTERNAL_PREFIX + "execution-failure";
+    String ATTR_INTERNAL_FLOW_STAGE = ATTR_INTERNAL_PREFIX + "flow.stage";
 
     String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
     String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";

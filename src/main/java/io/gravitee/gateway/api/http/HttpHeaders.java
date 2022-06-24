@@ -24,6 +24,14 @@ import java.util.stream.Collectors;
  * @author GraviteeSource Team
  */
 public interface HttpHeaders extends Iterable<Map.Entry<String, String>> {
+    static HttpHeaders create() {
+        return new DefaultHttpHeaders();
+    }
+
+    static HttpHeaders create(HttpHeaders headers) {
+        return new DefaultHttpHeaders(headers);
+    }
+
     /**
      * Ensure backward compatibility, should be removed in the future
      * @deprecated
@@ -56,9 +64,6 @@ public interface HttpHeaders extends Iterable<Map.Entry<String, String>> {
 
     HttpHeaders set(CharSequence name, Iterable<CharSequence> values);
 
-    //TODO: do we need that one?
-    // HttpHeaders set(String name, Iterable<String> values);
-
     HttpHeaders remove(CharSequence name);
 
     void clear();
@@ -72,20 +77,16 @@ public interface HttpHeaders extends Iterable<Map.Entry<String, String>> {
         return (((v = getAll(key)) != null) || containsKey(key)) ? v : defaultValue;
     }
 
-    static HttpHeaders create() {
-        return new DefaultHttpHeaders();
-    }
-
-    static HttpHeaders create(HttpHeaders headers) {
-        return new DefaultHttpHeaders(headers);
-    }
-
     default Map<String, String> toSingleValueMap() {
         LinkedHashMap<String, String> singleValueMap = new LinkedHashMap<>(size());
         for (Map.Entry<String, String> entry : this) {
             singleValueMap.put(entry.getKey(), entry.getValue());
         }
         return singleValueMap;
+    }
+
+    default Map<String, List<String>> toListValuesMap() {
+        return names().stream().collect(Collectors.toMap(s -> s, this::getAll, (o1, o2) -> o1, () -> new LinkedHashMap<>(size())));
     }
 
     default boolean containsAllKeys(Collection<String> names) {

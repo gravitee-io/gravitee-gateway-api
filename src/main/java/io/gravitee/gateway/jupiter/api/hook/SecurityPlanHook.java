@@ -15,17 +15,10 @@
  */
 package io.gravitee.gateway.jupiter.api.hook;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
+ * Interface that can be used to add hook behaviour while executing a security plan execution
+ *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Hookable<T> {
-    default void addHooks(final T... hooks) {
-        addHooks(Arrays.asList(hooks));
-    }
-
-    void addHooks(final List<T> hooks);
-}
+public interface SecurityPlanHook extends Hook {}
