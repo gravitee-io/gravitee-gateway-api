@@ -1,3 +1,10 @@
+# [1.35.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.34.0...1.35.0) (2022-06-24)
+
+
+### Features
+
+* **jupiter:** implementation of debug mode ([6029b40](https://github.com/gravitee-io/gravitee-gateway-api/commit/6029b40990931f379e930d6630f9319c19ed00e8))
+
 # [1.34.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.33.0...1.34.0) (2022-06-20)
 
 
