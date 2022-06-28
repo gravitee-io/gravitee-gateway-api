@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.35.0...1.36.0) (2022-06-28)
+
+
+### Features
+
+* add services to manage api keys and subscriptions ([c6ff0e3](https://github.com/gravitee-io/gravitee-gateway-api/commit/c6ff0e31699345632f1a476ba246b664faeb43ed))
+
 # [1.35.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.34.0...1.35.0) (2022-06-24)
 
 
