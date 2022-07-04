@@ -44,7 +44,10 @@ public class HttpHeadersTest {
     private static Stream<Arguments> provideHttpHeadersDataForDeeplyEqualsTest() {
         return Stream.of(
             Arguments.of(
-                HttpHeaders.create().add("Host", "test.gravitee.io").add("Accept", List.of("application/json", "application/json+vnd")),
+                HttpHeaders
+                    .create()
+                    .add((CharSequence) "Host", "test.gravitee.io")
+                    .add("Accept", List.of("application/json", "application/json+vnd")),
                 HttpHeaders.create().add("Host", "test.gravitee.io").add("Accept", List.of("application/json", "application/json+vnd")),
                 true,
                 "HttpHeaders are equals"
