@@ -1,3 +1,10 @@
+## [1.32.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.32.2...1.32.3) (2022-06-24)
+
+
+### Bug Fixes
+
+* restore HTTP headers backward compatibility ([100c58f](https://github.com/gravitee-io/gravitee-gateway-api/commit/100c58f333126f8f0c412f8862c109b92bf85c38))
+
 # [1.34.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.33.0...1.34.0) (2022-06-20)
 
 

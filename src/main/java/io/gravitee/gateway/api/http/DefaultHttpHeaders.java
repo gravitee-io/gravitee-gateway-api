@@ -16,13 +16,22 @@
 package io.gravitee.gateway.api.http;
 
 import io.gravitee.common.util.LinkedCaseInsensitiveMap;
-import java.util.*;
+import io.gravitee.common.util.MultiValueMap;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
+ * Implements {@link MultiValueMap<String,String>} for backward compatibility.
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHeaders {
+public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHeaders, MultiValueMap<String, String> {
 
     private final Map<String, List<String>> headers;
 
@@ -137,7 +146,7 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
     }
 
     @Override
-    public Iterator<Map.Entry<String, String>> iterator() {
+    public Iterator<Entry<String, String>> iterator() {
         final Iterator<Map.Entry<String, List<String>>> entries = headers.entrySet().iterator();
 
         return new Iterator<>() {
@@ -167,5 +176,101 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
                 };
             }
         };
+    }
+
+    @Override
+    public Map<String, String> toSingleValueMap() {
+        return HttpHeaders.super.toSingleValueMap();
+    }
+
+    @Override
+    public boolean containsAllKeys(Collection<String> names) {
+        return HttpHeaders.super.containsAllKeys(names);
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        return headers.containsKey(key);
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        return headers.containsValue(value);
+    }
+
+    /**
+     * @see LinkedCaseInsensitiveMap#get(Object)
+     * Contrary to {@link DefaultHttpHeaders#get(CharSequence)}, the list of values is returned, not only the first element
+     */
+    @Override
+    public List<String> get(Object key) {
+        final List<String> values = headers.get(key);
+        return values == null ? Collections.emptyList() : values;
+    }
+
+    /**
+     * @see HashMap#putVal(int, Object, Object, boolean, boolean), returns the previous value if present, else null.
+     */
+    @Override
+    public List<String> put(String key, List<String> value) {
+        return headers.put(key, value);
+    }
+
+    /**
+     * @see HashMap#remove(Object), returns the previous value (can bee {@code null}) associated with {@code key} or null if none.
+     */
+    @Override
+    public List<String> remove(Object key) {
+        return headers.remove(key);
+    }
+
+    @Override
+    public void putAll(Map<? extends String, ? extends List<String>> map) {
+        headers.putAll(map);
+    }
+
+    @Override
+    public Set<String> keySet() {
+        return headers.keySet();
+    }
+
+    @Override
+    public Collection<List<String>> values() {
+        return headers.values();
+    }
+
+    @Override
+    public Set<Entry<String, List<String>>> entrySet() {
+        return headers.entrySet();
+    }
+
+    @Override
+    public String getFirst(String header) {
+        List<String> headerValues = this.headers.get(header);
+        return (headerValues != null ? headerValues.get(0) : null);
+    }
+
+    @Override
+    public void add(String name, String value) {
+        List<String> headerValues = this.headers.get(name);
+        if (headerValues == null) {
+            headerValues = new LinkedList<>();
+            this.headers.put(name, headerValues);
+        }
+        headerValues.add(value);
+    }
+
+    @Override
+    public void set(String name, String value) {
+        List<String> headerValues = new LinkedList<String>();
+        headerValues.add(value);
+        this.headers.put(name, headerValues);
+    }
+
+    @Override
+    public void setAll(Map<String, String> values) {
+        for (Entry<String, String> entry : values.entrySet()) {
+            set(entry.getKey(), entry.getValue());
+        }
     }
 }

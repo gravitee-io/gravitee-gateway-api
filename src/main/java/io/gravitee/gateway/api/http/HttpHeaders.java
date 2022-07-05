@@ -15,7 +15,11 @@
  */
 package io.gravitee.gateway.api.http;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -41,10 +45,18 @@ public interface HttpHeaders extends Iterable<Map.Entry<String, String>> {
      * @deprecated
      */
     default boolean containsKey(CharSequence name) {
+        return containsKey(String.valueOf(name));
+    }
+
+    default boolean containsKey(String name) {
         return contains(name);
     }
 
     boolean contains(CharSequence name);
+
+    default boolean contains(String name) {
+        return contains((CharSequence) name);
+    }
 
     Set<String> names();
 
@@ -69,7 +81,7 @@ public interface HttpHeaders extends Iterable<Map.Entry<String, String>> {
 
     default List<String> getOrDefault(CharSequence key, List<String> defaultValue) {
         List<String> v;
-        return (((v = getAll(key)) != null) || containsKey(key)) ? v : defaultValue;
+        return (((v = getAll(key)) != null) || containsKey(key.toString())) ? v : defaultValue;
     }
 
     static HttpHeaders create() {
@@ -83,7 +95,7 @@ public interface HttpHeaders extends Iterable<Map.Entry<String, String>> {
     default Map<String, String> toSingleValueMap() {
         LinkedHashMap<String, String> singleValueMap = new LinkedHashMap<>(size());
         for (Map.Entry<String, String> entry : this) {
-            singleValueMap.put(entry.getKey(), entry.getValue());
+            singleValueMap.putIfAbsent(entry.getKey(), entry.getValue());
         }
         return singleValueMap;
     }
