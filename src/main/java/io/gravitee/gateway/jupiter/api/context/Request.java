@@ -20,6 +20,7 @@ import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
+import io.gravitee.gateway.api.ws.WebSocket;
 import io.gravitee.reporter.api.http.Metrics;
 import io.reactivex.*;
 import javax.net.ssl.SSLSession;
@@ -133,6 +134,28 @@ public interface Request {
     boolean ended();
 
     /**
+     * Indicates if that request is a websocket request.
+     * A websocket request must respond to the following criteria:
+     * <ul>
+     *     <li>Has a <code>Connection: Upgrade</code> header</li>
+     *     <li>Has a <code>Upgrade: websocket</code> header</li>
+     *     <li>Is a <code>GET</code> request</li>
+     *     <li>Is an HTTP 1.0 or HTTP 1.1 request</li>
+     * </ul>
+     *
+     * @return <code>true</code> is the request is a websocket, <code>false</code> otherwise.
+     */
+    boolean isWebSocket();
+
+    /**
+     * Returns the underlying websocket associated to this request or <code>null</code> if the current request is not a websocket request.
+     *
+     * @return the underlying websocket associated to this request.
+     * @see #isWebSocket()
+     */
+    WebSocket webSocket();
+
+    /**
      * Get the current body request as a {@link Maybe}.
      *
      * By getting the body as a {@link Maybe}, the current body chunks will be merged together to reconstruct the entire body in provide it in the form of a single {@link Buffer}
@@ -202,7 +225,7 @@ public interface Request {
      * Set the current request body chunks from a {@link Flowable} of {@link Buffer}.
      * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
      *
-     * <b>WARN:</b> replacing the request body will "drain" the previous request that was in place.
+     * <b>WARN:</b> replacing the request body will <b>NOT</b> "drain" the previous request that was in place.
      *
      * @param chunks the flowable of chunks representing the request body that will be pushed to the upstream.
      *
