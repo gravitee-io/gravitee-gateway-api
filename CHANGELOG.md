@@ -1,3 +1,10 @@
+# [1.37.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.36.1...1.37.0) (2022-07-07)
+
+
+### Features
+
+* **jupiter:** add websocket support ([233f8ad](https://github.com/gravitee-io/gravitee-gateway-api/commit/233f8ad5159fc6d8cd7cb6a77c3270e9cd30222c))
+
 ## [1.36.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.36.0...1.36.1) (2022-07-04)
 
 
