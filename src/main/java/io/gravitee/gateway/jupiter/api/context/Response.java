@@ -78,8 +78,12 @@ public interface Response {
      *     response.body(Buffer.buffer("My custom content");
      * </code>
      *
-     <b>WARN:</b> replacing the request body will "drain" the previous request that was in place but occurs outside the reactive chain.
-     * You should consider using {@link #onBody(MaybeTransformer)} to change the body during the chain execution.
+     * <b>WARN:</b>
+     * <ul>
+     *  <li>replacing the request body will <b>NOT</b> "drain" the previous request that was in place.</li>
+     *  <li>You <b>MUST</b> ensure to consume the previous body by yourself when using it.</li>
+     *  <li>You <b>SHOULD</b> consider using {@link #onBody(MaybeTransformer)} to change the body during the chain execution.</li>
+     * </ul>
      *
      * @see #onBody(MaybeTransformer)
      * @see #chunks(Flowable)
@@ -105,10 +109,15 @@ public interface Response {
     /**
      * Set the current response body chunks from a {@link Flowable} of {@link Buffer}.
      * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
-     * <br/>
-     * <b>WARN:</b> replacing the response body will "drain" the previous response that was in place.
      *
-     * @param chunks the flowable of chunks representing the response to push back to the downstream.
+     * <b>WARN:</b>
+     * <ul>
+     *  <li>replacing the response chunks will <b>NOT</b> "drain" the previous response that was in place.</li>
+     *  <li>You <b>MUST</b> ensure to consume the previous chunks by yourself when using it.</li>
+     *  <li>You <b>SHOULD</b> consider using {@link #onChunks(FlowableTransformer)} to change the chunks during the chain execution.</li>
+     * </ul>
+     *
+     * @param chunks the {@link Flowable} of chunks representing the response to push back to the downstream.
      *
      * @see #body()
      */
@@ -128,7 +137,7 @@ public interface Response {
      * Applies a transformation on each body chunks and completes when all the chunks have been processed.
      * Ex:
      * <code>
-     *     response.onChunk(chunks -> chunks.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase())));
+     *     response.onChunks(chunks -> chunks.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase())));
      * </code>
      *
      * <b>IMPORTANT: applying a transformation on the body chunks loads the whole body in memory.
@@ -137,10 +146,10 @@ public interface Response {
      * <b>IMPORTANT: applying a transformation on chunks completes when all chunks have been transformed.
      * If used in a policy chain, it means that the next policy will start once all chunks have been transformed</b>
      *
-     * @param onChunk the transformer that will be applied.
+     * @param onChunks the transformer that will be applied.
      * @return a {@link Completable} that completes once the body transformation has occurred on all the chunks.
      */
-    Completable onChunk(final FlowableTransformer<Buffer, Buffer> onChunk);
+    Completable onChunks(final FlowableTransformer<Buffer, Buffer> onChunks);
 
     /**
      * End the response.
