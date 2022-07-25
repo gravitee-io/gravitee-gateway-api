@@ -99,7 +99,7 @@ class DefaultHttpHeadersTest {
     @DisplayName("Should get values")
     void shouldGet() {
         Object key = new Object();
-        assertThat(cut.get(key)).isEmpty();
+        assertThat(cut.get(key)).isNull();
 
         key = FIRST_HEADER;
         assertThat(cut.get(key)).hasSize(2);
@@ -108,7 +108,7 @@ class DefaultHttpHeadersTest {
         assertThat(cut.get(key)).hasSize(1);
 
         key = ACCEPT_LANGUAGE;
-        assertThat(cut.get(key)).isEmpty();
+        assertThat(cut.get(key)).isNull();
     }
 
     @Test
