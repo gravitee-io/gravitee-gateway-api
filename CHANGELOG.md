@@ -1,3 +1,10 @@
+## [1.34.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.34.1...1.34.2) (2022-07-26)
+
+
+### Bug Fixes
+
+* return null instead of empty list when getting an undefined header ([91e2fb4](https://github.com/gravitee-io/gravitee-gateway-api/commit/91e2fb4753d1eefca6306934d0b8573786be9695))
+
 ## [1.34.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.34.0...1.34.1) (2022-07-05)
 
 
