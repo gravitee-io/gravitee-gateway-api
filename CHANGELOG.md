@@ -5,6 +5,13 @@
 
 * restore HTTP headers backward compatibility ([100c58f](https://github.com/gravitee-io/gravitee-gateway-api/commit/100c58f333126f8f0c412f8862c109b92bf85c38))
 
+## [1.32.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.32.3...1.32.4) (2022-07-26)
+
+
+### Bug Fixes
+
+* return null instead of empty list when getting an undefined header ([91e2fb4](https://github.com/gravitee-io/gravitee-gateway-api/commit/91e2fb4753d1eefca6306934d0b8573786be9695))
+
 ## [1.32.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.32.2...1.32.3) (2022-06-24)
 
 

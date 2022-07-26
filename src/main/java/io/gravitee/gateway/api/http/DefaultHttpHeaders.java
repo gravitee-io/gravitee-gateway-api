@@ -204,8 +204,7 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
      */
     @Override
     public List<String> get(Object key) {
-        final List<String> values = headers.get(key);
-        return values == null ? Collections.emptyList() : values;
+        return headers.get(key);
     }
 
     /**
