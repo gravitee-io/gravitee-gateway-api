@@ -1,3 +1,10 @@
+## [1.37.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.37.1...1.37.2) (2022-07-26)
+
+
+### Bug Fixes
+
+* properly name onChunks method ([acf340f](https://github.com/gravitee-io/gravitee-gateway-api/commit/acf340f679050ef7cf31e5e71bd52db88604d524)), closes [gravitee-io/issues#8030](https://github.com/gravitee-io/issues/issues/8030)
+
 ## [1.37.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.37.0...1.37.1) (2022-07-26)
 
 
