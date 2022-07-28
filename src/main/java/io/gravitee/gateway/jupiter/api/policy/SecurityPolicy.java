@@ -19,30 +19,29 @@ import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.reactivex.Completable;
-import io.reactivex.Single;
+import io.reactivex.Maybe;
 
 /**
  * {@link SecurityPolicy} is a {@link Policy} that can be used for securing a plan that can require a subscription.
  * Implementing a {@link SecurityPolicy} requires to implement some additional behavior in order to be used by the gateway during the security chain execution that will identify which plan the consumer is using:
  * <ul>
  *     <li>{@link #order()}: to define the priority compared to other security policies</li>
- *     <li>{@link #support(HttpExecutionContext)}: to check if the current request can be handled or not</li>
+ *     <li>{@link #extractSecurityToken(HttpExecutionContext)}: to extract the {@link SecurityToken} from the request execution context</li>
  *     <li>{@link #requireSubscription()} : to indicate if it require a valid subscription or not</li>
- *     <li>{@link #onInvalidSubscription(HttpExecutionContext)} : to defined what to do in case of invalid subscription</li>
  * </ul>
  */
 public interface SecurityPolicy extends Policy {
     int DEFAULT_ORDER = 1000;
 
     /**
-     * Indicates whether the security policy can handle the request execution context or not.
-     * The policy can extract any information from the execution context to determine if the current request can be handled or not (ex: specific request header, body extraction, ...).
+     * Extracts the {@link SecurityToken} from the request execution context.
+     * If no relevant {@link SecurityToken} is found, it returns an empty Maybe, so that policy won't be executed.
      *
-     * @param ctx the current execution context that can be used to determine if this security policy can handle the current request execution or not.
+     * @param ctx the current request execution context.
      *
-     * @return <code>true</code> if the policy can handle the current request execution, <code>false</code> otherwise.
+     * @return the {@link SecurityToken} found in the request execution context
      */
-    Single<Boolean> support(final HttpExecutionContext ctx);
+    Maybe<SecurityToken> extractSecurityToken(final HttpExecutionContext ctx);
 
     /**
      * Security policy can be used together with a plan that requires a subscription.
@@ -52,19 +51,6 @@ public interface SecurityPolicy extends Policy {
      */
     default boolean requireSubscription() {
         return false;
-    }
-
-    /**
-     * Defines if the subscription associated must be checked and the action to execute when the subscription is not valid.
-     * Usually, it allows to the security policy to interrupt the execution with an error status code and some response headers.
-     *
-     * Returning <code>null</code> indicates that the subscription does have to be verified after the policy completes successfully.
-     *
-     * @return a {@link Completable} corresponding to the actions to execute when the gateway has detected an invalid subscription
-     * or <code>null</code> to disable subscription check.
-     */
-    default Completable onInvalidSubscription(final HttpExecutionContext ctx) {
-        return Completable.complete();
     }
 
     /**
