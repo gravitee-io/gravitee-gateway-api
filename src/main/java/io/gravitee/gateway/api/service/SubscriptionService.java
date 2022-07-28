@@ -30,13 +30,14 @@ public interface SubscriptionService {
     void save(Subscription subscription);
 
     /**
-     * Get subscription by its API and client ID.
+     * Get subscription by its API, client ID, and plan.
      *
      * @param api Searched API
      * @param clientId Searched client ID
+     * @param plan Searched plan ID
      * @return Found subscription
      */
-    Optional<Subscription> getByApiAndClientId(String api, String clientId);
+    Optional<Subscription> getByApiAndClientIdAndPlan(String api, String clientId, String plan);
 
     /**
      * Get subscription by its ID.
