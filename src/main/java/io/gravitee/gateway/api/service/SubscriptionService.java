@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.api.service;
 
+import io.gravitee.gateway.jupiter.api.policy.SecurityToken;
 import java.util.Optional;
 
 /**
@@ -46,4 +47,14 @@ public interface SubscriptionService {
      * @return Found subscription
      */
     Optional<Subscription> getById(String subscriptionId);
+
+    /**
+     * Get subscription by its API, security token, and plan.
+     *
+     * @param api Searched API
+     * @param securityToken Searched security token
+     * @param plan Searched plan ID
+     * @return Found subscription
+     */
+    Optional<Subscription> getByApiAndSecurityToken(String api, SecurityToken securityToken, String plan);
 }
