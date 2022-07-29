@@ -1,3 +1,10 @@
+## [1.37.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.37.2...1.37.3) (2022-07-29)
+
+
+### Bug Fixes
+
+* SubscriptionService searches a subscription from a given API, client_id, and plan ([a3e82d6](https://github.com/gravitee-io/gravitee-gateway-api/commit/a3e82d630fa2d4d3aac38f62c64765c47fec2f9d))
+
 ## [1.37.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.37.1...1.37.2) (2022-07-26)
 
 
