@@ -15,13 +15,14 @@
  */
 package io.gravitee.gateway.jupiter.api.endpoint.sync;
 
-import io.gravitee.gateway.jupiter.api.Type;
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.endpoint.EndpointConnectorFactory;
 import java.util.List;
+import java.util.Set;
 
 public interface EndpointSyncConnectorFactory extends EndpointConnectorFactory<EndpointSyncConnector> {
     @Override
-    default List<Type> supportedApi() {
-        return List.of(Type.SYNC);
+    default Set<ConnectorMode> supportedModes() {
+        return Set.of(ConnectorMode.REQUEST_RESPONSE);
     }
 }

@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api;
+package io.gravitee.gateway.jupiter.api.endpoint;
 
-public enum Type {
-    ASYNC_SUB,
-    ASYNC_PUB,
-    ASYNC_PUB_SUB,
-    SYNC,
-}
+/**
+ * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author GraviteeSource Team
+ */
+public interface EndpointConnectorConfiguration {}

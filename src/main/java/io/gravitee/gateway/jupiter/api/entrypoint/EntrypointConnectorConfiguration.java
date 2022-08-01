@@ -15,15 +15,8 @@
  */
 package io.gravitee.gateway.jupiter.api.entrypoint;
 
-import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
-import io.reactivex.Completable;
-
-public interface EntrypointConnector<T extends ExecutionContext> {
-    int matchesCriteria();
-
-    boolean matches(final T executionContext);
-
-    Completable handleRequest(final T executionContext);
-
-    Completable handleResponse(final T executionContext);
-}
+/**
+ * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author GraviteeSource Team
+ */
+public interface EntrypointConnectorConfiguration {}
