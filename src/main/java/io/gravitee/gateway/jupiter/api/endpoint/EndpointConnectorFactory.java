@@ -15,13 +15,17 @@
  */
 package io.gravitee.gateway.jupiter.api.endpoint;
 
-import io.gravitee.gateway.jupiter.api.Type;
+import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import java.util.List;
+import java.util.Set;
 
 public interface EndpointConnectorFactory<T extends EndpointConnector<?>> {
     String id();
 
-    List<Type> supportedApi();
+    ApiType supportedApi();
+
+    Set<ConnectorMode> supportedModes();
 
     T createConnector(final String config);
 }

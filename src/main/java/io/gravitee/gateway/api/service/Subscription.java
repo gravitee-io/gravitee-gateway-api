@@ -35,6 +35,8 @@ public class Subscription {
 
     private Date endingAt;
 
+    private String configuration;
+
     public String getId() {
         return id;
     }
@@ -102,5 +104,14 @@ public class Subscription {
     public boolean isTimeValid(long requestTimestamp) {
         Date requestDate = new Date(requestTimestamp);
         return (endingAt == null || endingAt.after(requestDate)) && (startingAt == null || startingAt.before(requestDate));
+    }
+
+    public String getConfiguration() {
+        return configuration;
+    }
+
+    public Subscription setConfiguration(final String configuration) {
+        this.configuration = configuration;
+        return this;
     }
 }
