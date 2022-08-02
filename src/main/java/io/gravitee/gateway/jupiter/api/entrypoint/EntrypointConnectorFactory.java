@@ -21,8 +21,6 @@ import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
 import java.util.Set;
 
 public interface EntrypointConnectorFactory<T extends EntrypointConnector<? extends ExecutionContext>> {
-    String id();
-
     ApiType supportedApi();
 
     Set<ConnectorMode> supportedModes();

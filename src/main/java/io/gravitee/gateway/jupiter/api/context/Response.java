@@ -16,36 +16,14 @@
 package io.gravitee.gateway.jupiter.api.context;
 
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.http.HttpHeaders;
-import io.reactivex.*;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
+import io.reactivex.Maybe;
+import io.reactivex.MaybeTransformer;
+import io.reactivex.Single;
 
-public interface Response {
-    Response status(int statusCode);
-
-    int status();
-
-    /**
-     * @return Reason-Phrase is intended to give a short textual description of the Status-Code.
-     */
-    String reason();
-
-    Response reason(final String message);
-
-    /**
-     * @return the headers in the response.
-     */
-    HttpHeaders headers();
-
-    HttpHeaders trailers();
-
-    /**
-     * Indicates if the response is ended or not.
-     * Ended response means the response has been fully push to the client, including response body.
-     *
-     * @return <code>true</code> if the response has been fully pushed to the client, <code>false</code> else.
-     */
-    boolean ended();
-
+public interface Response extends HttpResponse {
     /**
      * Get the current body response as a {@link Maybe}. If no body has not been set on the response yet, an empty {@link Maybe} will returned.
      *

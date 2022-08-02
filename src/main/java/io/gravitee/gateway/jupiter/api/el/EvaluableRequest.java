@@ -18,21 +18,21 @@ package io.gravitee.gateway.jupiter.api.el;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.el.EvaluableSSLSession;
 import io.gravitee.gateway.api.http.HttpHeaders;
-import io.gravitee.gateway.jupiter.api.context.Request;
+import io.gravitee.gateway.jupiter.api.context.HttpRequest;
 import java.util.Map;
 
 public class EvaluableRequest {
 
-    private final Request request;
+    private final HttpRequest request;
     private String content;
     private Map<String, Object> jsonContent;
     private Map<String, Object> xmlContent;
 
-    public EvaluableRequest(final Request request) {
+    public EvaluableRequest(final HttpRequest request) {
         this(request, null);
     }
 
-    public EvaluableRequest(final Request request, final String content) {
+    public EvaluableRequest(final HttpRequest request, final String content) {
         this.request = request;
         this.content = content;
     }

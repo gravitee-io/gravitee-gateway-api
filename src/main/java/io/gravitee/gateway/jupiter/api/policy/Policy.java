@@ -17,11 +17,11 @@ package io.gravitee.gateway.jupiter.api.policy;
 
 import io.gravitee.gateway.jupiter.api.ExecutionPhase;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
+import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.gravitee.gateway.jupiter.api.message.Message;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
 
 /**
  * A {@link Policy} allows to define the actions to apply during the different request execution phases.
@@ -30,11 +30,10 @@ import io.reactivex.Maybe;
  * <ul>
  *     <li>{@link ExecutionPhase#REQUEST}: {@link #onRequest(RequestExecutionContext)}</li>
  *     <li>{@link ExecutionPhase#RESPONSE}: {@link #onResponse(RequestExecutionContext)}</li>
- *     <li>{@link ExecutionPhase#ASYNC_REQUEST}: {@link #onRequest(RequestExecutionContext)} and {@link #onMessageFlow(ExecutionContext, Flowable)}</li>
- *     <li>{@link ExecutionPhase#ASYNC_RESPONSE}: {@link #onResponse(RequestExecutionContext)} and {@link #onMessageFlow(ExecutionContext, Flowable)}</li>
+ *     <li>{@link ExecutionPhase#MESSAGE_REQUEST}: {@link #onMessageRequest(MessageExecutionContext)}</li>
+ *     <li>{@link ExecutionPhase#MESSAGE_RESPONSE}: {@link #onMessageResponse(MessageExecutionContext)}</li>
  * </ul>
  *
- * For {@link ExecutionPhase#ASYNC_REQUEST} and {@link ExecutionPhase#ASYNC_RESPONSE}, the {@link #onMessage(ExecutionContext, Message)} method will be called for each incoming message.
  */
 public interface Policy {
     /**
@@ -102,25 +101,11 @@ public interface Policy {
         return Completable.complete();
     }
 
-    /**
-     * Defines the actions to perform during on each incoming {@link Message}.
-     *
-     * @param ctx the current execution context allowing to access context attributes.
-     *
-     * @return a {@link Maybe} that must complete when all the actions have been performed on the message. The message can be simply dropped by returning {@link Maybe#empty()}.
-     */
-    default Maybe<Message> onMessage(final ExecutionContext ctx, final Message message) {
-        return Maybe.just(message);
+    default Completable onMessageRequest(final MessageExecutionContext ctx) {
+        return Completable.complete();
     }
 
-    /**
-     * Defines the actions to perform on the message flow itself.
-     *
-     * @param ctx the current execution context allowing to access context attributes.
-     *
-     * @return a {@link Flowable} of {@link Message}.
-     */
-    default Flowable<Message> onMessageFlow(final ExecutionContext ctx, final Flowable<Message> messageFlow) {
-        return messageFlow;
+    default Completable onMessageResponse(final MessageExecutionContext ctx) {
+        return Completable.complete();
     }
 }
