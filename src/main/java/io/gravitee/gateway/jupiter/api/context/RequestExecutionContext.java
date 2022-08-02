@@ -15,7 +15,7 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
-public interface RequestExecutionContext extends ExecutionContext {
+public interface RequestExecutionContext extends HttpExecutionContext {
     String TEMPLATE_ATTRIBUTE_REQUEST = "request";
     String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
     String TEMPLATE_ATTRIBUTE_CONTEXT = "context";

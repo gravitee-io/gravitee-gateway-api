@@ -13,14 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.message;
+package io.gravitee.gateway.jupiter.api.context;
 
+import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.jupiter.api.context.HttpRequest;
+import io.gravitee.gateway.jupiter.api.message.Message;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
 
-public interface MessageFlow {
-    Completable flow(final Flowable<Message> messageFlow);
-    Completable onMessage(final FlowableTransformer<Message, Message> messagesTransformer);
-    Completable consume();
+/**
+ * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author GraviteeSource Team
+ */
+public interface MessageRequest extends HttpRequest {
+    Flowable<Message> messages();
+    void messages(final Flowable<Message> messages);
+    Completable onMessages(final FlowableTransformer<Message, Message> onMessages);
 }

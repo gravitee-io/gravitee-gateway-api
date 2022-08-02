@@ -21,8 +21,6 @@ import java.util.List;
 import java.util.Set;
 
 public interface EndpointConnectorFactory<T extends EndpointConnector<?>> {
-    String id();
-
     ApiType supportedApi();
 
     Set<ConnectorMode> supportedModes();

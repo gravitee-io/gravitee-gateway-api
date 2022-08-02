@@ -15,18 +15,26 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
-public interface MessageExecutionContext extends HttpExecutionContext {
-    /**
-     * Get the current request stuck to this execution context.
-     *
-     * @return the request attached to this execution context.
-     */
-    MessageRequest request();
+import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.jupiter.api.message.Message;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableTransformer;
 
-    /**
-     * Get the current response stuck to this execution context.
-     *
-     * @return the response attached to this execution context.
-     */
-    MessageResponse response();
+/**
+ * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author GraviteeSource Team
+ */
+public interface MessageResponse extends HttpResponse {
+    Flowable<Message> messages();
+
+    void messages(final Flowable<Message> messages);
+
+    Completable onMessages(final FlowableTransformer<Message, Message> onMessages);
+
+    Completable end();
+
+    Completable end(final Buffer buffer);
+
+    Completable write(final Buffer buffer);
 }

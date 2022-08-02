@@ -58,16 +58,16 @@ public enum ExecutionPhase {
      *                                          ______________________________
      *      ______________                     |            GATEWAY           |                     ______________
      *     |              |      request       |                              |      request       |              |
-     *     |  DOWNSTREAM  |   ------------->   |  ----- ASYNC_REQUEST ------> |   ------------->   |   UPSTREAM   |
+     *     |  DOWNSTREAM  |   ------------->   |  ----- MESSAGE_REQUEST ----> |   ------------->   |   UPSTREAM   |
      *     |   (client)   |                    |                              |                    |  (endpoint)  |
      *     |______________|                    |______________________________|                    |______________|
      *
      * </pre>
      */
-    ASYNC_REQUEST("async_request"),
+    MESSAGE_REQUEST("message_request"),
 
     /**
-     * This phase represents the actions occurring from the upstream to the downstream in a sync execution context.
+     * This phase represents the actions occurring from the upstream to the downstream in a message execution context.
      *
      * <pre>
      *                                          ______________________________
@@ -84,19 +84,19 @@ public enum ExecutionPhase {
     RESPONSE("response"),
 
     /**
-     * This phase represents the actions occurring from the upstream to the downstream in an async execution context.
+     * This phase represents the actions occurring from the upstream to the downstream in a message execution context.
      *
      * <pre>
      *                                          ______________________________
      *      ______________                     |            GATEWAY           |                     ______________
      *     |              |      response      |                              |      response      |              |
-     *     |  DOWNSTREAM  |   <-------------   |  <---- ASYNC_RESPONSE ------ |   <-------------   |   UPSTREAM   |
+     *     |  DOWNSTREAM  |   <-------------   |  <---- MESSAGE_RESPONSE----- |   <-------------   |   UPSTREAM   |
      *     |   (client)   |                    |                              |                    |  (endpoint)  |
      *     |______________|                    |______________________________|                    |______________|
      *
      * </pre>
      */
-    ASYNC_RESPONSE("async_response");
+    MESSAGE_RESPONSE("message_response");
 
     private final String label;
 
