@@ -15,6 +15,8 @@
  */
 package io.gravitee.gateway.jupiter.api.policy;
 
+import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
+import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -24,9 +26,9 @@ import io.reactivex.Single;
  * Implementing a {@link SecurityPolicy} requires to implement some additional behavior in order to be used by the gateway during the security chain execution that will identify which plan the consumer is using:
  * <ul>
  *     <li>{@link #order()}: to define the priority compared to other security policies</li>
- *     <li>{@link #support(RequestExecutionContext)}: to check if the current request can be handled or not</li>
+ *     <li>{@link #support(HttpExecutionContext)}: to check if the current request can be handled or not</li>
  *     <li>{@link #requireSubscription()} : to indicate if it require a valid subscription or not</li>
- *     <li>{@link #onInvalidSubscription(RequestExecutionContext)} : to defined what to do in case of invalid subscription</li>
+ *     <li>{@link #onInvalidSubscription(HttpExecutionContext)} : to defined what to do in case of invalid subscription</li>
  * </ul>
  */
 public interface SecurityPolicy extends Policy {
@@ -40,7 +42,7 @@ public interface SecurityPolicy extends Policy {
      *
      * @return <code>true</code> if the policy can handle the current request execution, <code>false</code> otherwise.
      */
-    Single<Boolean> support(final RequestExecutionContext ctx);
+    Single<Boolean> support(final HttpExecutionContext ctx);
 
     /**
      * Security policy can be used together with a plan that requires a subscription.
@@ -61,7 +63,7 @@ public interface SecurityPolicy extends Policy {
      * @return a {@link Completable} corresponding to the actions to execute when the gateway has detected an invalid subscription
      * or <code>null</code> to disable subscription check.
      */
-    default Completable onInvalidSubscription(final RequestExecutionContext ctx) {
+    default Completable onInvalidSubscription(final HttpExecutionContext ctx) {
         return Completable.complete();
     }
 
@@ -74,5 +76,23 @@ public interface SecurityPolicy extends Policy {
      */
     default int order() {
         return DEFAULT_ORDER;
+    }
+
+    /**
+     * The <code>onResponse(RequestExecutionContext)</code> method shouldn't call on a <code>SecurityPolicy</code>
+     *
+     * @return a <code>UnsupportedOperationException</code
+     */
+    default Completable onResponse(final RequestExecutionContext ctx) {
+        return Completable.error(new UnsupportedOperationException("onResponse method is not supported by a security policy"));
+    }
+
+    /**
+     * The <code>onMessageResponse(MessageExecutionContext)</code>  method shouldn't call on a <code>SecurityPolicy</code>
+     *
+     * @return the order of the security policy when multiple security policies can be involved.
+     */
+    default Completable onMessageResponse(final MessageExecutionContext ctx) {
+        return Completable.error(new UnsupportedOperationException("onMessageResponse method is not supported by a security policy"));
     }
 }

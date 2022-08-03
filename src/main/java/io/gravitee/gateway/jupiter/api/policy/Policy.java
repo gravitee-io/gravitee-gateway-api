@@ -101,10 +101,60 @@ public interface Policy {
         return Completable.complete();
     }
 
+    /**
+     * Define the actions to perform during the {@link ExecutionPhase#MESSAGE_REQUEST} phase.
+     * The <code>onMessageRequest(MessageExecutionContext)</code> method will be called during the policy chain construction.
+     * Once built, the subscription occurs and the execution is triggered.
+     * It is important that <b>nothing must be executed before the subscription occurs</b> as it could lead to important side effects.
+     * </p>
+     * <b>GOOD</b>, the header is added during the execution, at subscription time.
+     * <pre>
+     *     Completable onMessageRequest(final MessageExecutionContext ctx) {
+     *         return Completable.fromRunnable(() -> request.headers().set("X-DummyHeader", "dummy"));
+     *     }
+     * </pre>
+     *
+     * <b>BAD</b>, the header is added during the build of the policy chain.
+     * <pre>
+     *     Completable onMessageRequest(final MessageExecutionContext ctx) {
+     *         request.headers().set("X-DummyHeader", "dummy");
+     *         return Completable.complete();
+     *     }
+     * </pre>
+     *
+     * @param ctx the current request execution context allowing to access the request, response and attributes.
+     *
+     * @return a {@link Completable} that must complete when all the actions have been performed.
+     */
     default Completable onMessageRequest(final MessageExecutionContext ctx) {
         return Completable.complete();
     }
 
+    /**
+     * Define the actions to perform during the {@link ExecutionPhase#MESSAGE_RESPONSE} phase.
+     * The <code>onMessageResponse(MessageExecutionContext)</code> method will be called during the policy chain construction.
+     * Once built, the subscription occurs and the execution is triggered.
+     * It is important that <b>nothing must be executed before the subscription occurs</b> as it could lead to important side effects.
+     * </p>
+     * <b>GOOD</b>, the header is added during the execution, at subscription time.
+     * <pre>
+     *     Completable onMessageResponse(final MessageExecutionContext ctx) {
+     *         return Completable.fromRunnable(() -> response.headers().set("X-DummyHeader", "dummy"));
+     *     }
+     * </pre>
+     *
+     * <b>BAD</b>, the header is added during the build of the policy chain.
+     * <pre>
+     *     Completable onMessageResponse(final MessageExecutionContext ctx) {
+     *         response.headers().set("X-DummyHeader", "dummy");
+     *         return Completable.complete();
+     *     }
+     * </pre>
+     *
+     * @param ctx the current request execution context allowing to access the request, response and attributes.
+     *
+     * @return a {@link Completable} that must complete when all the actions have been performed.
+     */
     default Completable onMessageResponse(final MessageExecutionContext ctx) {
         return Completable.complete();
     }
