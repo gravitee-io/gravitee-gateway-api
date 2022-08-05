@@ -37,4 +37,6 @@ public interface MessageResponse extends HttpResponse {
     Completable end(final Buffer buffer);
 
     Completable write(final Buffer buffer);
+
+    Completable writeHeaders();
 }

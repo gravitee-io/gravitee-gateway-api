@@ -19,7 +19,7 @@ import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
 import io.reactivex.Completable;
 
 public interface EntrypointConnector<T extends ExecutionContext> {
-    int matchesCriteria();
+    int matchCriteriaCount();
 
     boolean matches(final T executionContext);
 
