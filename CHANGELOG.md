@@ -1,3 +1,11 @@
+# [1.38.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.37.3...1.38.0) (2022-08-08)
+
+
+### Features
+
+* **entrypoint:** add plugin framework ([278c374](https://github.com/gravitee-io/gravitee-gateway-api/commit/278c37489d7b77738590c2d7798ec0f7f7e11b9c))
+* **v4:** add resource to deal with plan, and state ([3ff26e9](https://github.com/gravitee-io/gravitee-gateway-api/commit/3ff26e917b21b63f0fad79d74651c0bd5ecfcd11))
+
 ## [1.37.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.37.2...1.37.3) (2022-07-29)
 
 
