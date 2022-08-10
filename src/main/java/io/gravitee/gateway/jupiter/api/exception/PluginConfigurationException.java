@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.endpoint.async;
+package io.gravitee.gateway.jupiter.api.exception;
 
-import io.gravitee.gateway.jupiter.api.endpoint.EndpointConnectorFactory;
+public class PluginConfigurationException extends Exception {
 
-public abstract class EndpointAsyncConnectorFactory extends EndpointConnectorFactory<EndpointAsyncConnector> {
-
-    public EndpointAsyncConnectorFactory(Class<?> configurationClass) {
-        super(configurationClass);
+    public PluginConfigurationException(String message, Exception cause) {
+        super(message, cause);
     }
 }

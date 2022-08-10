@@ -15,15 +15,34 @@
  */
 package io.gravitee.gateway.jupiter.api.endpoint;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
-import java.util.List;
+import io.gravitee.gateway.jupiter.api.exception.PluginConfigurationException;
 import java.util.Set;
+import lombok.AllArgsConstructor;
 
-public interface EndpointConnectorFactory<T extends EndpointConnector<?>> {
-    ApiType supportedApi();
+@AllArgsConstructor
+public abstract class EndpointConnectorFactory<T extends EndpointConnector<?>> {
 
-    Set<ConnectorMode> supportedModes();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private Class<?> configurationClass;
 
-    T createConnector(final String config);
+    public abstract ApiType supportedApi();
+
+    public abstract Set<ConnectorMode> supportedModes();
+
+    public abstract T createConnector(final String configuration);
+
+    @SuppressWarnings("unchecked")
+    protected <U> U getConfiguration(final String configuration) throws PluginConfigurationException {
+        try {
+            if (configuration == null) {
+                return (U) configurationClass.getDeclaredConstructor().newInstance();
+            }
+            return (U) (OBJECT_MAPPER.readValue(configuration, configurationClass));
+        } catch (Exception e) {
+            throw new PluginConfigurationException("Failed to instantiate plugin configuration", e);
+        }
+    }
 }
