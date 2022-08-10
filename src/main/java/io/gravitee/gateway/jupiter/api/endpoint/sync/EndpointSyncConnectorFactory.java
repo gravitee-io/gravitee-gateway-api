@@ -17,12 +17,16 @@ package io.gravitee.gateway.jupiter.api.endpoint.sync;
 
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.endpoint.EndpointConnectorFactory;
-import java.util.List;
 import java.util.Set;
 
-public interface EndpointSyncConnectorFactory extends EndpointConnectorFactory<EndpointSyncConnector> {
+public abstract class EndpointSyncConnectorFactory extends EndpointConnectorFactory<EndpointSyncConnector> {
+
+    public EndpointSyncConnectorFactory(Class<?> configurationClass) {
+        super(configurationClass);
+    }
+
     @Override
-    default Set<ConnectorMode> supportedModes() {
+    public Set<ConnectorMode> supportedModes() {
         return Set.of(ConnectorMode.REQUEST_RESPONSE);
     }
 }
