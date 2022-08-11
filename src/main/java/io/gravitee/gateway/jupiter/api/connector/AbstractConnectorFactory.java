@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.endpoint;
+package io.gravitee.gateway.jupiter.api.connector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gravitee.gateway.jupiter.api.ApiType;
@@ -23,7 +23,7 @@ import java.util.Set;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public abstract class EndpointConnectorFactory<T extends EndpointConnector<?>> {
+public abstract class AbstractConnectorFactory<T> {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private Class<?> configurationClass;
@@ -42,7 +42,7 @@ public abstract class EndpointConnectorFactory<T extends EndpointConnector<?>> {
             }
             return (U) (OBJECT_MAPPER.readValue(configuration, configurationClass));
         } catch (Exception e) {
-            throw new PluginConfigurationException("Failed to instantiate plugin configuration", e);
+            throw new PluginConfigurationException("Failed to instantiate connector configuration", e);
         }
     }
 }

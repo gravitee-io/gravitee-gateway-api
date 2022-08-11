@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.endpoint.async;
+package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
 
-import io.gravitee.gateway.jupiter.api.endpoint.EndpointConnectorFactory;
+import io.gravitee.gateway.jupiter.api.connector.AbstractConnectorFactory;
 
-public abstract class EndpointAsyncConnectorFactory extends EndpointConnectorFactory<EndpointAsyncConnector> {
+public abstract class EntrypointAsyncConnectorFactory extends AbstractConnectorFactory<EntrypointAsyncConnector> {
 
-    public EndpointAsyncConnectorFactory(Class<?> configurationClass) {
+    public EntrypointAsyncConnectorFactory(Class<?> configurationClass) {
         super(configurationClass);
     }
 }

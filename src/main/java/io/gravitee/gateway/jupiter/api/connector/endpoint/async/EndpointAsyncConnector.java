@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.entrypoint.sync;
+package io.gravitee.gateway.jupiter.api.connector.endpoint.async;
 
-import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
-import io.gravitee.gateway.jupiter.api.entrypoint.EntrypointConnector;
+import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
+import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 
-public interface EntrypointSyncConnector extends EntrypointConnector<RequestExecutionContext> {}
+public interface EndpointAsyncConnector extends EndpointConnector<MessageExecutionContext> {}
