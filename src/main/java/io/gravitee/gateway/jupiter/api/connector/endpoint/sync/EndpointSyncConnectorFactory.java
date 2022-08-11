@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.endpoint.sync;
+package io.gravitee.gateway.jupiter.api.connector.endpoint.sync;
 
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
-import io.gravitee.gateway.jupiter.api.endpoint.EndpointConnectorFactory;
+import io.gravitee.gateway.jupiter.api.connector.AbstractConnectorFactory;
 import java.util.Set;
 
-public abstract class EndpointSyncConnectorFactory extends EndpointConnectorFactory<EndpointSyncConnector> {
+public abstract class EndpointSyncConnectorFactory extends AbstractConnectorFactory<EndpointSyncConnector> {
 
     public EndpointSyncConnectorFactory(Class<?> configurationClass) {
         super(configurationClass);

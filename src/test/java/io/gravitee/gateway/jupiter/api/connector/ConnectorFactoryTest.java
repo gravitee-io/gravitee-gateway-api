@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.endpoint;
+package io.gravitee.gateway.jupiter.api.connector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
-import io.gravitee.gateway.jupiter.api.endpoint.async.EndpointAsyncConnector;
-import io.gravitee.gateway.jupiter.api.endpoint.async.EndpointAsyncConnectorFactory;
+import io.gravitee.gateway.jupiter.api.connector.endpoint.async.EndpointAsyncConnector;
+import io.gravitee.gateway.jupiter.api.connector.endpoint.async.EndpointAsyncConnectorFactory;
 import io.gravitee.gateway.jupiter.api.exception.PluginConfigurationException;
 import java.util.Set;
 import lombok.Getter;
@@ -28,7 +28,7 @@ import lombok.Setter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class EndpointConnectorFactoryTest {
+public class ConnectorFactoryTest {
 
     @Getter
     @Setter
@@ -38,7 +38,7 @@ public class EndpointConnectorFactoryTest {
         private String data2;
     }
 
-    private EndpointConnectorFactory testFactory = new EndpointAsyncConnectorFactory(TestConfiguration.class) {
+    private AbstractConnectorFactory testFactory = new EndpointAsyncConnectorFactory(TestConfiguration.class) {
         @Override
         public ApiType supportedApi() {
             return null;
