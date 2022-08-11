@@ -15,10 +15,17 @@
  */
 package io.gravitee.gateway.jupiter.api.entrypoint;
 
+import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
 import io.reactivex.Completable;
+import java.util.Set;
 
 public interface EntrypointConnector<T extends ExecutionContext> {
+    ApiType supportedApi();
+
+    Set<ConnectorMode> supportedModes();
+
     int matchCriteriaCount();
 
     boolean matches(final T executionContext);
