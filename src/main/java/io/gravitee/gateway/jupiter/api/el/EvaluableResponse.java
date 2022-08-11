@@ -16,21 +16,22 @@
 package io.gravitee.gateway.jupiter.api.el;
 
 import io.gravitee.gateway.api.http.HttpHeaders;
+import io.gravitee.gateway.jupiter.api.context.HttpResponse;
 import io.gravitee.gateway.jupiter.api.context.Response;
 import java.util.Map;
 
 public class EvaluableResponse {
 
-    private final Response response;
+    private final HttpResponse response;
     private String content;
     private Map<String, Object> jsonContent;
     private Map<String, Object> xmlContent;
 
-    public EvaluableResponse(final Response response) {
+    public EvaluableResponse(final HttpResponse response) {
         this(response, null);
     }
 
-    public EvaluableResponse(final Response response, final String content) {
+    public EvaluableResponse(final HttpResponse response, final String content) {
         this.response = response;
         this.content = content;
     }

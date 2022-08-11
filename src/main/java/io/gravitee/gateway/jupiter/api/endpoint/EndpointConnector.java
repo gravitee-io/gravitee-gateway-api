@@ -15,9 +15,16 @@
  */
 package io.gravitee.gateway.jupiter.api.endpoint;
 
+import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
 import io.reactivex.Completable;
+import java.util.Set;
 
 public interface EndpointConnector<T extends ExecutionContext> {
+    ApiType supportedApi();
+
+    Set<ConnectorMode> supportedModes();
+
     Completable connect(final T executionContext);
 }

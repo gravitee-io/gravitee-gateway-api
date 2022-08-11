@@ -15,15 +15,12 @@
  */
 package io.gravitee.gateway.jupiter.api.invoker;
 
+import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
-import io.gravitee.gateway.jupiter.api.endpoint.EndpointConnector;
 import io.reactivex.Completable;
 
 /**
  * Dedicated interface inspired from original {@link io.gravitee.gateway.api.Invoker} interface allowing to invoke an invoker in a reactive manner.
- *
- * <b>WARN</b>: the Invoker concept will certainly be replaced by {@link EndpointConnector}.
- * <b>Implementing a new Invoker may not be a good choice!</b>
  *
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
@@ -32,4 +29,6 @@ public interface Invoker {
     String getId();
 
     Completable invoke(RequestExecutionContext ctx);
+
+    Completable invoke(MessageExecutionContext ctx);
 }
