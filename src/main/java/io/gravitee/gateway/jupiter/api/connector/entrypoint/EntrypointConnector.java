@@ -13,17 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.entrypoint;
+package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
+import io.reactivex.Completable;
 import java.util.Set;
 
-public interface EntrypointConnectorFactory<T extends EntrypointConnector<? extends ExecutionContext>> {
+public interface EntrypointConnector<T extends ExecutionContext> {
     ApiType supportedApi();
 
     Set<ConnectorMode> supportedModes();
 
-    T createConnector(final String configuration);
+    int matchCriteriaCount();
+
+    boolean matches(final T executionContext);
+
+    Completable handleRequest(final T executionContext);
+
+    Completable handleResponse(final T executionContext);
 }

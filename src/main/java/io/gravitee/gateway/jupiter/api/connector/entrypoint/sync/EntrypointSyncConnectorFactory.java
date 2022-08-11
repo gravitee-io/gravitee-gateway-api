@@ -13,10 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.endpoint;
+package io.gravitee.gateway.jupiter.api.connector.entrypoint.sync;
 
-/**
- * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
- * @author GraviteeSource Team
- */
-public interface EndpointConnectorConfiguration {}
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
+import io.gravitee.gateway.jupiter.api.connector.AbstractConnectorFactory;
+import java.util.Set;
+
+public abstract class EntrypointSyncConnectorFactory extends AbstractConnectorFactory<EntrypointSyncConnector> {
+
+    public EntrypointSyncConnectorFactory(Class<?> configurationClass) {
+        super(configurationClass);
+    }
+
+    @Override
+    public Set<ConnectorMode> supportedModes() {
+        return Set.of(ConnectorMode.REQUEST_RESPONSE);
+    }
+}
