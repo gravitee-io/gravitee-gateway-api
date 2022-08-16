@@ -1,3 +1,10 @@
+# [1.39.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.38.0...1.39.0) (2022-08-16)
+
+
+### Features
+
+* introduce generic SecurityToken to handle ApiKey and clientId tokens ([1ff6a9b](https://github.com/gravitee-io/gravitee-gateway-api/commit/1ff6a9b3e6d7bd9ea4242ccb3886d4d8195701b4))
+
 # [1.38.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.37.3...1.38.0) (2022-08-08)
 
 
