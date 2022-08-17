@@ -1,3 +1,10 @@
+# [1.40.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.39.0...1.40.0) (2022-08-17)
+
+
+### Features
+
+* EndpointConnectorFactory deserializes endpoint plugin configuration ([b6f28de](https://github.com/gravitee-io/gravitee-gateway-api/commit/b6f28de9cc9e9c366a5d0c2c16d37c06a51748d9))
+
 # [1.39.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.38.0...1.39.0) (2022-08-16)
 
 
