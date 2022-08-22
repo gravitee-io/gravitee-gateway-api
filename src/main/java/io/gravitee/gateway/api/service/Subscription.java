@@ -16,6 +16,7 @@
 package io.gravitee.gateway.api.service;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Subscription {
 
@@ -36,6 +37,12 @@ public class Subscription {
     private Date endingAt;
 
     private String configuration;
+
+    private String filter;
+
+    private Map<String, String> metadata;
+
+    private Type type = Type.STANDARD;
 
     public String getId() {
         return id;
@@ -101,17 +108,45 @@ public class Subscription {
         this.application = application;
     }
 
-    public boolean isTimeValid(long requestTimestamp) {
-        Date requestDate = new Date(requestTimestamp);
-        return (endingAt == null || endingAt.after(requestDate)) && (startingAt == null || startingAt.before(requestDate));
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
     }
 
     public String getConfiguration() {
         return configuration;
     }
 
-    public Subscription setConfiguration(final String configuration) {
+    public void setConfiguration(String configuration) {
         this.configuration = configuration;
-        return this;
+    }
+
+    public Map<String, String> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public boolean isTimeValid(long requestTimestamp) {
+        Date requestDate = new Date(requestTimestamp);
+        return (endingAt == null || endingAt.after(requestDate)) && (startingAt == null || startingAt.before(requestDate));
+    }
+
+    public enum Type {
+        STANDARD,
+        SUBSCRIPTION,
     }
 }

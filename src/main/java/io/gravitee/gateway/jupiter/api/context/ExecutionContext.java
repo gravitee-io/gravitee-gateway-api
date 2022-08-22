@@ -47,6 +47,10 @@ public interface ExecutionContext {
     String ATTR_ORGANIZATION = ATTR_PREFIX + "organization";
     String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
 
+    String ATTR_SUBSCRIPTION = "subscription";
+
+    String ATTR_SUBSCRIPTION_TYPE = "subscription_type";
+
     /**
      * Adapted ExecutionContext for V3 compatibility.
      */
