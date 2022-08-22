@@ -44,6 +44,6 @@ public class DefaultMessage implements Message {
 
     @Override
     public Buffer content() {
-        return Buffer.buffer(content);
+        return (content != null) ? Buffer.buffer(content) : null;
     }
 }
