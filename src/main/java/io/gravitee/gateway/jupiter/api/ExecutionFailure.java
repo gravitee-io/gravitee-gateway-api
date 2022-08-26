@@ -16,11 +16,13 @@
 package io.gravitee.gateway.jupiter.api;
 
 import java.util.Map;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
+@EqualsAndHashCode
 public class ExecutionFailure {
 
     private int statusCode;
