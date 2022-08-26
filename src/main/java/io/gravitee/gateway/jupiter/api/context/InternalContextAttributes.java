@@ -25,15 +25,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class InternalContextAttributes {
 
+    public static final String ATTR_INTERNAL_ENTRYPOINT_CONNECTOR = "entrypointConnector";
+    public static final String ATTR_INTERNAL_INVOKER = "invoker";
     public static final String ATTR_INTERNAL_EXECUTION_FAILURE = "executionFailure";
     public static final String ATTR_INTERNAL_FLOW_STAGE = "flow.stage";
     public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
+    public static final String ATTR_INTERNAL_SUBSCRIPTION = "subscription";
+    public static final String ATTR_INTERNAL_SUBSCRIPTION_TYPE = "subscription_type";
     /**
      * Adapted ExecutionContext for V3 compatibility.
      */
     public static final String ATTR_INTERNAL_ADAPTED_CONTEXT = "adaptedContext";
-    public static final String ATTR_INTERNAL_SUBSCRIPTION_TYPE = "subscription.type";
-    public static final String ATTR_INTERNAL_SUBSCRIPTION = "subscription";
 
     public static final String ATTR_INTERNAL_LISTENER_TYPE = "listener.type";
 
