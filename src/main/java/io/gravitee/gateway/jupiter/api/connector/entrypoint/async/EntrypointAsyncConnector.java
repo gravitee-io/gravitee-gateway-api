@@ -15,7 +15,13 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
 
+import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
 
-public interface EntrypointAsyncConnector extends EntrypointConnector<MessageExecutionContext> {}
+public interface EntrypointAsyncConnector extends EntrypointConnector<MessageExecutionContext> {
+    @Override
+    default ApiType supportedApi() {
+        return ApiType.ASYNC;
+    }
+}

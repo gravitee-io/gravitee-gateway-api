@@ -15,7 +15,13 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.endpoint.sync;
 
+import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
 import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 
-public interface EndpointSyncConnector extends EndpointConnector<RequestExecutionContext> {}
+public interface EndpointSyncConnector extends EndpointConnector<RequestExecutionContext> {
+    @Override
+    default ApiType supportedApi() {
+        return ApiType.SYNC;
+    }
+}
