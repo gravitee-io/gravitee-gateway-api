@@ -15,11 +15,17 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.endpoint.async;
 
+import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.connector.AbstractConnectorFactory;
 
 public abstract class EndpointAsyncConnectorFactory extends AbstractConnectorFactory<EndpointAsyncConnector> {
 
-    public EndpointAsyncConnectorFactory(Class<?> configurationClass) {
+    protected EndpointAsyncConnectorFactory(Class<?> configurationClass) {
         super(configurationClass);
+    }
+
+    @Override
+    public ApiType supportedApi() {
+        return ApiType.ASYNC;
     }
 }
