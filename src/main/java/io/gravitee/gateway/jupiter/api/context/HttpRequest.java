@@ -18,8 +18,10 @@ package io.gravitee.gateway.jupiter.api.context;
 import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.reporter.api.http.Metrics;
+import io.reactivex.Maybe;
 import javax.net.ssl.SSLSession;
 
 public interface HttpRequest {
@@ -129,4 +131,9 @@ public interface HttpRequest {
      * @return <code>true</code> if the headers and body have been read, <code>false</code> else.
      */
     boolean ended();
+
+    /**
+     * @return the body of the request.
+     */
+    Maybe<Buffer> body();
 }
