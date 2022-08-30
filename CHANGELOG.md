@@ -1,3 +1,10 @@
+# [1.42.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.41.1...1.42.0) (2022-08-30)
+
+
+### Features
+
+* **kafka:** add kafka endpoint ([e3bd01e](https://github.com/gravitee-io/gravitee-gateway-api/commit/e3bd01ed889f8d8b458514871ecb039582d6d25c))
+
 ## [1.41.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.41.0...1.41.1) (2022-08-30)
 
 
