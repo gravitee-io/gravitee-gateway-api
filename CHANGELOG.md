@@ -1,3 +1,10 @@
+# [1.41.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.40.0...1.41.0) (2022-08-30)
+
+
+### Features
+
+* **message:** access body from MessageRequest ([e70f903](https://github.com/gravitee-io/gravitee-gateway-api/commit/e70f90368fb20b080fde577ffe9170c211f0ff39))
+
 # [1.40.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.39.0...1.40.0) (2022-08-17)
 
 
