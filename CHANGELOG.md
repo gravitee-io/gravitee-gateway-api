@@ -1,3 +1,10 @@
+## [1.41.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.41.0...1.41.1) (2022-08-30)
+
+
+### Bug Fixes
+
+* **request:** move body() from Message to Http ([87ed3f7](https://github.com/gravitee-io/gravitee-gateway-api/commit/87ed3f7ec3afc17bc64c594870fb511cf24bdeac))
+
 # [1.41.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.40.0...1.41.0) (2022-08-30)
 
 
