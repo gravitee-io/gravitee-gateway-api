@@ -15,19 +15,16 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
-import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.jupiter.api.message.Message;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
-import io.reactivex.Maybe;
 
 /**
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
 public interface MessageRequest extends HttpRequest {
-    Maybe<Buffer> body();
     Flowable<Message> messages();
     void messages(final Flowable<Message> messages);
     Completable onMessages(final FlowableTransformer<Message, Message> onMessages);
