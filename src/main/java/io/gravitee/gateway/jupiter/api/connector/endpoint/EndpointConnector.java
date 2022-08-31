@@ -21,9 +21,24 @@ import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
 import io.reactivex.Completable;
 import java.util.Set;
 
+/**
+ * Interface describing Endpoint Connector which could be implemented to deal with new protocol specification
+ *
+ * @author GraviteeSource Team
+ */
 public interface EndpointConnector<T extends ExecutionContext> {
+    /**
+     * Returns the {@link ApiType} supported by this endpoint. It will be used to filter available endpoint when creating a new API
+     *
+     * @return {@link ApiType} supported by this entrypoint.
+     */
     ApiType supportedApi();
 
+    /**
+     * Returns a set of {@link ConnectorMode} supported by this endpoint. It will be used to resolve the proper {@link io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector}.
+     *
+     * @return set of {@link ConnectorMode} supported by this entrypoint.
+     */
     Set<ConnectorMode> supportedModes();
 
     Completable connect(final T executionContext);

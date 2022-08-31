@@ -21,12 +21,18 @@ import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.exception.PluginConfigurationException;
 import java.util.Set;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+/**
+ * Shared code between connector factory
+ *
+ * @param <T> related {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector} or {@link io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector} or
+ */
+@RequiredArgsConstructor
 public abstract class AbstractConnectorFactory<T> {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private Class<?> configurationClass;
+    private final Class<?> configurationClass;
 
     public abstract ApiType supportedApi();
 
@@ -34,6 +40,14 @@ public abstract class AbstractConnectorFactory<T> {
 
     public abstract T createConnector(final String configuration);
 
+    /**
+     * Helper method in order to easily map json string configuration to the given configuration class in {@link AbstractConnectorFactory(Class)}
+     *
+     * @param configuration a json string configuration
+     * @param <U> expected Object
+     * @return object serialized from given json configuration
+     * @throws PluginConfigurationException in case any error occurred while mapping the json configuration
+     */
     @SuppressWarnings("unchecked")
     protected <U> U getConfiguration(final String configuration) throws PluginConfigurationException {
         try {

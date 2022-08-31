@@ -16,6 +16,8 @@
 package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 
 /**
+ * Default empty configuration for {@link EntrypointConnector}
+ *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
