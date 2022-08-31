@@ -16,6 +16,8 @@
 package io.gravitee.gateway.jupiter.api.connector.endpoint;
 
 /**
+ * Default empty configuration for {@link EndpointConnector}
+ *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */

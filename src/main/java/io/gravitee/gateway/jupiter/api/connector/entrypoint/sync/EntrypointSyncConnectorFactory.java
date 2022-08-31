@@ -20,9 +20,12 @@ import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.AbstractConnectorFactory;
 import java.util.Set;
 
+/**
+ * Specialized factory for {@link EntrypointSyncConnector}
+ */
 public abstract class EntrypointSyncConnectorFactory extends AbstractConnectorFactory<EntrypointSyncConnector> {
 
-    protected EntrypointSyncConnectorFactory(Class<?> configurationClass) {
+    protected EntrypointSyncConnectorFactory(final Class<?> configurationClass) {
         super(configurationClass);
     }
 

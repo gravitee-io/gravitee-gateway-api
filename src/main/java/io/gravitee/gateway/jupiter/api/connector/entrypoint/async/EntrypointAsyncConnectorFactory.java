@@ -18,9 +18,12 @@ package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.connector.AbstractConnectorFactory;
 
+/**
+ * Specialized factory for {@link EntrypointAsyncConnector}
+ */
 public abstract class EntrypointAsyncConnectorFactory extends AbstractConnectorFactory<EntrypointAsyncConnector> {
 
-    protected EntrypointAsyncConnectorFactory(Class<?> configurationClass) {
+    protected EntrypointAsyncConnectorFactory(final Class<?> configurationClass) {
         super(configurationClass);
     }
 
