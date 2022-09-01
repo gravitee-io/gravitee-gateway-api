@@ -27,7 +27,7 @@ import java.util.Set;
  *
  * @author GraviteeSource Team
  */
-public interface EntrypointConnector<T extends ExecutionContext> {
+public interface EntrypointConnector {
     /**
      * Returns the {@link ApiType} supported by this entrypoint. It will be used to filter available entrypoint when creating a new API
      *
@@ -61,19 +61,19 @@ public interface EntrypointConnector<T extends ExecutionContext> {
      *
      * @return <code>true</code> if the incoming request matches all criteria, <code>false</code> otherwise
      */
-    boolean matches(final T executionContext);
+    boolean matches(final ExecutionContext executionContext);
 
     /**
      * Handle incoming request by doing or adding anything to the context anything required by the entrypoint.
      *
      * @return <code>Completable</code>
      */
-    Completable handleRequest(final T executionContext);
+    Completable handleRequest(final ExecutionContext executionContext);
 
     /**
      * Handle outgoing response by doing or adding anything to the context anything required by the entrypoint.
      *
      * @return <code>Completable</code>
      */
-    Completable handleResponse(final T executionContext);
+    Completable handleResponse(final ExecutionContext executionContext);
 }

@@ -15,9 +15,9 @@
  */
 package io.gravitee.gateway.jupiter.api.policy;
 
+import io.gravitee.gateway.jupiter.api.context.GenericExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
-import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
 
@@ -65,11 +65,11 @@ public interface SecurityPolicy extends Policy {
     }
 
     /**
-     * The <code>onResponse(RequestExecutionContext)</code> method shouldn't call on a <code>SecurityPolicy</code>
+     * The <code>onResponse(HttpExecutionContext)</code> method shouldn't call on a <code>SecurityPolicy</code>
      *
      * @return a <code>UnsupportedOperationException</code
      */
-    default Completable onResponse(final RequestExecutionContext ctx) {
+    default Completable onResponse(final HttpExecutionContext ctx) {
         return Completable.error(new UnsupportedOperationException("onResponse method is not supported by a security policy"));
     }
 

@@ -15,8 +15,9 @@
  */
 package io.gravitee.gateway.jupiter.api.invoker;
 
+import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
+import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
-import io.gravitee.gateway.jupiter.api.context.RequestExecutionContext;
 import io.reactivex.Completable;
 
 /**
@@ -28,7 +29,5 @@ import io.reactivex.Completable;
 public interface Invoker {
     String getId();
 
-    Completable invoke(RequestExecutionContext ctx);
-
-    Completable invoke(MessageExecutionContext ctx);
+    Completable invoke(ExecutionContext ctx);
 }
