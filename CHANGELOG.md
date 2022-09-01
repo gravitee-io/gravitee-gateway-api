@@ -1,3 +1,10 @@
+# [1.43.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.42.0...1.43.0) (2022-09-01)
+
+
+### Features
+
+* Initial support for webhook subscription ([bcd8064](https://github.com/gravitee-io/gravitee-gateway-api/commit/bcd8064a0fa86b84f354f9c8b36652dc5cca7cda))
+
 # [1.42.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.41.1...1.42.0) (2022-08-30)
 
 

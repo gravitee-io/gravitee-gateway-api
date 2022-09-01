@@ -29,7 +29,7 @@
 
     <groupId>io.gravitee.gateway</groupId>
     <artifactId>gravitee-gateway-api</artifactId>
-    <version>1.43.0-webhook-SNAPSHOT</version>
+    <version>1.43.0</version>
 
     <name>Gravitee.io APIM - Gateway - API</name>
 
