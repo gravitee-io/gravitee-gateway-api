@@ -25,7 +25,7 @@ import io.reactivex.FlowableTransformer;
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface MessageResponse extends HttpResponse {
+public interface MessageResponse extends GenericResponse {
     Flowable<Message> messages();
 
     void messages(final Flowable<Message> messages);

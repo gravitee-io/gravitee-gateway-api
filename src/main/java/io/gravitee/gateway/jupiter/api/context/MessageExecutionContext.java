@@ -15,7 +15,7 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
-public interface MessageExecutionContext extends HttpExecutionContext {
+public interface MessageExecutionContext extends GenericExecutionContext {
     /**
      * Get the current request stuck to this execution context.
      *

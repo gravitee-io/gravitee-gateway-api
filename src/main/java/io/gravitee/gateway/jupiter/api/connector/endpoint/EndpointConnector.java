@@ -26,7 +26,7 @@ import java.util.Set;
  *
  * @author GraviteeSource Team
  */
-public interface EndpointConnector<T extends ExecutionContext> {
+public interface EndpointConnector {
     /**
      * Returns the {@link ApiType} supported by this endpoint. It will be used to filter available endpoint when creating a new API
      *
@@ -41,5 +41,5 @@ public interface EndpointConnector<T extends ExecutionContext> {
      */
     Set<ConnectorMode> supportedModes();
 
-    Completable connect(final T executionContext);
+    Completable connect(final ExecutionContext executionContext);
 }

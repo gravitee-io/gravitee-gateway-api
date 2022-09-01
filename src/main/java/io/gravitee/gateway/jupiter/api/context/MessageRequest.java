@@ -24,7 +24,7 @@ import io.reactivex.FlowableTransformer;
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface MessageRequest extends HttpRequest {
+public interface MessageRequest extends GenericRequest {
     Flowable<Message> messages();
     void messages(final Flowable<Message> messages);
     Completable onMessages(final FlowableTransformer<Message, Message> onMessages);

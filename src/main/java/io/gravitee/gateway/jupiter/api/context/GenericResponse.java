@@ -15,22 +15,32 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
-public interface RequestExecutionContext extends HttpExecutionContext {
-    String TEMPLATE_ATTRIBUTE_REQUEST = "request";
-    String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
-    String TEMPLATE_ATTRIBUTE_CONTEXT = "context";
+import io.gravitee.gateway.api.http.HttpHeaders;
+
+public interface GenericResponse {
+    GenericResponse status(int statusCode);
+
+    int status();
 
     /**
-     * Get the current request stuck to this execution context.
-     *
-     * @return the request attached to this execution context.
+     * @return Reason-Phrase is intended to give a short textual description of the Status-Code.
      */
-    Request request();
+    String reason();
+
+    GenericResponse reason(final String message);
 
     /**
-     * Get the current response stuck to this execution context.
-     *
-     * @return the response attached to this execution context.
+     * @return the headers in the response.
      */
-    Response response();
+    HttpHeaders headers();
+
+    HttpHeaders trailers();
+
+    /**
+     * Indicates if the response is ended or not.
+     * Ended response means the response has been fully push to the client, including response body.
+     *
+     * @return <code>true</code> if the response has been fully pushed to the client, <code>false</code> else.
+     */
+    boolean ended();
 }
