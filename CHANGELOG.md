@@ -1,3 +1,11 @@
+# [1.44.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.43.0...1.44.0) (2022-09-02)
+
+
+### Features
+
+* improve execution context structure ([9589294](https://github.com/gravitee-io/gravitee-gateway-api/commit/95892941ffd6964ab5ba096a44e9fa8856c5d404)), closes [gravitee-io/issues#8386](https://github.com/gravitee-io/issues/issues/8386)
+* improve Message structure ([32baa21](https://github.com/gravitee-io/gravitee-gateway-api/commit/32baa2184048c9f98029437705fcd14909ff1d18))
+
 # [1.43.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.42.0...1.43.0) (2022-09-01)
 
 
