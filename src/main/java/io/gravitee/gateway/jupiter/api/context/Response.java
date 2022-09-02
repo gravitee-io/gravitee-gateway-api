@@ -15,8 +15,40 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
+import io.gravitee.gateway.api.buffer.Buffer;
+import io.reactivex.Completable;
+
 /**
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Response extends HttpResponse, MessageResponse {}
+public interface Response extends HttpResponse, MessageResponse {
+    /**
+     * Ends the response.
+     *
+     * @return a {@link Completable} that completes once the response ends.
+     */
+    Completable end();
+
+    /**
+     * Ends the response with the provided content.
+     *
+     * @return a {@link Completable} that completes once the response ends.
+     */
+    Completable end(final Buffer buffer);
+
+    /**
+     * Writes the provided content to the response.
+     *
+     * @return a {@link Completable} that completes once write has been performed.
+     */
+    Completable write(final Buffer buffer);
+
+    /**
+     * Write the headers to the response.
+     * <b>WARN:</b> this operation should not be done more than once!
+     *
+     * @return a {@link Completable} that completes once the headers has been written.
+     */
+    Completable writeHeaders();
+}
