@@ -22,36 +22,6 @@ import java.util.Map;
 import java.util.Set;
 
 public interface GenericExecutionContext {
-    String ATTR_PREFIX = "gravitee.attribute.";
-    String ATTR_INTERNAL_PREFIX = "gravitee.internal.attribute.";
-    String ATTR_INTERNAL_EXECUTION_FAILURE = ATTR_INTERNAL_PREFIX + "execution-failure";
-    String ATTR_INTERNAL_FLOW_STAGE = ATTR_INTERNAL_PREFIX + "flow.stage";
-    String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
-    String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
-    String ATTR_APPLICATION = ATTR_PREFIX + "application";
-    String ATTR_API = ATTR_PREFIX + "api";
-    String ATTR_API_DEPLOYED_AT = ATTR_PREFIX + "api.deployed-at";
-    String ATTR_SUBSCRIPTION_ID = ATTR_PREFIX + "user-id";
-    String ATTR_PLAN = ATTR_PREFIX + "plan";
-    String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
-    String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
-    String ATTR_INVOKER = ATTR_PREFIX + "request.invoker";
-    String ATTR_QUOTA_COUNT = ATTR_PREFIX + "quota.count";
-    String ATTR_QUOTA_REMAINING = ATTR_PREFIX + "quota.remaining";
-    String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
-    String ATTR_QUOTA_RESET_TIME = ATTR_PREFIX + "quota.reset.time";
-    String ATTR_USER = ATTR_PREFIX + "user";
-    String ATTR_USER_ROLES = ATTR_PREFIX + "user.roles";
-    String ATTR_ORGANIZATION = ATTR_PREFIX + "organization";
-    String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
-    String ATTR_SUBSCRIPTION = ATTR_PREFIX + "subscription";
-    String ATTR_SUBSCRIPTION_TYPE = ATTR_PREFIX + "subscription_type";
-
-    /**
-     * Adapted ExecutionContext for V3 compatibility.
-     */
-    String ATTR_ADAPTED_CONTEXT = ATTR_INTERNAL_PREFIX + "contextAdapter";
-
     /**
      * Get the current request stuck to this execution context.
      *
