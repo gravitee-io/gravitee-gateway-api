@@ -25,4 +25,10 @@ public interface Message {
     Map<String, Object> metadata();
 
     Buffer content();
+
+    Message headers(HttpHeaders headers);
+
+    Message metadata(Map<String, Object> metadata);
+
+    Message content(Buffer buffer);
 }

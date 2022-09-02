@@ -19,13 +19,67 @@ import io.gravitee.gateway.jupiter.api.message.Message;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
+import io.reactivex.Maybe;
+import java.util.function.Function;
 
 /**
+ * Represents a request that can manipulate a flow of messages.
+ *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
 public interface MessageRequest extends GenericRequest {
+    /**
+     * Get the request message flow as a {@link Flowable} of {@link Message}.
+     * <b>WARN:</b> you should not keep a direct reference on the message flow as it could be overridden by others at anytime.
+     *
+     * @return a {@link Flowable} of {@link Message}.
+     */
     Flowable<Message> messages();
+
+    /**
+     * Set the request message flow.
+     * <b>WARN:</b>
+     * <ul>
+     *  <li>Replacing the message flow <b>DOES NOT</b> take care of the previous message flow in place.</li>
+     *  <li>You <b>MUST</b> ensure to consume the previous message flow when using it.</li>
+     *  <li>You <b>SHOULD</b> consider using {@link #onMessages(FlowableTransformer)} or {@link #onMessage(Function)} that may be more appropriate for message transformation.</li>
+     * </ul>
+     *
+     * @see #onMessage(Function)
+     * @see #onMessages(FlowableTransformer)
+     */
     void messages(final Flowable<Message> messages);
+
+    /**
+     * Applies a given transformation on each message.
+     * Ex:
+     * <code>
+     *     request.onMessages(messages -> messages.flatMap(message -> transformMyMessage(message)));
+     * </code>
+     *
+     * @param onMessages the transformer that will be applied on each message.
+     * @return a {@link Completable} that completes once the message transformation has been set up on the message flow (not executed).
+     */
     Completable onMessages(final FlowableTransformer<Message, Message> onMessages);
+
+    /**
+     * Applies a given transformation on each message.
+     * Ex:
+     * Discard a message:
+     * <code>
+     *     request.onMessage(message -> Maybe.empty());
+     * </code>
+     *
+     * Update a message:
+     * <code>
+     *     request.onMessage(message -> transformMyMessage(message));
+     * </code>
+     *
+     * @param onMessage the transformer that will be applied on each message.
+     * @return a {@link Completable} that completes once the message transformation has been set up on the message flow (not executed).
+     */
+    default Completable onMessage(Function<Message, Maybe<Message>> onMessage) {
+        return onMessages(upstream -> upstream.flatMapMaybe(onMessage::apply));
+    }
 }

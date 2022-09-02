@@ -19,31 +19,23 @@ import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.Accessors;
 
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Accessors(fluent = true)
 public class DefaultMessage implements Message {
 
-    private byte[] content;
+    private Buffer content;
     private Map<String, Object> metadata = new HashMap<>();
     private HttpHeaders headers = HttpHeaders.create();
 
-    @Override
-    public HttpHeaders headers() {
-        return headers;
-    }
-
-    @Override
-    public Map<String, Object> metadata() {
-        return metadata;
-    }
-
-    @Override
-    public Buffer content() {
-        return (content != null) ? Buffer.buffer(content) : null;
+    public DefaultMessage(final String content) {
+        if (content != null) {
+            this.content = Buffer.buffer(content);
+        }
     }
 }
