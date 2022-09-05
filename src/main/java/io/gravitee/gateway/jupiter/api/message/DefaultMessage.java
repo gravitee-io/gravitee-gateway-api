@@ -17,9 +17,14 @@ package io.gravitee.gateway.jupiter.api.message;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.*;
+import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 @Data
@@ -29,13 +34,56 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class DefaultMessage implements Message {
 
-    private Buffer content;
-    private Map<String, Object> metadata = new HashMap<>();
+    private Map<String, Object> attributes;
+    private Map<String, Object> metadata;
     private HttpHeaders headers = HttpHeaders.create();
+    private Buffer content;
 
     public DefaultMessage(final String content) {
         if (content != null) {
             this.content = Buffer.buffer(content);
         }
+    }
+
+    @Override
+    public <T> T attribute(final String name) {
+        return (T) getOrInitAttribute().get(name);
+    }
+
+    @Override
+    public DefaultMessage attribute(final String name, final Object value) {
+        getOrInitAttribute().put(name, value);
+        return this;
+    }
+
+    @Override
+    public DefaultMessage removeAttribute(final String name) {
+        getOrInitAttribute().remove(name);
+        return this;
+    }
+
+    @Override
+    public Set<String> attributeNames() {
+        return getOrInitAttribute().keySet();
+    }
+
+    @Override
+    public <T> Map<String, T> attributes() {
+        return Collections.unmodifiableMap((Map<String, T>) getOrInitAttribute());
+    }
+
+    private Map<String, Object> getOrInitAttribute() {
+        if (this.attributes == null) {
+            this.attributes = new HashMap<>();
+        }
+        return this.attributes;
+    }
+
+    @Override
+    public Map<String, Object> metadata() {
+        if (metadata == null) {
+            metadata = new HashMap<>();
+        }
+        return Collections.unmodifiableMap(metadata);
     }
 }

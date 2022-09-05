@@ -28,19 +28,5 @@ import java.util.Set;
  * @author GraviteeSource Team
  */
 public interface EndpointConnector extends Connector {
-    /**
-     * Returns the {@link ApiType} supported by this endpoint. It will be used to filter available endpoint when creating a new API
-     *
-     * @return {@link ApiType} supported by this entrypoint.
-     */
-    ApiType supportedApi();
-
-    /**
-     * Returns a set of {@link ConnectorMode} supported by this endpoint. It will be used to resolve the proper {@link io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector}.
-     *
-     * @return set of {@link ConnectorMode} supported by this entrypoint.
-     */
-    Set<ConnectorMode> supportedModes();
-
     Completable connect(final ExecutionContext executionContext);
 }

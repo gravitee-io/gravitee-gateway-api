@@ -29,27 +29,12 @@ import java.util.Set;
  * @author GraviteeSource Team
  */
 public interface EntrypointConnector extends Connector {
-public interface EntrypointConnector {
-    /**
-     * Returns the {@link ApiType} supported by this entrypoint. It will be used to filter available entrypoint when creating a new API
-     *
-     * @return {@link ApiType} supported by this entrypoint.
-     */
-    ApiType supportedApi();
-
     /**
      * Returns the {@link ListenerType} supported by this entrypoint. It will be used to filter available entrypoint when creating a new API
      *
      * @return {@link ListenerType} supported by this entrypoint.
      */
     ListenerType supportedListenerType();
-
-    /**
-     * Returns a set of {@link ConnectorMode} supported by this entrypoint. It will be used to resolve the proper associated {@link io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector}.
-     *
-     * @return set of {@link ConnectorMode} supported by this entrypoint.
-     */
-    Set<ConnectorMode> supportedModes();
 
     /**
      * Returns the number of criteria used in {{@link #matches(ExecutionContext)}. This number is used to sort compatible entrypoint from a request in the descending order.
