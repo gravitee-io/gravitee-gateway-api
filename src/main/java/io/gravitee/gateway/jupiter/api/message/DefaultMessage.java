@@ -45,6 +45,14 @@ public class DefaultMessage implements Message {
         }
     }
 
+    private static Map<String, Object> unmodifiableMetadata(final Map<String, Object> metadata) {
+        if (metadata != null) {
+            return Collections.unmodifiableMap(metadata);
+        } else {
+            return Map.of();
+        }
+    }
+
     @Override
     public <T> T attribute(final String name) {
         return (T) getOrInitAttribute().get(name);
@@ -82,8 +90,21 @@ public class DefaultMessage implements Message {
     @Override
     public Map<String, Object> metadata() {
         if (metadata == null) {
-            metadata = new HashMap<>();
+            metadata = Map.of();
         }
-        return Collections.unmodifiableMap(metadata);
+        return metadata;
+    }
+
+    public DefaultMessage metadata(Map<String, Object> metadata) {
+        this.metadata = unmodifiableMetadata(metadata);
+        return this;
+    }
+
+    public static class DefaultMessageBuilder {
+
+        public DefaultMessageBuilder metadata(final Map<String, Object> metadata) {
+            this.metadata = unmodifiableMetadata(metadata);
+            return this;
+        }
     }
 }
