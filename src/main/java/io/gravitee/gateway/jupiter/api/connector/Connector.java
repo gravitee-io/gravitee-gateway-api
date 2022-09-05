@@ -27,12 +27,16 @@ import java.util.Set;
  */
 public interface Connector {
     /**
+     * Returns the {@link ApiType} supported by this endpoint. It will be used to filter available connector when creating a new API
+     *
      * @return {@link ApiType} supported by this entrypoint.
      */
     ApiType supportedApi();
 
     /**
-     * @return {@link ConnectorMode} supported by this connector.
+     * Returns a set of {@link ConnectorMode} supported by this endpoint. It will be used to resolve the proper connector.
+     *
+     * @return set of {@link ConnectorMode} supported by this entrypoint.
      */
     Set<ConnectorMode> supportedModes();
 }

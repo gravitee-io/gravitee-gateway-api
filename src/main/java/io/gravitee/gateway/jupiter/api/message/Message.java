@@ -18,17 +18,61 @@ package io.gravitee.gateway.jupiter.api.message;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import java.util.Map;
+import java.util.Set;
 
 public interface Message {
-    HttpHeaders headers();
+    /**
+     * Returns the value of the attribute cast in the expected type T, or <code>null</code> if no attribute for the given
+     * name exists.
+     *
+     * @param name the name of the attribute.
+     * @param <T> the expected type of the attribute value. Specify {@link Object} if you expect value of any type.
+     *
+     * @return an Object containing the value of the attribute, or null if the attribute does not exist.
+     */
+    <T> T attribute(final String name);
+
+    /**
+     * Stores an attribute in this message.
+     *
+     * @param name a String specifying the name of the attribute.
+     * @param value the Object to be stored.Returns:
+     * @return reference to itself for easily chain calls
+     */
+    Message attribute(final String name, final Object value);
+
+    /**
+     * Removes an attribute from this request. This method is not generally needed as attributes only persist as
+     * long as the message is being handled.
+     *
+     * @param name the name of the attribute to remove.
+     * @return reference to itself for easily chain calls
+     */
+    Message removeAttribute(final String name);
+
+    /**
+     * Returns a <code>Set</code> containing the names of the attributes available to this message. This method returns
+     * an empty <code>Set</code> if the message has no attributes available to it.
+     *
+     * @return a set of strings containing the names of the message's attributes.
+     */
+    Set<String> attributeNames();
+
+    /**
+     * Get all attributes available.
+     *
+     * @param <T> the expected type of the attribute values. Specify {@link Object} if you expect values of any types.
+     * @return the list of all the attributes.
+     */
+    <T> Map<String, T> attributes();
 
     Map<String, Object> metadata();
 
+    HttpHeaders headers();
+
+    Message headers(final HttpHeaders headers);
+
     Buffer content();
 
-    Message headers(HttpHeaders headers);
-
-    Message metadata(Map<String, Object> metadata);
-
-    Message content(Buffer buffer);
+    Message content(final Buffer buffer);
 }

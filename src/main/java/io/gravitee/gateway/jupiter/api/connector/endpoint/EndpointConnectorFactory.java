@@ -20,4 +20,4 @@ import io.gravitee.gateway.jupiter.api.connector.ConnectorFactory;
 /**
  * Specialized factory for {@link EndpointConnector}
  */
-public interface EndpointConnectorFactory<T extends EndpointConnector<?>> extends ConnectorFactory<T> {}
+public interface EndpointConnectorFactory<T extends EndpointConnector> extends ConnectorFactory<T> {}
