@@ -15,10 +15,12 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.endpoint;
 
+import io.gravitee.gateway.jupiter.api.connector.ConnectorConfiguration;
+
 /**
  * Default empty configuration for {@link EndpointConnector}
  *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface EndpointConnectorConfiguration {}
+public interface EndpointConnectorConfiguration extends ConnectorConfiguration {}
