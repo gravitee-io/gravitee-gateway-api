@@ -16,45 +16,46 @@
 package io.gravitee.gateway.jupiter.api.connector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.gravitee.gateway.jupiter.api.ApiType;
-import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.exception.PluginConfigurationException;
-import java.util.Set;
+import io.gravitee.node.api.configuration.Configuration;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 /**
- * Shared code between connector factory
+ * Helper class used by factory to create new {@link Connector}
  *
- * @param <T> related {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector} or {@link io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector} or
+ * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author GraviteeSource Team
  */
-@RequiredArgsConstructor
-public abstract class AbstractConnectorFactory<T> {
+@AllArgsConstructor
+public class ConnectorFactoryHelper {
 
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private final Class<?> configurationClass;
-
-    public abstract ApiType supportedApi();
-
-    public abstract Set<ConnectorMode> supportedModes();
-
-    public abstract T createConnector(final String configuration);
+    private final Configuration configuration;
+    private final ObjectMapper objectMapper;
 
     /**
-     * Helper method in order to easily map json string configuration to the given configuration class in {@link AbstractConnectorFactory(Class)}
+     * Helper method to retrieve node configuration
      *
+     * @return {@link Configuration} available
+     */
+    public Configuration getNodeConfiguration() {
+        return this.configuration;
+    }
+
+    /**
+     * Helper method in order to easily map json string configuration to the given configuration class
+     *
+     * @param configurationClass the class to map the string to
      * @param configuration a json string configuration
-     * @param <U> expected Object
      * @return object serialized from given json configuration
      * @throws PluginConfigurationException in case any error occurred while mapping the json configuration
      */
-    @SuppressWarnings("unchecked")
-    protected <U> U getConfiguration(final String configuration) throws PluginConfigurationException {
+    public <T extends ConnectorConfiguration> T getConnectorConfiguration(final Class<T> configurationClass, final String configuration)
+        throws PluginConfigurationException {
         try {
             if (configuration == null) {
-                return (U) configurationClass.getDeclaredConstructor().newInstance();
+                return configurationClass.getDeclaredConstructor().newInstance();
             }
-            return (U) (OBJECT_MAPPER.readValue(configuration, configurationClass));
+            return objectMapper.readValue(configuration, configurationClass);
         } catch (Exception e) {
             throw new PluginConfigurationException("Failed to instantiate connector configuration", e);
         }

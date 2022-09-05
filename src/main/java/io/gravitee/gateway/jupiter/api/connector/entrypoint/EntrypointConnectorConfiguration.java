@@ -15,10 +15,12 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 
+import io.gravitee.gateway.jupiter.api.connector.ConnectorConfiguration;
+
 /**
  * Default empty configuration for {@link EntrypointConnector}
  *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface EntrypointConnectorConfiguration {}
+public interface EntrypointConnectorConfiguration extends ConnectorConfiguration {}

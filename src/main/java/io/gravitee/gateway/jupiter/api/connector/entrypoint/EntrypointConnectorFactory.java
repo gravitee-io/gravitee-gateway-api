@@ -13,17 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
+package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 
-import io.gravitee.gateway.jupiter.api.ApiType;
-import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnectorFactory;
+import io.gravitee.gateway.jupiter.api.connector.ConnectorFactory;
 
 /**
- * Specialized factory for {@link EntrypointAsyncConnector}
+ * Specialized factory for {@link EntrypointConnector}
  */
-public interface EntrypointAsyncConnectorFactory extends EntrypointConnectorFactory<EntrypointAsyncConnector> {
-    @Override
-    default ApiType supportedApi() {
-        return ApiType.ASYNC;
-    }
-}
+public interface EntrypointConnectorFactory<T extends EntrypointConnector<?>> extends ConnectorFactory<T> {}

@@ -13,24 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.connector.entrypoint.sync;
+package io.gravitee.gateway.jupiter.api.connector;
 
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
-import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnectorFactory;
 import java.util.Set;
 
 /**
- * Specialized factory for {@link EntrypointSyncConnector}
+ * Interface describing Connector which could be implemented to deal with new protocol specification
+ *
+ * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author GraviteeSource Team
  */
-public interface EntrypointSyncConnectorFactory extends EntrypointConnectorFactory<EntrypointSyncConnector> {
-    @Override
-    default Set<ConnectorMode> supportedModes() {
-        return Set.of(ConnectorMode.REQUEST_RESPONSE);
-    }
+public interface Connector {
+    /**
+     * @return {@link ApiType} supported by this entrypoint.
+     */
+    ApiType supportedApi();
 
-    @Override
-    default ApiType supportedApi() {
-        return ApiType.SYNC;
-    }
+    /**
+     * @return {@link ConnectorMode} supported by this connector.
+     */
+    Set<ConnectorMode> supportedModes();
 }

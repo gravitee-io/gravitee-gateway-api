@@ -18,6 +18,7 @@ package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.ListenerType;
+import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
 import io.reactivex.Completable;
 import java.util.Set;
@@ -27,6 +28,7 @@ import java.util.Set;
  *
  * @author GraviteeSource Team
  */
+public interface EntrypointConnector extends Connector {
 public interface EntrypointConnector {
     /**
      * Returns the {@link ApiType} supported by this entrypoint. It will be used to filter available entrypoint when creating a new API
