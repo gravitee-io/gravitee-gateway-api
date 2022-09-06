@@ -1,3 +1,16 @@
+# [1.45.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.44.0...1.45.0) (2022-09-06)
+
+
+### Bug Fixes
+
+* add FactoryHelper to hold common behaviour across connector factory ([16021a3](https://github.com/gravitee-io/gravitee-gateway-api/commit/16021a3337aeb38a282de12ffc391ca74557ec3f))
+* fix after review ([562eb0e](https://github.com/gravitee-io/gravitee-gateway-api/commit/562eb0eaab0ce22e2b469261574d9cb6356c5829))
+
+
+### Features
+
+* add attributes on message ([042cf3c](https://github.com/gravitee-io/gravitee-gateway-api/commit/042cf3c7fc9ed70404fd8f2765667985291e7227))
+
 # [1.44.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.43.0...1.44.0) (2022-09-02)
 
 
