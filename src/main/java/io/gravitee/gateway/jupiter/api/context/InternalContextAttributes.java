@@ -35,4 +35,25 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_SUBSCRIPTION = "subscription";
 
     public static final String ATTR_INTERNAL_LISTENER_TYPE = "listener.type";
+
+    /**
+     * <b>Feature: LIMIT</b> <br/>
+     * <i>Type: integer</i> <br/>
+     * Attribute used to store the maximum number of messages to retrieve, asked by the client.
+     */
+    public static final String ATTR_INTERNAL_MESSAGES_LIMIT_COUNT = "messages.limit.count";
+
+    /**
+     * <b>Feature: LIMIT</b> <br/>
+     * <i>Type: long</i> <br/>
+     * Attribute used to store the maximum duration of the consumption request, asked by the client.
+     */
+    public static final String ATTR_INTERNAL_MESSAGES_LIMIT_DURATION_MS = "messages.limit.durationMs";
+
+    /**
+     * <b>Feature: RESUME</b> <br/>
+     * <i>Type: string</i> <br/>
+     * Attribute used to store the ID of the last message received by the client.
+     */
+    public static final String ATTR_INTERNAL_MESSAGES_RESUME_LASTID = "messages.resume.lastId";
 }
