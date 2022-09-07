@@ -26,8 +26,6 @@ import lombok.NoArgsConstructor;
 public final class ContextAttributes {
 
     public static final String ATTR_PREFIX = "gravitee.attribute.";
-    public static final String ATTR_SUBSCRIPTION_TYPE = ATTR_PREFIX + "subscription_type";
-    public static final String ATTR_SUBSCRIPTION = ATTR_PREFIX + "subscription";
     public static final String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
     public static final String ATTR_ORGANIZATION = ATTR_PREFIX + "organization";
     public static final String ATTR_USER_ROLES = ATTR_PREFIX + "user.roles";
@@ -46,4 +44,7 @@ public final class ContextAttributes {
     public static final String ATTR_APPLICATION = ATTR_PREFIX + "application";
     public static final String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     public static final String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
+
+    // For jupiter v3 compatibility, should be moved to internal attributes at term.
+    public static final String ATTR_SKIP_SECURITY_CHAIN = "skip-security-chain";
 }
