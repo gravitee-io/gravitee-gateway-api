@@ -15,8 +15,6 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 
-import io.gravitee.gateway.jupiter.api.ApiType;
-import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.ListenerType;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;

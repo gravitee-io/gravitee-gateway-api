@@ -80,6 +80,6 @@ public interface MessageRequest extends GenericRequest {
      * @return a {@link Completable} that completes once the message transformation has been set up on the message flow (not executed).
      */
     default Completable onMessage(Function<Message, Maybe<Message>> onMessage) {
-        return onMessages(upstream -> upstream.flatMapMaybe(onMessage::apply));
+        return onMessages(upstream -> upstream.concatMapMaybe(onMessage::apply));
     }
 }
