@@ -66,6 +66,8 @@ public interface Message {
      */
     <T> Map<String, T> attributes();
 
+    String id();
+
     Map<String, Object> metadata();
 
     HttpHeaders headers();
