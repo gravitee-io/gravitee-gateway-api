@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +35,7 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class DefaultMessage implements Message {
 
+    private String id;
     private Map<String, Object> attributes;
     private Map<String, Object> metadata;
     private HttpHeaders headers = HttpHeaders.create();
@@ -85,6 +87,14 @@ public class DefaultMessage implements Message {
             this.attributes = new HashMap<>();
         }
         return this.attributes;
+    }
+
+    @Override
+    public String id() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+        return id;
     }
 
     @Override
