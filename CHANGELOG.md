@@ -1,3 +1,10 @@
+# [1.46.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.45.0...1.46.0) (2022-09-09)
+
+
+### Features
+
+* **message:** add identifier on message ([9445ced](https://github.com/gravitee-io/gravitee-gateway-api/commit/9445ced71da75eeb31e3c89a8b37630f3480c35d))
+
 # [1.45.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.44.0...1.45.0) (2022-09-06)
 
 
