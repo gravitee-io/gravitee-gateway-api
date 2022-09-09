@@ -1,3 +1,10 @@
+## [1.46.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.46.0...1.46.1) (2022-09-09)
+
+
+### Bug Fixes
+
+* message level policy ([7aeada5](https://github.com/gravitee-io/gravitee-gateway-api/commit/7aeada5e95eae49375459cdbd16006a6ef614d7b)), closes [graviteeio/issues#8403](https://github.com/graviteeio/issues/issues/8403)
+
 # [1.46.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.45.0...1.46.0) (2022-09-09)
 
 
