@@ -1,3 +1,10 @@
+## [1.46.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.46.1...1.46.2) (2022-09-12)
+
+
+### Bug Fixes
+
+* add missing attributes to handle properly SME ([d34a27a](https://github.com/gravitee-io/gravitee-gateway-api/commit/d34a27a4c52de5c7c076b75e601c407e62ed1c47)), closes [gravitee-io/issues#8037](https://github.com/gravitee-io/issues/issues/8037)
+
 ## [1.46.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.46.0...1.46.1) (2022-09-09)
 
 
