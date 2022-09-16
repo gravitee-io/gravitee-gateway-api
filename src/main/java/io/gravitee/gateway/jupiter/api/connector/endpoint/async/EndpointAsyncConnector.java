@@ -15,15 +15,46 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.endpoint.async;
 
+import static io.gravitee.gateway.jupiter.api.context.InternalContextAttributes.ATTR_INTERNAL_ENTRYPOINT_CONNECTOR;
+
 import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
+import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
+import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
+import io.reactivex.Completable;
+import io.reactivex.CompletableSource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Specialized {@link EndpointConnector} for {@link ApiType#ASYNC}
  */
-public interface EndpointAsyncConnector extends EndpointConnector {
+public abstract class EndpointAsyncConnector implements EndpointConnector {
+
     @Override
-    default ApiType supportedApi() {
+    public ApiType supportedApi() {
         return ApiType.ASYNC;
     }
+
+    @Override
+    public Completable connect(final ExecutionContext ctx) {
+        return Completable.defer(() -> {
+            List<CompletableSource> completableList = new ArrayList<>();
+            Connector entrypointConnector = ctx.getInternalAttribute(ATTR_INTERNAL_ENTRYPOINT_CONNECTOR);
+            if (entrypointConnector != null) {
+                if (entrypointConnector.supportedModes().contains(ConnectorMode.PUBLISH)) {
+                    completableList.add(publish(ctx));
+                }
+                if (entrypointConnector.supportedModes().contains(ConnectorMode.SUBSCRIBE)) {
+                    completableList.add(subscribe(ctx));
+                }
+            }
+            return Completable.merge(completableList);
+        });
+    }
+
+    protected abstract Completable subscribe(final ExecutionContext ctx);
+
+    protected abstract Completable publish(final ExecutionContext ctx);
 }

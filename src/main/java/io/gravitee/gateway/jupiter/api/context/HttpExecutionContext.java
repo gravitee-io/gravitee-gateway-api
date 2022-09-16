@@ -15,6 +15,9 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
+import io.gravitee.gateway.jupiter.api.ExecutionFailure;
+import io.reactivex.Completable;
+
 public interface HttpExecutionContext extends GenericExecutionContext {
     String TEMPLATE_ATTRIBUTE_REQUEST = "request";
     String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
@@ -33,4 +36,15 @@ public interface HttpExecutionContext extends GenericExecutionContext {
      * @return the response attached to this execution context.
      */
     HttpResponse response();
+
+    /**
+     * Interrupted the current execution while indicating that the response can be sent "as is" to the downstream.
+     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
+     */
+    Completable interrupt();
+
+    /**
+     * Same as {@link #interrupt()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
+     */
+    Completable interruptWith(final ExecutionFailure failure);
 }

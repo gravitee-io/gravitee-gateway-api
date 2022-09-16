@@ -68,6 +68,8 @@ public interface Message {
 
     String id();
 
+    boolean error();
+
     Map<String, Object> metadata();
 
     HttpHeaders headers();
