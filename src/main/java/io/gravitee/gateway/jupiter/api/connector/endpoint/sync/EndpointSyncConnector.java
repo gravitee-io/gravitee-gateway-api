@@ -21,9 +21,10 @@ import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
 /**
  * Specialized {@link EndpointConnector} for {@link ApiType#SYNC}
  */
-public interface EndpointSyncConnector extends EndpointConnector {
+public abstract class EndpointSyncConnector implements EndpointConnector {
+
     @Override
-    default ApiType supportedApi() {
+    public ApiType supportedApi() {
         return ApiType.SYNC;
     }
 }

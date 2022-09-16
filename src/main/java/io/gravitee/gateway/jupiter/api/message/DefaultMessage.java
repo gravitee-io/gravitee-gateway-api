@@ -38,8 +38,9 @@ public class DefaultMessage implements Message {
     private String id;
     private Map<String, Object> attributes;
     private Map<String, Object> metadata;
-    private HttpHeaders headers = HttpHeaders.create();
+    private HttpHeaders headers;
     private Buffer content;
+    private boolean error;
 
     public DefaultMessage(final String content) {
         if (content != null) {
@@ -103,6 +104,14 @@ public class DefaultMessage implements Message {
             metadata = Map.of();
         }
         return metadata;
+    }
+
+    @Override
+    public HttpHeaders headers() {
+        if (headers == null) {
+            headers = HttpHeaders.create();
+        }
+        return headers;
     }
 
     public DefaultMessage metadata(Map<String, Object> metadata) {

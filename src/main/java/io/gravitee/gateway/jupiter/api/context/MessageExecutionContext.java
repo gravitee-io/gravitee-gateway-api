@@ -15,6 +15,10 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
+import io.gravitee.gateway.jupiter.api.ExecutionFailure;
+import io.gravitee.gateway.jupiter.api.message.Message;
+import io.reactivex.Flowable;
+
 public interface MessageExecutionContext extends GenericExecutionContext {
     /**
      * Get the current request stuck to this execution context.
@@ -29,4 +33,15 @@ public interface MessageExecutionContext extends GenericExecutionContext {
      * @return the response attached to this execution context.
      */
     MessageResponse response();
+
+    /**
+     * Interrupted the current execution while indicating that the flow of messages can be consumed "as is" to the downstream.
+     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
+     */
+    Flowable<Message> interruptMessages();
+
+    /**
+     * Same as {@link #interruptMessages()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
+     */
+    Flowable<Message> interruptMessagesWith(final ExecutionFailure failure);
 }
