@@ -37,6 +37,11 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_LISTENER_TYPE = "listener.type";
 
     /**
+     * Attribute used to store the id of the last message sent to a client.
+     */
+    public static final String ATTR_INTERNAL_LAST_MESSAGE_ID = "last.message.id";
+
+    /**
      * <b>Feature: LIMIT</b> <br/>
      * <i>Type: integer</i> <br/>
      * Attribute used to store the maximum number of messages to retrieve, asked by the client.
