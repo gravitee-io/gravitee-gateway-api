@@ -21,9 +21,10 @@ import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
 /**
  * Specialized {@link EntrypointConnector} for {@link ApiType#ASYNC}
  */
-public interface EntrypointAsyncConnector extends EntrypointConnector {
+public abstract class EntrypointAsyncConnector implements EntrypointConnector {
+
     @Override
-    default ApiType supportedApi() {
+    public ApiType supportedApi() {
         return ApiType.ASYNC;
     }
 }
