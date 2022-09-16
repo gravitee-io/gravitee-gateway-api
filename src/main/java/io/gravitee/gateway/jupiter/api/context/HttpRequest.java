@@ -16,7 +16,7 @@
 package io.gravitee.gateway.jupiter.api.context;
 
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.ws.WebSocket;
+import io.gravitee.gateway.jupiter.api.ws.WebSocket;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableTransformer;
