@@ -1,3 +1,10 @@
+# [1.47.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.46.2...1.47.0) (2022-09-20)
+
+
+### Features
+
+* add dedicated WebSocket interface for jupiter ([d92420d](https://github.com/gravitee-io/gravitee-gateway-api/commit/d92420d16190f94a2eb485ef49ef257f3e0ba341)), closes [gravitee-io/issues#8253](https://github.com/gravitee-io/issues/issues/8253)
+
 ## [1.46.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.46.1...1.46.2) (2022-09-12)
 
 
