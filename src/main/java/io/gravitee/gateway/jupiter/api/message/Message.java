@@ -17,7 +17,6 @@ package io.gravitee.gateway.jupiter.api.message;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
-
 import java.util.Map;
 import java.util.Set;
 

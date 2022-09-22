@@ -15,11 +15,10 @@
  */
 package io.gravitee.gateway.jupiter.api.policy;
 
-import io.gravitee.gateway.jupiter.api.context.GenericExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
-import io.reactivex.Completable;
-import io.reactivex.Maybe;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Maybe;
 
 /**
  * {@link SecurityPolicy} is a {@link Policy} that can be used for securing a plan that can require a subscription.

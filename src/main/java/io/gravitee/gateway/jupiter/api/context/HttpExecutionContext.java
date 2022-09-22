@@ -17,8 +17,8 @@ package io.gravitee.gateway.jupiter.api.context;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.jupiter.api.ExecutionFailure;
-import io.reactivex.Completable;
-import io.reactivex.Maybe;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Maybe;
 
 public interface HttpExecutionContext extends GenericExecutionContext {
     String TEMPLATE_ATTRIBUTE_REQUEST = "request";

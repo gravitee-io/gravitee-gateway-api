@@ -18,7 +18,7 @@ package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 import io.gravitee.gateway.jupiter.api.ListenerType;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
-import io.reactivex.Completable;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
  * Interface describing Entrypoint Connector which could be implemented to deal with new protocol specification

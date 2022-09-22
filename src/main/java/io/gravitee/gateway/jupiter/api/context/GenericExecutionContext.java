@@ -17,7 +17,7 @@ package io.gravitee.gateway.jupiter.api.context;
 
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.jupiter.api.ExecutionFailure;
-import io.reactivex.Completable;
+import io.reactivex.rxjava3.core.Completable;
 import java.util.Map;
 import java.util.Set;
 
