@@ -17,7 +17,7 @@ package io.gravitee.gateway.api.buffer;
 
 import io.gravitee.common.util.ServiceLoaderHelper;
 import io.netty.buffer.ByteBuf;
-import io.reactivex.annotations.NonNull;
+import io.reactivex.rxjava3.annotations.NonNull;
 import java.nio.charset.Charset;
 
 /**
@@ -49,12 +49,12 @@ public interface Buffer {
     }
 
     /**
-     * Creates a buffer from a vertx {@link io.vertx.reactivex.core.buffer.Buffer}.
+     * Creates a buffer from a vertx {@link io.vertx.rxjava3.core.buffer.Buffer}.
      *
      * @return the newly created buffer.
      * @see #buffer(ByteBuf)
      */
-    static Buffer buffer(io.vertx.reactivex.core.buffer.Buffer vertxBuffer) {
+    static Buffer buffer(io.vertx.rxjava3.core.buffer.Buffer vertxBuffer) {
         return factory.buffer(vertxBuffer.getDelegate());
     }
 

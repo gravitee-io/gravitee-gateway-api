@@ -15,12 +15,9 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.endpoint;
 
-import io.gravitee.gateway.jupiter.api.ApiType;
-import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
-import io.reactivex.Completable;
-import java.util.Set;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
  * Interface describing Endpoint Connector which could be implemented to deal with new protocol specification

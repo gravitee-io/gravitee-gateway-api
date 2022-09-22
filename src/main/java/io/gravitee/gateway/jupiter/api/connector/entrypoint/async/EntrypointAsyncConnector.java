@@ -26,8 +26,8 @@ import io.gravitee.gateway.jupiter.api.message.DefaultMessage;
 import io.gravitee.gateway.jupiter.api.message.Message;
 import io.gravitee.gateway.jupiter.api.qos.Qos;
 import io.gravitee.gateway.jupiter.api.qos.QosOptions;
-import io.reactivex.FlowableTransformer;
-import io.reactivex.processors.BehaviorProcessor;
+import io.reactivex.rxjava3.core.FlowableTransformer;
+import io.reactivex.rxjava3.processors.BehaviorProcessor;
 import java.util.Set;
 
 /**

@@ -18,8 +18,8 @@ package io.gravitee.gateway.jupiter.api.context;
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.jupiter.api.ExecutionFailure;
 import io.gravitee.gateway.jupiter.api.message.Message;
-import io.reactivex.Flowable;
-import io.reactivex.Maybe;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Maybe;
 
 public interface MessageExecutionContext extends GenericExecutionContext {
     String TEMPLATE_ATTRIBUTE_MESSAGE = "message";

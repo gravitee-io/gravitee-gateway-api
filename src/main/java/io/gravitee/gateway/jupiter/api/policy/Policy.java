@@ -18,11 +18,7 @@ package io.gravitee.gateway.jupiter.api.policy;
 import io.gravitee.gateway.jupiter.api.ExecutionPhase;
 import io.gravitee.gateway.jupiter.api.context.HttpExecutionContext;
 import io.gravitee.gateway.jupiter.api.context.MessageExecutionContext;
-import io.gravitee.gateway.jupiter.api.message.Message;
-import io.reactivex.Completable;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableTransformer;
-import io.reactivex.functions.Function;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
  * A {@link Policy} allows to define the actions to apply during the different request execution phases.

@@ -18,8 +18,8 @@ package io.gravitee.gateway.jupiter.api.hook;
 import io.gravitee.gateway.jupiter.api.ExecutionFailure;
 import io.gravitee.gateway.jupiter.api.ExecutionPhase;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
-import io.reactivex.Completable;
-import io.reactivex.annotations.Nullable;
+import io.reactivex.rxjava3.annotations.Nullable;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
  * Interface that can be used to add generic behaviour
