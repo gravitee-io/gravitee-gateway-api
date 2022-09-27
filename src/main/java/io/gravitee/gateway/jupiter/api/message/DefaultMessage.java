@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,6 +41,7 @@ public class DefaultMessage implements Message {
     private HttpHeaders headers;
     private Buffer content;
     private boolean error;
+    private Runnable ackRunnable;
 
     public DefaultMessage(final String content) {
         if (content != null) {
@@ -113,9 +113,6 @@ public class DefaultMessage implements Message {
 
     @Override
     public String id() {
-        if (id == null) {
-            id = UUID.randomUUID().toString();
-        }
         return id;
     }
 
@@ -155,6 +152,12 @@ public class DefaultMessage implements Message {
     public DefaultMessage metadata(Map<String, Object> metadata) {
         this.metadata = unmodifiableMetadata(metadata);
         return this;
+    }
+
+    public void ack() {
+        if (ackRunnable != null) {
+            ackRunnable.run();
+        }
     }
 
     public static class DefaultMessageBuilder {

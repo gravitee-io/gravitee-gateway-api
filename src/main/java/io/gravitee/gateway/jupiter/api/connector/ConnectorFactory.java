@@ -37,7 +37,7 @@ public interface ConnectorFactory<T extends Connector> {
     Set<ConnectorMode> supportedModes();
 
     /**
-     * Allow to create new connector from the given string configuration
+     * Allow creating new connector from the given string configuration
      *
      * @return new connector instance
      */

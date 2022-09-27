@@ -17,6 +17,8 @@ package io.gravitee.gateway.jupiter.api.connector.entrypoint.sync;
 
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
+import io.gravitee.gateway.jupiter.api.qos.Qos;
+import java.util.Set;
 
 /**
  * Specialized {@link EntrypointConnector} for {@link ApiType#SYNC}

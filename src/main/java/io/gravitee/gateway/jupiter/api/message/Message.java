@@ -17,6 +17,7 @@ package io.gravitee.gateway.jupiter.api.message;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -169,4 +170,9 @@ public interface Message {
      * @return reference to itself for easily chain calls.
      */
     Message content(final String content);
+
+    /**
+     * Allow acknowledging this message when it has been well-processed.
+     */
+    void ack();
 }

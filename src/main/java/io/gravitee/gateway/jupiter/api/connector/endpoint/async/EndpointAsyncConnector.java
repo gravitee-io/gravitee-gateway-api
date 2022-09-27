@@ -23,10 +23,12 @@ import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
+import io.gravitee.gateway.jupiter.api.qos.Qos;
 import io.reactivex.Completable;
 import io.reactivex.CompletableSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Specialized {@link EndpointConnector} for {@link ApiType#ASYNC}
@@ -37,6 +39,13 @@ public abstract class EndpointAsyncConnector extends AbstractService<Connector> 
     public ApiType supportedApi() {
         return ApiType.ASYNC;
     }
+
+    /**
+     * Returns a set of {@link ConnectorMode} supported by this connector. It will be used to resolve the proper connector.
+     *
+     * @return set of {@link ConnectorMode} supported by this connector.
+     */
+    public abstract Set<Qos> supportedQos();
 
     @Override
     public Completable connect(final ExecutionContext ctx) {
