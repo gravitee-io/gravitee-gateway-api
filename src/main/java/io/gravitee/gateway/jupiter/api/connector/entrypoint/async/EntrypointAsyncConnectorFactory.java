@@ -16,7 +16,10 @@
 package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
 
 import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnectorFactory;
+import io.gravitee.gateway.jupiter.api.qos.Qos;
+import java.util.Set;
 
 /**
  * Specialized factory for {@link EntrypointAsyncConnector}
@@ -26,4 +29,27 @@ public interface EntrypointAsyncConnectorFactory extends EntrypointConnectorFact
     default ApiType supportedApi() {
         return ApiType.ASYNC;
     }
+
+    /**
+     * Returns a set of {@link ConnectorMode} supported by this connector. It will be used to resolve the proper connector.
+     *
+     * @return set of {@link ConnectorMode} supported by this connector.
+     */
+    Set<Qos> supportedQos();
+
+    /**
+     * Allow creating new connector from the given string configuration.
+     *
+     * @return new connector instance
+     */
+    default EntrypointAsyncConnector createConnector(final String configuration) {
+        return createConnector(null, configuration);
+    }
+
+    /**
+     * Allow creating new connector from the given string configuration
+     *
+     * @return new connector instance
+     */
+    EntrypointAsyncConnector createConnector(final Qos qos, final String configuration);
 }

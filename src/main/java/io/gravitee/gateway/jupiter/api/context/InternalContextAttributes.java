@@ -25,13 +25,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class InternalContextAttributes {
 
+    /**
+     * Attribute used to store a reference to the {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector}
+     */
     public static final String ATTR_INTERNAL_ENTRYPOINT_CONNECTOR = "entrypointConnector";
     public static final String ATTR_INTERNAL_INVOKER = "invoker";
     public static final String ATTR_INTERNAL_EXECUTION_FAILURE = "executionFailure";
     public static final String ATTR_INTERNAL_FLOW_STAGE = "flow.stage";
-    public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
     public static final String ATTR_INTERNAL_SUBSCRIPTION = "subscription";
     public static final String ATTR_INTERNAL_SUBSCRIPTION_TYPE = "subscription_type";
+    public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
     /**
      * Adapted ExecutionContext for V3 compatibility.
      */
@@ -40,23 +43,23 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_LISTENER_TYPE = "listener.type";
 
     /**
-     * <b>Feature: LIMIT</b> <br/>
+     * <b>Feature: limit</b> <br/>
      * <i>Type: integer</i> <br/>
      * Attribute used to store the maximum number of messages to retrieve, asked by the client.
      */
     public static final String ATTR_INTERNAL_MESSAGES_LIMIT_COUNT = "messages.limit.count";
 
     /**
-     * <b>Feature: LIMIT</b> <br/>
+     * <b>Feature: limit</b> <br/>
      * <i>Type: long</i> <br/>
      * Attribute used to store the maximum duration of the consumption request, asked by the client.
      */
     public static final String ATTR_INTERNAL_MESSAGES_LIMIT_DURATION_MS = "messages.limit.durationMs";
 
     /**
-     * <b>Feature: RESUME</b> <br/>
+     * <b>Feature: recovery</b> <br/>
      * <i>Type: string</i> <br/>
      * Attribute used to store the ID of the last message received by the client.
      */
-    public static final String ATTR_INTERNAL_MESSAGES_RESUME_LASTID = "messages.resume.lastId";
+    public static final String ATTR_INTERNAL_MESSAGES_RECOVERY_LAST_ID = "messages.recovery.lastId";
 }

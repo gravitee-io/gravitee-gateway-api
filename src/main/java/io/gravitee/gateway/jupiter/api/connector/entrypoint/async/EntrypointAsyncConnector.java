@@ -19,12 +19,16 @@ import io.gravitee.common.service.AbstractService;
 import io.gravitee.common.utils.RxHelper;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
 import io.gravitee.gateway.jupiter.api.message.DefaultMessage;
 import io.gravitee.gateway.jupiter.api.message.Message;
+import io.gravitee.gateway.jupiter.api.qos.Qos;
+import io.gravitee.gateway.jupiter.api.qos.QosOptions;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.processors.BehaviorProcessor;
+import java.util.Set;
 
 /**
  * Specialized {@link EntrypointConnector} for {@link ApiType#ASYNC}
@@ -40,6 +44,18 @@ public abstract class EntrypointAsyncConnector extends AbstractService<Connector
     public ApiType supportedApi() {
         return ApiType.ASYNC;
     }
+
+    /**
+     * Returns a set of {@link ConnectorMode} supported by this connector. It will be used to resolve the proper connector.
+     *
+     * @return set of {@link ConnectorMode} supported by this connector.
+     */
+    public abstract Set<Qos> supportedQos();
+
+    /**
+     * @return {@link QosOptions} defined by this entrypoint.
+     */
+    public abstract QosOptions qosOptions();
 
     protected void emitStopMessage() {
         stopHook.onNext(DefaultMessage.builder().id(STOP_MESSAGE_ID).error(true).content(Buffer.buffer(STOP_MESSAGE_CONTENT)).build());
