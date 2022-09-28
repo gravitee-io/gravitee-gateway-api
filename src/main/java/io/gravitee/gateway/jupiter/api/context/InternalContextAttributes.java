@@ -27,6 +27,7 @@ public final class InternalContextAttributes {
 
     public static final String ATTR_INTERNAL_EXECUTION_FAILURE = "executionFailure";
     public static final String ATTR_INTERNAL_FLOW_STAGE = "flow.stage";
+    public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
     /**
      * Adapted ExecutionContext for V3 compatibility.
      */
