@@ -15,16 +15,38 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
 
+import io.gravitee.common.service.AbstractService;
+import io.gravitee.common.utils.RxHelper;
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
+import io.gravitee.gateway.jupiter.api.message.DefaultMessage;
+import io.gravitee.gateway.jupiter.api.message.Message;
+import io.reactivex.FlowableTransformer;
+import io.reactivex.processors.BehaviorProcessor;
 
 /**
  * Specialized {@link EntrypointConnector} for {@link ApiType#ASYNC}
  */
-public abstract class EntrypointAsyncConnector implements EntrypointConnector {
+public abstract class EntrypointAsyncConnector extends AbstractService<Connector> implements EntrypointConnector {
+
+    public static final String STOP_MESSAGE_ID = "goaway";
+    public static final String STOP_MESSAGE_CONTENT = "Stopping, please reconnect";
+
+    protected final BehaviorProcessor<Message> stopHook = BehaviorProcessor.create();
 
     @Override
     public ApiType supportedApi() {
         return ApiType.ASYNC;
+    }
+
+    protected void emitStopMessage() {
+        stopHook.onNext(DefaultMessage.builder().id(STOP_MESSAGE_ID).error(true).content(Buffer.buffer(STOP_MESSAGE_CONTENT)).build());
+        stopHook.onComplete();
+    }
+
+    protected FlowableTransformer<Message, Message> applyStopHook() {
+        return RxHelper.mergeWithFirst(stopHook);
     }
 }

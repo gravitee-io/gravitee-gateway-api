@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.jupiter.api.connector;
 
+import io.gravitee.common.component.LifecycleComponent;
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import java.util.Set;
@@ -25,7 +26,7 @@ import java.util.Set;
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Connector {
+public interface Connector extends LifecycleComponent<Connector> {
     /**
      * Returns the id of the connector
      *

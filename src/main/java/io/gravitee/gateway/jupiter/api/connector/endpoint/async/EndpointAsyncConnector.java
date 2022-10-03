@@ -17,6 +17,7 @@ package io.gravitee.gateway.jupiter.api.connector.endpoint.async;
 
 import static io.gravitee.gateway.jupiter.api.context.InternalContextAttributes.ATTR_INTERNAL_ENTRYPOINT_CONNECTOR;
 
+import io.gravitee.common.service.AbstractService;
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
@@ -30,7 +31,7 @@ import java.util.List;
 /**
  * Specialized {@link EndpointConnector} for {@link ApiType#ASYNC}
  */
-public abstract class EndpointAsyncConnector implements EndpointConnector {
+public abstract class EndpointAsyncConnector extends AbstractService<Connector> implements EndpointConnector {
 
     @Override
     public ApiType supportedApi() {
