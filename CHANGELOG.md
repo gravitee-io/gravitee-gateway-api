@@ -1,3 +1,13 @@
+# [1.48.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.47.1...1.48.0-alpha.1) (2022-10-10)
+
+
+### Features
+
+* add message processor chain ([cefcdfa](https://github.com/gravitee-io/gravitee-gateway-api/commit/cefcdfa8b9d893915fccd583afbf3948023bd8d2))
+* add processor and error on async api ([4323afc](https://github.com/gravitee-io/gravitee-gateway-api/commit/4323afc339ac3d933b06801b2324dfba165de373))
+* handle stop on entrypoint connector ([de89dde](https://github.com/gravitee-io/gravitee-gateway-api/commit/de89dde265810a88d6cfb7f0a7968058c45e5d72))
+* **v4:** add identifier on Connector ([9d9f5ba](https://github.com/gravitee-io/gravitee-gateway-api/commit/9d9f5ba2ee67b497ea5bf0673b665a641330735c))
+
 ## [1.47.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.47.0...1.47.1) (2022-09-28)
 
 
