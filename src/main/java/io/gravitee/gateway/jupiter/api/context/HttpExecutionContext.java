@@ -15,8 +15,10 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.jupiter.api.ExecutionFailure;
 import io.reactivex.Completable;
+import io.reactivex.Maybe;
 
 public interface HttpExecutionContext extends GenericExecutionContext {
     String TEMPLATE_ATTRIBUTE_REQUEST = "request";
@@ -38,7 +40,7 @@ public interface HttpExecutionContext extends GenericExecutionContext {
     HttpResponse response();
 
     /**
-     * Interrupted the current execution while indicating that the response can be sent "as is" to the downstream.
+     * Interrupts the current execution while indicating that the response can be sent "as is" to the downstream.
      * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
      */
     Completable interrupt();
@@ -47,4 +49,15 @@ public interface HttpExecutionContext extends GenericExecutionContext {
      * Same as {@link #interrupt()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
      */
     Completable interruptWith(final ExecutionFailure failure);
+
+    /**
+     * Interrupts the current execution while indicating that the response can be sent "as is" to the downstream.
+     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
+     */
+    Maybe<Buffer> interruptBody();
+
+    /**
+     * Same as {@link #interruptBody()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
+     */
+    Maybe<Buffer> interruptBodyWith(final ExecutionFailure failure);
 }
