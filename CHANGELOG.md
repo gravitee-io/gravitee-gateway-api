@@ -1,3 +1,10 @@
+# [1.48.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.1...1.48.0-alpha.2) (2022-10-13)
+
+
+### Bug Fixes
+
+* allow interrupting body or messages flow ([856caf0](https://github.com/gravitee-io/gravitee-gateway-api/commit/856caf09ea884999924b07924ae7b207221f3f8b))
+
 # [1.48.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.47.1...1.48.0-alpha.1) (2022-10-10)
 
 
