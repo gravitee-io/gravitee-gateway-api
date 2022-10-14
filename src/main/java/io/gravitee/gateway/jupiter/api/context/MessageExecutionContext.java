@@ -15,12 +15,15 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
+import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.jupiter.api.ExecutionFailure;
 import io.gravitee.gateway.jupiter.api.message.Message;
 import io.reactivex.Flowable;
 import io.reactivex.Maybe;
 
 public interface MessageExecutionContext extends GenericExecutionContext {
+    String TEMPLATE_ATTRIBUTE_MESSAGE = "message";
+
     /**
      * Get the current request stuck to this execution context.
      *
@@ -55,4 +58,11 @@ public interface MessageExecutionContext extends GenericExecutionContext {
      * Same as {@link MessageExecutionContext#interruptMessagesWith(ExecutionFailure)} but at message level
      */
     Maybe<Message> interruptMessageWith(final ExecutionFailure failure);
+
+    /**
+     * Get the {@link TemplateEngine} that can be used to evaluate EL expressions.
+     *
+     * @return the El {@link TemplateEngine}.
+     */
+    TemplateEngine getTemplateEngine(Message message);
 }

@@ -100,7 +100,7 @@ public interface GenericExecutionContext {
 
     /**
      * Stores an internal attribute in this request. Attributes are reset between requests.
-     * Internal attributes can be used to avoid mixin with attribute set by the user during the request processing.
+     * Internal attributes can be used to avoid mixin with attributes set by the user during the request processing.
      *
      * @param name the name of the attribute.
      * @param value the Object to be stored.
@@ -126,7 +126,7 @@ public interface GenericExecutionContext {
 
     /**
      * Get all internal attributes available.
-     * Internal attributes are intended to not be manipulated by end-users.
+     * Internal attributes are not intended to be manipulated by end-users.
      * You can safely use internal attribute to temporary store useful objects required during different phases of the execution.
      *
      * @param <T> the expected type of the values. Specify {@link Object} if you expect values of any types.

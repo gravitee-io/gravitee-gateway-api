@@ -37,6 +37,7 @@ public class DefaultMessage implements Message {
 
     private String id;
     private Map<String, Object> attributes;
+    private Map<String, Object> internalAttributes;
     private Map<String, Object> metadata;
     private HttpHeaders headers;
     private Buffer content;
@@ -83,11 +84,31 @@ public class DefaultMessage implements Message {
         return Collections.unmodifiableMap((Map<String, T>) getOrInitAttribute());
     }
 
-    private Map<String, Object> getOrInitAttribute() {
-        if (this.attributes == null) {
-            this.attributes = new HashMap<>();
-        }
-        return this.attributes;
+    @Override
+    public <T> T internalAttribute(final String name) {
+        return (T) getOrInitInternalAttribute().get(name);
+    }
+
+    @Override
+    public DefaultMessage internalAttribute(final String name, final Object value) {
+        getOrInitInternalAttribute().put(name, value);
+        return this;
+    }
+
+    @Override
+    public DefaultMessage removeInternalAttribute(final String name) {
+        getOrInitInternalAttribute().remove(name);
+        return this;
+    }
+
+    @Override
+    public Set<String> internalAttributeNames() {
+        return getOrInitInternalAttribute().keySet();
+    }
+
+    @Override
+    public <T> Map<String, T> internalAttributes() {
+        return Collections.unmodifiableMap((Map<String, T>) getOrInitInternalAttribute());
     }
 
     @Override
@@ -114,6 +135,23 @@ public class DefaultMessage implements Message {
         return headers;
     }
 
+    @Override
+    public Message content(Buffer content) {
+        this.content = content;
+        return this;
+    }
+
+    @Override
+    public Message content(String content) {
+        if (content != null) {
+            this.content(Buffer.buffer(content));
+        } else {
+            this.content((Buffer) null);
+        }
+
+        return this;
+    }
+
     public DefaultMessage metadata(Map<String, Object> metadata) {
         this.metadata = unmodifiableMetadata(metadata);
         return this;
@@ -125,5 +163,19 @@ public class DefaultMessage implements Message {
             this.metadata = unmodifiableMetadata(metadata);
             return this;
         }
+    }
+
+    private Map<String, Object> getOrInitAttribute() {
+        if (this.attributes == null) {
+            this.attributes = new HashMap<>();
+        }
+        return this.attributes;
+    }
+
+    private Map<String, Object> getOrInitInternalAttribute() {
+        if (this.internalAttributes == null) {
+            this.internalAttributes = new HashMap<>();
+        }
+        return this.internalAttributes;
     }
 }

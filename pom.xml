@@ -29,7 +29,7 @@
 
     <groupId>io.gravitee.gateway</groupId>
     <artifactId>gravitee-gateway-api</artifactId>
-    <version>1.48.0-alpha.2</version>
+    <version>1.48.0-apim-173-condition-message-level-SNAPSHOT</version>
 
     <name>Gravitee.io APIM - Gateway - API</name>
 
@@ -41,6 +41,7 @@
         <gravitee-reporter-api.version>1.22.0</gravitee-reporter-api.version>
         <gravitee-expression-language.version>1.10.1</gravitee-expression-language.version>
         <lombok.version>1.18.24</lombok.version>
+        <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
     </properties>
 
     <dependencyManagement>
@@ -136,6 +137,12 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.gravitee.apim.gateway</groupId>
+            <artifactId>gravitee-apim-gateway-buffer</artifactId>
+            <version>${gravitee-apim-gateway-buffer.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
