@@ -1,3 +1,10 @@
+# [1.48.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.2...1.48.0-alpha.3) (2022-10-17)
+
+
+### Features
+
+* add support for condition at message level ([cc59aeb](https://github.com/gravitee-io/gravitee-gateway-api/commit/cc59aeb21355f765764318a1830e05dc03d8a826))
+
 # [1.48.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.1...1.48.0-alpha.2) (2022-10-13)
 
 
