@@ -1,3 +1,15 @@
+# [2.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.4...2.0.0-alpha.1) (2022-10-18)
+
+
+### chore
+
+* bump to rxJava3 ([8b03864](https://github.com/gravitee-io/gravitee-gateway-api/commit/8b038648cf8588060a818ba2649e1e3df481c8d4))
+
+
+### BREAKING CHANGES
+
+* rxJava3 required
+
 # [1.48.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.3...1.48.0-alpha.4) (2022-10-18)
 
 
