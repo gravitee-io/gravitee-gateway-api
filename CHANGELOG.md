@@ -1,3 +1,10 @@
+# [1.48.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.3...1.48.0-alpha.4) (2022-10-18)
+
+
+### Features
+
+* implement QoS for event-native ([f031839](https://github.com/gravitee-io/gravitee-gateway-api/commit/f0318396d7f94524b65d4d1924425c6c3326db04))
+
 # [1.48.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.2...1.48.0-alpha.3) (2022-10-17)
 
 
