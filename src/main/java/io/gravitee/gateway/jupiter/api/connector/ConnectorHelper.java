@@ -27,7 +27,7 @@ import lombok.AllArgsConstructor;
  * @author GraviteeSource Team
  */
 @AllArgsConstructor
-public class ConnectorFactoryHelper {
+public class ConnectorHelper {
 
     private final Configuration configuration;
     private final ObjectMapper objectMapper;
@@ -49,8 +49,7 @@ public class ConnectorFactoryHelper {
      * @return object serialized from given json configuration
      * @throws PluginConfigurationException in case any error occurred while mapping the json configuration
      */
-    public <T extends ConnectorConfiguration> T getConnectorConfiguration(final Class<T> configurationClass, final String configuration)
-        throws PluginConfigurationException {
+    public <T> T readConfiguration(final Class<T> configurationClass, final String configuration) throws PluginConfigurationException {
         try {
             if (configuration == null) {
                 return configurationClass.getDeclaredConstructor().newInstance();
