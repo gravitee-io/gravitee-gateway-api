@@ -25,14 +25,14 @@ import lombok.Setter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ConnectorFactoryHelperTest {
+class ConnectorHelperTest {
 
-    private final ConnectorFactoryHelper connectorFactoryHelper = new ConnectorFactoryHelper(null, new ObjectMapper());
+    private final ConnectorHelper connectorHelper = new ConnectorHelper(null, new ObjectMapper());
 
     @Test
     @DisplayName("getConnectorConfiguration should read JSON configuration and return configuration object")
     void shouldReadConfigurationWithValidConfiguration() throws PluginConfigurationException {
-        TestConfiguration config = connectorFactoryHelper.getConnectorConfiguration(
+        TestConfiguration config = connectorHelper.readConfiguration(
             TestConfiguration.class,
             "{\"data1\":\"value1\", \"data2\":\"value2\"}"
         );
@@ -45,14 +45,14 @@ class ConnectorFactoryHelperTest {
     void shouldThrowPluginConfigurationExceptionWithInvalidConfiguration() {
         assertThrows(
             PluginConfigurationException.class,
-            () -> connectorFactoryHelper.getConnectorConfiguration(TestConfiguration.class, "THIS IS INVALID JSON")
+            () -> connectorHelper.readConfiguration(TestConfiguration.class, "THIS IS INVALID JSON")
         );
     }
 
     @Test
     @DisplayName("getConnectorConfiguration should get empty configuration when configuration is null")
     void shouldGetEmptyConfigurationExceptionWithNullConfiguration() throws PluginConfigurationException {
-        TestConfiguration config = connectorFactoryHelper.getConnectorConfiguration(TestConfiguration.class, null);
+        TestConfiguration config = connectorHelper.readConfiguration(TestConfiguration.class, null);
         assertNotNull(config);
         assertNull(config.getData1());
         assertNull(config.getData2());
