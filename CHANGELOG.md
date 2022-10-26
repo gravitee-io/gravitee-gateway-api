@@ -1,3 +1,10 @@
+# [2.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.1...2.0.0-alpha.2) (2022-10-26)
+
+
+### Features
+
+* add entrypoint subscription configuration capabilities ([7625c6a](https://github.com/gravitee-io/gravitee-gateway-api/commit/7625c6a9856eea50df8e188deed37647baeb4ec5))
+
 # [2.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.48.0-alpha.4...2.0.0-alpha.1) (2022-10-18)
 
 
