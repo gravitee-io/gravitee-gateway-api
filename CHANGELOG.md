@@ -1,3 +1,10 @@
+# [2.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.2...2.0.0-alpha.3) (2022-10-31)
+
+
+### Features
+
+* ConnectorHelper handles reading entrypoint configuration ([b7781f2](https://github.com/gravitee-io/gravitee-gateway-api/commit/b7781f2ebcba1b89f0930b31e1fee8def68bcad8))
+
 # [2.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.1...2.0.0-alpha.2) (2022-10-26)
 
 
