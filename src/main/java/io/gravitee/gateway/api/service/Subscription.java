@@ -17,11 +17,13 @@ package io.gravitee.gateway.api.service;
 
 import java.util.Date;
 import java.util.Map;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Subscription {
 
     private String id;
