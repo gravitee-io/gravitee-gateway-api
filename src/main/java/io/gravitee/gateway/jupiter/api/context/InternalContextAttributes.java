@@ -29,6 +29,7 @@ public final class InternalContextAttributes {
      * Attribute used to store a reference to the {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector}
      */
     public static final String ATTR_INTERNAL_ENTRYPOINT_CONNECTOR = "entrypointConnector";
+    public static final String ATTR_INTERNAL_ENTRYPOINT_CONNECTOR_IS_ASYNC = "entrypointConnector.isAsync";
     public static final String ATTR_INTERNAL_INVOKER = "invoker";
     public static final String ATTR_INTERNAL_INVOKER_SKIP = "invoker.skip";
     public static final String ATTR_INTERNAL_EXECUTION_FAILURE = "executionFailure";
