@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * Specialized factory for {@link EndpointSyncConnector}
  */
-public interface EndpointSyncConnectorFactory extends EndpointConnectorFactory<EndpointSyncConnector> {
+public interface EndpointSyncConnectorFactory<T extends EndpointSyncConnector> extends EndpointConnectorFactory<T> {
     @Override
     default Set<ConnectorMode> supportedModes() {
         return Set.of(ConnectorMode.REQUEST_RESPONSE);

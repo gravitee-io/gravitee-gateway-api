@@ -34,7 +34,6 @@ public final class ContextAttributes {
     public static final String ATTR_QUOTA_LIMIT = ATTR_PREFIX + "quota.limit";
     public static final String ATTR_QUOTA_REMAINING = ATTR_PREFIX + "quota.remaining";
     public static final String ATTR_QUOTA_COUNT = ATTR_PREFIX + "quota.count";
-    public static final String ATTR_INVOKER = ATTR_PREFIX + "request.invoker";
     public static final String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
     public static final String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
     public static final String ATTR_PLAN = ATTR_PREFIX + "plan";
@@ -44,7 +43,4 @@ public final class ContextAttributes {
     public static final String ATTR_APPLICATION = ATTR_PREFIX + "application";
     public static final String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     public static final String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
-
-    // For jupiter v3 compatibility, should be moved to internal attributes at term.
-    public static final String ATTR_SKIP_SECURITY_CHAIN = "skip-security-chain";
 }

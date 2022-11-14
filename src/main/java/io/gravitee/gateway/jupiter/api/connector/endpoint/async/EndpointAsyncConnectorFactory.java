@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * Specialized factory for {@link EndpointAsyncConnector}
  */
-public interface EndpointAsyncConnectorFactory extends EndpointConnectorFactory<EndpointAsyncConnector> {
+public interface EndpointAsyncConnectorFactory<T extends EndpointAsyncConnector> extends EndpointConnectorFactory<T> {
     @Override
     default ApiType supportedApi() {
         return ApiType.ASYNC;

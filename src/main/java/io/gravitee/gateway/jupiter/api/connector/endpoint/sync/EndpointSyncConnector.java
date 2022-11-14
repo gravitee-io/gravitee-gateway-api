@@ -15,7 +15,9 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.endpoint.sync;
 
+import io.gravitee.common.service.AbstractService;
 import io.gravitee.gateway.jupiter.api.ApiType;
+import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
 import io.gravitee.gateway.jupiter.api.qos.Qos;
 import java.util.Set;
@@ -23,7 +25,7 @@ import java.util.Set;
 /**
  * Specialized {@link EndpointConnector} for {@link ApiType#SYNC}
  */
-public abstract class EndpointSyncConnector implements EndpointConnector {
+public abstract class EndpointSyncConnector extends AbstractService<Connector> implements EndpointConnector {
 
     @Override
     public ApiType supportedApi() {
