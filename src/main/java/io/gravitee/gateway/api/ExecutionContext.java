@@ -48,6 +48,12 @@ public interface ExecutionContext {
     String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
     String ATTR_FAILURE_ATTRIBUTE = ATTR_PREFIX + "failure";
 
+    /**
+     * Skip security chain isn't prefixed to avoid breaking code where this constant isn't used.
+     */
+    String ATTR_SECURITY_SKIP = "skip-security-chain";
+    String ATTR_INVOKER_SKIP = "invoker.skip";
+
     Request request();
 
     Response response();

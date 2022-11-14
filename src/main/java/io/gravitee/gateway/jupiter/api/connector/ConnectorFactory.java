@@ -17,6 +17,7 @@ package io.gravitee.gateway.jupiter.api.connector;
 
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
+import io.gravitee.gateway.jupiter.api.context.DeploymentContext;
 import java.util.Set;
 
 /**
@@ -37,9 +38,12 @@ public interface ConnectorFactory<T extends Connector> {
     Set<ConnectorMode> supportedModes();
 
     /**
-     * Allow creating new connector from the given string configuration
+     * Allow creating new connector from the given string configuration.
      *
-     * @return new connector instance
+     * @param deploymentContext context containing useful deployment entities (api, services, ...).
+     * @param configuration the configuration as json string.
+     *
+     * @return new connector instance.
      */
-    T createConnector(final String configuration);
+    T createConnector(final DeploymentContext deploymentContext, final String configuration);
 }

@@ -18,13 +18,14 @@ package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnectorFactory;
+import io.gravitee.gateway.jupiter.api.context.DeploymentContext;
 import io.gravitee.gateway.jupiter.api.qos.Qos;
 import java.util.Set;
 
 /**
  * Specialized factory for {@link EntrypointAsyncConnector}
  */
-public interface EntrypointAsyncConnectorFactory extends EntrypointConnectorFactory<EntrypointAsyncConnector> {
+public interface EntrypointAsyncConnectorFactory<T extends EntrypointAsyncConnector> extends EntrypointConnectorFactory<T> {
     @Override
     default ApiType supportedApi() {
         return ApiType.ASYNC;
@@ -38,18 +39,22 @@ public interface EntrypointAsyncConnectorFactory extends EntrypointConnectorFact
     Set<Qos> supportedQos();
 
     /**
-     * Allow creating new connector from the given string configuration.
-     *
-     * @return new connector instance
+     * {@inheritDoc}
+     * <p/>
+     * Same as {@link #createConnector(DeploymentContext, Qos, String)} but without Qos.
      */
-    default EntrypointAsyncConnector createConnector(final String configuration) {
-        return createConnector(null, configuration);
+    default T createConnector(final DeploymentContext deploymentContext, final String configuration) {
+        return createConnector(deploymentContext, null, configuration);
     }
 
     /**
-     * Allow creating new connector from the given string configuration
+     * Allow creating new connector from the given string configuration and QoS (Quality Of Service).
      *
-     * @return new connector instance
+     * @param deploymentContext context containing useful deployment entities (api, services, ...).
+     * @param qos the expected quality of service.
+     * @param configuration the configuration as json string.
+     *
+     * @return new connector instance.
      */
-    EntrypointAsyncConnector createConnector(final Qos qos, final String configuration);
+    T createConnector(final DeploymentContext deploymentContext, final Qos qos, final String configuration);
 }
