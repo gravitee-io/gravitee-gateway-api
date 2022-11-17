@@ -17,7 +17,11 @@ package io.gravitee.gateway.api.service;
 
 import java.util.Date;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Subscription {
 
     private String id;
@@ -38,107 +42,9 @@ public class Subscription {
 
     private String configuration;
 
-    private String filter;
-
     private Map<String, String> metadata;
 
     private Type type = Type.STANDARD;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getApi() {
-        return api;
-    }
-
-    public void setApi(String api) {
-        this.api = api;
-    }
-
-    public String getPlan() {
-        return plan;
-    }
-
-    public void setPlan(String plan) {
-        this.plan = plan;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getStartingAt() {
-        return startingAt;
-    }
-
-    public void setStartingAt(Date startingAt) {
-        this.startingAt = startingAt;
-    }
-
-    public Date getEndingAt() {
-        return endingAt;
-    }
-
-    public void setEndingAt(Date endingAt) {
-        this.endingAt = endingAt;
-    }
-
-    public String getApplication() {
-        return application;
-    }
-
-    public void setApplication(String application) {
-        this.application = application;
-    }
-
-    public String getFilter() {
-        return filter;
-    }
-
-    public void setFilter(String filter) {
-        this.filter = filter;
-    }
-
-    public String getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(String configuration) {
-        this.configuration = configuration;
-    }
-
-    public Map<String, String> getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(Map<String, String> metadata) {
-        this.metadata = metadata;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
 
     public boolean isTimeValid(long requestTimestamp) {
         Date requestDate = new Date(requestTimestamp);
