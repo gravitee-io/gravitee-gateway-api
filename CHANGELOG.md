@@ -1,3 +1,10 @@
+# [2.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.3...2.0.0-alpha.4) (2022-11-18)
+
+
+### Features
+
+* add deployment context to connector factory ([1cfe4dd](https://github.com/gravitee-io/gravitee-gateway-api/commit/1cfe4ddd10e52a3af2809e86f1272482696794c4))
+
 # [2.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.2...2.0.0-alpha.3) (2022-10-31)
 
 
