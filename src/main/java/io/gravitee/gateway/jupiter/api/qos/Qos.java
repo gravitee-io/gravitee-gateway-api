@@ -28,45 +28,31 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum Qos {
     /**
-     * Necessary when the notion of QoS is not relevant.
-     * This explicitly means that no QoS is supported, at the opposite to None that bring a certain level of service.
-     */
-    NA("not-applicable"),
-    /**
      * This QoS level allows a high throughput and good performance but without any warranty regarding the delivery.
      * After a failure or any disconnection, client will only receive new messages sent after its reconnection.
      */
     NONE("none"),
     /**
-     * This QoS level allows a trade-off between performance and delivery warranty.
+     * This QoS level will adapt the QoS depending on {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector} and {@link io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector} capabilities allowing a trade-off between performance and delivery warranty.
      * Messages could be received 0, 1 or many times.
-     * However after a failure or any disconnections, after reconnection, client could resume from the previously known states, although messages duplication could potentially exist.
      */
-    BALANCED("balanced"),
+    AUTO("auto"),
     /**
-     * Do our best to deliver the message once but depending on the EntrypointConnector and its capability message could be lost or received many times in some failure cases.
-     */
-    AT_BEST("at-best"),
-    /**
-     * This level of QoS warranty that messages are delivered 0 time or once without any duplication.
-     * Depending on EntrypointConnector capability, performance could be degraded.
+     * This level of QoS warranty that messages are delivered 0 or once without any duplication.
+     * Depending on {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector} and {@link io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector}, performance could be degraded.
      */
     AT_MOST_ONCE("at-most-once"),
     /**
      * This level of QoS warranties that messages are delivered once or many times.
-     * This is a good trade-off in terms of performance comparing to {@link Qos#AT_MOST_ONCE} especially when the EntrypointConnector is not able to resume the streams of messages after a failure.
+     * This is a good trade-off in terms of performance comparing to {@link Qos#AT_MOST_ONCE} especially when the {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector} is not able to resume the streams of messages after a failure.
      */
     AT_LEAST_ONCE("at-least-once");
 
     private static final Map<String, Qos> maps = Map.of(
-        NA.label,
-        NA,
         NONE.label,
         NONE,
-        BALANCED.label,
-        BALANCED,
-        AT_BEST.label,
-        AT_BEST,
+        AUTO.label,
+        AUTO,
         AT_MOST_ONCE.label,
         AT_MOST_ONCE,
         AT_LEAST_ONCE.label,

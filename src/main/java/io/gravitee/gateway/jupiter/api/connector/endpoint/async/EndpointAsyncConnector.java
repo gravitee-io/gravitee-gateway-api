@@ -24,6 +24,7 @@ import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
 import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
 import io.gravitee.gateway.jupiter.api.qos.Qos;
+import io.gravitee.gateway.jupiter.api.qos.QosCapability;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.CompletableSource;
 import java.util.ArrayList;
@@ -41,11 +42,18 @@ public abstract class EndpointAsyncConnector extends AbstractService<Connector> 
     }
 
     /**
-     * Returns a set of {@link ConnectorMode} supported by this connector. It will be used to resolve the proper connector.
+     * Returns a set of {@link Qos} supported by this connector.
      *
-     * @return set of {@link ConnectorMode} supported by this connector.
+     * @return set of {@link Qos} supported by this connector.
      */
     public abstract Set<Qos> supportedQos();
+
+    /**
+     * Returns a set of {@link QosCapability} supported by this connector.
+     *
+     * @return set of {@link QosCapability} supported by this connector.
+     */
+    public abstract Set<QosCapability> supportedQosCapabilities();
 
     @Override
     public Completable connect(final ExecutionContext ctx) {
