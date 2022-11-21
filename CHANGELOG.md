@@ -1,3 +1,11 @@
+# [2.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.4...2.0.0-alpha.5) (2022-11-21)
+
+
+### Features
+
+* add deployment context to connector factory ([f0c9bbb](https://github.com/gravitee-io/gravitee-gateway-api/commit/f0c9bbbd04c7a5d2cbf3a0bd0965a33c9d7bc899))
+* allow access resolved subscription from a EL ([6767655](https://github.com/gravitee-io/gravitee-gateway-api/commit/6767655df9d36a01e28dfa97d82ba52ddcf710b4))
+
 # [2.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.3...2.0.0-alpha.4) (2022-11-18)
 
 
