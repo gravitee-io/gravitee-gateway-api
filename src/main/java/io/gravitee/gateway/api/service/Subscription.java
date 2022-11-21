@@ -38,6 +38,8 @@ public class Subscription {
 
     private String status;
 
+    private ConsumerStatus consumerStatus = ConsumerStatus.STARTED;
+
     private Date startingAt;
 
     private Date endingAt;
@@ -48,6 +50,8 @@ public class Subscription {
 
     private Type type = Type.STANDARD;
 
+    private Date initialFetchDate;
+
     public boolean isTimeValid(long requestTimestamp) {
         Date requestDate = new Date(requestTimestamp);
         return (endingAt == null || endingAt.after(requestDate)) && (startingAt == null || startingAt.before(requestDate));
@@ -56,5 +60,10 @@ public class Subscription {
     public enum Type {
         STANDARD,
         SUBSCRIPTION,
+    }
+
+    public enum ConsumerStatus {
+        STOPPED,
+        STARTED,
     }
 }
