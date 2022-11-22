@@ -47,6 +47,7 @@ public interface ExecutionContext {
     String ATTR_ORGANIZATION = ATTR_PREFIX + "organization";
     String ATTR_ENVIRONMENT = ATTR_PREFIX + "environment";
     String ATTR_FAILURE_ATTRIBUTE = ATTR_PREFIX + "failure";
+    String ATTR_CLIENT_IDENTIFIER = ATTR_PREFIX + "clientIdentifier";
 
     /**
      * Skip security chain isn't prefixed to avoid breaking code where this constant isn't used.
