@@ -33,6 +33,13 @@ public interface GenericRequest {
     String transactionId();
 
     /**
+     * Propagated client identifier between multiple requests.
+     *
+     * @return Client Identifier.
+     */
+    String clientIdentifier();
+
+    /**
      * @return The URL the client used to make the request.
      */
     String uri();
