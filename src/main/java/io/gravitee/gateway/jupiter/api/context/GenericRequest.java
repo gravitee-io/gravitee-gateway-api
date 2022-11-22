@@ -46,6 +46,14 @@ public interface GenericRequest {
     String host();
 
     /**
+     * Allows to retrieve the request original host.
+     * Unlike the {@link #host()}, it remains the same and can't be altered during the request processing.
+     *
+     * @return the original reuqest host.
+     */
+    String originalHost();
+
+    /**
      * @return the part of this request's URL from the protocol name up to the query string in the first line
      * of the HTTP request.
      */
