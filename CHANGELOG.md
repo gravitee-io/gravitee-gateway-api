@@ -1,3 +1,10 @@
+# [2.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.5...2.0.0-alpha.6) (2022-11-23)
+
+
+### Bug Fixes
+
+* distinguish host from  original host on request ([9e87dfb](https://github.com/gravitee-io/gravitee-gateway-api/commit/9e87dfbeb50ce95c120ce0a9cf481abe0db1a972))
+
 # [2.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.4...2.0.0-alpha.5) (2022-11-21)
 
 
