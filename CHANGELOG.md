@@ -1,3 +1,10 @@
+# [2.0.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.6...2.0.0-alpha.7) (2022-11-24)
+
+
+### Features
+
+* add client identifier on request ([ee97c7e](https://github.com/gravitee-io/gravitee-gateway-api/commit/ee97c7ee216bccc03a9190718ce5054b8abd6056))
+
 # [2.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.5...2.0.0-alpha.6) (2022-11-23)
 
 
