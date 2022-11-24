@@ -1,3 +1,10 @@
+# [2.0.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.7...2.0.0-alpha.8) (2022-11-24)
+
+
+### Bug Fixes
+
+* missing release ([ec490a2](https://github.com/gravitee-io/gravitee-gateway-api/commit/ec490a2b9d824c10316223a573a2e8b700153d52))
+
 # [2.0.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.6...2.0.0-alpha.7) (2022-11-24)
 
 
