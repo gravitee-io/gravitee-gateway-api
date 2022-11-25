@@ -1,3 +1,11 @@
+# [2.0.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.8...2.0.0-alpha.9) (2022-11-25)
+
+
+### Features
+
+* add subscription.equals using lombok ([aefbc82](https://github.com/gravitee-io/gravitee-gateway-api/commit/aefbc8276f8928fbcd16c00bf4b9a19a1b70952c))
+* manage subscription consumer status ([b17b498](https://github.com/gravitee-io/gravitee-gateway-api/commit/b17b498f09d637b56f7c0876541c9756a68ab49f))
+
 # [2.0.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.7...2.0.0-alpha.8) (2022-11-24)
 
 
