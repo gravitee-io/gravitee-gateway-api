@@ -50,7 +50,8 @@ public class Subscription {
 
     private Type type = Type.STANDARD;
 
-    private Date initialFetchDate;
+    @EqualsAndHashCode.Exclude
+    private boolean forceDispatch;
 
     public boolean isTimeValid(long requestTimestamp) {
         Date requestDate = new Date(requestTimestamp);
