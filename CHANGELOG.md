@@ -1,3 +1,10 @@
+# [2.0.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.9...2.0.0-alpha.10) (2022-12-01)
+
+
+### Bug Fixes
+
+* check if api requires a deployment before redeploying every objects related ([d11bc38](https://github.com/gravitee-io/gravitee-gateway-api/commit/d11bc38e49a3abb4ec83f6bd3e3287e4f4e18c65))
+
 # [2.0.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.8...2.0.0-alpha.9) (2022-11-25)
 
 
