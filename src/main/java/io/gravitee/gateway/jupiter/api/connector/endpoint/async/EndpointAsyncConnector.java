@@ -72,7 +72,7 @@ public abstract class EndpointAsyncConnector extends AbstractService<Connector> 
         });
     }
 
-    protected abstract Completable subscribe(final ExecutionContext ctx);
+    public abstract Completable subscribe(final ExecutionContext ctx);
 
-    protected abstract Completable publish(final ExecutionContext ctx);
+    public abstract Completable publish(final ExecutionContext ctx);
 }

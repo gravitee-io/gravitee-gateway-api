@@ -124,6 +124,13 @@ public interface Message {
     boolean error();
 
     /**
+     * Flag indicating the message is in error.
+     * An error can occur during the processing. In that case, it is flagged in <code>error</code> to indicate that a special behavior may have to be applied for it.
+     *
+     */
+    Message error(boolean error);
+
+    /**
      * Get the metadata of the message. Metadata are read-only. They usually come from the source that emits the message and can't be changed.
      *
      * @return the metadata of the message or an empty map if the message doesn't have any metadata.
