@@ -133,13 +133,13 @@ public class DefaultMessage implements Message {
     }
 
     @Override
-    public Message content(Buffer content) {
+    public DefaultMessage content(Buffer content) {
         this.content = content;
         return this;
     }
 
     @Override
-    public Message content(String content) {
+    public DefaultMessage content(String content) {
         if (content != null) {
             this.content(Buffer.buffer(content));
         } else {
