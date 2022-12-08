@@ -19,19 +19,16 @@ import io.gravitee.common.service.AbstractService;
 import io.gravitee.common.utils.RxHelper;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.jupiter.api.ApiType;
-import io.gravitee.gateway.jupiter.api.ConnectorMode;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
 import io.gravitee.gateway.jupiter.api.message.DefaultMessage;
 import io.gravitee.gateway.jupiter.api.message.Message;
-import io.gravitee.gateway.jupiter.api.qos.Qos;
 import io.gravitee.gateway.jupiter.api.qos.QosRequirement;
 import io.reactivex.rxjava3.core.FlowableTransformer;
 import io.reactivex.rxjava3.processors.BehaviorProcessor;
-import java.util.Set;
 
 /**
- * Specialized {@link EntrypointConnector} for {@link ApiType#ASYNC}
+ * Specialized {@link EntrypointConnector} for {@link ApiType#EVENT_NATIVE}
  */
 public abstract class EntrypointAsyncConnector extends AbstractService<Connector> implements EntrypointConnector {
 
@@ -42,7 +39,7 @@ public abstract class EntrypointAsyncConnector extends AbstractService<Connector
 
     @Override
     public ApiType supportedApi() {
-        return ApiType.ASYNC;
+        return ApiType.EVENT_NATIVE;
     }
 
     /**

@@ -22,6 +22,103 @@ import java.util.Set;
 
 public interface Message {
     /**
+     * Get the current id of the message.
+     * The id may be <code>null</code>.
+     *
+     * @return the id of the message or <code>null</code> in case the message doesn't have any id.
+     */
+    String id();
+
+    /**
+     * The correlation id of the message.
+     * This id is never null and help to track messages across the gateway.
+     *
+     * @return the correlation id of the message.
+     */
+    String correlationId();
+    /**
+     * The parent correlation id of the message.
+     * This id refers to a possible parent when the message has been created from another one.
+     *
+     * @return the parent correlation id of the message or <code>null</code> in case the message doesn't have any parent.
+     */
+    String parentCorrelationId();
+
+    /**
+     * The timestamp for when this message was created.
+     *
+     * @return the instant timestamp for the message.
+     */
+    long timestamp();
+
+    /**
+     * Flag indicating the message is in error.
+     * An error can occur during the processing. In that case, it is flagged in <code>error</code> to indicate that a special behavior may have to be applied for it.
+     *
+     * @return <code>true</code> if the message is in error, <code>false</code> otherwise.
+     */
+    boolean error();
+
+    /**
+     * Flag indicating the message is in error.
+     * An error can occur during the processing. In that case, it is flagged in <code>error</code> to indicate that a special behavior may have to be applied for it.
+     *
+     */
+    Message error(boolean error);
+
+    /**
+     * Get the metadata of the message. Metadata are read-only. They usually come from the source that emits the message and can't be changed.
+     *
+     * @return the metadata of the message or an empty map if the message doesn't have any metadata.
+     */
+    Map<String, Object> metadata();
+
+    /**
+     * Get the headers of the message.
+     *
+     * @return a read-write map of headers.
+     */
+    HttpHeaders headers();
+
+    /**
+     * Set the headers of the message.
+     *
+     * @param headers the headers to set on the message.
+     * @return reference to itself for easily chain calls.
+     */
+    Message headers(final HttpHeaders headers);
+
+    /**
+     * The current content of the message.
+     * The content may be of any type and is represented by a {@link Buffer} structure.
+     *
+     * @return the content of the message as a {@link Buffer}.
+     * @see Buffer
+     */
+    Buffer content();
+
+    /**
+     * Set the content of the message.
+     *
+     * @param content the buffer representing the content of the message.
+     * @return reference to itself for easily chain calls.
+     */
+    Message content(final Buffer content);
+
+    /**
+     * Set the content of the message.
+     *
+     * @param content the buffer representing the content of the message.
+     * @return reference to itself for easily chain calls.
+     */
+    Message content(final String content);
+
+    /**
+     * Allow acknowledging this message when it has been well-processed.
+     */
+    void ack();
+
+    /**
      * Returns the value of the attribute cast in the expected type T, or <code>null</code> if no attribute for the given
      * name exists.
      *
@@ -106,79 +203,4 @@ public interface Message {
      * @return the list of all the internal attributes.
      */
     <T> Map<String, T> internalAttributes();
-
-    /**
-     * Get the current id of the message.
-     * The id may be <code>null</code>.
-     *
-     * @return the ide of the message or <code>null</code> in case the message doesn't have any id.
-     */
-    String id();
-
-    /**
-     * Flag indicating the message is in error.
-     * An error can occur during the processing. In that case, it is flagged in <code>error</code> to indicate that a special behavior may have to be applied for it.
-     *
-     * @return <code>true</code> if the message is in error, <code>false</code> otherwise.
-     */
-    boolean error();
-
-    /**
-     * Flag indicating the message is in error.
-     * An error can occur during the processing. In that case, it is flagged in <code>error</code> to indicate that a special behavior may have to be applied for it.
-     *
-     */
-    Message error(boolean error);
-
-    /**
-     * Get the metadata of the message. Metadata are read-only. They usually come from the source that emits the message and can't be changed.
-     *
-     * @return the metadata of the message or an empty map if the message doesn't have any metadata.
-     */
-    Map<String, Object> metadata();
-
-    /**
-     * Get the headers of the message.
-     *
-     * @return a read-write map of headers.
-     */
-    HttpHeaders headers();
-
-    /**
-     * Set the headers of the message.
-     *
-     * @param headers the headers to set on the message.
-     * @return reference to itself for easily chain calls.
-     */
-    Message headers(final HttpHeaders headers);
-
-    /**
-     * The current content of the message.
-     * The content may be of any type and is represented by a {@link Buffer} structure.
-     *
-     * @return the content of the message as a {@link Buffer}.
-     * @see Buffer
-     */
-    Buffer content();
-
-    /**
-     * Set the content of the message.
-     *
-     * @param content the buffer representing the content of the message.
-     * @return reference to itself for easily chain calls.
-     */
-    Message content(final Buffer content);
-
-    /**
-     * Set the content of the message.
-     *
-     * @param content the buffer representing the content of the message.
-     * @return reference to itself for easily chain calls.
-     */
-    Message content(final String content);
-
-    /**
-     * Allow acknowledging this message when it has been well-processed.
-     */
-    void ack();
 }

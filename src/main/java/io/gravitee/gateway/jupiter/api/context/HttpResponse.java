@@ -141,7 +141,7 @@ public interface HttpResponse extends GenericResponse {
      *
      * @return an observable that can be easily chained.
      */
-    Completable end();
+    Completable end(GenericExecutionContext ctx);
 
     /**
      * Set the `Content-Length` header to the response.

@@ -122,4 +122,22 @@ class DefaultMessageTest {
         cut.content((String) null);
         assertNull(cut.content());
     }
+
+    @Test
+    void shouldHaveCorrelationIdFromBuilder() {
+        DefaultMessage cut = DefaultMessage.builder().build();
+        assertNotNull(cut.correlationId());
+    }
+
+    @Test
+    void shouldHaveCorrelationIdFromEmptyConstructor() {
+        DefaultMessage cut = new DefaultMessage();
+        assertNotNull(cut.correlationId());
+    }
+
+    @Test
+    void shouldHaveCorrelationIdFromBufferConstructor() {
+        DefaultMessage cut = new DefaultMessage(null);
+        assertNotNull(cut.correlationId());
+    }
 }

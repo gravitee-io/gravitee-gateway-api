@@ -29,7 +29,7 @@ public final class InternalContextAttributes {
      * Attribute used to store a reference to the {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector}
      */
     public static final String ATTR_INTERNAL_ENTRYPOINT_CONNECTOR = "entrypointConnector";
-    public static final String ATTR_INTERNAL_ENTRYPOINT_CONNECTOR_IS_ASYNC = "entrypointConnector.isAsync";
+    public static final String ATTR_INTERNAL_ENDPOINT_CONNECTOR_ID = "endpointConnector.id";
     public static final String ATTR_INTERNAL_INVOKER = "invoker";
     public static final String ATTR_INTERNAL_INVOKER_SKIP = "invoker.skip";
     public static final String ATTR_INTERNAL_EXECUTION_FAILURE = "executionFailure";
@@ -38,6 +38,9 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_SUBSCRIPTION_TYPE = "subscriptionType";
     public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
     public static final String ATTR_INTERNAL_SECURITY_SKIP = "securityChain.skip";
+    public static final String ATTR_INTERNAL_ANALYTICS_CONTEXT = "analytics.context";
+    public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE = "message.recordable";
+    public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE_WITH_LOGGING = "message.recordable.withLogging";
 
     /**
      * Adapted ExecutionContext for V3 compatibility.
