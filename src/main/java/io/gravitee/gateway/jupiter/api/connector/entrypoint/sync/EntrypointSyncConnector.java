@@ -19,16 +19,14 @@ import io.gravitee.common.service.AbstractService;
 import io.gravitee.gateway.jupiter.api.ApiType;
 import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
-import io.gravitee.gateway.jupiter.api.qos.Qos;
-import java.util.Set;
 
 /**
- * Specialized {@link EntrypointConnector} for {@link ApiType#SYNC}
+ * Specialized {@link EntrypointConnector} for {@link ApiType#REQUEST_RESPONSE}
  */
 public abstract class EntrypointSyncConnector extends AbstractService<Connector> implements EntrypointConnector {
 
     @Override
     public ApiType supportedApi() {
-        return ApiType.SYNC;
+        return ApiType.REQUEST_RESPONSE;
     }
 }

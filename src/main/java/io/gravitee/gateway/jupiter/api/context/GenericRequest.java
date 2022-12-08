@@ -132,13 +132,6 @@ public interface GenericRequest {
     SSLSession sslSession();
 
     /**
-     * Get the metrics associated to the request.
-     *
-     * @return a {@link Metrics} object.
-     */
-    Metrics metrics();
-
-    /**
      * Indicates if that request is ended or not meaning that all the request headers and the request body have been fully read.
      *
      * @return <code>true</code> if the headers and body have been read, <code>false</code> else.

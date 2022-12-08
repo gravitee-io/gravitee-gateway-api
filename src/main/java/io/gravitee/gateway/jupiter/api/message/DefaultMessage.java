@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +36,15 @@ import lombok.experimental.Accessors;
 public class DefaultMessage implements Message {
 
     private String id;
+
+    @Builder.Default
+    private String correlationId = UUID.randomUUID().toString();
+
+    private String parentCorrelationId;
+
+    @Builder.Default
+    private long timestamp = System.currentTimeMillis();
+
     private Map<String, Object> attributes;
     private Map<String, Object> internalAttributes;
     private Map<String, Object> metadata;
@@ -44,6 +54,7 @@ public class DefaultMessage implements Message {
     private Runnable ackRunnable;
 
     public DefaultMessage(final String content) {
+        this(); // Due to @Builder.Default annotation
         if (content != null) {
             this.content = Buffer.buffer(content);
         }
@@ -109,11 +120,6 @@ public class DefaultMessage implements Message {
     @Override
     public <T> Map<String, T> internalAttributes() {
         return Collections.unmodifiableMap((Map<String, T>) getOrInitInternalAttribute());
-    }
-
-    @Override
-    public String id() {
-        return id;
     }
 
     @Override

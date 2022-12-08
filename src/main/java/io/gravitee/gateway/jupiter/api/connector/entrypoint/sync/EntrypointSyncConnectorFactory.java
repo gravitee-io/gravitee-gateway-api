@@ -31,6 +31,6 @@ public interface EntrypointSyncConnectorFactory extends EntrypointConnectorFacto
 
     @Override
     default ApiType supportedApi() {
-        return ApiType.SYNC;
+        return ApiType.REQUEST_RESPONSE;
     }
 }

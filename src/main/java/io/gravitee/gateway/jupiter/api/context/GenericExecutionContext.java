@@ -16,8 +16,7 @@
 package io.gravitee.gateway.jupiter.api.context;
 
 import io.gravitee.el.TemplateEngine;
-import io.gravitee.gateway.jupiter.api.ExecutionFailure;
-import io.reactivex.rxjava3.core.Completable;
+import io.gravitee.reporter.api.v4.metric.Metrics;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,6 +34,12 @@ public interface GenericExecutionContext {
      * @return the response attached to this execution context.
      */
     GenericResponse response();
+    /**
+     * Get the metrics associated to the context.
+     *
+     * @return a {@link Metrics} object.
+     */
+    Metrics metrics();
 
     <T> T getComponent(Class<T> componentClass);
 
