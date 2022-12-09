@@ -1,3 +1,41 @@
+# [2.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.47.1...2.0.0) (2022-12-09)
+
+
+### Bug Fixes
+
+* allow interrupting body or messages flow ([856caf0](https://github.com/gravitee-io/gravitee-gateway-api/commit/856caf09ea884999924b07924ae7b207221f3f8b))
+* check if api requires a deployment before redeploying every objects related ([d11bc38](https://github.com/gravitee-io/gravitee-gateway-api/commit/d11bc38e49a3abb4ec83f6bd3e3287e4f4e18c65))
+* distinguish host from  original host on request ([9e87dfb](https://github.com/gravitee-io/gravitee-gateway-api/commit/9e87dfbeb50ce95c120ce0a9cf481abe0db1a972))
+* missing release ([ec490a2](https://github.com/gravitee-io/gravitee-gateway-api/commit/ec490a2b9d824c10316223a573a2e8b700153d52))
+
+
+### chore
+
+* bump to rxJava3 ([8b03864](https://github.com/gravitee-io/gravitee-gateway-api/commit/8b038648cf8588060a818ba2649e1e3df481c8d4))
+
+
+### Features
+
+* add client identifier on request ([ee97c7e](https://github.com/gravitee-io/gravitee-gateway-api/commit/ee97c7ee216bccc03a9190718ce5054b8abd6056))
+* add deployment context to connector factory ([f0c9bbb](https://github.com/gravitee-io/gravitee-gateway-api/commit/f0c9bbbd04c7a5d2cbf3a0bd0965a33c9d7bc899))
+* add deployment context to connector factory ([1cfe4dd](https://github.com/gravitee-io/gravitee-gateway-api/commit/1cfe4ddd10e52a3af2809e86f1272482696794c4))
+* add entrypoint subscription configuration capabilities ([7625c6a](https://github.com/gravitee-io/gravitee-gateway-api/commit/7625c6a9856eea50df8e188deed37647baeb4ec5))
+* add message processor chain ([cefcdfa](https://github.com/gravitee-io/gravitee-gateway-api/commit/cefcdfa8b9d893915fccd583afbf3948023bd8d2))
+* add processor and error on async api ([4323afc](https://github.com/gravitee-io/gravitee-gateway-api/commit/4323afc339ac3d933b06801b2324dfba165de373))
+* add subscription.equals using lombok ([aefbc82](https://github.com/gravitee-io/gravitee-gateway-api/commit/aefbc8276f8928fbcd16c00bf4b9a19a1b70952c))
+* add support for condition at message level ([cc59aeb](https://github.com/gravitee-io/gravitee-gateway-api/commit/cc59aeb21355f765764318a1830e05dc03d8a826))
+* allow access resolved subscription from a EL ([6767655](https://github.com/gravitee-io/gravitee-gateway-api/commit/6767655df9d36a01e28dfa97d82ba52ddcf710b4))
+* ConnectorHelper handles reading entrypoint configuration ([b7781f2](https://github.com/gravitee-io/gravitee-gateway-api/commit/b7781f2ebcba1b89f0930b31e1fee8def68bcad8))
+* handle stop on entrypoint connector ([de89dde](https://github.com/gravitee-io/gravitee-gateway-api/commit/de89dde265810a88d6cfb7f0a7968058c45e5d72))
+* implement QoS for event-native ([f031839](https://github.com/gravitee-io/gravitee-gateway-api/commit/f0318396d7f94524b65d4d1924425c6c3326db04))
+* manage subscription consumer status ([b17b498](https://github.com/gravitee-io/gravitee-gateway-api/commit/b17b498f09d637b56f7c0876541c9756a68ab49f))
+* **v4:** add identifier on Connector ([9d9f5ba](https://github.com/gravitee-io/gravitee-gateway-api/commit/9d9f5ba2ee67b497ea5bf0673b665a641330735c))
+
+
+### BREAKING CHANGES
+
+* rxJava3 required
+
 # [2.0.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0-alpha.9...2.0.0-alpha.10) (2022-12-01)
 
 
