@@ -35,10 +35,10 @@
     <properties>
         <gravitee-bom.version>2.9</gravitee-bom.version>
         <gravitee-tracing-api.version>1.0.0</gravitee-tracing-api.version>
-        <gravitee-common.version>2.0.0-alpha.3</gravitee-common.version>
+        <gravitee-common.version>2.0.0</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-reporter-api.version>1.24.0</gravitee-reporter-api.version>
-        <gravitee-expression-language.version>2.0.0-alpha.1</gravitee-expression-language.version>
+        <gravitee-expression-language.version>2.0.0</gravitee-expression-language.version>
         <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
     </properties>
 
