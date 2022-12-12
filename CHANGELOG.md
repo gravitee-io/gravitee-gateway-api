@@ -1,3 +1,10 @@
+# [2.1.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0...2.1.0-alpha.1) (2022-12-12)
+
+
+### Features
+
+* introduce dlq service concept ([6a6d5ce](https://github.com/gravitee-io/gravitee-gateway-api/commit/6a6d5ce682296c32741db42d1ce3dfeeb4ba618a))
+
 # [2.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.47.1...2.0.0) (2022-12-09)
 
 
