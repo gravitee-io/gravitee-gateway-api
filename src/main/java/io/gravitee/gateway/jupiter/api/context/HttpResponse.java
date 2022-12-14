@@ -142,4 +142,14 @@ public interface HttpResponse extends GenericResponse {
      * @return an observable that can be easily chained.
      */
     Completable end();
+
+    /**
+     * Set the `Content-Length` header to the response.
+     * <p>
+     * <b>WARN:</b> any existing `Transfer-Encoding` header will be removed.
+     * @see <a href="https://greenbytes.de/tech/webdav/rfc2616.html#rfc.section.4.4">RFC 2616</a>
+     * </p>
+     * @param length The value of the `Content-Length` header
+     */
+    void contentLength(long length);
 }
