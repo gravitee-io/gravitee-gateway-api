@@ -25,36 +25,39 @@ import io.reactivex.rxjava3.core.Single;
 
 public interface HttpResponse extends GenericResponse {
     /**
-     * Get the current body response as a {@link Maybe}. If no body has not been set on the response yet, an empty {@link Maybe} will returned.
-     *
-     * By getting the body as a {@link Maybe}, the current body chunks will be merged together to reconstruct the entire body in provide it in the form of a single {@link Buffer}
+     * Get the current body response as a {@link Maybe}. If no body has been set on the response yet, an empty {@link Maybe} will returned.
+     * <p>
+     * By getting the body as a {@link Maybe}, the current body chunks will be merged together to reconstruct the entire body to provide it in the form of a single {@link Buffer}
      * This is useful when the entire body is required to apply some transformation or any manipulation.
+     * </p>
      *
      * <b>WARN:</b> beware that the entire body content will be loaded in memory. You should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
      *
-     * @return a {@link Maybe} observable containing the current entire body response or empty if response body as not been set yet.
+     * @return a {@link Maybe} observable containing the current entire body response or empty if response body has not been set yet.
      * @see #bodyOrEmpty()
      */
     Maybe<Buffer> body();
 
     /**
      * Same as {@link #body()} but returns a {@link Single} of {@link Buffer} instead.
-     *
-     * If no body response as been set yet, it returns a {@link Single} with an empty {@link Buffer}.
+     * <p>
+     * If no body response has been set yet, it returns a {@link Single} with an empty {@link Buffer}.
      * It is a convenient way that avoid checking if the body is set or not prior to manipulate it.
+     * </p>
      *
-     * @return a {@link Single} observable containing the current entire body response or empty an {@link Buffer) if response body as not been set yet.
+     * @return a {@link Single} observable containing the current entire body response or empty an {@link Buffer) if response body has not been set yet.
      * @see #body()
      */
     Single<Buffer> bodyOrEmpty();
 
     /**
      * Set the current body response as a {@link Buffer}.
+     * <p>
      * This is useful when you want to replace the current body response with a specific content that doesn't come from a reactive chain, ex:
-     *
      * <code>
      *     response.body(Buffer.buffer("My custom content");
      * </code>
+     * </p>
      *
      * <b>WARN:</b>
      * <ul>
@@ -70,11 +73,12 @@ public interface HttpResponse extends GenericResponse {
 
     /**
      * Applies a transformation on the complete body given as a single {@link Buffer}.
-     *
+     * <p>
      * Ex:
      * <code>
-     *     response.onBody(body -> body.map(buffer ->Buffer.buffer(buffer.toString().toUpperCase())));
+     * response.onBody(body -> body.map(buffer ->Buffer.buffer(buffer.toString().toUpperCase())));
      * </code>
+     * </p>
      *
      * <b>IMPORTANT: applying a transformation on the body content loads the whole body in memory.
      * It's up to the consumer to make sure it is safe to do that without consuming too much memory.</b>
@@ -87,16 +91,16 @@ public interface HttpResponse extends GenericResponse {
     /**
      * Set the current response body chunks from a {@link Flowable} of {@link Buffer}.
      * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
-     *
+     * <p>
      * <b>WARN:</b>
      * <ul>
      *  <li>replacing the response chunks will <b>NOT</b> "drain" the previous response that was in place.</li>
      *  <li>You <b>MUST</b> ensure to consume the previous chunks by yourself when using it.</li>
      *  <li>You <b>SHOULD</b> consider using {@link #onChunks(FlowableTransformer)} to change the chunks during the chain execution.</li>
      * </ul>
+     * </p>
      *
      * @param chunks the {@link Flowable} of chunks representing the response to push back to the downstream.
-     *
      * @see #body()
      */
     void chunks(final Flowable<Buffer> chunks);
@@ -104,8 +108,9 @@ public interface HttpResponse extends GenericResponse {
     /**
      * Get the current response body chunks as {@link Flowable} of {@link Buffer}.
      * This is useful when you want to manipulate the entire body without having to load it in memory.
-     *
+     * <p>
      * <b>WARN:</b> you should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
+     * </p>
      *
      * @return a {@link Flowable} containing the current body response chunks.
      */
@@ -117,12 +122,14 @@ public interface HttpResponse extends GenericResponse {
      * <code>
      *     response.onChunks(chunks -> chunks.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase())));
      * </code>
-     *
+     * <p>
      * <b>IMPORTANT: applying a transformation on the body chunks loads the whole body in memory.
      * It's up to the consumer to make sure it is safe to do that without consuming too much memory.</b>
-     *
+     * </p>
+     * <p>
      * <b>IMPORTANT: applying a transformation on chunks completes when all chunks have been transformed.
      * If used in a policy chain, it means that the next policy will start once all chunks have been transformed</b>
+     * </p>
      *
      * @param onChunks the transformer that will be applied.
      * @return a {@link Completable} that completes once the body transformation has occurred on all the chunks.
