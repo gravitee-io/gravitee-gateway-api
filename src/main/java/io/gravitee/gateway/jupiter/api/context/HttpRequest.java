@@ -184,4 +184,16 @@ public interface HttpRequest extends GenericRequest {
      * @return a {@link Completable} that completes once the body transformation has occurred on all the chunks.
      */
     Completable onChunks(final FlowableTransformer<Buffer, Buffer> onChunks);
+
+    /**
+     * Set the `Content-Length` header to the request.
+     *
+     * <p>
+     * <b>WARN:</b> any existing `Transfer-Encoding` header will be removed.
+     * @see <a href="https://greenbytes.de/tech/webdav/rfc2616.html#rfc.section.4.4">RFC 2616</a>
+     * </p>
+     *
+     * @param length The value of the `Content-Length` header
+     */
+    void contentLength(long length);
 }
