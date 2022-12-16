@@ -27,6 +27,8 @@ import io.reactivex.rxjava3.core.Single;
 public interface HttpRequest extends GenericRequest {
     /**
      * Indicates if that request is a websocket request.
+     *
+     * <p>
      * A websocket request must respond to the following criteria:
      * <ul>
      *     <li>Has a <code>Connection: Upgrade</code> header</li>
@@ -34,6 +36,7 @@ public interface HttpRequest extends GenericRequest {
      *     <li>Is a <code>GET</code> request</li>
      *     <li>Is an HTTP 1.0 or HTTP 1.1 request</li>
      * </ul>
+     * </p>
      *
      * @return <code>true</code> is the request is a websocket, <code>false</code> otherwise.
      */
@@ -50,12 +53,16 @@ public interface HttpRequest extends GenericRequest {
     /**
      * Get the current body request as a {@link Maybe}.
      *
-     * By getting the body as a {@link Maybe}, the current body chunks will be merged together to reconstruct the entire body in provide it in the form of a single {@link Buffer}
+     * <p>
+     * By getting the body as a {@link Maybe}, the current body chunks will be merged together to reconstruct the entire body to provide it in the form of a single {@link Buffer}
      * This is useful when the entire body is required to apply some transformation or any manipulation.
+     * </p>
      *
+     * <p>
      * <b>WARN:</b> beware that the entire body content will be loaded in memory. You should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
+     * </p>
      *
-     * @return a {@link Maybe} observable containing the current entire body request or empty if request body as not been set yet.
+     * @return a {@link Maybe} observable containing the current entire body request or empty if request body has not been set yet.
      * @see #bodyOrEmpty()
      */
     Maybe<Buffer> body();
@@ -63,21 +70,25 @@ public interface HttpRequest extends GenericRequest {
     /**
      * Same as {@link #body()} but returns a {@link Single} of {@link Buffer} instead.
      *
+     * <p>
      * If no body request as been set yet, it returns a {@link Single} with an empty {@link Buffer}.
      * It is a convenient way that avoid checking if the body is set or not prior to manipulate it.
+     * </p>
      *
-     * @return a {@link Single} observable containing the current entire body request or empty an {@link Buffer) if request body as not been set yet.
+     * @return a {@link Single} observable containing the current entire body request or empty an {@link Buffer) if request body has not been set yet.
      * @see #body()
      */
     Single<Buffer> bodyOrEmpty();
 
     /**
      * Set the current body request as a {@link Buffer}.
-     * This is useful when you want to replace the current body request with a specific content that doesn't come from a reactive chain, ex:
      *
-     * <code>
+     * <p>
+     * This is useful when you want to replace the current body request with a specific content that doesn't come from a reactive chain, ex:
+     *  <code>
      *     request.body(Buffer.buffer("My custom content");
      * </code>
+     * </p>
      *
      * <b>WARN:</b>
      * <ul>
@@ -94,13 +105,17 @@ public interface HttpRequest extends GenericRequest {
     /**
      * Applies a transformation on the complete body given as a single {@link Buffer}.
      *
+     * <p>
      * Ex:
      * <code>
-     *     request.onBody(body -> body.map(buffer ->Buffer.buffer(buffer.toString().toUpperCase())));
+     *     request.onBody(body -> body.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase())));
      * </code>
+     * </p>
      *
+     * <p>
      * <b>IMPORTANT: applying a transformation on the body content loads the whole body in memory.
      * It's up to the consumer to make sure it is safe to do that without consuming too much memory.</b>
+     * </p>
      *
      * @param onBody the transformation that will be applied on the body.
      * @return a {@link Completable} that completes once the body transformation has occurred.
@@ -109,9 +124,14 @@ public interface HttpRequest extends GenericRequest {
 
     /**
      * Get the current request body chunks as {@link Flowable} of {@link Buffer}.
-     * This is useful when you want to manipulate the entire body without having to load it in memory.
      *
+     * <p>
+     * This is useful when you want to manipulate the entire body without having to load it in memory.
+     * </p>
+     *
+     * <p>
      * <b>WARN:</b> you should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
+     * </p>
      *
      * @return a {@link Flowable} containing the current body request chunks.
      */
@@ -119,14 +139,20 @@ public interface HttpRequest extends GenericRequest {
 
     /**
      * Set the current request body chunks from a {@link Flowable} of {@link Buffer}.
-     * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
      *
+     * <p>
+     * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
+     * </p>
+     *
+     * <p>
      * <b>WARN:</b>
      * <ul>
      *  <li>replacing the request chunks will <b>NOT</b> "drain" the previous request that was in place.</li>
      *  <li>You <b>MUST</b> ensure to consume the previous chunks by yourself when using it.</li>
      *  <li>You <b>SHOULD</b> consider using {@link #onChunks(FlowableTransformer)} to change the chunks during the chain execution.</li>
      * </ul>
+     *
+     * </p>
      *
      * @param chunks the {@link Flowable} of chunks representing the request body that will be pushed to the upstream.
      *
@@ -136,16 +162,23 @@ public interface HttpRequest extends GenericRequest {
 
     /**
      * Applies a transformation on each body chunks and completes when all the chunks have been processed.
+     *
+     * <p>
      * Ex:
      * <code>
      *     request.onChunks(chunks -> chunks.map(buffer -> Buffer.buffer(buffer.toString().toUpperCase())));
      * </code>
+     * </p>
      *
+     * <p>
      * <b>IMPORTANT: applying a transformation on the body chunks loads the whole body in memory.
      * It's up to the consumer to make sure it is safe to do that without consuming too much memory.</b>
+     * </p>
      *
+     * <p>
      * <b>IMPORTANT: applying a transformation on chunks completes when all chunks have been transformed.
      * If used in a policy chain, it means that the next policy will start once all chunks have been transformed</b>
+     * </p>
      *
      * @param onChunks the transformer that will be applied.
      * @return a {@link Completable} that completes once the body transformation has occurred on all the chunks.
