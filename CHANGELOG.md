@@ -1,3 +1,10 @@
+# [2.1.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.2...2.1.0-alpha.3) (2022-12-16)
+
+
+### Features
+
+* method to set the content-length header on http request ([1281eb2](https://github.com/gravitee-io/gravitee-gateway-api/commit/1281eb26ba0811e5a0fc875592c806484f3d88cf))
+
 # [2.1.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.1...2.1.0-alpha.2) (2022-12-14)
 
 
