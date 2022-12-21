@@ -1,3 +1,10 @@
+# [2.1.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.3...2.1.0-alpha.4) (2022-12-21)
+
+
+### Features
+
+* add exception dedicated to message processing failures ([a891e3f](https://github.com/gravitee-io/gravitee-gateway-api/commit/a891e3f4c9796e25095b10ef05b14c8e0b608834))
+
 # [2.1.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.2...2.1.0-alpha.3) (2022-12-16)
 
 
