@@ -66,5 +66,6 @@ public class Subscription {
     public enum ConsumerStatus {
         STOPPED,
         STARTED,
+        FAILURE,
     }
 }
