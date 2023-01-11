@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.jupiter.api.context;
 
+import io.gravitee.common.http.HttpMethod;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.jupiter.api.ws.WebSocket;
 import io.reactivex.rxjava3.core.Completable;
@@ -196,4 +197,6 @@ public interface HttpRequest extends GenericRequest {
      * @param length The value of the `Content-Length` header
      */
     void contentLength(long length);
+
+    void method(HttpMethod method);
 }
