@@ -7,6 +7,15 @@
 * add saving and dispatching capabilities to SubscriptionService ([1f484c2](https://github.com/gravitee-io/gravitee-gateway-api/commit/1f484c2f79c6c4b6bfec0d40c29f90b78177ff47))
 * provide isStatusXXX methods on GenericResponse ([8180324](https://github.com/gravitee-io/gravitee-gateway-api/commit/81803245aa5d5f16513d83f72a1af8962574457f))
 
+# [2.1.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.4...2.1.0-alpha.5) (2023-01-12)
+
+
+### Features
+
+* add FAILURE consumer status on Subscription ([f0458f2](https://github.com/gravitee-io/gravitee-gateway-api/commit/f0458f2cc644c1a37132937085140cd54447733b))
+* add saving and dispatching capabilities to SubscriptionService ([1f484c2](https://github.com/gravitee-io/gravitee-gateway-api/commit/1f484c2f79c6c4b6bfec0d40c29f90b78177ff47))
+* provide isStatusXXX methods on GenericResponse ([8180324](https://github.com/gravitee-io/gravitee-gateway-api/commit/81803245aa5d5f16513d83f72a1af8962574457f))
+
 # [2.1.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.3...2.1.0-alpha.4) (2022-12-21)
 
 
