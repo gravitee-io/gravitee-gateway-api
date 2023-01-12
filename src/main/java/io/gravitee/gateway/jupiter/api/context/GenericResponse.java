@@ -43,4 +43,48 @@ public interface GenericResponse {
      * @return <code>true</code> if the response has been fully pushed to the client, <code>false</code> else.
      */
     boolean ended();
+
+    /**
+     * Indicates if response has status in 100-199 range.
+     * @return true if status is 1xx
+     */
+    default boolean isStatus1xx() {
+        return hasHundredsDigit(status(), 1);
+    }
+
+    /**
+     * Indicates if response has status in 200-299 range.
+     * @return true if status is 2xx
+     */
+    default boolean isStatus2xx() {
+        return hasHundredsDigit(status(), 2);
+    }
+
+    /**
+     * Indicates if response has status in 300-399 range.
+     * @return true if status is 3xx
+     */
+    default boolean isStatus3xx() {
+        return hasHundredsDigit(status(), 3);
+    }
+
+    /**
+     * Indicates if response has status in 400-499 range.
+     * @return true if status is 4xx
+     */
+    default boolean isStatus4xx() {
+        return hasHundredsDigit(status(), 4);
+    }
+
+    /**
+     * Indicates if response has status in 500-599 range.
+     * @return true if status is 5xx
+     */
+    default boolean isStatus5xx() {
+        return hasHundredsDigit(status(), 5);
+    }
+
+    private boolean hasHundredsDigit(int numberToTest, int hundredsDigit) {
+        return numberToTest / 100 == hundredsDigit;
+    }
 }
