@@ -17,6 +17,7 @@ package io.gravitee.gateway.api.service;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,6 +50,8 @@ public class Subscription {
     private Map<String, String> metadata;
 
     private Type type = Type.STANDARD;
+
+    private Set<String> tags;
 
     @EqualsAndHashCode.Exclude
     private boolean forceDispatch;
