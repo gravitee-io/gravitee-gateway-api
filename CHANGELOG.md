@@ -1,3 +1,10 @@
+# [2.1.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.5...2.1.0-alpha.6) (2023-01-13)
+
+
+### Features
+
+* add http method setter in HttpRequest ([d815bbb](https://github.com/gravitee-io/gravitee-gateway-api/commit/d815bbbadc4626c1f71638a5c5d232bcb8a8d3c3))
+
 # [2.1.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.4...2.1.0-alpha.5) (2023-01-12)
 
 
