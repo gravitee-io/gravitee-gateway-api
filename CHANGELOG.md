@@ -1,3 +1,10 @@
+# [2.1.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.6...2.1.0-alpha.7) (2023-01-16)
+
+
+### Features
+
+* add correlation id and timestamp on message ([765b625](https://github.com/gravitee-io/gravitee-gateway-api/commit/765b625a1be80e6fdf3f09e486d2161f8b933675))
+
 # [2.1.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.5...2.1.0-alpha.6) (2023-01-13)
 
 
