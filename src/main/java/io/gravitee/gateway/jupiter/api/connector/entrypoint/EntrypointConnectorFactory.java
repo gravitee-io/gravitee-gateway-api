@@ -15,9 +15,12 @@
  */
 package io.gravitee.gateway.jupiter.api.connector.entrypoint;
 
+import io.gravitee.gateway.jupiter.api.ListenerType;
 import io.gravitee.gateway.jupiter.api.connector.ConnectorFactory;
 
 /**
  * Specialized factory for {@link EntrypointConnector}
  */
-public interface EntrypointConnectorFactory<T extends EntrypointConnector> extends ConnectorFactory<T> {}
+public interface EntrypointConnectorFactory<T extends EntrypointConnector> extends ConnectorFactory<T> {
+    ListenerType supportedListenerType();
+}
