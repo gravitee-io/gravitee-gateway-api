@@ -1,3 +1,10 @@
+# [2.1.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.7...2.1.0-alpha.8) (2023-01-24)
+
+
+### Features
+
+* add supportedListenerType to EntrypointConnectorFactory interface ([c094315](https://github.com/gravitee-io/gravitee-gateway-api/commit/c094315d0eaad6bc9c70d7e43715d72472cecd6c))
+
 # [2.1.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.6...2.1.0-alpha.7) (2023-01-16)
 
 
