@@ -32,7 +32,6 @@ public enum ApiType {
 
     private static final Map<String, ApiType> LABELS_MAP = Map.of(SYNC.label, SYNC, ASYNC.label, ASYNC);
 
-
     @JsonValue
     private final String label;
 
