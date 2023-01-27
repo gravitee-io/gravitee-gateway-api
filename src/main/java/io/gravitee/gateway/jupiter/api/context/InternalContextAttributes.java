@@ -25,6 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class InternalContextAttributes {
 
+    public static final String ATTR_INTERNAL_REACTABLE_API = "reactableApi";
     /**
      * Attribute used to store a reference to the {@link io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector}
      */
