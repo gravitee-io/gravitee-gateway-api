@@ -27,15 +27,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public enum ApiType {
-    REQUEST_RESPONSE("request-response"),
-    EVENT_NATIVE("event-native");
+    SYNC("sync"),
+    ASYNC("async");
 
-    private static final Map<String, ApiType> LABELS_MAP = Map.of(
-        REQUEST_RESPONSE.label,
-        REQUEST_RESPONSE,
-        EVENT_NATIVE.label,
-        EVENT_NATIVE
-    );
+    private static final Map<String, ApiType> LABELS_MAP = Map.of(SYNC.label, SYNC, ASYNC.label, ASYNC);
+
 
     @JsonValue
     private final String label;
