@@ -1,3 +1,10 @@
+# [2.1.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.8...2.1.0-alpha.9) (2023-01-30)
+
+
+### Bug Fixes
+
+* revert change on api type ([e80f04e](https://github.com/gravitee-io/gravitee-gateway-api/commit/e80f04e2f0757cd491214748928ab4e0f969c374))
+
 # [2.1.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.7...2.1.0-alpha.8) (2023-01-24)
 
 
