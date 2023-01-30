@@ -21,12 +21,12 @@ import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnector;
 
 /**
- * Specialized {@link EndpointConnector} for {@link ApiType#REQUEST_RESPONSE}
+ * Specialized {@link EndpointConnector} for {@link ApiType#SYNC}
  */
 public abstract class EndpointSyncConnector extends AbstractService<Connector> implements EndpointConnector {
 
     @Override
     public ApiType supportedApi() {
-        return ApiType.REQUEST_RESPONSE;
+        return ApiType.SYNC;
     }
 }

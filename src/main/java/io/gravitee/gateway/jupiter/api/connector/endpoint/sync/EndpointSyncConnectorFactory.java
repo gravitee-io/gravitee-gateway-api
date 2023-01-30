@@ -31,6 +31,6 @@ public interface EndpointSyncConnectorFactory<T extends EndpointSyncConnector> e
 
     @Override
     default ApiType supportedApi() {
-        return ApiType.REQUEST_RESPONSE;
+        return ApiType.SYNC;
     }
 }

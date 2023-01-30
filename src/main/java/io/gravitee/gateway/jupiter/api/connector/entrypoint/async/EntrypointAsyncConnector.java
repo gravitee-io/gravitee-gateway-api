@@ -28,7 +28,7 @@ import io.reactivex.rxjava3.core.FlowableTransformer;
 import io.reactivex.rxjava3.processors.BehaviorProcessor;
 
 /**
- * Specialized {@link EntrypointConnector} for {@link ApiType#EVENT_NATIVE}
+ * Specialized {@link EntrypointConnector} for {@link ApiType#ASYNC}
  */
 public abstract class EntrypointAsyncConnector extends AbstractService<Connector> implements EntrypointConnector {
 
@@ -39,7 +39,7 @@ public abstract class EntrypointAsyncConnector extends AbstractService<Connector
 
     @Override
     public ApiType supportedApi() {
-        return ApiType.EVENT_NATIVE;
+        return ApiType.ASYNC;
     }
 
     /**
