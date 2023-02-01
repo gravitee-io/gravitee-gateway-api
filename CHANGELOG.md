@@ -1,3 +1,10 @@
+# [2.1.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.9...2.1.0-alpha.10) (2023-02-01)
+
+
+### Features
+
+* add new internal attribute to store apireactor ([1768c64](https://github.com/gravitee-io/gravitee-gateway-api/commit/1768c643ed2b3bca09e5fd260419841d8fcd0323))
+
 # [2.1.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.8...2.1.0-alpha.9) (2023-01-30)
 
 
