@@ -1,3 +1,10 @@
+# [2.1.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.10...2.1.0-alpha.11) (2023-02-02)
+
+
+### Bug Fixes
+
+* bump reporter api ([77ef43b](https://github.com/gravitee-io/gravitee-gateway-api/commit/77ef43b487afb6bb6536fb95ad49fc7b380b58fe))
+
 # [2.1.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.9...2.1.0-alpha.10) (2023-02-01)
 
 
