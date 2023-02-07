@@ -151,6 +151,13 @@
 
 * add ATTR_INTERNAL_SECURITY_TOKEN constant to handle apikey vs keyless plan selection ([7415451](https://github.com/gravitee-io/gravitee-gateway-api/commit/74154511e5ede072f4d21b83870a307014878e06))
 
+## [1.44.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.44.1...1.44.2) (2023-01-30)
+
+
+### Bug Fixes
+
+* add `active` field ([12799a3](https://github.com/gravitee-io/gravitee-gateway-api/commit/12799a3e06af073f3d9fbba0f92110eeaf00a09e))
+
 ## [1.44.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/1.44.0...1.44.1) (2022-09-28)
 
 
