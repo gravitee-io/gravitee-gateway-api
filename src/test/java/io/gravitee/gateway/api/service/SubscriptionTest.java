@@ -26,46 +26,47 @@ import org.junit.jupiter.api.Test;
 public class SubscriptionTest {
 
     @Test
-    public void isTimeValid_should_return_false_cause_not_yet_started() {
-        Subscription subscription = new Subscription();
-        subscription.setStartingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)));
-        subscription.setEndingAt(Date.from(Instant.now().plus(2, ChronoUnit.DAYS)));
+    void isTimeValid_should_return_false_cause_not_yet_started() {
+        Subscription subscription = Subscription
+            .builder()
+            .startingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)))
+            .endingAt(Date.from(Instant.now().plus(2, ChronoUnit.DAYS)))
+            .build();
+        assertFalse(subscription.isTimeValid(Date.from(Instant.now()).getTime()));
+    }
+
+    @Test
+    void isTimeValid_should_return_false_cause_already_expired() {
+        Subscription subscription = Subscription
+            .builder()
+            .startingAt(Date.from(Instant.now().minus(2, ChronoUnit.DAYS)))
+            .endingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS)))
+            .build();
 
         assertFalse(subscription.isTimeValid(Date.from(Instant.now()).getTime()));
     }
 
     @Test
-    public void isTimeValid_should_return_false_cause_already_expired() {
-        Subscription subscription = new Subscription();
-        subscription.setStartingAt(Date.from(Instant.now().minus(2, ChronoUnit.DAYS)));
-        subscription.setEndingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS)));
-
-        assertFalse(subscription.isTimeValid(Date.from(Instant.now()).getTime()));
-    }
-
-    @Test
-    public void isTimeValid_should_return_true_cause_between_start_and_end() {
-        Subscription subscription = new Subscription();
-        subscription.setStartingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS)));
-        subscription.setEndingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)));
+    void isTimeValid_should_return_true_cause_between_start_and_end() {
+        Subscription subscription = Subscription
+            .builder()
+            .startingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS)))
+            .endingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)))
+            .build();
 
         assertTrue(subscription.isTimeValid(Date.from(Instant.now()).getTime()));
     }
 
     @Test
-    public void isTimeValid_should_return_true_with_null_start_date() {
-        Subscription subscription = new Subscription();
-        subscription.setStartingAt(null);
-        subscription.setEndingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)));
+    void isTimeValid_should_return_true_with_null_start_date() {
+        Subscription subscription = Subscription.builder().endingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS))).build();
 
         assertTrue(subscription.isTimeValid(Date.from(Instant.now()).getTime()));
     }
 
     @Test
-    public void isTimeValid_should_return_true_with_null_end_date() {
-        Subscription subscription = new Subscription();
-        subscription.setStartingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS)));
-        subscription.setEndingAt(null);
+    void isTimeValid_should_return_true_with_null_end_date() {
+        Subscription subscription = Subscription.builder().startingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS))).build();
 
         assertTrue(subscription.isTimeValid(Date.from(Instant.now()).getTime()));
     }

@@ -13,16 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
+package io.gravitee.gateway.api.service;
 
-import io.gravitee.gateway.jupiter.api.connector.entrypoint.EntrypointConnector;
+import java.util.Date;
+import java.util.Map;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-/**
- * Default empty subscription configuration for {@link EntrypointConnector}
- *
- * @author Yann TAVERNIER (yann.tavernier at graviteesource.com)
- * @author GraviteeSource Team
- */
-public interface EntrypointConnectorSubscriptionConfiguration {
-    String entrypointId();
+@Getter
+@Setter
+@Builder
+@EqualsAndHashCode
+@ToString
+public class SubscriptionConfiguration {
+
+    private String channel;
+
+    private String entrypointId;
+
+    private String entrypointConfiguration;
 }
