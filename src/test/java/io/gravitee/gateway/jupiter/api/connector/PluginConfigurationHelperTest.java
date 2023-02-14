@@ -20,19 +20,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gravitee.gateway.jupiter.api.connector.endpoint.EndpointConnectorConfiguration;
 import io.gravitee.gateway.jupiter.api.exception.PluginConfigurationException;
+import io.gravitee.gateway.jupiter.api.helper.PluginConfigurationHelper;
 import lombok.Getter;
 import lombok.Setter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ConnectorHelperTest {
+class PluginConfigurationHelperTest {
 
-    private final ConnectorHelper connectorHelper = new ConnectorHelper(null, new ObjectMapper());
+    private final PluginConfigurationHelper pluginConfigurationHelper = new PluginConfigurationHelper(null, new ObjectMapper());
 
     @Test
     @DisplayName("getConnectorConfiguration should read JSON configuration and return configuration object")
     void shouldReadConfigurationWithValidConfiguration() throws PluginConfigurationException {
-        TestConfiguration config = connectorHelper.readConfiguration(
+        TestConfiguration config = pluginConfigurationHelper.readConfiguration(
             TestConfiguration.class,
             "{\"data1\":\"value1\", \"data2\":\"value2\"}"
         );
@@ -45,14 +46,14 @@ class ConnectorHelperTest {
     void shouldThrowPluginConfigurationExceptionWithInvalidConfiguration() {
         assertThrows(
             PluginConfigurationException.class,
-            () -> connectorHelper.readConfiguration(TestConfiguration.class, "THIS IS INVALID JSON")
+            () -> pluginConfigurationHelper.readConfiguration(TestConfiguration.class, "THIS IS INVALID JSON")
         );
     }
 
     @Test
     @DisplayName("getConnectorConfiguration should get empty configuration when configuration is null")
     void shouldGetEmptyConfigurationExceptionWithNullConfiguration() throws PluginConfigurationException {
-        TestConfiguration config = connectorHelper.readConfiguration(TestConfiguration.class, null);
+        TestConfiguration config = pluginConfigurationHelper.readConfiguration(TestConfiguration.class, null);
         assertNotNull(config);
         assertNull(config.getData1());
         assertNull(config.getData2());

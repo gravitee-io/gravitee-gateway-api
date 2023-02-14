@@ -35,6 +35,7 @@ public final class ContextAttributes {
     public static final String ATTR_QUOTA_REMAINING = ATTR_PREFIX + "quota.remaining";
     public static final String ATTR_QUOTA_COUNT = ATTR_PREFIX + "quota.count";
     public static final String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
+    public static final String ATTR_REQUEST_ENDPOINT_OVERRIDE = ATTR_PREFIX + "request.endpoint.override";
     public static final String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
     public static final String ATTR_PLAN = ATTR_PREFIX + "plan";
     public static final String ATTR_SUBSCRIPTION_ID = ATTR_PREFIX + "user-id";
