@@ -16,6 +16,8 @@
 package io.gravitee.gateway.jupiter.api.context;
 
 import io.gravitee.el.TemplateEngine;
+import io.gravitee.el.TemplateVariableProvider;
+import java.util.Collection;
 
 /**
  * The {@link DeploymentContext} allows to access useful information at deployment time.

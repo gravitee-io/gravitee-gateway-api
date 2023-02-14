@@ -13,21 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.connector;
+package io.gravitee.gateway.jupiter.api.helper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.gravitee.gateway.jupiter.api.connector.Connector;
 import io.gravitee.gateway.jupiter.api.exception.PluginConfigurationException;
 import io.gravitee.node.api.configuration.Configuration;
 import lombok.AllArgsConstructor;
 
 /**
- * Helper class used by factory to create new {@link Connector}
+ * Helper class used by factories to instantiate configuration object from json string config.
  *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
 @AllArgsConstructor
-public class ConnectorHelper {
+public class PluginConfigurationHelper {
 
     private final Configuration configuration;
     private final ObjectMapper objectMapper;
