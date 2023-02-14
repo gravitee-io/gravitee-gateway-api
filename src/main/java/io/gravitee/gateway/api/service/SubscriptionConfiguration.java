@@ -15,6 +15,9 @@
  */
 package io.gravitee.gateway.api.service;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -36,5 +39,17 @@ public class SubscriptionConfiguration {
 
     private String entrypointId;
 
+    @JsonRawValue
     private String entrypointConfiguration;
+
+    @JsonSetter
+    public void setEntrypointConfiguration(final JsonNode configuration) {
+        if (configuration != null) {
+            this.entrypointConfiguration = configuration.toString();
+        }
+    }
+
+    public void setEntrypointConfiguration(final String configuration) {
+        this.entrypointConfiguration = configuration;
+    }
 }
