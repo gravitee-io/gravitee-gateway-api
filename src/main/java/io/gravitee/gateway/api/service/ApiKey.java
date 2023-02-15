@@ -37,6 +37,8 @@ public class ApiKey {
 
     private boolean paused;
 
+    private boolean active;
+
     public String getId() {
         return id;
     }
@@ -83,6 +85,14 @@ public class ApiKey {
 
     public void setPaused(boolean paused) {
         this.paused = paused;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getApi() {
