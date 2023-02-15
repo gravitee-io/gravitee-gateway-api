@@ -1,3 +1,10 @@
+# [2.1.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.11...2.1.0-alpha.12) (2023-02-15)
+
+
+### Bug Fixes
+
+* add `active` field ([12799a3](https://github.com/gravitee-io/gravitee-gateway-api/commit/12799a3e06af073f3d9fbba0f92110eeaf00a09e))
+
 # [2.1.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.10...2.1.0-alpha.11) (2023-02-02)
 
 
