@@ -33,15 +33,6 @@ public interface WebSocket {
     Single<WebSocket> upgrade();
 
     /**
-     * Reject the websocket connection with the specified status code.
-     *
-     * @param statusCode the status code to use.
-     *
-     * @return a {@link Completable} that completes once the reject has been performed.
-     */
-    Completable reject(int statusCode);
-
-    /**
      * Writes the buffer to the websocket as a binary frame.
      *
      * @param buffer the buffer to write.
@@ -65,7 +56,14 @@ public interface WebSocket {
     Completable close();
 
     /**
-     * Closes the websocket without the specified status and reason.
+     * Closes the websocket with the specified status.
+     *
+     * @return a {@link Completable} that completes once the close has been performed.
+     */
+    Completable close(int status);
+
+    /**
+     * Closes the websocket with the specified status and reason.
      *
      * @return a {@link Completable} that completes once the close has been performed.
      */
