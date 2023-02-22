@@ -22,10 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Data
@@ -35,6 +38,7 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class DefaultMessage implements Message {
 
+    public static final String SOURCE_TIMESTAMP = "sourceTimestamp";
     private String id;
 
     @Builder.Default
@@ -44,6 +48,10 @@ public class DefaultMessage implements Message {
 
     @Builder.Default
     private long timestamp = System.currentTimeMillis();
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private long sourceTimestamp = timestamp;
 
     private Map<String, Object> attributes;
     private Map<String, Object> internalAttributes;
@@ -166,11 +174,30 @@ public class DefaultMessage implements Message {
         }
     }
 
+    public static DefaultMessageBuilder builder() {
+        return new DefaultMessageBuilder() {
+            @Override
+            public DefaultMessage build() {
+                prebuild();
+                return super.build();
+            }
+        };
+    }
+
     public static class DefaultMessageBuilder {
 
-        public DefaultMessageBuilder metadata(final Map<String, Object> metadata) {
-            this.metadata = unmodifiableMetadata(metadata);
-            return this;
+        // Insert sourceTimestamp into metadata before building the object
+        void prebuild() {
+            if (!timestamp$set) {
+                timestamp(System.currentTimeMillis());
+            }
+            if (metadata == null) {
+                metadata = new HashMap<>();
+            }
+            if (!metadata.containsKey(SOURCE_TIMESTAMP)) {
+                metadata.put(SOURCE_TIMESTAMP, sourceTimestamp != 0L ? sourceTimestamp : timestamp$value);
+            }
+            metadata = unmodifiableMetadata(metadata);
         }
     }
 

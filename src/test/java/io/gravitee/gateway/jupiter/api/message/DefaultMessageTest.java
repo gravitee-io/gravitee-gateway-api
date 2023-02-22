@@ -15,9 +15,14 @@
  */
 package io.gravitee.gateway.jupiter.api.message;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.entry;
 import static org.junit.jupiter.api.Assertions.*;
 
 import io.gravitee.gateway.api.buffer.Buffer;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -139,5 +144,31 @@ class DefaultMessageTest {
     void shouldHaveCorrelationIdFromBufferConstructor() {
         DefaultMessage cut = new DefaultMessage(null);
         assertNotNull(cut.correlationId());
+    }
+
+    @Test
+    void shouldAddSourceTimeStampToMetadata() {
+        final long twoDaysAgo = Instant.now().minus(2, ChronoUnit.DAYS).toEpochMilli();
+        final Map<String, Object> metadata = new HashMap<>();
+        metadata.put("an-entry", "its value");
+        metadata.put("another-entry", "its other value");
+        final DefaultMessage cut = DefaultMessage.builder().metadata(metadata).sourceTimestamp(twoDaysAgo).build();
+
+        assertThat(cut.metadata()).contains(entry(DefaultMessage.SOURCE_TIMESTAMP, twoDaysAgo));
+        assertThatThrownBy(() -> cut.metadata().put("forbidden", "cannot add because unmodifiable map"))
+            .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @Test
+    void shouldUseDefaultTimestampAsSourceTimestamp() {
+        final Map<String, Object> metadata = new HashMap<>();
+        metadata.put("an-entry", "its value");
+        metadata.put("another-entry", "its other value");
+        final long messageTimestamp = Instant.now().minus(3, ChronoUnit.DAYS).toEpochMilli();
+        final DefaultMessage cut = DefaultMessage.builder().timestamp(messageTimestamp).metadata(metadata).build();
+
+        assertThat(cut.metadata()).contains(entry(DefaultMessage.SOURCE_TIMESTAMP, cut.timestamp()));
+        assertThatThrownBy(() -> cut.metadata().put("forbidden", "cannot add because unmodifiable map"))
+            .isInstanceOf(UnsupportedOperationException.class);
     }
 }
