@@ -18,16 +18,19 @@ package io.gravitee.gateway.api.http;
 import static io.gravitee.gateway.api.http.HttpHeaderNames.ACCEPT_LANGUAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.netty.util.AsciiString;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 /**
  * @author Yann TAVERNIER (yann.tavernier at graviteesource.com)
  * @author GraviteeSource Team
  */
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class DefaultHttpHeadersTest {
 
     public static final String FIRST_HEADER = "First-Header";
@@ -46,8 +49,7 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should convert headers to single value map")
-    void shouldConvertToSingleValueMap() {
+    void should_convert_to_single_value_map() {
         final Map<String, String> result = cut.toSingleValueMap();
         assertThat(result).containsEntry(FIRST_HEADER, FIRST_HEADER_VALUE_1).containsEntry(SECOND_HEADER, SECOND_HEADER_VALUE);
 
@@ -56,8 +58,7 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should contain all keys")
-    void shouldContainAllKeys() {
+    void should_contain_all_keys() {
         assertThat(cut.containsAllKeys(List.of())).isTrue();
         assertThat(cut.containsAllKeys(List.of(FIRST_HEADER))).isTrue();
         assertThat(cut.containsAllKeys(List.of(FIRST_HEADER, SECOND_HEADER))).isTrue();
@@ -67,8 +68,7 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should contain key")
-    void shouldContainKey() {
+    void should_contain_key() {
         Object key = new Object();
         assertThat(cut.containsKey(key)).isFalse();
 
@@ -80,8 +80,7 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should contain value")
-    void shouldContainValue() {
+    void should_contain_value() {
         Object value = new Object();
         assertThat(cut.containsValue(value)).isFalse();
 
@@ -96,8 +95,7 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should get values")
-    void shouldGet() {
+    void should_get() {
         Object key = new Object();
         assertThat(cut.get(key)).isNull();
 
@@ -112,8 +110,7 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should put values")
-    void shouldPut() {
+    void should_put() {
         // Putting a new header
         final List<String> headerTestValues = List.of("test-value1", "test-value2");
         final List<String> testHeader = cut.put("test", headerTestValues);
@@ -131,15 +128,13 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should remove header")
-    void shouldRemove() {
+    void should_remove() {
         final HttpHeaders headers = cut.remove(FIRST_HEADER);
         assertThat(headers.contains(FIRST_HEADER)).isFalse();
     }
 
     @Test
-    @DisplayName("Should put all")
-    void shouldPutAll() {
+    void should_putAll() {
         final List<String> putAllHeaders = List.of("test-value1", "test-value2");
         final Map<String, List<String>> mapToAdd = Map.of("Put-All-Header", putAllHeaders, FIRST_HEADER, List.of("new-value"));
 
@@ -152,22 +147,19 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should get keySet")
-    void shouldGetKeySet() {
+    void should_get_keySet() {
         assertThat(cut.keySet()).hasSize(2).containsExactly(FIRST_HEADER, SECOND_HEADER);
     }
 
     @Test
-    @DisplayName("Should get values")
-    void shouldGetValues() {
+    void should_get_values() {
         assertThat(cut.values())
             .hasSize(2)
             .containsExactly(List.of(FIRST_HEADER_VALUE_1, FIRST_HEADER_VALUE_2), List.of(SECOND_HEADER_VALUE));
     }
 
     @Test
-    @DisplayName("Should get entrySet")
-    void shouldGetEntrySet() {
+    void should_get_entrySet() {
         assertThat(cut.entrySet())
             .hasSize(2)
             .containsExactly(
@@ -177,34 +169,29 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should get first")
-    void shouldGetFirst() {
+    void should_get_first() {
         assertThat(cut.getFirst(FIRST_HEADER)).isEqualTo(FIRST_HEADER_VALUE_1);
     }
 
     @Test
-    @DisplayName("Should not get first when absent")
-    void shouldNotGetFirst() {
+    void should_not_get_first() {
         assertThat(cut.getFirst("Content-Type")).isNull();
     }
 
     @Test
-    @DisplayName("Should add value for an existing key")
-    void shouldAddValue() {
+    void should_add_value() {
         cut.add(FIRST_HEADER, "new-value");
         assertThat(cut.getAll(FIRST_HEADER)).hasSize(3).containsExactly(FIRST_HEADER_VALUE_1, FIRST_HEADER_VALUE_2, "new-value");
     }
 
     @Test
-    @DisplayName("Should add value for a non existing key")
-    void shouldAddValueNonExistingKey() {
+    void should_add_value_non_existing_key() {
         cut.add("New-Header", "new-value");
         assertThat(cut.getAll("New-Header")).hasSize(1).containsExactly("new-value");
     }
 
     @Test
-    @DisplayName("Should set value and override if present")
-    void shouldSetValue() {
+    void should_set_value() {
         cut.set(FIRST_HEADER, "new-value");
         cut.set("New-Header", "new-value");
 
@@ -214,8 +201,7 @@ class DefaultHttpHeadersTest {
     }
 
     @Test
-    @DisplayName("Should set all values and override if present")
-    void shouldSetAll() {
+    void should_set_all() {
         final Map<String, String> mapToAdd = Map.of("Put-All-Header", "test-value1", FIRST_HEADER, "new-value");
 
         cut.setAll(mapToAdd);
@@ -224,5 +210,19 @@ class DefaultHttpHeadersTest {
 
         // Existing headers in the map should be overridden by this operation
         assertThat(cut.getAll(FIRST_HEADER)).hasSize(1).containsExactly("new-value");
+    }
+
+    @Test
+    void should_get_value_from_string_key_when_value_added_with_no_string_key() {
+        String keyAsString = "key";
+        cut.add(new AsciiString(keyAsString.getBytes()), "value");
+        assertThat(cut.get(keyAsString)).isEqualTo("value");
+    }
+
+    @Test
+    void should_get_value_from_non_string_key_when_value_added_with_string_key() {
+        String keyAsString = "key";
+        cut.add(keyAsString, "value");
+        assertThat(cut.get(new AsciiString(keyAsString.getBytes()))).isEqualTo("value");
     }
 }
