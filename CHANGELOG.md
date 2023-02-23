@@ -1,3 +1,10 @@
+# [2.1.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.12...2.1.0-alpha.13) (2023-02-23)
+
+
+### Features
+
+* enhance DefaultMessage builder to manage sourceTimestamp ([45831bb](https://github.com/gravitee-io/gravitee-gateway-api/commit/45831bb0aa07d0da6d2c7eb6baf8ea9b14663d5c))
+
 # [2.1.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.11...2.1.0-alpha.12) (2023-02-15)
 
 
