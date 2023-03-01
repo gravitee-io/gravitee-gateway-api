@@ -1,3 +1,10 @@
+# [2.1.0-alpha.14](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.13...2.1.0-alpha.14) (2023-03-01)
+
+
+### Features
+
+* introduce api service concept ([2b3a3c0](https://github.com/gravitee-io/gravitee-gateway-api/commit/2b3a3c089bd78dde34d7080f3a5ddef6a8a2f4dc))
+
 # [2.1.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.12...2.1.0-alpha.13) (2023-02-23)
 
 
