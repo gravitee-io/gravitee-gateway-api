@@ -17,10 +17,21 @@ package io.gravitee.gateway.reactive.api.connector.entrypoint;
 
 import io.gravitee.gateway.reactive.api.ListenerType;
 import io.gravitee.gateway.reactive.api.connector.ConnectorFactory;
+import io.gravitee.gateway.reactive.api.context.DeploymentContext;
 
 /**
  * Specialized factory for {@link EntrypointConnector}
  */
 public interface EntrypointConnectorFactory<T extends EntrypointConnector> extends ConnectorFactory<T> {
     ListenerType supportedListenerType();
+
+    /**
+     * Allow creating new entrypoint connector from the given string configuration.
+     *
+     * @param deploymentContext context containing useful deployment entities (api, services, ...).
+     * @param configuration the configuration as json string.
+     *
+     * @return new connector instance.
+     */
+    T createConnector(final DeploymentContext deploymentContext, final String configuration);
 }
