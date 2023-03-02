@@ -13,27 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.connector;
-
-import io.gravitee.gateway.reactive.api.ApiType;
-import io.gravitee.gateway.reactive.api.ConnectorMode;
-import io.gravitee.gateway.reactive.api.context.DeploymentContext;
-import java.util.Set;
+package io.gravitee.gateway.reactive.api.connector.endpoint;
 
 /**
- * Factory used to create new {@link Connector}
- *
- * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author Yann TAVERNIER (yann.tavernier at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface ConnectorFactory<T extends Connector> {
-    /**
-     * @return {@link ApiType} supported by this connector.
-     */
-    ApiType supportedApi();
-
-    /**
-     * @return {@link ConnectorMode} supported by this connector.
-     */
-    Set<ConnectorMode> supportedModes();
-}
+public interface EndpointConnectorSharedConfiguration {}
