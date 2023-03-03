@@ -1,3 +1,11 @@
+# [2.1.0-alpha.15](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.14...2.1.0-alpha.15) (2023-03-03)
+
+
+### Bug Fixes
+
+* default header implementation ([dc59f8f](https://github.com/gravitee-io/gravitee-gateway-api/commit/dc59f8f944b66670704870c487bf8029defd951f))
+* rename reject to close on websocket ([3d71ca8](https://github.com/gravitee-io/gravitee-gateway-api/commit/3d71ca8ff1544ba459f3029a42ce15fe87c1dd5c))
+
 # [2.1.0-alpha.14](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.13...2.1.0-alpha.14) (2023-03-01)
 
 
