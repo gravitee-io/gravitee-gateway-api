@@ -15,7 +15,7 @@
  */
 package io.gravitee.gateway.api.service;
 
-import io.gravitee.gateway.jupiter.api.policy.SecurityToken;
+import io.gravitee.gateway.reactive.api.policy.SecurityToken;
 import java.util.List;
 import java.util.Optional;
 
