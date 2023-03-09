@@ -1,3 +1,10 @@
+# [2.1.0-alpha.16](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.15...2.1.0-alpha.16) (2023-03-09)
+
+
+### Reverts
+
+* Revert "chore: rename 'jupiter' package in 'reactive'" ([6096a74](https://github.com/gravitee-io/gravitee-gateway-api/commit/6096a74aef473f8124804d78d696af05cf1d3bdc))
+
 # [2.1.0-alpha.15](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.14...2.1.0-alpha.15) (2023-03-03)
 
 
