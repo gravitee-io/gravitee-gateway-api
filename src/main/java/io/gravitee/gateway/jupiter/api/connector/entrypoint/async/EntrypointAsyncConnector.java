@@ -25,6 +25,7 @@ import io.gravitee.gateway.jupiter.api.message.DefaultMessage;
 import io.gravitee.gateway.jupiter.api.message.Message;
 import io.gravitee.gateway.jupiter.api.qos.QosRequirement;
 import io.reactivex.rxjava3.core.FlowableTransformer;
+import io.reactivex.rxjava3.exceptions.UndeliverableException;
 import io.reactivex.rxjava3.processors.BehaviorProcessor;
 
 /**
@@ -48,8 +49,16 @@ public abstract class EntrypointAsyncConnector extends AbstractService<Connector
     public abstract QosRequirement qosRequirement();
 
     protected void emitStopMessage() {
-        stopHook.onNext(DefaultMessage.builder().id(STOP_MESSAGE_ID).error(true).content(Buffer.buffer(STOP_MESSAGE_CONTENT)).build());
-        stopHook.onComplete();
+        if (stopHook.hasSubscribers()) {
+            try {
+                stopHook.onNext(
+                    DefaultMessage.builder().id(STOP_MESSAGE_ID).error(true).content(Buffer.buffer(STOP_MESSAGE_CONTENT)).build()
+                );
+                stopHook.onComplete();
+            } catch (UndeliverableException unused) {
+                // Undeliverable exception may occur if the subscriber already cancelled the subscription.We can safely ignore it.
+            }
+        }
     }
 
     protected FlowableTransformer<Message, Message> applyStopHook() {
