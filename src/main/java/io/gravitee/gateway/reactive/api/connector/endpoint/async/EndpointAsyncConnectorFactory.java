@@ -27,7 +27,7 @@ import java.util.Set;
 public interface EndpointAsyncConnectorFactory<T extends EndpointAsyncConnector> extends EndpointConnectorFactory<T> {
     @Override
     default ApiType supportedApi() {
-        return ApiType.MESSAGE;
+        return ApiType.ASYNC;
     }
 
     /**

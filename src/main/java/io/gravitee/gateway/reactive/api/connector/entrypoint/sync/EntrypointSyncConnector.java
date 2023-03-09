@@ -21,12 +21,12 @@ import io.gravitee.gateway.reactive.api.connector.Connector;
 import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector;
 
 /**
- * Specialized {@link EntrypointConnector} for {@link ApiType#PROXY}
+ * Specialized {@link EntrypointConnector} for {@link ApiType#SYNC}
  */
 public abstract class EntrypointSyncConnector extends AbstractService<Connector> implements EntrypointConnector {
 
     @Override
     public ApiType supportedApi() {
-        return ApiType.PROXY;
+        return ApiType.SYNC;
     }
 }
