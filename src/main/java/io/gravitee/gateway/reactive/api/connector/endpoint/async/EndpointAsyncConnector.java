@@ -32,13 +32,13 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Specialized {@link EndpointConnector} for {@link ApiType#MESSAGE}
+ * Specialized {@link EndpointConnector} for {@link ApiType#ASYNC}
  */
 public abstract class EndpointAsyncConnector extends AbstractService<Connector> implements EndpointConnector {
 
     @Override
     public ApiType supportedApi() {
-        return ApiType.MESSAGE;
+        return ApiType.ASYNC;
     }
 
     /**
