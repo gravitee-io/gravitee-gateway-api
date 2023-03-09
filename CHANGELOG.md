@@ -1,3 +1,10 @@
+# [2.1.0-alpha.17](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.16...2.1.0-alpha.17) (2023-03-09)
+
+
+### Bug Fixes
+
+* don't emit stop message if not required ([d3d3ed6](https://github.com/gravitee-io/gravitee-gateway-api/commit/d3d3ed672d6252dd6cc2b9fbc9449e338c8eb720))
+
 # [2.1.0-alpha.16](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.15...2.1.0-alpha.16) (2023-03-09)
 
 
