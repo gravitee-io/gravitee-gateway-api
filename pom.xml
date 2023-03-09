@@ -42,7 +42,6 @@
         <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
     </properties>
 
-
     <dependencyManagement>
         <dependencies>
             <!-- Import bom to properly inherit all dependencies -->
