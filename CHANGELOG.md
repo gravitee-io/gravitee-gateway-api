@@ -1,3 +1,10 @@
+# [2.1.0-alpha.18](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.17...2.1.0-alpha.18) (2023-03-13)
+
+
+### Bug Fixes
+
+* rename ApiType values ([59e3f50](https://github.com/gravitee-io/gravitee-gateway-api/commit/59e3f50815cca27c2608f3419a04f2a567fe767a))
+
 # [2.1.0-alpha.17](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.16...2.1.0-alpha.17) (2023-03-09)
 
 
