@@ -1,3 +1,10 @@
+# [2.1.0-alpha.19](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.18...2.1.0-alpha.19) (2023-03-13)
+
+
+### Features
+
+* add subscription configuration ([878ceeb](https://github.com/gravitee-io/gravitee-gateway-api/commit/878ceeba461ffb80e69af077219719402c415189))
+
 # [2.1.0-alpha.18](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.17...2.1.0-alpha.18) (2023-03-13)
 
 
