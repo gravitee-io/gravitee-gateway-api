@@ -1,3 +1,10 @@
+# [2.1.0-alpha.20](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.19...2.1.0-alpha.20) (2023-03-13)
+
+
+### Bug Fixes
+
+* upgrade gio expression language to be consitent with package name ([695b3cc](https://github.com/gravitee-io/gravitee-gateway-api/commit/695b3cc8123af87b1bc4e73dc1dfb6d768f8054e))
+
 # [2.1.0-alpha.19](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.18...2.1.0-alpha.19) (2023-03-13)
 
 
