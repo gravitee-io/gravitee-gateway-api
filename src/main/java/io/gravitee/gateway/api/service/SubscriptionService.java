@@ -16,21 +16,12 @@
 package io.gravitee.gateway.api.service;
 
 import io.gravitee.gateway.reactive.api.policy.SecurityToken;
-import java.util.List;
 import java.util.Optional;
 
 /**
  * This manages subscriptions.
  */
 public interface SubscriptionService {
-    /**
-     * Save the given subscription.
-     * Will put it in cache if active, or remove it from cache elsewhere.
-     *
-     * @param subscription the subscription to save
-     */
-    void save(Subscription subscription);
-
     /**
      * Get subscription by its API, client ID, and plan.
      *
@@ -60,16 +51,19 @@ public interface SubscriptionService {
     Optional<Subscription> getByApiAndSecurityToken(String api, SecurityToken securityToken, String plan);
 
     /**
-     * Save the subscription if it is a {@link Subscription.Type#STANDARD} as in {@link SubscriptionService#save(Subscription)}
-     * Dispatch the subscription directly if its type is {@link Subscription.Type#SUBSCRIPTION}
-     * @param subscription to save or dispatch
+     * Register the given subscription.
+     * Will load it if active, or unload it otherwise.
+     *
+     * @param subscription the subscription to save
      */
-    void saveOrDispatch(Subscription subscription);
+    void register(Subscription subscription);
+
+    void unregister(Subscription subscription);
 
     /**
-     * Dispatch the subscription of type {@link Subscription.Type#SUBSCRIPTION} that have previously been saved thanks to {@link SubscriptionService#save(Subscription)}
-     * It allows to trigger the dispatch of subscriptions before an API is effectively deployed.
-     * @param apis for which subscription have to be dispatched
+     * Unregister all subscriptions key from the given api id.
+     *
+     * @param apiId the api id attached to subscriptions to unregister
      */
-    void dispatchFor(List<String> apis);
+    void unregisterByApiId(String apiId);
 }

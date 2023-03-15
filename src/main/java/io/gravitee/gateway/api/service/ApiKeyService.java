@@ -22,12 +22,21 @@ import java.util.Optional;
  */
 public interface ApiKeyService {
     /**
-     * Save the given api key.
-     * Will put it in cache if active, or remove it from cache elsewhere.
+     * Register the given api key.
+     * Will load it if active, or unload it otherwise.
      *
-     * @param apiKey the api key to save
+     * @param apiKey the api key to register
      */
-    void save(ApiKey apiKey);
+    void register(final ApiKey apiKey);
+
+    void unregister(ApiKey apiKey);
+
+    /**
+     * Unregister all api key from the given api id.
+     *
+     * @param apiId the api id attached to apikeys to unregister
+     */
+    void unregisterByApiId(String apiId);
 
     /**
      * Get api key by its api and key.
