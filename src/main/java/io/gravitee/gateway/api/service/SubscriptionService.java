@@ -15,7 +15,8 @@
  */
 package io.gravitee.gateway.api.service;
 
-import io.gravitee.gateway.jupiter.api.policy.SecurityToken;
+import io.gravitee.gateway.reactive.api.policy.SecurityToken;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -57,4 +58,18 @@ public interface SubscriptionService {
      * @return Found subscription
      */
     Optional<Subscription> getByApiAndSecurityToken(String api, SecurityToken securityToken, String plan);
+
+    /**
+     * Save the subscription if it is a {@link Subscription.Type#STANDARD} as in {@link SubscriptionService#save(Subscription)}
+     * Dispatch the subscription directly if its type is {@link Subscription.Type#SUBSCRIPTION}
+     * @param subscription to save or dispatch
+     */
+    void saveOrDispatch(Subscription subscription);
+
+    /**
+     * Dispatch the subscription of type {@link Subscription.Type#SUBSCRIPTION} that have previously been saved thanks to {@link SubscriptionService#save(Subscription)}
+     * It allows to trigger the dispatch of subscriptions before an API is effectively deployed.
+     * @param apis for which subscription have to be dispatched
+     */
+    void dispatchFor(List<String> apis);
 }

@@ -1,3 +1,155 @@
+# [2.1.0-alpha.20](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.19...2.1.0-alpha.20) (2023-03-13)
+
+
+### Bug Fixes
+
+* upgrade gio expression language to be consitent with package name ([695b3cc](https://github.com/gravitee-io/gravitee-gateway-api/commit/695b3cc8123af87b1bc4e73dc1dfb6d768f8054e))
+
+# [2.1.0-alpha.19](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.18...2.1.0-alpha.19) (2023-03-13)
+
+
+### Features
+
+* add subscription configuration ([878ceeb](https://github.com/gravitee-io/gravitee-gateway-api/commit/878ceeba461ffb80e69af077219719402c415189))
+
+# [2.1.0-alpha.18](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.17...2.1.0-alpha.18) (2023-03-13)
+
+
+### Bug Fixes
+
+* rename ApiType values ([59e3f50](https://github.com/gravitee-io/gravitee-gateway-api/commit/59e3f50815cca27c2608f3419a04f2a567fe767a))
+
+# [2.1.0-alpha.17](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.16...2.1.0-alpha.17) (2023-03-09)
+
+
+### Bug Fixes
+
+* don't emit stop message if not required ([d3d3ed6](https://github.com/gravitee-io/gravitee-gateway-api/commit/d3d3ed672d6252dd6cc2b9fbc9449e338c8eb720))
+
+# [2.1.0-alpha.16](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.15...2.1.0-alpha.16) (2023-03-09)
+
+
+### Reverts
+
+* Revert "chore: rename 'jupiter' package in 'reactive'" ([6096a74](https://github.com/gravitee-io/gravitee-gateway-api/commit/6096a74aef473f8124804d78d696af05cf1d3bdc))
+
+# [2.1.0-alpha.15](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.14...2.1.0-alpha.15) (2023-03-03)
+
+
+### Bug Fixes
+
+* default header implementation ([dc59f8f](https://github.com/gravitee-io/gravitee-gateway-api/commit/dc59f8f944b66670704870c487bf8029defd951f))
+* rename reject to close on websocket ([3d71ca8](https://github.com/gravitee-io/gravitee-gateway-api/commit/3d71ca8ff1544ba459f3029a42ce15fe87c1dd5c))
+
+# [2.1.0-alpha.14](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.13...2.1.0-alpha.14) (2023-03-01)
+
+
+### Features
+
+* introduce api service concept ([2b3a3c0](https://github.com/gravitee-io/gravitee-gateway-api/commit/2b3a3c089bd78dde34d7080f3a5ddef6a8a2f4dc))
+
+# [2.1.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.12...2.1.0-alpha.13) (2023-02-23)
+
+
+### Features
+
+* enhance DefaultMessage builder to manage sourceTimestamp ([45831bb](https://github.com/gravitee-io/gravitee-gateway-api/commit/45831bb0aa07d0da6d2c7eb6baf8ea9b14663d5c))
+
+# [2.1.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.11...2.1.0-alpha.12) (2023-02-15)
+
+
+### Bug Fixes
+
+* add `active` field ([12799a3](https://github.com/gravitee-io/gravitee-gateway-api/commit/12799a3e06af073f3d9fbba0f92110eeaf00a09e))
+
+# [2.1.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.10...2.1.0-alpha.11) (2023-02-02)
+
+
+### Bug Fixes
+
+* bump reporter api ([77ef43b](https://github.com/gravitee-io/gravitee-gateway-api/commit/77ef43b487afb6bb6536fb95ad49fc7b380b58fe))
+
+# [2.1.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.9...2.1.0-alpha.10) (2023-02-01)
+
+
+### Features
+
+* add new internal attribute to store apireactor ([1768c64](https://github.com/gravitee-io/gravitee-gateway-api/commit/1768c643ed2b3bca09e5fd260419841d8fcd0323))
+
+# [2.1.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.8...2.1.0-alpha.9) (2023-01-30)
+
+
+### Bug Fixes
+
+* revert change on api type ([e80f04e](https://github.com/gravitee-io/gravitee-gateway-api/commit/e80f04e2f0757cd491214748928ab4e0f969c374))
+
+# [2.1.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.7...2.1.0-alpha.8) (2023-01-24)
+
+
+### Features
+
+* add supportedListenerType to EntrypointConnectorFactory interface ([c094315](https://github.com/gravitee-io/gravitee-gateway-api/commit/c094315d0eaad6bc9c70d7e43715d72472cecd6c))
+
+# [2.1.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.6...2.1.0-alpha.7) (2023-01-16)
+
+
+### Features
+
+* add correlation id and timestamp on message ([765b625](https://github.com/gravitee-io/gravitee-gateway-api/commit/765b625a1be80e6fdf3f09e486d2161f8b933675))
+
+# [2.1.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.5...2.1.0-alpha.6) (2023-01-13)
+
+
+### Features
+
+* add http method setter in HttpRequest ([d815bbb](https://github.com/gravitee-io/gravitee-gateway-api/commit/d815bbbadc4626c1f71638a5c5d232bcb8a8d3c3))
+
+# [2.1.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.4...2.1.0-alpha.5) (2023-01-12)
+
+
+### Features
+
+* add FAILURE consumer status on Subscription ([f0458f2](https://github.com/gravitee-io/gravitee-gateway-api/commit/f0458f2cc644c1a37132937085140cd54447733b))
+* add saving and dispatching capabilities to SubscriptionService ([1f484c2](https://github.com/gravitee-io/gravitee-gateway-api/commit/1f484c2f79c6c4b6bfec0d40c29f90b78177ff47))
+* provide isStatusXXX methods on GenericResponse ([8180324](https://github.com/gravitee-io/gravitee-gateway-api/commit/81803245aa5d5f16513d83f72a1af8962574457f))
+
+# [2.1.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.4...2.1.0-alpha.5) (2023-01-12)
+
+
+### Features
+
+* add FAILURE consumer status on Subscription ([f0458f2](https://github.com/gravitee-io/gravitee-gateway-api/commit/f0458f2cc644c1a37132937085140cd54447733b))
+* add saving and dispatching capabilities to SubscriptionService ([1f484c2](https://github.com/gravitee-io/gravitee-gateway-api/commit/1f484c2f79c6c4b6bfec0d40c29f90b78177ff47))
+* provide isStatusXXX methods on GenericResponse ([8180324](https://github.com/gravitee-io/gravitee-gateway-api/commit/81803245aa5d5f16513d83f72a1af8962574457f))
+
+# [2.1.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.3...2.1.0-alpha.4) (2022-12-21)
+
+
+### Features
+
+* add exception dedicated to message processing failures ([a891e3f](https://github.com/gravitee-io/gravitee-gateway-api/commit/a891e3f4c9796e25095b10ef05b14c8e0b608834))
+
+# [2.1.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.2...2.1.0-alpha.3) (2022-12-16)
+
+
+### Features
+
+* method to set the content-length header on http request ([1281eb2](https://github.com/gravitee-io/gravitee-gateway-api/commit/1281eb26ba0811e5a0fc875592c806484f3d88cf))
+
+# [2.1.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0-alpha.1...2.1.0-alpha.2) (2022-12-14)
+
+
+### Features
+
+* method to set the content-length header on http response ([3a0f153](https://github.com/gravitee-io/gravitee-gateway-api/commit/3a0f153045b7ed3111129d0cc00a8bd0be37e2f6))
+
+# [2.1.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0...2.1.0-alpha.1) (2022-12-12)
+
+
+### Features
+
+* introduce dlq service concept ([6a6d5ce](https://github.com/gravitee-io/gravitee-gateway-api/commit/6a6d5ce682296c32741db42d1ce3dfeeb4ba618a))
+
 ## [2.0.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0...2.0.1) (2023-02-07)
 
 

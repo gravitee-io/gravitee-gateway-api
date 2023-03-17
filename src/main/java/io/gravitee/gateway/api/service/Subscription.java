@@ -17,12 +17,20 @@ package io.gravitee.gateway.api.service;
 
 import java.util.Date;
 import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @EqualsAndHashCode
 public class Subscription {
 
@@ -38,16 +46,18 @@ public class Subscription {
 
     private String status;
 
+    @Builder.Default
     private ConsumerStatus consumerStatus = ConsumerStatus.STARTED;
 
     private Date startingAt;
 
     private Date endingAt;
 
-    private String configuration;
+    private SubscriptionConfiguration configuration;
 
     private Map<String, String> metadata;
 
+    @Builder.Default
     private Type type = Type.STANDARD;
 
     @EqualsAndHashCode.Exclude
@@ -66,5 +76,6 @@ public class Subscription {
     public enum ConsumerStatus {
         STOPPED,
         STARTED,
+        FAILURE,
     }
 }

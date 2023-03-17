@@ -48,7 +48,7 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
 
     DefaultHttpHeaders(io.gravitee.gateway.api.http.HttpHeaders headers) {
         this(headers.size());
-        headers.forEach(stringListEntry -> add(stringListEntry.getKey(), stringListEntry.getValue()));
+        headers.toListValuesMap().forEach((key, values) -> values.forEach(value -> add(key, value)));
     }
 
     @Override
@@ -63,18 +63,18 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
 
     @Override
     public String get(CharSequence name) {
-        List<String> headerValues = this.headers.get(name);
+        List<String> headerValues = this.headers.get(name.toString());
         return (headerValues != null ? headerValues.get(0) : null);
     }
 
     @Override
     public List<String> getAll(CharSequence name) {
-        return headers.get(name);
+        return headers.get(name.toString());
     }
 
     @Override
     public boolean contains(CharSequence name) {
-        return headers.containsKey(name);
+        return headers.containsKey(name.toString());
     }
 
     @Override
@@ -84,12 +84,8 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
 
     @Override
     public io.gravitee.gateway.api.http.HttpHeaders add(CharSequence name, CharSequence value) {
-        List<String> headerValues = this.headers.get(name);
-        if (headerValues == null) {
-            headerValues = new LinkedList<>();
-            this.headers.put((String) name, headerValues);
-        }
-        headerValues.add((String) value);
+        List<String> headerValues = this.headers.computeIfAbsent(name.toString(), s -> new LinkedList<>());
+        headerValues.add(value.toString());
         return this;
     }
 
@@ -97,8 +93,8 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
     public io.gravitee.gateway.api.http.HttpHeaders add(CharSequence name, Iterable<CharSequence> values) {
         if (values != null) {
             final LinkedList<String> list = new LinkedList<>();
-            values.forEach(charSequence -> list.add((String) charSequence));
-            headers.put((String) name, list);
+            values.forEach(charSequence -> list.add(charSequence.toString()));
+            headers.put(name.toString(), list);
         }
 
         return this;
@@ -107,9 +103,8 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
     @Override
     public io.gravitee.gateway.api.http.HttpHeaders set(CharSequence name, CharSequence value) {
         List<String> headerValues = new LinkedList<>();
-        headerValues.add((String) value);
-        this.headers.put((String) name, headerValues);
-
+        headerValues.add(value.toString());
+        this.headers.put(name.toString(), headerValues);
         return this;
     }
 
@@ -117,8 +112,8 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
     public io.gravitee.gateway.api.http.HttpHeaders set(CharSequence name, Iterable<CharSequence> values) {
         if (values != null) {
             final LinkedList<String> list = new LinkedList<>();
-            values.forEach(charSequence -> list.add((String) charSequence));
-            headers.put((String) name, list);
+            values.forEach(charSequence -> list.add(charSequence.toString()));
+            headers.put(name.toString(), list);
         }
 
         return this;
@@ -126,7 +121,7 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
 
     @Override
     public io.gravitee.gateway.api.http.HttpHeaders remove(CharSequence name) {
-        headers.remove(name);
+        headers.remove(name.toString());
         return this;
     }
 
@@ -190,7 +185,7 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
 
     @Override
     public boolean containsKey(Object key) {
-        return headers.containsKey(key);
+        return headers.containsKey(key.toString());
     }
 
     @Override
@@ -204,7 +199,7 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
      */
     @Override
     public List<String> get(Object key) {
-        return headers.get(key);
+        return headers.get(key.toString());
     }
 
     /**
@@ -220,7 +215,7 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
      */
     @Override
     public List<String> remove(Object key) {
-        return headers.remove(key);
+        return headers.remove(key.toString());
     }
 
     @Override
@@ -251,17 +246,13 @@ public class DefaultHttpHeaders implements io.gravitee.gateway.api.http.HttpHead
 
     @Override
     public void add(String name, String value) {
-        List<String> headerValues = this.headers.get(name);
-        if (headerValues == null) {
-            headerValues = new LinkedList<>();
-            this.headers.put(name, headerValues);
-        }
+        List<String> headerValues = this.headers.computeIfAbsent(name, s -> new LinkedList<>());
         headerValues.add(value);
     }
 
     @Override
     public void set(String name, String value) {
-        List<String> headerValues = new LinkedList<String>();
+        List<String> headerValues = new LinkedList<>();
         headerValues.add(value);
         this.headers.put(name, headerValues);
     }
