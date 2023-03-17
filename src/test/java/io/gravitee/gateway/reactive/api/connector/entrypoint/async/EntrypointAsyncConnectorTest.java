@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
+package io.gravitee.gateway.reactive.api.connector.entrypoint.async;
 
-import static io.gravitee.gateway.jupiter.api.connector.entrypoint.async.EntrypointAsyncConnector.STOP_MESSAGE_ID;
+import static io.gravitee.gateway.reactive.api.connector.entrypoint.async.EntrypointAsyncConnector.STOP_MESSAGE_ID;
 
-import io.gravitee.gateway.jupiter.api.message.DefaultMessage;
-import io.gravitee.gateway.jupiter.api.message.Message;
+import io.gravitee.gateway.reactive.api.message.DefaultMessage;
+import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.schedulers.TestScheduler;
 import io.reactivex.rxjava3.subscribers.TestSubscriber;

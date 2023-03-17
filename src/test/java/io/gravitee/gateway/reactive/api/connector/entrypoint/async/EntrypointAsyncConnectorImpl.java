@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.jupiter.api.connector.entrypoint.async;
+package io.gravitee.gateway.reactive.api.connector.entrypoint.async;
 
-import io.gravitee.gateway.jupiter.api.ConnectorMode;
-import io.gravitee.gateway.jupiter.api.ListenerType;
-import io.gravitee.gateway.jupiter.api.context.ExecutionContext;
-import io.gravitee.gateway.jupiter.api.qos.QosRequirement;
+import io.gravitee.gateway.reactive.api.ConnectorMode;
+import io.gravitee.gateway.reactive.api.ListenerType;
+import io.gravitee.gateway.reactive.api.context.ExecutionContext;
+import io.gravitee.gateway.reactive.api.qos.QosRequirement;
 import io.reactivex.rxjava3.core.Completable;
 import java.util.Set;
 
