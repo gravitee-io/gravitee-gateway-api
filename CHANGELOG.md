@@ -1,3 +1,10 @@
+# [2.2.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0...2.2.0-alpha.1) (2023-04-07)
+
+
+### Features
+
+* add endpoint shared configuration handling for connector factory ([fba97f1](https://github.com/gravitee-io/gravitee-gateway-api/commit/fba97f19658315732c214a9bac44da312865d35d))
+
 # [2.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.1...2.1.0) (2023-03-17)
 
 
