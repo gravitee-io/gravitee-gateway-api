@@ -1,3 +1,15 @@
+# [3.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.2.0-alpha.1...3.0.0-alpha.1) (2023-04-07)
+
+
+### Code Refactoring
+
+* change related to the new gateway sync process ([72104a6](https://github.com/gravitee-io/gravitee-gateway-api/commit/72104a6a8b31fe955668cfed558547f6ac206675))
+
+
+### BREAKING CHANGES
+
+* implementation of the new gateway sync process
+
 # [2.2.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0...2.2.0-alpha.1) (2023-04-07)
 
 
