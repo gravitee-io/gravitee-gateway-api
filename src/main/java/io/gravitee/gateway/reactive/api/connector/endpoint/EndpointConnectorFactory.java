@@ -17,7 +17,6 @@ package io.gravitee.gateway.reactive.api.connector.endpoint;
 
 import io.gravitee.gateway.reactive.api.connector.ConnectorFactory;
 import io.gravitee.gateway.reactive.api.context.DeploymentContext;
-import javax.annotation.Nullable;
 
 /**
  * Specialized factory for {@link EndpointConnector}
@@ -32,11 +31,7 @@ public interface EndpointConnectorFactory<T extends EndpointConnector> extends C
      *
      * @return new connector instance.
      */
-    default T createConnector(
-        final DeploymentContext deploymentContext,
-        final String configuration,
-        @Nullable final String sharedConfiguration
-    ) {
+    default T createConnector(final DeploymentContext deploymentContext, final String configuration, final String sharedConfiguration) {
         return null;
     }
 }
