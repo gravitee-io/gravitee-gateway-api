@@ -1,3 +1,10 @@
+# [3.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.1...3.0.0-alpha.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* bump el version ([09b69cf](https://github.com/gravitee-io/gravitee-gateway-api/commit/09b69cf1feed161c0a36cb70288439598479398d))
+
 # [3.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.2.0-alpha.1...3.0.0-alpha.1) (2023-04-07)
 
 
