@@ -16,7 +16,21 @@
 package io.gravitee.gateway.api.service;
 
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class ApiKey {
 
     private String id;
@@ -38,84 +52,4 @@ public class ApiKey {
     private boolean paused;
 
     private boolean active;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getApplication() {
-        return application;
-    }
-
-    public void setApplication(String application) {
-        this.application = application;
-    }
-
-    public Date getExpireAt() {
-        return expireAt;
-    }
-
-    public void setExpireAt(Date expireAt) {
-        this.expireAt = expireAt;
-    }
-
-    public boolean isRevoked() {
-        return revoked;
-    }
-
-    public void setRevoked(boolean revoked) {
-        this.revoked = revoked;
-    }
-
-    public boolean isPaused() {
-        return paused;
-    }
-
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public String getApi() {
-        return api;
-    }
-
-    public void setApi(String api) {
-        this.api = api;
-    }
-
-    public String getPlan() {
-        return plan;
-    }
-
-    public void setPlan(String plan) {
-        this.plan = plan;
-    }
-
-    public String getSubscription() {
-        return subscription;
-    }
-
-    public void setSubscription(String subscription) {
-        this.subscription = subscription;
-    }
 }
