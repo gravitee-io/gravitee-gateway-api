@@ -1,3 +1,10 @@
+# [3.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.2...3.0.0-alpha.3) (2023-05-29)
+
+
+### Bug Fixes
+
+* add equals and hash code on api key ([76bb5a6](https://github.com/gravitee-io/gravitee-gateway-api/commit/76bb5a6cd524702418abbe3f6abe5bd3a9cce8a3))
+
 # [3.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.1...3.0.0-alpha.2) (2023-04-26)
 
 
