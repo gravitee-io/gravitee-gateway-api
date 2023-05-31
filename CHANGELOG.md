@@ -1,3 +1,10 @@
+# [3.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.3...3.0.0-alpha.4) (2023-05-31)
+
+
+### Features
+
+* add writePing method to WebSocket ([1dbbe3d](https://github.com/gravitee-io/gravitee-gateway-api/commit/1dbbe3d5e2237f8f527023277e8140a8540f5fcf))
+
 # [3.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.2...3.0.0-alpha.3) (2023-05-29)
 
 
