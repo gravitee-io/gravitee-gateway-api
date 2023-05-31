@@ -42,6 +42,17 @@ public interface WebSocket {
     Completable write(Buffer buffer);
 
     /**
+     * Writes a ping frame to the connection.
+     * <p>
+     * This method should only be used for implementing a keep alive or to ensure the client is still responsive,
+     * see RFC 6455 Section <a href="https://tools.ietf.org/html/rfc6455#section-5.5.2">section 5.5.2</a>.
+     * <p>
+     *
+     * @return a {@link Completable} that completes once writing has been performed.
+     */
+    Completable writePing();
+
+    /**
      * Returns the websocket incoming {@link Flowable} of {@link Buffer}.
      *
      * @return a {@link Flowable} of {@link Buffer}.
