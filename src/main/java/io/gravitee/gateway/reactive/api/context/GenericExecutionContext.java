@@ -17,6 +17,8 @@ package io.gravitee.gateway.reactive.api.context;
 
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.reporter.api.v4.metric.Metrics;
+
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -73,11 +75,46 @@ public interface GenericExecutionContext {
      * name exists.
      *
      * @param name the name of the attribute.
-     * @param <T> the expected type of the attribute value. Specify {@link Object} if you expect value of any type.
-     *
+     * @param <T>  the expected type of the attribute value. Specify {@link Object} if you expect value of any type.
      * @return an Object containing the value of the attribute, or null if the attribute does not exist.
      */
     <T> T getAttribute(String name);
+
+    /**
+     * Return the attribute as an immutable {@link List}.
+     * This method acts differently depending on the type of the attribute's value.
+     * Elements of the {@link List} are mapped as follows:
+     * <p>
+     * <b>For String:</b>
+     *     <ul>
+     *          <li>comma separated string are spitted and returned trimmed</li>
+     *          <li>Parsable JSON Array elements are returned as strings (including objects)</li>
+     *          <li>if none of the above, the string is simply wrapped</li>
+     *      </ul>
+     * </p>
+     * <p>
+     *     <b>For Collection:</b>
+     *     <ul>
+     *         <li>Elements of the collection are wrapped in a new List</li>
+     *     </ul>
+     * </p>
+     * <p>
+     *     <b>For Array:</b>
+     *     <ul>
+     *         <li>Each elements of the is wrapped into the returned List</li>
+     *     </ul>
+     * </p>
+     * <p>
+     * <b>For any other cases:</b> the value is simply wrapped into the returned List.
+     * <b>Notes:</b>
+     * One calling {@link #setAttribute(String, Object)} with a mutable collection will retrieve an immutable one.
+     * </p>
+     *
+     * @param name the name of the attribute.
+     * @param <T>  the expected type of the attribute value. Specify {@link Object} if you expect value of any type.
+     * @return an immutable List with the attribute values.
+     */
+    <T> List<T> getAttributeAsList(String name);
 
     /**
      * Returns an Enumeration containing the names of the attributes available to this request. This method returns
