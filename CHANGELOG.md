@@ -1,3 +1,10 @@
+# [3.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.4...3.0.0-alpha.5) (2023-06-08)
+
+
+### Features
+
+* add getAttributeAsList method ([2e10822](https://github.com/gravitee-io/gravitee-gateway-api/commit/2e10822838e48d450645154c12fb07bd325f967f))
+
 # [3.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.3...3.0.0-alpha.4) (2023-05-31)
 
 
