@@ -70,7 +70,7 @@ public class Subscription {
 
     public enum Type {
         STANDARD,
-        SUBSCRIPTION,
+        PUSH,
     }
 
     public enum ConsumerStatus {
