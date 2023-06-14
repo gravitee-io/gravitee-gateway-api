@@ -1,3 +1,10 @@
+# [3.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.5...3.0.0-alpha.6) (2023-06-14)
+
+
+### Bug Fixes
+
+* update subscription type to PUSH ([513821e](https://github.com/gravitee-io/gravitee-gateway-api/commit/513821e400243bf9b180362027bb72335b18e53d))
+
 # [3.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.4...3.0.0-alpha.5) (2023-06-08)
 
 
