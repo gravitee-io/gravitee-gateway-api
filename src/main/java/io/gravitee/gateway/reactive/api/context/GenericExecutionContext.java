@@ -17,7 +17,6 @@ package io.gravitee.gateway.reactive.api.context;
 
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.reporter.api.v4.metric.Metrics;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
