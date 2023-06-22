@@ -1,3 +1,10 @@
+# [3.0.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.6...3.0.0-alpha.7) (2023-06-22)
+
+
+### Bug Fixes
+
+* refactor EvaluableMessage getter to make them available for freemarker ([d700eb1](https://github.com/gravitee-io/gravitee-gateway-api/commit/d700eb1dedccb4f9a738636117118bea472f852c))
+
 # [3.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.5...3.0.0-alpha.6) (2023-06-14)
 
 
