@@ -32,35 +32,35 @@ public class EvaluableMessage {
         this.message = message;
     }
 
-    public Set<String> attributeNames() {
+    public Set<String> geAttributeNames() {
         return message.attributeNames();
     }
 
-    public <T> Map<String, T> attributes() {
+    public <T> Map<String, T> getAttributes() {
         return message.attributes();
     }
 
-    public String id() {
+    public String getId() {
         return message.id();
     }
 
-    public boolean error() {
+    public boolean getError() {
         return message.error();
     }
 
-    public Map<String, Object> metadata() {
+    public Map<String, Object> getMetadata() {
         return message.metadata();
     }
 
-    public HttpHeaders headers() {
+    public HttpHeaders getHeaders() {
         return message.headers();
     }
 
-    public String content() {
+    public String getContent() {
         return message.content().toString();
     }
 
-    public int contentLength() {
+    public int getContentLength() {
         return message.content().length();
     }
 }
