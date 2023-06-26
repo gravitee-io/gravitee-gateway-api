@@ -35,6 +35,15 @@ import java.util.Set;
  * Specialized {@link EndpointConnector} for {@link ApiType#MESSAGE}
  */
 public abstract class EndpointAsyncConnector extends AbstractService<Connector> implements EndpointConnector {
+    public static final String FAILURE_ENDPOINT_CONNECTION_FAILED = "FAILURE_ENDPOINT_CONNECTION_FAILED";
+    public static final String FAILURE_ENDPOINT_CONNECTION_CLOSED = "FAILURE_ENDPOINT_CONNECTION_CLOSED";
+    public static final String FAILURE_ENDPOINT_CONFIGURATION_INVALID = "FAILURE_ENDPOINT_CONFIGURATION_INVALID";
+    public static final String FAILURE_ENDPOINT_UNKNOWN_ERROR = "FAILURE_ENDPOINT_UNKNOWN_ERROR";
+
+    public static final String FAILURE_ENDPOINT_PUBLISH_FAILED = "FAILURE_ENDPOINT_PUBLISH_FAILED";
+    public static final String FAILURE_ENDPOINT_SUBSCRIBE_FAILED = "FAILURE_ENDPOINT_SUBSCRIBE_FAILED";
+    public static final String FAILURE_PARAMETERS_EXCEPTION = "exception";
+    public static final int DEFAULT_FAILURE_CODE = 500;
 
     @Override
     public ApiType supportedApi() {
