@@ -1,3 +1,10 @@
+# [3.0.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.7...3.0.0-alpha.8) (2023-06-29)
+
+
+### Bug Fixes
+
+* define common ERROR KEY for AsyncEndpoints ([ccd59a1](https://github.com/gravitee-io/gravitee-gateway-api/commit/ccd59a189e4ec7289941b2cd4583313765e9af57))
+
 # [3.0.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.6...3.0.0-alpha.7) (2023-06-22)
 
 
