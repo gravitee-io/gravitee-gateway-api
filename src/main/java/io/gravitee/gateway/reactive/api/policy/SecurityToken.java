@@ -15,8 +15,17 @@
  */
 package io.gravitee.gateway.reactive.api.policy;
 
-import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.*;
+import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.API_KEY;
+import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.CLIENT_ID;
+import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.NONE;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
+@Builder
+@Getter
+@ToString
 public class SecurityToken {
 
     public enum TokenType {
@@ -26,17 +35,8 @@ public class SecurityToken {
     }
 
     private String tokenType;
-
     private String tokenValue;
-
-    public SecurityToken(String tokenType, String tokenValue) {
-        this.tokenType = tokenType;
-        this.tokenValue = tokenValue;
-    }
-
-    public SecurityToken(TokenType tokenType, String tokenValue) {
-        this(tokenType.name(), tokenValue);
-    }
+    private boolean invalid;
 
     /**
      * Creates an empty security token.
@@ -45,7 +45,7 @@ public class SecurityToken {
      * @return empty security token
      */
     public static SecurityToken none() {
-        return new SecurityToken(NONE, null);
+        return SecurityToken.builder().tokenType(NONE.name()).build();
     }
 
     /**
@@ -54,7 +54,7 @@ public class SecurityToken {
      * @return security token
      */
     public static SecurityToken forApiKey(String apiKey) {
-        return new SecurityToken(API_KEY, apiKey);
+        return SecurityToken.builder().tokenType(API_KEY.name()).tokenValue(apiKey).build();
     }
 
     /**
@@ -63,22 +63,15 @@ public class SecurityToken {
      * @return security token
      */
     public static SecurityToken forClientId(String clientId) {
-        return new SecurityToken(CLIENT_ID, clientId);
+        return SecurityToken.builder().tokenType(CLIENT_ID.name()).tokenValue(clientId).build();
     }
 
-    public String getTokenType() {
-        return tokenType;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
-    }
-
-    public String getTokenValue() {
-        return tokenValue;
-    }
-
-    public void setTokenValue(String tokenValue) {
-        this.tokenValue = tokenValue;
+    /**
+     * Creates an invalid security token with the given type used by security plans to express the fact that a token as been found by it is invalid.
+     *
+     * @return empty security token
+     */
+    public static SecurityToken invalid(final TokenType tokenType) {
+        return SecurityToken.builder().tokenType(tokenType.name()).invalid(true).build();
     }
 }
