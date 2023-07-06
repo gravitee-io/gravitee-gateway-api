@@ -35,6 +35,7 @@ import java.util.Set;
  * Specialized {@link EndpointConnector} for {@link ApiType#MESSAGE}
  */
 public abstract class EndpointAsyncConnector extends AbstractService<Connector> implements EndpointConnector {
+
     public static final String FAILURE_ENDPOINT_CONNECTION_FAILED = "FAILURE_ENDPOINT_CONNECTION_FAILED";
     public static final String FAILURE_ENDPOINT_CONNECTION_CLOSED = "FAILURE_ENDPOINT_CONNECTION_CLOSED";
     public static final String FAILURE_ENDPOINT_CONFIGURATION_INVALID = "FAILURE_ENDPOINT_CONFIGURATION_INVALID";
