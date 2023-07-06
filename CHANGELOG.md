@@ -1,3 +1,10 @@
+# [3.0.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.8...3.0.0-alpha.9) (2023-07-06)
+
+
+### Features
+
+* add invalid state on SecurityToken ([d73afd7](https://github.com/gravitee-io/gravitee-gateway-api/commit/d73afd79ce735747325599919d71aed50b00016e))
+
 # [3.0.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.7...3.0.0-alpha.8) (2023-06-29)
 
 
