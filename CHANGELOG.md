@@ -1,3 +1,38 @@
+# [3.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0...3.0.0) (2023-07-17)
+
+
+### Bug Fixes
+
+* add equals and hash code on api key ([76bb5a6](https://github.com/gravitee-io/gravitee-gateway-api/commit/76bb5a6cd524702418abbe3f6abe5bd3a9cce8a3))
+* bump el version ([09b69cf](https://github.com/gravitee-io/gravitee-gateway-api/commit/09b69cf1feed161c0a36cb70288439598479398d))
+* define common ERROR KEY for AsyncEndpoints ([906fb3a](https://github.com/gravitee-io/gravitee-gateway-api/commit/906fb3a54d9d65fce3dc4fef715d17d40fe1025a))
+* refactor EvaluableMessage getter to make them available for freemarker ([3c0dbe4](https://github.com/gravitee-io/gravitee-gateway-api/commit/3c0dbe41b0343ebddaffba30512501197c5634a1))
+* update subscription type to PUSH ([98b23df](https://github.com/gravitee-io/gravitee-gateway-api/commit/98b23df4612e70e874d4d9ad0347e50946c204af))
+
+
+### chore
+
+* **deps:** update gravitee-parent ([373c52c](https://github.com/gravitee-io/gravitee-gateway-api/commit/373c52c2f5c3a291e72d57e313a09479ef41519a))
+
+
+### Code Refactoring
+
+* change related to the new gateway sync process ([72104a6](https://github.com/gravitee-io/gravitee-gateway-api/commit/72104a6a8b31fe955668cfed558547f6ac206675))
+
+
+### Features
+
+* add endpoint shared configuration handling for connector factory ([fba97f1](https://github.com/gravitee-io/gravitee-gateway-api/commit/fba97f19658315732c214a9bac44da312865d35d))
+* add getAttributeAsList method ([2e10822](https://github.com/gravitee-io/gravitee-gateway-api/commit/2e10822838e48d450645154c12fb07bd325f967f))
+* add invalid state on SecurityToken ([d038d83](https://github.com/gravitee-io/gravitee-gateway-api/commit/d038d8391ceaebcc2b9b85ae8f4bf54c521050eb))
+* add writePing method to WebSocket ([1dbbe3d](https://github.com/gravitee-io/gravitee-gateway-api/commit/1dbbe3d5e2237f8f527023277e8140a8540f5fcf))
+
+
+### BREAKING CHANGES
+
+* **deps:** require Java17
+* implementation of the new gateway sync process
+
 # [3.0.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.8...3.0.0-alpha.9) (2023-07-06)
 
 
