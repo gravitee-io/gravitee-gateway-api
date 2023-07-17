@@ -1,3 +1,15 @@
+# [3.0.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.9...3.0.0-alpha.10) (2023-07-17)
+
+
+### chore
+
+* **deps:** update gravitee-parent ([2cccde7](https://github.com/gravitee-io/gravitee-gateway-api/commit/2cccde74fba32e231ce3f9d6c999d931b4b40683))
+
+
+### BREAKING CHANGES
+
+* **deps:** require Java17
+
 # [3.0.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0-alpha.8...3.0.0-alpha.9) (2023-07-06)
 
 
