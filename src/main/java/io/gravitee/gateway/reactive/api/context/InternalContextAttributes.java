@@ -42,6 +42,7 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_ANALYTICS_CONTEXT = "analytics.context";
     public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE = "message.recordable";
     public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE_WITH_LOGGING = "message.recordable.withLogging";
+    public static final String ATTR_INTERNAL_VALIDATE_SUBSCRIPTION = "api.validateSubscription";
 
     /**
      * Adapted ExecutionContext for V3 compatibility.
