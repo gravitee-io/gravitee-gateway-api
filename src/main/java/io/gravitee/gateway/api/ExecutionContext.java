@@ -54,6 +54,7 @@ public interface ExecutionContext {
      */
     String ATTR_SECURITY_SKIP = "skip-security-chain";
     String ATTR_INVOKER_SKIP = "invoker.skip";
+    String ATTR_VALIDATE_SUBSCRIPTION = "api.validateSubscription";
 
     Request request();
 
