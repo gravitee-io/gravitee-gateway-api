@@ -15,10 +15,12 @@
  */
 package io.gravitee.gateway.reactive.api.message;
 
+import io.gravitee.common.util.ListUtils;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -79,6 +81,11 @@ public class DefaultMessage implements Message {
     @Override
     public <T> T attribute(final String name) {
         return (T) getOrInitAttribute().get(name);
+    }
+
+    @Override
+    public <T> List<T> attributeAsList(String name) {
+        return ListUtils.toList(getOrInitAttribute().get(name));
     }
 
     @Override
