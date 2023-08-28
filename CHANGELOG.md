@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0...3.1.0) (2023-08-28)
+
+
+### Features
+
+* add method to get list from an message attribute ([03e06f6](https://github.com/gravitee-io/gravitee-gateway-api/commit/03e06f6b0fe01195a3f9e340bb7cb77660e43e77))
+
 # [3.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.1.0...3.0.0) (2023-07-17)
 
 
