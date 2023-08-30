@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.1.0...3.2.0) (2023-08-30)
+
+
+### Features
+
+* add support for DBLess mode ([218c382](https://github.com/gravitee-io/gravitee-gateway-api/commit/218c382cf990a34549be1b9ee9d2a40adf158c99))
+
 # [3.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.0.0...3.1.0) (2023-08-28)
 
 
