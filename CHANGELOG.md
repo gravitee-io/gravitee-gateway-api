@@ -1,3 +1,14 @@
+## [3.2.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.2.0...3.2.1) (2023-09-01)
+
+
+### Bug Fixes
+
+* **deps:** add explicit dependency on json-smart ([b5c4d4e](https://github.com/gravitee-io/gravitee-gateway-api/commit/b5c4d4e4e78a1034bb3a5efd3a112463993a8623))
+* **deps:** bump bouncycastle to 1.70 ([f8af58d](https://github.com/gravitee-io/gravitee-gateway-api/commit/f8af58d0feca68ee9dff624d4bb934a5a018303f))
+* **deps:** bump gravitee-bom 6.0.4 ([b27ffe7](https://github.com/gravitee-io/gravitee-gateway-api/commit/b27ffe739c20c998c9573ddddd230908ac3e29e1))
+* **deps:** bump gravitee-el to 3.1.0 ([ff0a356](https://github.com/gravitee-io/gravitee-gateway-api/commit/ff0a356f2146755124e4a61bb89f09e286ba6bb0))
+* **deps:** bump gravitee-reporter-api to 1.26.0 ([5e9acda](https://github.com/gravitee-io/gravitee-gateway-api/commit/5e9acda694c021f58d7ac519ef28cb575ff820e3))
+
 # [3.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.1.0...3.2.0) (2023-08-30)
 
 
