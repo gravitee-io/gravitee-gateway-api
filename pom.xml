@@ -40,6 +40,8 @@
         <gravitee-reporter-api.version>1.25.0</gravitee-reporter-api.version>
         <gravitee-expression-language.version>2.2.1</gravitee-expression-language.version>
         <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
+
+        <bouncycastle.version>1.70</bouncycastle.version>
     </properties>
 
     <dependencyManagement>
@@ -94,7 +96,7 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>
-            <version>1.68</version>
+            <version>${bouncycastle.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
