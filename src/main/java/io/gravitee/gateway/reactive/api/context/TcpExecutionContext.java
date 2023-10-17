@@ -15,8 +15,18 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
-/**
- * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
- * @author GraviteeSource Team
- */
-public interface Response extends HttpResponse, MessageResponse, TcpResponse {}
+public interface TcpExecutionContext extends GenericExecutionContext {
+    /**
+     * Get the current request stuck to this execution context.
+     *
+     * @return the request attached to this execution context.
+     */
+    TcpRequest request();
+
+    /**
+     * Get the current response stuck to this execution context.
+     *
+     * @return the response attached to this execution context.
+     */
+    TcpResponse response();
+}
