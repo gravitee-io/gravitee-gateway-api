@@ -16,7 +16,12 @@
 package io.gravitee.gateway.reactive.api.context;
 
 /**
- * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ * @author Benoit BORDIGONI (benoit.bordigoni at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Response extends HttpResponse, MessageResponse, TcpResponse {}
+public interface TcpResponse extends GenericResponse {
+    /**
+     * Setup internally a pipe downstream traffic bytes from backend to the client
+     */
+    void pipeDownstream();
+}

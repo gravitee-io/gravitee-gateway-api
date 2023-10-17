@@ -15,8 +15,16 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
+import io.reactivex.rxjava3.core.Completable;
+
 /**
- * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ * @author Benoit BORDIGONI (benoit.bordigoni at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Response extends HttpResponse, MessageResponse, TcpResponse {}
+public interface TcpRequest extends GenericRequest {
+    /**
+     * Set a completable that pipes upstream traffic bytes from the client to the backend
+     * @param pipe the completable to perform the action
+     */
+    void pipeUpstream(Completable pipe);
+}

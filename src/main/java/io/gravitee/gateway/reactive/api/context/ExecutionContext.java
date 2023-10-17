@@ -15,7 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
-public interface ExecutionContext extends HttpExecutionContext, MessageExecutionContext {
+public interface ExecutionContext extends HttpExecutionContext, MessageExecutionContext, TcpExecutionContext {
     @Override
     Request request();
 

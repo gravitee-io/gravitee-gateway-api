@@ -19,4 +19,4 @@ package io.gravitee.gateway.reactive.api.context;
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface Request extends HttpRequest, MessageRequest {}
+public interface Request extends HttpRequest, MessageRequest, TcpRequest {}
