@@ -18,6 +18,7 @@ package io.gravitee.gateway.reactive.api.context;
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.reactive.api.ExecutionFailure;
 import io.gravitee.gateway.reactive.api.message.Message;
+import io.gravitee.reporter.api.v4.metric.MessagesMetrics;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Maybe;
 
@@ -37,6 +38,13 @@ public interface MessageExecutionContext extends GenericExecutionContext {
      * @return the response attached to this execution context.
      */
     MessageResponse response();
+
+    /**
+     * Get the metrics associated to the context.
+     *
+     * @return a {@link MessagesMetrics} object.
+     */
+    MessagesMetrics metrics();
 
     /**
      * Interrupts the current execution while indicating that the flow of messages can be consumed "as is" to the downstream.
