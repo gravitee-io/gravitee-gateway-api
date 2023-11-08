@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.2.1...3.3.0) (2023-11-08)
+
+
+### Features
+
+* TCP Proxy request/response context interfaces ([f6f3687](https://github.com/gravitee-io/gravitee-gateway-api/commit/f6f36873bc93507f5ec386fc927aee3cb5466204))
+
 ## [3.2.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.2.0...3.2.1) (2023-09-01)
 
 
