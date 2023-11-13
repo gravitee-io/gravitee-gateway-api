@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.3.0...3.4.0) (2023-11-13)
+
+
+### Features
+
+* allow to create ExecutionFailure without status code ([bd90a13](https://github.com/gravitee-io/gravitee-gateway-api/commit/bd90a13b5f711b80e88378c42f79c6d493265264))
+
 # [3.3.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.2.1...3.3.0) (2023-11-08)
 
 
