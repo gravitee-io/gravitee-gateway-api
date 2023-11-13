@@ -31,6 +31,8 @@ public class ExecutionFailure {
     private Map<String, Object> parameters;
     private String contentType;
 
+    public ExecutionFailure() {}
+
     public ExecutionFailure(int statusCode) {
         this.statusCode = statusCode;
     }
