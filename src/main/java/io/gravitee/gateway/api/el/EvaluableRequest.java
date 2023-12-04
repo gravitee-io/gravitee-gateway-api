@@ -98,7 +98,7 @@ public class EvaluableRequest {
     }
 
     public String getRemoteAddress() {
-        return request.localAddress();
+        return request.remoteAddress();
     }
 
     public String getLocalAddress() {
