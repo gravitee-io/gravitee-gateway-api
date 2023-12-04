@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.1...2.0.2) (2023-12-04)
+
+
+### Bug Fixes
+
+* evaluate remote address instead of local ([7a05f68](https://github.com/gravitee-io/gravitee-gateway-api/commit/7a05f68b477b101867f73357a343249ad433f241))
+
 ## [2.0.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/2.0.0...2.0.1) (2023-02-07)
 
 
