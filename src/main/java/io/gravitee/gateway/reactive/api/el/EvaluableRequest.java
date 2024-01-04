@@ -89,6 +89,10 @@ public class EvaluableRequest {
         return request.scheme();
     }
 
+    public String getHost() {
+        return request.host();
+    }
+
     public String getVersion() {
         return request.version().name();
     }
