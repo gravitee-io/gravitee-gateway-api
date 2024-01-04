@@ -1,3 +1,10 @@
+## [3.4.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.4.1...3.4.2) (2024-01-04)
+
+
+### Bug Fixes
+
+* add host property to el requests ([eec888f](https://github.com/gravitee-io/gravitee-gateway-api/commit/eec888f4ef04ffe5da8cf89752ac72c1b672becc))
+
 ## [3.4.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.4.0...3.4.1) (2023-12-04)
 
 
