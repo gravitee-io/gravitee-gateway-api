@@ -56,6 +56,8 @@ public interface ExecutionContext {
     String ATTR_INVOKER_SKIP = "invoker.skip";
     String ATTR_VALIDATE_SUBSCRIPTION = "api.validateSubscription";
 
+    String ATTR_MAPPED_PATH = ATTR_PREFIX + "mapped-path";
+
     Request request();
 
     Response response();
