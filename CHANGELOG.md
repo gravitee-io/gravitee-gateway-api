@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.4.2...3.5.0) (2024-01-22)
+
+
+### Features
+
+* add mapped path attribute to context ([42165e8](https://github.com/gravitee-io/gravitee-gateway-api/commit/42165e8a4087b8211bd3ea8d3e560a900f84d8dd))
+
 ## [3.4.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.4.1...3.4.2) (2024-01-04)
 
 
