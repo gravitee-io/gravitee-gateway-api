@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.el;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.reactive.api.context.GenericResponse;
 import java.util.Map;
@@ -35,20 +36,29 @@ public class EvaluableResponse {
         this.content = content;
     }
 
+    @JsonProperty
     public int getStatus() {
         return response.status();
     }
 
+    @JsonProperty
     public HttpHeaders getHeaders() {
         return response.headers();
     }
 
+    @JsonProperty
     public String getContent() {
         return content;
     }
 
+    @JsonProperty
     public Map<String, Object> getJsonContent() {
         return jsonContent;
+    }
+
+    @JsonProperty
+    public Map<String, Object> getXmlContent() {
+        return xmlContent;
     }
 
     public void setContent(String content) {
@@ -57,10 +67,6 @@ public class EvaluableResponse {
 
     public void setJsonContent(Map<String, Object> jsonContent) {
         this.jsonContent = jsonContent;
-    }
-
-    public Map<String, Object> getXmlContent() {
-        return xmlContent;
     }
 
     public void setXmlContent(Map<String, Object> xmlContent) {
