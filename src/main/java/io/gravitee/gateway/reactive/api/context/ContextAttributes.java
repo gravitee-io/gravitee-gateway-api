@@ -41,6 +41,7 @@ public final class ContextAttributes {
     public static final String ATTR_SUBSCRIPTION_ID = ATTR_PREFIX + "user-id";
     public static final String ATTR_API_DEPLOYED_AT = ATTR_PREFIX + "api.deployed-at";
     public static final String ATTR_API = ATTR_PREFIX + "api";
+    public static final String ATTR_API_NAME = ATTR_PREFIX + "api.name";
     public static final String ATTR_APPLICATION = ATTR_PREFIX + "application";
     public static final String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     public static final String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
