@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.0...3.5.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* Message reporters lacking api name value ([4a95462](https://github.com/gravitee-io/gravitee-gateway-api/commit/4a954624370de6e96d21a7fcfb35c73e95cf4586))
+
 # [3.5.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.4.2...3.5.0) (2024-01-22)
 
 
