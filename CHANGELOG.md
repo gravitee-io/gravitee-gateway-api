@@ -1,3 +1,10 @@
+## [3.5.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.1...3.5.2) (2024-08-14)
+
+
+### Bug Fixes
+
+* **deps:** Bump gravitee-reporter-api to version 1.31.2 ([d124272](https://github.com/gravitee-io/gravitee-gateway-api/commit/d1242728dc09a95d6afac5a54eac550611ba2473))
+
 ## [3.5.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.0...3.5.1) (2024-07-26)
 
 
