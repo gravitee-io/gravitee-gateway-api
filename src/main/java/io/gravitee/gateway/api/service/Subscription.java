@@ -44,6 +44,8 @@ public class Subscription {
 
     private String clientId;
 
+    private String clientCertificate;
+
     private String status;
 
     @Builder.Default
