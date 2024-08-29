@@ -1,3 +1,10 @@
+# [3.6.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.2...3.6.0) (2024-08-29)
+
+
+### Features
+
+* add client certificate on subscription object ([f30aba8](https://github.com/gravitee-io/gravitee-gateway-api/commit/f30aba89e0debef61acdbb349698c1f1d609955d))
+
 ## [3.5.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.1...3.5.2) (2024-08-14)
 
 
