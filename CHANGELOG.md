@@ -1,3 +1,10 @@
+# [3.7.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.6.0...3.7.0) (2024-09-04)
+
+
+### Features
+
+* introduce CERTIFICATE security token type ([4977500](https://github.com/gravitee-io/gravitee-gateway-api/commit/49775009503b8b5e8e697a867af377968354a8bf))
+
 # [3.6.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.2...3.6.0) (2024-08-29)
 
 
