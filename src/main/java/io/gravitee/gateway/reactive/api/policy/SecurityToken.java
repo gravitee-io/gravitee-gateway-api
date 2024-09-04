@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.policy;
 
 import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.API_KEY;
+import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.CERTIFICATE;
 import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.CLIENT_ID;
 import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.NONE;
 
@@ -31,7 +32,16 @@ public class SecurityToken {
     public enum TokenType {
         CLIENT_ID,
         API_KEY,
-        NONE,
+        CERTIFICATE,
+        NONE;
+
+        public static TokenType valueOfOrNone(String value) {
+            try {
+                return valueOf(value.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return NONE;
+            }
+        }
     }
 
     private String tokenType;
@@ -73,5 +83,14 @@ public class SecurityToken {
      */
     public static SecurityToken invalid(final TokenType tokenType) {
         return SecurityToken.builder().tokenType(tokenType.name()).invalid(true).build();
+    }
+
+    /**
+     * Creates a client certificate based security token.
+     *
+     * @return security token
+     */
+    public static SecurityToken forClientCertificate(String clientCertificate) {
+        return SecurityToken.builder().tokenType(CERTIFICATE.name()).tokenValue(clientCertificate).build();
     }
 }
