@@ -19,7 +19,6 @@ import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.http.HttpHeaders;
-import io.gravitee.reporter.api.http.Metrics;
 import javax.net.ssl.SSLSession;
 
 public interface GenericRequest {
@@ -128,8 +127,16 @@ public interface GenericRequest {
     /**
      * @return SSLSession associated to the request. Returns <code>null</code> if not an SSL connection.
      * @see javax.net.ssl.SSLSession
+     * @deprecated use {@link #tlsSession()} instead
      */
+    @Deprecated(since = "4.5.0", forRemoval = true)
     SSLSession sslSession();
+
+    /**
+     * @return TlsSession associated to the request. Acts as a SSLSession, with additional mechanisms. It can for example extract a client certificate from a given header.
+     * @see javax.net.ssl.SSLSession
+     */
+    TlsSession tlsSession();
 
     /**
      * Indicates if that request is ended or not meaning that all the request headers and the request body have been fully read.
