@@ -1,3 +1,10 @@
+# [3.8.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.7.0...3.8.0) (2024-09-12)
+
+
+### Features
+
+* deprecate SslSession in favor of TlsSession ([afde4ba](https://github.com/gravitee-io/gravitee-gateway-api/commit/afde4ba8cbbbf23a25f0abff5d87d121044cd7e3))
+
 # [3.7.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.6.0...3.7.0) (2024-09-04)
 
 
