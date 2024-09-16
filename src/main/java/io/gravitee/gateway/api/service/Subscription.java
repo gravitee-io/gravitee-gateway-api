@@ -65,6 +65,8 @@ public class Subscription {
     @EqualsAndHashCode.Exclude
     private boolean forceDispatch;
 
+    private String environmentId;
+
     public boolean isTimeValid(long requestTimestamp) {
         Date requestDate = new Date(requestTimestamp);
         return (endingAt == null || endingAt.after(requestDate)) && (startingAt == null || startingAt.before(requestDate));
