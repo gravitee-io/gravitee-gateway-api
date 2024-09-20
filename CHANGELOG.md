@@ -1,3 +1,10 @@
+## [3.5.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.2...3.5.3) (2024-09-20)
+
+
+### Bug Fixes
+
+* add environmentId in subscription ([af5a960](https://github.com/gravitee-io/gravitee-gateway-api/commit/af5a960810edeeb604917b10647eed370a54c9fd))
+
 ## [3.5.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.5.1...3.5.2) (2024-08-14)
 
 
