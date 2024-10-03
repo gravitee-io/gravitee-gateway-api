@@ -13,26 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
+package io.gravitee.gateway.reactive.api.context.http;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpMessageExecutionContext;
+import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
 
 /**
- * @deprecated see {@link io.gravitee.gateway.reactive.api.context.http.HttpMessageExecutionContext}
+ * Base interface any http-based execution context interface can inherit from.
+ *
+ *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ *  @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface MessageExecutionContext extends GenericExecutionContext, HttpMessageExecutionContext {
+public interface HttpBaseExecutionContext extends BaseExecutionContext {
     /**
      * Get the current request stuck to this execution context.
      *
      * @return the request attached to this execution context.
      */
-    MessageRequest request();
+    HttpBaseRequest request();
 
     /**
      * Get the current response stuck to this execution context.
      *
      * @return the response attached to this execution context.
      */
-    MessageResponse response();
+    HttpBaseResponse response();
 }

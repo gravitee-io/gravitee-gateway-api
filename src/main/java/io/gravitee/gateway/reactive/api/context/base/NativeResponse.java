@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
+package io.gravitee.gateway.reactive.api.context.base;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
+import io.gravitee.gateway.reactive.api.context.base.BaseRequest;
 
 /**
- * @deprecated see {@link HttpBaseResponse}
+ * Represents a native response that can be specialized (e.g. Kafka).
+ *
+ *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ *  @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface GenericResponse extends HttpBaseResponse {
-    GenericResponse status(int statusCode);
-
-    GenericResponse reason(final String message);
-}
+public interface NativeResponse extends BaseResponse {}

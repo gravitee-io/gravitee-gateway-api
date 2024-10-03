@@ -15,49 +15,16 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
-import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.reactive.api.ExecutionFailure;
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Maybe;
+import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
 
-public interface HttpExecutionContext extends GenericExecutionContext {
-    String TEMPLATE_ATTRIBUTE_REQUEST = "request";
-    String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
-    String TEMPLATE_ATTRIBUTE_CONTEXT = "context";
-
-    /**
-     * Get the current request stuck to this execution context.
-     *
-     * @return the request attached to this execution context.
-     */
+/**
+ * @deprecated see {@link HttpPlainExecutionContext}
+ */
+@Deprecated(forRemoval = true)
+public interface HttpExecutionContext extends GenericExecutionContext, HttpPlainExecutionContext {
+    @Override
     HttpRequest request();
 
-    /**
-     * Get the current response stuck to this execution context.
-     *
-     * @return the response attached to this execution context.
-     */
+    @Override
     HttpResponse response();
-
-    /**
-     * Interrupts the current execution while indicating that the response can be sent "as is" to the downstream.
-     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
-     */
-    Completable interrupt();
-
-    /**
-     * Same as {@link #interrupt()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
-     */
-    Completable interruptWith(final ExecutionFailure failure);
-
-    /**
-     * Interrupts the current execution while indicating that the response can be sent "as is" to the downstream.
-     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
-     */
-    Maybe<Buffer> interruptBody();
-
-    /**
-     * Same as {@link #interruptBody()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
-     */
-    Maybe<Buffer> interruptBodyWith(final ExecutionFailure failure);
 }

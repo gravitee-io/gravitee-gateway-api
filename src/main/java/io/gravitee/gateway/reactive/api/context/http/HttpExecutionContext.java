@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
-
-import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
+package io.gravitee.gateway.reactive.api.context.http;
 
 /**
- * @deprecated see {@link HttpBaseResponse}
+ * Allows accessing the specificities related to {@link HttpPlainExecutionContext} and {@link HttpMessageExecutionContext} from a http context that can mutate from plain to messages.
+ *
+ *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ *  @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface GenericResponse extends HttpBaseResponse {
-    GenericResponse status(int statusCode);
+public interface HttpExecutionContext extends HttpPlainExecutionContext, HttpMessageExecutionContext {
+    @Override
+    HttpRequest request();
 
-    GenericResponse reason(final String message);
+    @Override
+    HttpResponse response();
 }

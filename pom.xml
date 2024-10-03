@@ -33,12 +33,12 @@
     <name>Gravitee.io APIM - Gateway - API</name>
 
     <properties>
-        <gravitee-bom.version>6.0.4</gravitee-bom.version>
+        <gravitee-bom.version>8.1.0</gravitee-bom.version>
         <gravitee-tracing-api.version>1.0.0</gravitee-tracing-api.version>
-        <gravitee-common.version>3.0.0</gravitee-common.version>
+        <gravitee-common.version>4.5.1</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-reporter-api.version>1.31.2</gravitee-reporter-api.version>
-        <gravitee-expression-language.version>3.1.0</gravitee-expression-language.version>
+        <gravitee-expression-language.version>3.2.1</gravitee-expression-language.version>
         <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
 
         <bouncycastle.version>1.70</bouncycastle.version>
@@ -55,6 +55,13 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+
+            <dependency>
+                <groupId>io.gravitee.common</groupId>
+                <artifactId>gravitee-common</artifactId>
+                <version>${gravitee-common.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -62,7 +69,6 @@
         <dependency>
             <groupId>io.gravitee.common</groupId>
             <artifactId>gravitee-common</artifactId>
-            <version>${gravitee-common.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

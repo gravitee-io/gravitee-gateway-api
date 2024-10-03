@@ -17,6 +17,7 @@ package io.gravitee.gateway.reactive.api.message;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
+import io.reactivex.rxjava3.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -96,6 +97,7 @@ public interface Message {
      * @return the content of the message as a {@link Buffer}.
      * @see Buffer
      */
+    @Nullable
     Buffer content();
 
     /**
