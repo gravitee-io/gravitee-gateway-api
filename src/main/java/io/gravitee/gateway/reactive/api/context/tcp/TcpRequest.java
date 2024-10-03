@@ -13,16 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
+package io.gravitee.gateway.reactive.api.context.tcp;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
+import io.gravitee.gateway.reactive.api.context.base.BaseRequest;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
- * @deprecated see {@link HttpBaseResponse}
+ * Request specialized for TCP allowing piping traffic from client to backend.
+ *
+ * @author Benoit BORDIGONI (benoit.bordigoni at graviteesource.com)
+ * @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface GenericResponse extends HttpBaseResponse {
-    GenericResponse status(int statusCode);
-
-    GenericResponse reason(final String message);
+public interface TcpRequest extends BaseRequest {
+    /**
+     * Set a completable that pipes upstream traffic bytes from the client to the backend
+     * @param pipe the completable to perform the action
+     */
+    void pipeUpstream(Completable pipe);
 }

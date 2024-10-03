@@ -13,21 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
+package io.gravitee.gateway.reactive.api.context.kafka;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpBaseRequest;
-import javax.net.ssl.SSLSession;
+import io.gravitee.gateway.reactive.api.context.base.BaseRequest;
+import io.gravitee.gateway.reactive.api.context.base.NativeRequest;
 
 /**
- * @deprecated see {@link HttpBaseRequest}
+ * Represents a request that can manipulate a Kafka native request.
+ *
+ *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ *  @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface GenericRequest extends HttpBaseRequest {
+public interface KafkaRequest extends NativeRequest {
+    // TODO: to be defined.
+
     /**
-     * @return SSLSession associated to the request. Returns <code>null</code> if not an SSL connection.
-     * @see SSLSession
-     * @deprecated use {@link #tlsSession()} instead
+     * Access the underlying native Kafka request.
+     *
+     * @param <T> the expected native Kafka request.
+     *
+     * @return the Kafka native request.
      */
-    @Deprecated(since = "4.5.0", forRemoval = true)
-    SSLSession sslSession();
+    <T> T delegate();
 }

@@ -13,16 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
+package io.gravitee.gateway.reactive.api.context.kafka;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
+import io.gravitee.gateway.reactive.api.context.base.NativeRequest;
 
 /**
- * @deprecated see {@link HttpBaseResponse}
+ * Represents a request that can manipulate a flow of messages that is mapped from a Kafka native ProduceRequest.
+ *
+ *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ *  @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface GenericResponse extends HttpBaseResponse {
-    GenericResponse status(int statusCode);
+public interface KafkaMessageRequest extends KafkaRequest {
+    // TODO: to be defined.
 
-    GenericResponse reason(final String message);
+    /**
+     * Access the underlying native Kafka request.
+     *
+     * @param <T> the expected native Kafka request.
+     *
+     * @return the Kafka native request.
+     */
+    <T> T delegate();
 }

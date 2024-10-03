@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
-
-import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
+package io.gravitee.gateway.reactive.api.policy.base;
 
 /**
- * @deprecated see {@link HttpBaseResponse}
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ * @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface GenericResponse extends HttpBaseResponse {
-    GenericResponse status(int statusCode);
-
-    GenericResponse reason(final String message);
+public interface BasePolicy {
+    /**
+     * The id of the policy (usually the same id as defined in the policy manifest)
+     *
+     * @return the id of the policy.
+     */
+    String id();
 }

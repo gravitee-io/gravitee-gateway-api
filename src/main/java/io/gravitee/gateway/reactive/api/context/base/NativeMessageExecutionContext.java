@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context;
+package io.gravitee.gateway.reactive.api.context.base;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
+import io.gravitee.gateway.reactive.api.context.kafka.KafkaMessageExecutionContext;
 
 /**
- * @deprecated see {@link HttpBaseResponse}
+ * Base interface any specialized native message execution context interfaces can inherit from (e.g. {@link KafkaMessageExecutionContext}).
+ *
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ * @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface GenericResponse extends HttpBaseResponse {
-    GenericResponse status(int statusCode);
-
-    GenericResponse reason(final String message);
-}
+public interface NativeMessageExecutionContext extends BaseExecutionContext {}

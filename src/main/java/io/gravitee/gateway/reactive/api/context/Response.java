@@ -18,5 +18,8 @@ package io.gravitee.gateway.reactive.api.context;
 /**
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
+ *
+ * @deprecated see {@link io.gravitee.gateway.reactive.api.context.http.HttpResponse}
  */
-public interface Response extends HttpResponse, MessageResponse, TcpResponse {}
+@Deprecated(forRemoval = true)
+public interface Response extends HttpResponse, MessageResponse, TcpResponse, io.gravitee.gateway.reactive.api.context.http.HttpResponse {}

@@ -18,10 +18,8 @@ package io.gravitee.gateway.reactive.api.context;
 /**
  * @author Benoit BORDIGONI (benoit.bordigoni at graviteesource.com)
  * @author GraviteeSource Team
+ *
+ * @deprecated see {@link io.gravitee.gateway.reactive.api.context.tcp.TcpResponse}
  */
-public interface TcpResponse extends GenericResponse {
-    /**
-     * Setup internally a pipe downstream traffic bytes from backend to the client
-     */
-    void pipeDownstream();
-}
+@Deprecated(forRemoval = true)
+public interface TcpResponse extends GenericResponse, io.gravitee.gateway.reactive.api.context.tcp.TcpResponse {}
