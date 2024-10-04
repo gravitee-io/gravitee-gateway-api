@@ -1,3 +1,10 @@
+# [3.9.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.8.1...3.9.0-alpha.1) (2024-10-04)
+
+
+### Features
+
+* introduce new interfaces for native api support ([c0f0041](https://github.com/gravitee-io/gravitee-gateway-api/commit/c0f00415e17f73771fdb82183fed6b4b7bccd6aa))
+
 ## [3.8.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.8.0...3.8.1) (2024-09-20)
 
 
