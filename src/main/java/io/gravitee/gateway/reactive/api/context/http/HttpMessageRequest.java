@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.context.http;
 
+import io.gravitee.gateway.reactive.api.context.base.BaseMessageRequest;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
@@ -28,7 +29,7 @@ import java.util.function.Function;
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface HttpMessageRequest extends HttpBaseRequest {
+public interface HttpMessageRequest extends BaseMessageRequest, HttpBaseRequest {
     /**
      * Get the request message flow as a {@link Flowable} of {@link Message}.
      * <b>WARN:</b> you should not keep a direct reference on the message flow as it could be overridden by others at anytime.

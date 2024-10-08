@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context.http;
+package io.gravitee.gateway.reactive.api.context.base;
 
-import io.gravitee.gateway.reactive.api.context.base.BaseMessageResponse;
+import io.gravitee.gateway.reactive.api.context.http.HttpBaseRequest;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
@@ -24,14 +24,14 @@ import io.reactivex.rxjava3.core.Maybe;
 import java.util.function.Function;
 
 /**
- * Represents a response that can manipulate a flow of messages.
+ * Represents a request that can manipulate a flow of messages.
  *
- * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface HttpMessageResponse extends BaseMessageResponse, HttpBaseResponse {
+public interface BaseMessageRequest extends BaseRequest {
     /**
-     * Get the response message flow as a {@link Flowable} of {@link Message}.
+     * Get the request message flow as a {@link Flowable} of {@link Message}.
      * <b>WARN:</b> you should not keep a direct reference on the message flow as it could be overridden by others at anytime.
      *
      * @return a {@link Flowable} of {@link Message}.
@@ -39,7 +39,7 @@ public interface HttpMessageResponse extends BaseMessageResponse, HttpBaseRespon
     Flowable<Message> messages();
 
     /**
-     * Set the response message flow.
+     * Set the request message flow.
      * <b>WARN:</b>
      * <ul>
      *  <li>Replacing the message flow <b>DOES NOT</b> take care of the previous message flow in place.</li>
@@ -56,7 +56,7 @@ public interface HttpMessageResponse extends BaseMessageResponse, HttpBaseRespon
      * Applies a given transformation on each message.
      * Ex:
      * <code>
-     *     response.onMessages(messages -> messages.flatMap(message -> transformMyMessage(message)));
+     *     request.onMessages(messages -> messages.flatMap(message -> transformMyMessage(message)));
      * </code>
      *
      * @param onMessages the transformer that will be applied on each message.
@@ -69,12 +69,12 @@ public interface HttpMessageResponse extends BaseMessageResponse, HttpBaseRespon
      * Ex:
      * Discard a message:
      * <code>
-     *     response.onMessage(message -> Maybe.empty());
+     *     request.onMessage(message -> Maybe.empty());
      * </code>
      *
      * Update a message:
      * <code>
-     *     response.onMessage(message -> transformMyMessage(message));
+     *     request.onMessage(message -> transformMyMessage(message));
      * </code>
      *
      * @param onMessage the transformer that will be applied on each message.

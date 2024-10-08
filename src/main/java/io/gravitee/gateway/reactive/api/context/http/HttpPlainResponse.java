@@ -16,7 +16,6 @@
 package io.gravitee.gateway.reactive.api.context.http;
 
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.reactive.api.context.GenericExecutionContext;
 import io.reactivex.rxjava3.core.*;
 
 /**
@@ -143,7 +142,7 @@ public interface HttpPlainResponse extends HttpBaseResponse {
      *
      * @return an observable that can be easily chained.
      */
-    Completable end(GenericExecutionContext ctx);
+    Completable end(HttpBaseExecutionContext ctx);
 
     /**
      * Set the `Content-Length` header to the response.

@@ -16,8 +16,11 @@
 package io.gravitee.gateway.reactive.api.policy;
 
 import io.gravitee.gateway.reactive.api.context.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.MessageExecutionContext;
+import io.gravitee.gateway.reactive.api.context.http.HttpMessageExecutionContext;
 import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
 import io.gravitee.gateway.reactive.api.policy.http.HttpSecurityPolicy;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
 
 /**
@@ -26,8 +29,28 @@ import io.reactivex.rxjava3.core.Maybe;
 @Deprecated(forRemoval = true)
 public interface SecurityPolicy extends HttpSecurityPolicy, Policy {
     default Maybe<SecurityToken> extractSecurityToken(HttpPlainExecutionContext ctx) {
-        return Maybe.empty();
+        return extractSecurityToken((HttpExecutionContext) ctx);
     }
 
     Maybe<SecurityToken> extractSecurityToken(final HttpExecutionContext ctx);
+
+    @Override
+    default Completable onResponse(final HttpExecutionContext ctx) {
+        return Policy.super.onResponse(ctx);
+    }
+
+    @Override
+    default Completable onResponse(final HttpPlainExecutionContext ctx) {
+        return HttpSecurityPolicy.super.onResponse(ctx);
+    }
+
+    @Override
+    default Completable onMessageResponse(final MessageExecutionContext ctx) {
+        return Policy.super.onMessageResponse(ctx);
+    }
+
+    @Override
+    default Completable onMessageResponse(final HttpMessageExecutionContext ctx) {
+        return HttpSecurityPolicy.super.onMessageResponse(ctx);
+    }
 }
