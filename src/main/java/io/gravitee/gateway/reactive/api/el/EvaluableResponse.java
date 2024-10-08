@@ -16,21 +16,21 @@
 package io.gravitee.gateway.reactive.api.el;
 
 import io.gravitee.gateway.api.http.HttpHeaders;
-import io.gravitee.gateway.reactive.api.context.GenericResponse;
+import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
 import java.util.Map;
 
 public class EvaluableResponse {
 
-    private final GenericResponse response;
+    private final HttpBaseResponse response;
     private String content;
     private Map<String, Object> jsonContent;
     private Map<String, Object> xmlContent;
 
-    public EvaluableResponse(final GenericResponse response) {
+    public EvaluableResponse(final HttpBaseResponse response) {
         this(response, null);
     }
 
-    public EvaluableResponse(final GenericResponse response, final String content) {
+    public EvaluableResponse(final HttpBaseResponse response, final String content) {
         this.response = response;
         this.content = content;
     }

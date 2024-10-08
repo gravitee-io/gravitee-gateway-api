@@ -17,6 +17,8 @@ package io.gravitee.gateway.reactive.api.policy;
 
 import io.gravitee.gateway.reactive.api.context.HttpExecutionContext;
 import io.gravitee.gateway.reactive.api.context.MessageExecutionContext;
+import io.gravitee.gateway.reactive.api.context.http.HttpMessageExecutionContext;
+import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
 import io.gravitee.gateway.reactive.api.policy.http.HttpPolicy;
 import io.reactivex.rxjava3.core.Completable;
 
@@ -39,5 +41,21 @@ public interface Policy extends HttpPolicy {
 
     default Completable onMessageResponse(final MessageExecutionContext ctx) {
         return Completable.complete();
+    }
+
+    default Completable onRequest(final HttpPlainExecutionContext ctx) {
+        return onRequest((HttpExecutionContext) ctx);
+    }
+
+    default Completable onResponse(final HttpPlainExecutionContext ctx) {
+        return onResponse((HttpExecutionContext) ctx);
+    }
+
+    default Completable onMessageRequest(final HttpMessageExecutionContext ctx) {
+        return onMessageRequest((MessageExecutionContext) ctx);
+    }
+
+    default Completable onMessageResponse(final HttpMessageExecutionContext ctx) {
+        return onMessageResponse((MessageExecutionContext) ctx);
     }
 }

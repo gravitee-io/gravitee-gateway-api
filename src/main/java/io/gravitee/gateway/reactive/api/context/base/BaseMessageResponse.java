@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context.http;
+package io.gravitee.gateway.reactive.api.context.base;
 
-import io.gravitee.gateway.reactive.api.context.base.BaseMessageResponse;
+import io.gravitee.gateway.reactive.api.context.http.HttpBaseResponse;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
@@ -26,10 +26,10 @@ import java.util.function.Function;
 /**
  * Represents a response that can manipulate a flow of messages.
  *
- * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface HttpMessageResponse extends BaseMessageResponse, HttpBaseResponse {
+public interface BaseMessageResponse extends BaseResponse {
     /**
      * Get the response message flow as a {@link Flowable} of {@link Message}.
      * <b>WARN:</b> you should not keep a direct reference on the message flow as it could be overridden by others at anytime.

@@ -21,4 +21,4 @@ package io.gravitee.gateway.reactive.api.hook;
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface MessageHook extends Hook {}
+public interface MessageHook extends HttpHook {}

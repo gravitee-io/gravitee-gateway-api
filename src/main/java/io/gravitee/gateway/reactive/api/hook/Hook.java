@@ -26,37 +26,8 @@ import io.reactivex.rxjava3.core.Completable;
  *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
+ *
+ *  @deprecated see {@link HttpHook}
  */
-public interface Hook {
-    String id();
-
-    default Completable pre(final String id, final ExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {
-        return Completable.complete();
-    }
-
-    default Completable post(final String id, final ExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {
-        return Completable.complete();
-    }
-
-    default Completable error(
-        final String id,
-        final ExecutionContext ctx,
-        @Nullable final ExecutionPhase executionPhase,
-        final Throwable throwable
-    ) {
-        return Completable.complete();
-    }
-
-    default Completable interrupt(final String id, final ExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {
-        return Completable.complete();
-    }
-
-    default Completable interruptWith(
-        final String id,
-        final ExecutionContext ctx,
-        @Nullable final ExecutionPhase executionPhase,
-        final ExecutionFailure failure
-    ) {
-        return Completable.complete();
-    }
-}
+@Deprecated(forRemoval = true)
+public interface Hook extends HttpHook {}
