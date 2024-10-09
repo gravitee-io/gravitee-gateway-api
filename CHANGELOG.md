@@ -1,3 +1,10 @@
+# [3.9.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.1...3.9.0-alpha.2) (2024-10-09)
+
+
+### Bug Fixes
+
+* adapt interfaces to prepare for apim switch ([8768132](https://github.com/gravitee-io/gravitee-gateway-api/commit/8768132c0dc36917dbcdc697f08a7f13d26f8beb))
+
 # [3.9.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.8.1...3.9.0-alpha.1) (2024-10-04)
 
 
