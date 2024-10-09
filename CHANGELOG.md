@@ -1,3 +1,10 @@
+# [3.9.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.2...3.9.0-alpha.3) (2024-10-09)
+
+
+### Features
+
+* enrich KafkaExecutionContext with request and response ([08e3920](https://github.com/gravitee-io/gravitee-gateway-api/commit/08e392088b4e4c8db259fb7d5b35a89740a0474f))
+
 # [3.9.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.1...3.9.0-alpha.2) (2024-10-09)
 
 
