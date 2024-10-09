@@ -15,23 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api.context.kafka;
 
-import io.gravitee.gateway.reactive.api.context.base.NativeResponse;
-
 /**
  * Represents a response that can manipulate a flow of messages that is mapped from a Kafka native FetchResponse.
  *
  *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  *  @author GraviteeSource Team
  */
-public interface KafkaMessageResponse extends KafkaResponse {
-    // TODO: to be defined.
-
-    /**
-     * Access the underlying native Kafka response.
-     *
-     * @param <T> the expected native Kafka response.
-     *
-     * @return the Kafka native response.
-     */
-    <T> T delegate();
-}
+public interface KafkaMessageResponse extends KafkaResponse {}

@@ -15,8 +15,8 @@
  */
 package io.gravitee.gateway.reactive.api.context.kafka;
 
-import io.gravitee.gateway.reactive.api.context.base.BaseRequest;
 import io.gravitee.gateway.reactive.api.context.base.NativeRequest;
+import org.apache.kafka.common.requests.AbstractRequest;
 
 /**
  * Represents a request that can manipulate a Kafka native request.
@@ -25,14 +25,9 @@ import io.gravitee.gateway.reactive.api.context.base.NativeRequest;
  *  @author GraviteeSource Team
  */
 public interface KafkaRequest extends NativeRequest {
-    // TODO: to be defined.
-
     /**
      * Access the underlying native Kafka request.
-     *
-     * @param <T> the expected native Kafka request.
-     *
      * @return the Kafka native request.
      */
-    <T> T delegate();
+    <T extends AbstractRequest> T delegate();
 }

@@ -16,6 +16,8 @@
 package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
+import org.apache.kafka.common.protocol.ApiKeys;
+import org.apache.kafka.common.requests.AbstractResponse;
 
 /**
  * Execution context specialized for Kafka.
@@ -23,4 +25,9 @@ import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface KafkaExecutionContext extends NativeExecutionContext {}
+public interface KafkaExecutionContext extends NativeExecutionContext {
+    ApiKeys apiKey();
+    int correlationId();
+    KafkaRequest request();
+    KafkaResponse response();
+}

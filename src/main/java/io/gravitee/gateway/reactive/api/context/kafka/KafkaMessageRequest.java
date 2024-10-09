@@ -15,23 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api.context.kafka;
 
-import io.gravitee.gateway.reactive.api.context.base.NativeRequest;
-
 /**
  * Represents a request that can manipulate a flow of messages that is mapped from a Kafka native ProduceRequest.
  *
  *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  *  @author GraviteeSource Team
  */
-public interface KafkaMessageRequest extends KafkaRequest {
-    // TODO: to be defined.
-
-    /**
-     * Access the underlying native Kafka request.
-     *
-     * @param <T> the expected native Kafka request.
-     *
-     * @return the Kafka native request.
-     */
-    <T> T delegate();
-}
+public interface KafkaMessageRequest extends KafkaRequest {}
