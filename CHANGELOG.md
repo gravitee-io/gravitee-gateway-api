@@ -1,3 +1,10 @@
+# [3.9.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.3...3.9.0-alpha.4) (2024-10-11)
+
+
+### Bug Fixes
+
+* restore previous constructor as deprecated ([c20fbe8](https://github.com/gravitee-io/gravitee-gateway-api/commit/c20fbe854cdfdc99904a138615703308294f9cc7))
+
 # [3.9.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.2...3.9.0-alpha.3) (2024-10-09)
 
 
