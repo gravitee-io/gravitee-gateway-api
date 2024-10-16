@@ -177,4 +177,6 @@ public interface BaseExecutionContext {
      * @return the El {@link TemplateEngine}.
      */
     TemplateEngine getTemplateEngine();
+
+    long timestamp();
 }
