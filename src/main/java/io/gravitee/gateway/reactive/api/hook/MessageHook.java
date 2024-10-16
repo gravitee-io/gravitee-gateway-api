@@ -15,10 +15,64 @@
  */
 package io.gravitee.gateway.reactive.api.hook;
 
+import io.gravitee.gateway.reactive.api.ExecutionFailure;
+import io.gravitee.gateway.reactive.api.ExecutionPhase;
+import io.gravitee.gateway.reactive.api.context.ExecutionContext;
+import io.gravitee.gateway.reactive.api.message.Message;
+import io.reactivex.rxjava3.annotations.Nullable;
+import io.reactivex.rxjava3.core.Completable;
+
 /**
- * Interface that can be used to add hook behaviour on messages
+ * Interface that can be used to add hook behaviour on messages policy
  *
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface MessageHook extends Hook {}
+public interface MessageHook extends Hook {
+    default Completable preMessage(
+        final String id,
+        final ExecutionContext ctx,
+        @Nullable final ExecutionPhase executionPhase,
+        final Message message
+    ) {
+        return Completable.complete();
+    }
+
+    default Completable postMessage(
+        final String id,
+        final ExecutionContext ctx,
+        @Nullable final ExecutionPhase executionPhase,
+        final Message message
+    ) {
+        return Completable.complete();
+    }
+
+    default Completable errorMessage(
+        final String id,
+        final ExecutionContext ctx,
+        @Nullable final ExecutionPhase executionPhase,
+        final Message message,
+        final Throwable throwable
+    ) {
+        return Completable.complete();
+    }
+
+    default Completable interruptMessage(
+        final String id,
+        final ExecutionContext ctx,
+        @Nullable final ExecutionPhase executionPhase,
+        final Message message
+    ) {
+        return Completable.complete();
+    }
+
+    default Completable interruptMessageWith(
+        final String id,
+        final ExecutionContext ctx,
+        @Nullable final ExecutionPhase executionPhase,
+        final Message message,
+        final ExecutionFailure failure
+    ) {
+        return Completable.complete();
+    }
+}

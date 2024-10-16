@@ -43,6 +43,8 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE = "message.recordable";
     public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE_WITH_LOGGING = "message.recordable.withLogging";
     public static final String ATTR_INTERNAL_VALIDATE_SUBSCRIPTION = "api.validateSubscription";
+    public static final String ATTR_INTERNAL_MESSAGE_TRACING_SPAN = "message.tracing.span";
+    public static final String ATTR_INTERNAL_MESSAGE_TRACING_ATTRIBUTE = "message.tracing.attributes";
 
     /**
      * Adapted ExecutionContext for V3 compatibility.

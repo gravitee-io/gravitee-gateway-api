@@ -19,7 +19,7 @@ import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
-import io.gravitee.tracing.api.Tracer;
+import io.gravitee.gateway.api.tracing.Tracer;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;

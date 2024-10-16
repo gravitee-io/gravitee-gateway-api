@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context;
 
 import io.gravitee.el.TemplateEngine;
+import io.gravitee.gateway.api.tracing.Tracer;
 import io.gravitee.reporter.api.v4.metric.Metrics;
 import java.util.List;
 import java.util.Map;
@@ -181,4 +182,11 @@ public interface GenericExecutionContext {
      * @return the El {@link TemplateEngine}.
      */
     TemplateEngine getTemplateEngine();
+
+    /**
+     * Get the {@link Tracer} that can be used to trace any spans.
+     *
+     * @return the {@link Tracer} contextualized.
+     */
+    Tracer getTracer();
 }
