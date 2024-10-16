@@ -46,4 +46,13 @@ public interface ApiKeyService {
      * @return Found ApiKey
      */
     Optional<ApiKey> getByApiAndKey(String api, String key);
+
+    /**
+     * Get api key by its api and md5 hash of the key.
+     *
+     * @param api Searched api
+     * @param md5ApiKey Searched md5 hash of the key
+     * @return Found ApiKey
+     */
+    Optional<ApiKey> getByApiAndMd5Key(String api, String md5ApiKey);
 }
