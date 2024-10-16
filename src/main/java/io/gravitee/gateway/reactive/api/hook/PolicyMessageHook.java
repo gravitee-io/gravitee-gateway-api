@@ -13,17 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.api.context;
+package io.gravitee.gateway.reactive.api.hook;
 
-import io.gravitee.gateway.api.ExecutionContext;
-import io.gravitee.gateway.api.Request;
-import io.gravitee.gateway.api.Response;
-import io.gravitee.gateway.reactive.api.tracing.Tracer;
-
-public interface MutableExecutionContext extends ExecutionContext {
-    MutableExecutionContext request(Request request);
-
-    MutableExecutionContext response(Response response);
-
-    MutableExecutionContext tracer(Tracer tracer);
-}
+/**
+ * Interface that can be used to add hook behaviour on messages on policy
+ *
+ * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
+ * @author GraviteeSource Team
+ */
+public interface PolicyMessageHook extends MessageHook {}

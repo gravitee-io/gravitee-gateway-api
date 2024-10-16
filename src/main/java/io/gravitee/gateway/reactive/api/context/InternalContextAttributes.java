@@ -40,9 +40,15 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
     public static final String ATTR_INTERNAL_SECURITY_SKIP = "securityChain.skip";
     public static final String ATTR_INTERNAL_ANALYTICS_CONTEXT = "analytics.context";
+    public static final String ATTR_INTERNAL_TRACING_ENABLED = "analytics.tracing.enabled";
+    public static final String ATTR_INTERNAL_TRACING_ROOT_SPAN = "analytics.tracing.root.span";
+    public static final String ATTR_INTERNAL_MESSAGE_EXECUTION_PHASE = "message.execution-phase";
+    public static final String ATTR_INTERNAL_MESSAGE_THROWABLE = "message.throwable";
     public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE = "message.recordable";
     public static final String ATTR_INTERNAL_MESSAGE_RECORDABLE_WITH_LOGGING = "message.recordable.withLogging";
     public static final String ATTR_INTERNAL_VALIDATE_SUBSCRIPTION = "api.validateSubscription";
+    public static final String ATTR_INTERNAL_TRACING_ERROR = "message.tracing.error";
+    public static final String ATTR_INTERNAL_TRACING_MESSAGE_SPAN = "message.tracing.span";
 
     /**
      * Adapted ExecutionContext for V3 compatibility.

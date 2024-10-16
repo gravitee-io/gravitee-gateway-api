@@ -19,7 +19,7 @@ import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
-import io.gravitee.tracing.api.Tracer;
+import io.gravitee.gateway.reactive.api.tracing.Tracer;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -36,6 +36,7 @@ public class SimpleExecutionContext implements MutableExecutionContext {
     private Request request;
 
     private Response response;
+    private Tracer tracer;
 
     public SimpleExecutionContext(final Request request, final Response response) {
         this.request = request;
@@ -51,6 +52,12 @@ public class SimpleExecutionContext implements MutableExecutionContext {
     @Override
     public MutableExecutionContext response(Response response) {
         this.response = response;
+        return this;
+    }
+
+    @Override
+    public MutableExecutionContext tracer(final Tracer tracer) {
+        this.tracer = tracer;
         return this;
     }
 
@@ -96,7 +103,7 @@ public class SimpleExecutionContext implements MutableExecutionContext {
 
     @Override
     public Tracer getTracer() {
-        throw new IllegalStateException();
+        return tracer;
     }
 
     @Override

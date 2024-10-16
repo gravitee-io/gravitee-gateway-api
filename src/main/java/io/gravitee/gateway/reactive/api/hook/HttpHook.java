@@ -60,4 +60,8 @@ public interface HttpHook {
     ) {
         return Completable.complete();
     }
+
+    default void cancel(final String id, final HttpExecutionContext ctx, @Nullable final ExecutionPhase executionPhase) {
+        // Nothing to do by default
+    }
 }

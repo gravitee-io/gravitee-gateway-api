@@ -18,6 +18,7 @@ package io.gravitee.gateway.reactive.api.message;
 import io.gravitee.common.util.ListUtils;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
+import io.gravitee.gateway.reactive.api.tracing.message.TracingMessage;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +39,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(fluent = true)
-public class DefaultMessage implements Message {
+public class DefaultMessage implements TracingMessage {
 
     public static final String SOURCE_TIMESTAMP = "sourceTimestamp";
     private String id;
@@ -62,6 +63,9 @@ public class DefaultMessage implements Message {
     private Buffer content;
     private boolean error;
     private Runnable ackRunnable;
+    private Runnable endRunnable;
+    private boolean ended;
+    private Map<String, String> tracingAttributes;
 
     public DefaultMessage(final String content) {
         this(); // Due to @Builder.Default annotation
@@ -175,10 +179,44 @@ public class DefaultMessage implements Message {
         return this;
     }
 
+    @Override
     public void ack() {
         if (ackRunnable != null) {
             ackRunnable.run();
         }
+        if (!this.ended) {
+            this.end();
+        }
+    }
+
+    @Override
+    public DefaultMessage doOnEnd(final Runnable runnable) {
+        this.endRunnable = runnable;
+        return this;
+    }
+
+    @Override
+    public void end() {
+        if (this.endRunnable != null) {
+            this.endRunnable.run();
+        }
+        this.ended = true;
+    }
+
+    @Override
+    public Map<String, String> tracingAttributes() {
+        if (this.tracingAttributes == null) {
+            this.tracingAttributes = new HashMap<>();
+        }
+        return tracingAttributes;
+    }
+
+    @Override
+    public void addTracingAttribute(final String key, final String value) {
+        if (key == null || value == null) {
+            throw new IllegalArgumentException("Key or value of tracing attribute cannot be null");
+        }
+        tracingAttributes.put(key, value);
     }
 
     public static DefaultMessageBuilder builder() {
