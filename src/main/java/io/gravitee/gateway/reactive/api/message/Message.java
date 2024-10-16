@@ -117,7 +117,7 @@ public interface Message {
     Message content(final String content);
 
     /**
-     * Allow acknowledging this message when it has been well-processed.
+     * MUST be called to acknowledge this message when it has been well-processed.
      */
     void ack();
 

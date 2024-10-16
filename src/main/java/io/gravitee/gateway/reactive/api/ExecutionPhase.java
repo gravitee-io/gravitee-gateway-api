@@ -15,6 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
  * An execution phase allows knowing in which phase of the whole request processing a given action occurs.
  * The execution phase is mainly useful during the flow and policy chain executions.
@@ -33,6 +37,8 @@ package io.gravitee.gateway.reactive.api;
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
+@Getter
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum ExecutionPhase {
     /**
      * This phase represents the actions occurring from the downstream to the upstream in a sync execution context.
@@ -100,11 +106,8 @@ public enum ExecutionPhase {
 
     private final String label;
 
-    ExecutionPhase(final String label) {
-        this.label = label;
-    }
-
-    public String getLabel() {
+    @Override
+    public String toString() {
         return label;
     }
 }
