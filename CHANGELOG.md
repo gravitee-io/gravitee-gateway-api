@@ -1,3 +1,10 @@
+# [3.9.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.4...3.9.0-alpha.5) (2024-10-18)
+
+
+### Features
+
+* add new fields to help with security chains ([62bc8d4](https://github.com/gravitee-io/gravitee-gateway-api/commit/62bc8d43eaeb583478cb4e79906bb1128f7172af))
+
 # [3.9.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.3...3.9.0-alpha.4) (2024-10-11)
 
 
