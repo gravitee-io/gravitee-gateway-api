@@ -15,11 +15,21 @@
  */
 package io.gravitee.gateway.reactive.api.message.kafka;
 
-import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.reactive.api.message.Message;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.apache.kafka.common.header.Header;
+import org.apache.kafka.common.record.Record;
 
-public interface KafkaMessage extends Message {}
+public interface KafkaMessage extends Message {
+    // TODO: maybe find a way to have generic headers from Message interface.
+    /**
+     * Get the Kafka headers associated to the message.
+     * @return the Kafka headers
+     */
+    Header[] kafkaHeaders();
+
+    /**
+     * Get the Kafka record associated to the message.
+     * @return the Kafka record
+     */
+    Record kafkaRecord();
+}
