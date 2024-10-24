@@ -24,24 +24,4 @@ import javax.net.ssl.SSLSession;
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface BaseRequest {
-    /**
-     * Returns the Internet Protocol (IP) address of the client or last proxy that sent the request.
-     *
-     * @return a <code>String</code> containing the IP address of the client that sent the request.
-     */
-    String remoteAddress();
-
-    /**
-     * Returns the Internet Protocol (IP) address of the interface on which the request was received.
-     *
-     * @return a <code>String</code> containing the IP address on which the request was received.
-     */
-    String localAddress();
-
-    /**
-     * @return TlsSession associated to the request. Acts as a SSLSession, with additional mechanisms. It can for example extract a client certificate from a given header.
-     * @see SSLSession
-     */
-    TlsSession tlsSession();
-}
+public interface BaseRequest {}
