@@ -18,10 +18,12 @@ package io.gravitee.gateway.reactive.api.context.base;
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.reactive.api.context.GenericRequest;
 import io.gravitee.gateway.reactive.api.context.GenericResponse;
+import io.gravitee.gateway.reactive.api.context.TlsSession;
 import io.gravitee.reporter.api.v4.metric.Metrics;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.net.ssl.SSLSession;
 
 /**
  * Base interface any execution context interface can inherit from.
@@ -179,4 +181,24 @@ public interface BaseExecutionContext {
     TemplateEngine getTemplateEngine();
 
     long timestamp();
+
+    /**
+     * Returns the Internet Protocol (IP) address of the client or last proxy that sent the request.
+     *
+     * @return a <code>String</code> containing the IP address of the client that sent the request.
+     */
+    String remoteAddress();
+
+    /**
+     * Returns the Internet Protocol (IP) address of the interface on which the request was received.
+     *
+     * @return a <code>String</code> containing the IP address on which the request was received.
+     */
+    String localAddress();
+
+    /**
+     * @return TlsSession associated to the request. Acts as a SSLSession, with additional mechanisms. It can for example extract a client certificate from a given header.
+     * @see SSLSession
+     */
+    TlsSession tlsSession();
 }

@@ -19,7 +19,9 @@ import io.gravitee.common.http.HttpMethod;
 import io.gravitee.common.http.HttpVersion;
 import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.http.HttpHeaders;
+import io.gravitee.gateway.reactive.api.context.TlsSession;
 import io.gravitee.gateway.reactive.api.context.base.BaseRequest;
+import javax.net.ssl.SSLSession;
 
 /**
  * Base interface for all http-based requests.
@@ -131,4 +133,24 @@ public interface HttpBaseRequest extends BaseRequest {
      * @return <code>true</code> if the headers and body have been read, <code>false</code> else.
      */
     boolean ended();
+
+    /**
+     * Returns the Internet Protocol (IP) address of the client or last proxy that sent the request.
+     *
+     * @return a <code>String</code> containing the IP address of the client that sent the request.
+     */
+    String remoteAddress();
+
+    /**
+     * Returns the Internet Protocol (IP) address of the interface on which the request was received.
+     *
+     * @return a <code>String</code> containing the IP address on which the request was received.
+     */
+    String localAddress();
+
+    /**
+     * @return TlsSession associated to the request. Acts as a SSLSession, with additional mechanisms. It can for example extract a client certificate from a given header.
+     * @see SSLSession
+     */
+    TlsSession tlsSession();
 }
