@@ -23,4 +23,16 @@ import io.gravitee.gateway.reactive.api.context.base.NativeMessageExecutionConte
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface KafkaMessageExecutionContext extends NativeMessageExecutionContext {}
+public interface KafkaMessageExecutionContext extends NativeMessageExecutionContext {
+    /**
+     * Get the current request attached to this execution context.
+     * @return the request.
+     */
+    KafkaMessageRequest request();
+
+    /**
+     * Get the current response attached to this execution context when it is available.
+     * @return a Single that will emit the KafkaMessageResponse when available.
+     */
+    KafkaMessageResponse response();
+}
