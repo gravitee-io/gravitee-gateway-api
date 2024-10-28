@@ -1,3 +1,10 @@
+# [3.9.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.5...3.9.0-alpha.6) (2024-10-28)
+
+
+### Features
+
+* add property for KafkaMessage interfaces ([efb63e8](https://github.com/gravitee-io/gravitee-gateway-api/commit/efb63e8c6d43725c2647dda4afc27f83d9a29e48))
+
 # [3.9.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.4...3.9.0-alpha.5) (2024-10-18)
 
 
