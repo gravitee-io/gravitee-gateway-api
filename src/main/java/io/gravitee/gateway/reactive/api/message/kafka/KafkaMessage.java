@@ -26,7 +26,7 @@ public interface KafkaMessage extends Message {
      * Get the Kafka record headers associated to the message.
      * @return the Kafka headers
      */
-    Map<String, Object> recordHeaders();
+    Map<String, Buffer> recordHeaders();
 
     /**
      * Get the Kafka record key associated to the message.
