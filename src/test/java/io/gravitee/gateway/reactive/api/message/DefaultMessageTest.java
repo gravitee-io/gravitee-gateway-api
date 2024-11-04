@@ -142,7 +142,7 @@ class DefaultMessageTest {
 
     @Test
     void shouldHaveCorrelationIdFromBufferConstructor() {
-        DefaultMessage cut = new DefaultMessage(null);
+        DefaultMessage cut = new DefaultMessage((String) null);
         assertNotNull(cut.correlationId());
     }
 
