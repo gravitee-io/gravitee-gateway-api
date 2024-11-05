@@ -1,3 +1,10 @@
+# [3.9.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.8...3.9.0-alpha.9) (2024-11-05)
+
+
+### Bug Fixes
+
+* prefer use Buffer instead of Object for recordHeaders ([1a622fc](https://github.com/gravitee-io/gravitee-gateway-api/commit/1a622fca6877a2cb2e768d0d2ddf9a46ff3830bd))
+
 # [3.9.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.7...3.9.0-alpha.8) (2024-11-05)
 
 
