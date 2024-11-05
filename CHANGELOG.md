@@ -1,3 +1,10 @@
+# [3.9.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.6...3.9.0-alpha.7) (2024-11-05)
+
+
+### Features
+
+* add OpenTelemetry feature on Async API ([6e2d554](https://github.com/gravitee-io/gravitee-gateway-api/commit/6e2d55441d4f551c50b7d463d68617e9146e40c6))
+
 # [3.9.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.5...3.9.0-alpha.6) (2024-10-28)
 
 
