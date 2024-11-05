@@ -1,3 +1,10 @@
+# [3.9.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.9...3.9.0-alpha.10) (2024-11-05)
+
+
+### Features
+
+* add kafka as listener type ([8b12612](https://github.com/gravitee-io/gravitee-gateway-api/commit/8b126127b43ff01de5dab58dfe2638b1a9dcedc7))
+
 # [3.9.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.8...3.9.0-alpha.9) (2024-11-05)
 
 
