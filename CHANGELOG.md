@@ -1,3 +1,10 @@
+# [3.9.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.7...3.9.0-alpha.8) (2024-11-05)
+
+
+### Bug Fixes
+
+* bump gravitee node version ([0082de8](https://github.com/gravitee-io/gravitee-gateway-api/commit/0082de863086354dc9629662c1c827efb456166c))
+
 # [3.9.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.6...3.9.0-alpha.7) (2024-11-05)
 
 
