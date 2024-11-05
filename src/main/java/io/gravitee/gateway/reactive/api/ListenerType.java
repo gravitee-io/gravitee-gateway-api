@@ -29,9 +29,19 @@ import lombok.RequiredArgsConstructor;
 public enum ListenerType {
     HTTP("http"),
     SUBSCRIPTION("subscription"),
-    TCP("tcp");
+    TCP("tcp"),
+    KAFKA("kafka");
 
-    private static final Map<String, ListenerType> LABELS_MAP = Map.of(HTTP.label, HTTP, SUBSCRIPTION.label, SUBSCRIPTION, TCP.label, TCP);
+    private static final Map<String, ListenerType> LABELS_MAP = Map.of(
+        HTTP.label,
+        HTTP,
+        SUBSCRIPTION.label,
+        SUBSCRIPTION,
+        TCP.label,
+        TCP,
+        KAFKA.label,
+        KAFKA
+    );
 
     @JsonValue
     private final String label;
