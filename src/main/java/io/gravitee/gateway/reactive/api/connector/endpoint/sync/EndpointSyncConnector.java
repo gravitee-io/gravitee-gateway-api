@@ -15,18 +15,12 @@
  */
 package io.gravitee.gateway.reactive.api.connector.endpoint.sync;
 
-import io.gravitee.common.service.AbstractService;
 import io.gravitee.gateway.reactive.api.ApiType;
-import io.gravitee.gateway.reactive.api.connector.Connector;
 import io.gravitee.gateway.reactive.api.connector.endpoint.EndpointConnector;
 
 /**
  * Specialized {@link EndpointConnector} for {@link ApiType#PROXY}
+ * @deprecated see {@link HttpEndpointSyncConnector
  */
-public abstract class EndpointSyncConnector extends AbstractService<Connector> implements EndpointConnector {
-
-    @Override
-    public ApiType supportedApi() {
-        return ApiType.PROXY;
-    }
-}
+@Deprecated(forRemoval = true)
+public abstract class EndpointSyncConnector extends HttpEndpointSyncConnector implements EndpointConnector {}

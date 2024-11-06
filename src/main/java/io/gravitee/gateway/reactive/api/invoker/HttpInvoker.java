@@ -13,14 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.connector.entrypoint.sync;
+package io.gravitee.gateway.reactive.api.invoker;
 
-import io.gravitee.gateway.reactive.api.ApiType;
-import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector;
+import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
- * Specialized {@link EntrypointConnector} for {@link ApiType#PROXY}
- * @deprecated see {@link
+ * Dedicated interface inspired from original {@link io.gravitee.gateway.api.Invoker} interface allowing to invoke an invoker in a reactive manner.
+ *
+ * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
+ * @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public abstract class EntrypointSyncConnector extends HttpEntrypointSyncConnector implements EntrypointConnector {}
+public interface HttpInvoker {
+    String getId();
+
+    Completable invoke(HttpExecutionContext ctx);
+}

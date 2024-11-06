@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.connector.entrypoint.sync;
+package io.gravitee.gateway.reactive.api.connector.endpoint.sync;
 
+import io.gravitee.common.service.AbstractService;
 import io.gravitee.gateway.reactive.api.ApiType;
-import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector;
+import io.gravitee.gateway.reactive.api.connector.Connector;
+import io.gravitee.gateway.reactive.api.connector.endpoint.HttpEndpointConnector;
 
 /**
- * Specialized {@link EntrypointConnector} for {@link ApiType#PROXY}
- * @deprecated see {@link
+ * Specialized {@link HttpEndpointConnector} for {@link ApiType#PROXY}
  */
-@Deprecated(forRemoval = true)
-public abstract class EntrypointSyncConnector extends HttpEntrypointSyncConnector implements EntrypointConnector {}
+public abstract class HttpEndpointSyncConnector extends AbstractService<Connector> implements HttpEndpointConnector {
+
+    @Override
+    public ApiType supportedApi() {
+        return ApiType.PROXY;
+    }
+}
