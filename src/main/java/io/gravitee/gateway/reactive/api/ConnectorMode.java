@@ -30,7 +30,9 @@ public enum ConnectorMode {
     SUBSCRIBE("subscribe"),
     PUBLISH("publish"),
     REQUEST_RESPONSE("request_response"),
-    SOCKET("socket");
+    SOCKET("socket"),
+    INTERACT("interact"),
+    CONNECT("connect");
 
     private static final Map<String, ConnectorMode> LABELS_MAP = Map.of(
         SUBSCRIBE.label,
@@ -40,7 +42,11 @@ public enum ConnectorMode {
         REQUEST_RESPONSE.label,
         REQUEST_RESPONSE,
         SOCKET.label,
-        SOCKET
+        SOCKET,
+        INTERACT.label,
+        INTERACT,
+        CONNECT.label,
+        CONNECT
     );
 
     @JsonValue
