@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.connector.entrypoint.sync;
+package io.gravitee.gateway.reactive.api.connector.endpoint;
 
-import io.gravitee.gateway.reactive.api.ApiType;
-import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector;
+import io.gravitee.gateway.reactive.api.connector.Connector;
+import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
- * Specialized {@link EntrypointConnector} for {@link ApiType#PROXY}
- * @deprecated see {@link
+ * Interface describing Endpoint Connector which could be implemented to deal with new protocol specification
+ *
+ * @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public abstract class EntrypointSyncConnector extends HttpEntrypointSyncConnector implements EntrypointConnector {}
+public interface HttpEndpointConnector extends Connector {
+    Completable connect(final HttpExecutionContext ctx);
+}

@@ -16,50 +16,47 @@
 package io.gravitee.gateway.reactive.api.connector.entrypoint;
 
 import io.gravitee.gateway.reactive.api.ListenerType;
-import io.gravitee.gateway.reactive.api.context.ExecutionContext;
+import io.gravitee.gateway.reactive.api.connector.Connector;
 import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
 import io.reactivex.rxjava3.core.Completable;
 
 /**
  * Interface describing Entrypoint Connector which could be implemented to deal with new protocol specification
- * @deprecated see {@link HttpEntrypointConnector}
  * @author GraviteeSource Team
  */
-@Deprecated(forRemoval = true)
-public interface EntrypointConnector extends HttpEntrypointConnector {
+public interface HttpEntrypointConnector extends Connector {
+    /**
+     * Returns the {@link ListenerType} supported by this entrypoint. It will be used to filter available entrypoint when creating a new API
+     *
+     * @return {@link ListenerType} supported by this entrypoint.
+     */
+    ListenerType supportedListenerType();
+
+    /**
+     * Returns the number of criteria used in {{@link #matches(HttpExecutionContext)}. This number is used to sort compatible entrypoint from a request in the descending order.
+     *
+     * @return Number of criteria used in {{@link #matches(HttpExecutionContext)}
+     */
+    int matchCriteriaCount();
+
     /**
      * Check if incoming request matches entrypoint criteria.
      *
      * @return <code>true</code> if the incoming request matches all criteria, <code>false</code> otherwise
      */
-    boolean matches(final ExecutionContext executionContext);
-
-    @Override
-    default boolean matches(final HttpExecutionContext ctx) {
-        return matches((ExecutionContext) ctx);
-    }
+    boolean matches(final HttpExecutionContext ctx);
 
     /**
      * Handle incoming request by doing or adding anything to the context anything required by the entrypoint.
      *
      * @return <code>Completable</code>
      */
-    Completable handleRequest(final ExecutionContext executionContext);
-
-    @Override
-    default Completable handleRequest(final HttpExecutionContext ctx) {
-        return handleRequest((ExecutionContext) ctx);
-    }
+    Completable handleRequest(final HttpExecutionContext ctx);
 
     /**
      * Handle outgoing response by doing or adding anything to the context anything required by the entrypoint.
      *
      * @return <code>Completable</code>
      */
-    Completable handleResponse(final ExecutionContext executionContext);
-
-    @Override
-    default Completable handleResponse(final HttpExecutionContext ctx) {
-        return handleResponse((ExecutionContext) ctx);
-    }
+    Completable handleResponse(final HttpExecutionContext ctx);
 }
