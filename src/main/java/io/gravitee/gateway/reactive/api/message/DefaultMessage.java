@@ -21,24 +21,21 @@ import io.gravitee.gateway.reactive.api.tracing.message.TracingMessage;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
-import lombok.experimental.SuperBuilder;
 
-@Data
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
 @Accessors(fluent = true)
 public class DefaultMessage extends AbstractMessage implements TracingMessage {
 
     private String id;
 
-    @Builder.Default
-    private String correlationId = UUID.randomUUID().toString();
+    private String correlationId;
 
     private String parentCorrelationId;
 
@@ -50,11 +47,24 @@ public class DefaultMessage extends AbstractMessage implements TracingMessage {
     private boolean ended;
     private Map<String, String> tracingAttributes;
 
-    public DefaultMessage(final String content) {
-        this(); // Due to @Builder.Default annotation
-        if (content != null) {
-            this.content = Buffer.buffer(content);
+    private DefaultMessage(DefaultMessageBuilder b) {
+        super(b.timestamp, b.sourceTimestamp, b.metadata, b.attributes, b.internalAttributes);
+        this.attributes = b.attributes;
+        this.internalAttributes = b.internalAttributes;
+        this.id = b.id;
+        if (b.correlationId != null) {
+            this.correlationId = b.correlationId;
+        } else {
+            this.correlationId = UUID.randomUUID().toString();
         }
+        this.parentCorrelationId = b.parentCorrelationId;
+        this.headers = b.headers;
+        this.content = b.content;
+        this.error = b.error;
+        this.ackRunnable = b.ackRunnable;
+        this.endRunnable = b.endRunnable;
+        this.ended = b.ended;
+        this.tracingAttributes = b.tracingAttributes;
     }
 
     @Override
@@ -122,15 +132,46 @@ public class DefaultMessage extends AbstractMessage implements TracingMessage {
         tracingAttributes.put(key, value);
     }
 
-    private static class DefaultMessageBuilderImpl extends DefaultMessageBuilder<DefaultMessage, DefaultMessageBuilderImpl> {}
+    public static DefaultMessageBuilder builder() {
+        return new DefaultMessageBuilder();
+    }
 
-    public static DefaultMessage.DefaultMessageBuilder<?, ?> builder() {
-        return new DefaultMessage.DefaultMessageBuilderImpl() {
-            @Override
-            public DefaultMessage build() {
-                prebuild();
-                return super.build();
+    @Data
+    public static class DefaultMessageBuilder {
+
+        // Fields from AbstractMessage
+        private long timestamp;
+        private long sourceTimestamp;
+        private Map<String, Object> metadata;
+        private Map<String, Object> attributes;
+        private Map<String, Object> internalAttributes;
+
+        // Fields from DefaultMessage
+        private String id;
+        private String correlationId;
+        private String parentCorrelationId;
+        private HttpHeaders headers;
+        private Buffer content;
+        private boolean error;
+        private Runnable ackRunnable;
+        private Runnable endRunnable;
+        private boolean ended;
+        private Map<String, String> tracingAttributes;
+
+        public DefaultMessageBuilder content(String content) {
+            if (content != null) {
+                this.content = Buffer.buffer(content);
             }
-        };
+            return this;
+        }
+
+        public DefaultMessageBuilder content(Buffer content) {
+            this.content = content;
+            return this;
+        }
+
+        public DefaultMessage build() {
+            return new DefaultMessage(this);
+        }
     }
 }
