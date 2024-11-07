@@ -22,30 +22,34 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
 public abstract class AbstractMessage implements Message {
 
     public static final String SOURCE_TIMESTAMP = "sourceTimestamp";
 
-    @Builder.Default
-    protected long timestamp = System.currentTimeMillis();
+    protected final long timestamp;
 
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    protected long sourceTimestamp = timestamp;
+    protected final long sourceTimestamp;
 
-    protected Map<String, Object> metadata;
+    protected final Map<String, Object> metadata;
     protected Map<String, Object> attributes;
     protected Map<String, Object> internalAttributes;
+
+    protected AbstractMessage(
+        long timestamp,
+        long sourceTimestamp,
+        Map<String, Object> metadata,
+        Map<String, Object> attributes,
+        Map<String, Object> internalAttributes
+    ) {
+        this.timestamp = timestamp != 0L ? timestamp : System.currentTimeMillis();
+        this.sourceTimestamp = sourceTimestamp != 0L ? sourceTimestamp : this.timestamp;
+        this.metadata = initMetadata(metadata, this.sourceTimestamp);
+        this.attributes = attributes;
+        this.internalAttributes = internalAttributes;
+    }
 
     @Override
     public long timestamp() {
@@ -54,15 +58,7 @@ public abstract class AbstractMessage implements Message {
 
     @Override
     public Map<String, Object> metadata() {
-        if (metadata == null) {
-            metadata = Map.of();
-        }
         return metadata;
-    }
-
-    public AbstractMessage metadata(Map<String, Object> metadata) {
-        this.metadata = unmodifiableMetadata(metadata);
-        return this;
     }
 
     @Override
@@ -146,21 +142,14 @@ public abstract class AbstractMessage implements Message {
         }
     }
 
-    public abstract static class AbstractMessageBuilder<C extends AbstractMessage, B extends AbstractMessage.AbstractMessageBuilder<C, B>> {
-
-        // Insert sourceTimestamp into metadata before building the object
-        B prebuild() {
-            if (!timestamp$set) {
-                timestamp(System.currentTimeMillis());
-            }
-            if (metadata == null) {
-                metadata = new HashMap<>();
-            }
-            if (!metadata.containsKey(SOURCE_TIMESTAMP)) {
-                metadata.put(SOURCE_TIMESTAMP, sourceTimestamp != 0L ? sourceTimestamp : timestamp$value);
-            }
-            metadata = unmodifiableMetadata(metadata);
-            return self();
+    private static Map<String, Object> initMetadata(Map<String, Object> metadata, long sourceTimestamp) {
+        if (metadata == null) {
+            metadata = new HashMap<>();
         }
+        // Insert sourceTimestamp into metadata if not present
+        if (!metadata.containsKey(SOURCE_TIMESTAMP)) {
+            metadata.put(SOURCE_TIMESTAMP, sourceTimestamp);
+        }
+        return unmodifiableMetadata(metadata);
     }
 }

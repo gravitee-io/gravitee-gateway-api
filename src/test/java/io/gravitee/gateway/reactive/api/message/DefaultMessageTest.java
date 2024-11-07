@@ -48,15 +48,6 @@ class DefaultMessageTest {
     }
 
     @Test
-    void shouldReturnUnmodifiableMetadataMapWithSetter() {
-        Map<String, Object> metadata = new HashMap<>();
-        metadata.put("key", INTERNAL_ATTR_VALUE);
-        DefaultMessage cut = DefaultMessage.builder().build();
-        cut.metadata(metadata);
-        assertThrows(java.lang.UnsupportedOperationException.class, () -> cut.metadata().put(INTERNAL_ATTR_TEST, INTERNAL_ATTR_TEST));
-    }
-
-    @Test
     void shouldPutAttribute() {
         DefaultMessage cut = DefaultMessage.builder().build();
         assertNull(cut.attribute(ATTR_TEST));
@@ -135,14 +126,8 @@ class DefaultMessageTest {
     }
 
     @Test
-    void shouldHaveCorrelationIdFromEmptyConstructor() {
-        DefaultMessage cut = new DefaultMessage();
-        assertNotNull(cut.correlationId());
-    }
-
-    @Test
     void shouldHaveCorrelationIdFromBufferConstructor() {
-        DefaultMessage cut = new DefaultMessage((String) null);
+        DefaultMessage cut = DefaultMessage.builder().content(BUFFER).build();
         assertNotNull(cut.correlationId());
     }
 
