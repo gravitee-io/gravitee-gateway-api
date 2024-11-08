@@ -18,9 +18,12 @@ package io.gravitee.gateway.reactive.api.tracing.message;
 import static io.gravitee.gateway.reactive.api.context.InternalContextAttributes.ATTR_INTERNAL_MESSAGE_RECORDABLE;
 import static io.gravitee.gateway.reactive.api.context.InternalContextAttributes.ATTR_INTERNAL_TRACING_MESSAGE_SPAN;
 
+import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.gravitee.node.api.opentelemetry.Span;
+import io.opentelemetry.context.propagation.TextMapSetter;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 /**
  * This interface defines a {@link Message} compatible with tracing
@@ -58,4 +61,19 @@ public interface TracingMessage extends Message {
      * @param value  the value associated
      */
     void addTracingAttribute(final String key, final String value);
+
+    /**
+     * Allow to inject message context into the given carrier
+     *
+     * @param executionContext the current execution context
+     * @param textMapSetter the map setter to use
+     */
+    default void injectSpanContext(final BaseExecutionContext executionContext, final BiConsumer<String, String> textMapSetter) {
+        if (isTraceable()) {
+            Span messageSpan = internalAttribute(ATTR_INTERNAL_TRACING_MESSAGE_SPAN);
+            if (messageSpan != null) {
+                executionContext.getTracer().injectSpanContext(messageSpan, textMapSetter);
+            }
+        }
+    }
 }

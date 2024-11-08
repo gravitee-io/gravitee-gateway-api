@@ -15,9 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api.tracing;
 
-import io.gravitee.common.service.AbstractService;
 import io.gravitee.node.api.opentelemetry.Span;
+import io.opentelemetry.context.propagation.TextMapSetter;
 import io.vertx.core.Context;
+import java.util.function.BiConsumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -66,5 +67,13 @@ public class Tracer {
 
     public <R> void endWithResponseAndError(final Span span, final R response, final String message) {
         delegate.endWithResponseAndError(vertxContext, span, response, message);
+    }
+
+    public <C> void injectSpanContext(final BiConsumer<String, String> textMapSetter) {
+        delegate.injectSpanContext(vertxContext, textMapSetter);
+    }
+
+    public <C> void injectSpanContext(final Span span, final BiConsumer<String, String> textMapSetter) {
+        delegate.injectSpanContext(vertxContext, span, textMapSetter);
     }
 }
