@@ -1,3 +1,10 @@
+# [3.9.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.10...3.9.0-alpha.11) (2024-11-08)
+
+
+### Features
+
+* specialize endpoint entrypoint and invoker for http ([59c75bd](https://github.com/gravitee-io/gravitee-gateway-api/commit/59c75bdb0ca3e1b4de0ca13052953c0932130190))
+
 # [3.9.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.9...3.9.0-alpha.10) (2024-11-05)
 
 
