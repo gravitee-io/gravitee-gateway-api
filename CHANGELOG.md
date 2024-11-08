@@ -1,3 +1,10 @@
+# [3.9.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.11...3.9.0-alpha.12) (2024-11-08)
+
+
+### Features
+
+* add native to api type enum ([e8d5442](https://github.com/gravitee-io/gravitee-gateway-api/commit/e8d5442b143b6b9ac247324afea62f46a0bc154e))
+
 # [3.9.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.10...3.9.0-alpha.11) (2024-11-08)
 
 
