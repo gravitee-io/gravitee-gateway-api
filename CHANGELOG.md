@@ -1,3 +1,10 @@
+# [3.9.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.12...3.9.0-alpha.13) (2024-11-13)
+
+
+### Features
+
+* allow to inject message tracing context to any carrier ([4f11ce5](https://github.com/gravitee-io/gravitee-gateway-api/commit/4f11ce5274d4f20bbe2ef51acacfee59b167a9df))
+
 # [3.9.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.11...3.9.0-alpha.12) (2024-11-08)
 
 
