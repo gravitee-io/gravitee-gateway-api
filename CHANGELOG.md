@@ -1,3 +1,10 @@
+# [3.9.0-alpha.14](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.13...3.9.0-alpha.14) (2024-11-14)
+
+
+### Features
+
+* access KafkaPrincipal from KafkaContext ([bc1e3e2](https://github.com/gravitee-io/gravitee-gateway-api/commit/bc1e3e20aaa8b3464b717b13adb1c0c53e25896a))
+
 # [3.9.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.12...3.9.0-alpha.13) (2024-11-13)
 
 
