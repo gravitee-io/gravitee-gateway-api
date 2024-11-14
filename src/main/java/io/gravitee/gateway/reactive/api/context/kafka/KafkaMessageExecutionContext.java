@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeMessageExecutionContext;
+import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
 /**
  * Message execution context specialized for Kafka.
@@ -32,7 +33,13 @@ public interface KafkaMessageExecutionContext extends NativeMessageExecutionCont
 
     /**
      * Get the current response attached to this execution context when it is available.
-     * @return a Single that will emit the KafkaMessageResponse when available.
+     * @return the response.
      */
     KafkaMessageResponse response();
+
+    /**
+     * Access the principal of the current execution context.
+     * @return the principal of the current execution context.
+     */
+    KafkaPrincipal principal();
 }

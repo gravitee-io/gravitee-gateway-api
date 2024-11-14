@@ -18,6 +18,7 @@ package io.gravitee.gateway.reactive.api.context.kafka;
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
 import org.apache.kafka.common.protocol.ApiKeys;
 import org.apache.kafka.common.requests.AbstractResponse;
+import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
 /**
  * Execution context specialized for Kafka.
@@ -30,4 +31,10 @@ public interface KafkaExecutionContext extends NativeExecutionContext {
     int correlationId();
     KafkaRequest request();
     KafkaResponse response();
+
+    /**
+     * Access the principal of the current execution context.
+     * @return the principal of the current execution context.
+     */
+    KafkaPrincipal principal();
 }
