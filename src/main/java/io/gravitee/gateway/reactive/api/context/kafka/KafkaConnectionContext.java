@@ -17,6 +17,7 @@ package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
 import javax.security.auth.callback.Callback;
+import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
 /**
  * Specialized context for Kafka connection.
@@ -36,4 +37,10 @@ public interface KafkaConnectionContext extends NativeExecutionContext {
      * @return the name of the SASL mechanism
      */
     String saslMechanism();
+
+    /**
+     * Access the principal of the current connection.
+     * @return the principal of the current connection.
+     */
+    KafkaPrincipal principal();
 }
