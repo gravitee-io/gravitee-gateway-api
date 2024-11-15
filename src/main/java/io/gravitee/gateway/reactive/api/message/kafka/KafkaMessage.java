@@ -29,6 +29,23 @@ public interface KafkaMessage extends Message {
     Map<String, Buffer> recordHeaders();
 
     /**
+     * FIXME: Refactor/remove this method when {@link Message#headers(HttpHeaders) } are http agnostic
+     * Put a Kafka record header to the message.
+     * @param key the header key
+     * @param value the header value
+     * @return reference to itself for easily chain calls.
+     */
+    KafkaMessage putRecordHeader(String key, Buffer value);
+
+    /**
+     * FIXME: Refactor/remove this method when {@link Message#headers(HttpHeaders) } are http agnostic
+     * Remove a Kafka record header from the message.
+     * @param key
+     * @return
+     */
+    KafkaMessage removeRecordHeader(String key);
+
+    /**
      * Get the Kafka record key associated to the message.
      * @return the Kafka key
      */
