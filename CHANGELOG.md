@@ -1,3 +1,10 @@
+# [3.9.0-alpha.15](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.14...3.9.0-alpha.15) (2024-11-15)
+
+
+### Features
+
+* add putRecordHeader & removeRecordHeader to manage kafka header ([b5ecb43](https://github.com/gravitee-io/gravitee-gateway-api/commit/b5ecb435330f5c6cd98dc7929a85bb49ea4a1aae))
+
 # [3.9.0-alpha.14](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.13...3.9.0-alpha.14) (2024-11-14)
 
 
