@@ -1,3 +1,10 @@
+# [3.9.0-alpha.16](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.15...3.9.0-alpha.16) (2024-11-18)
+
+
+### Bug Fixes
+
+* delombok superbuilders ([6d66e2b](https://github.com/gravitee-io/gravitee-gateway-api/commit/6d66e2b0ee75ead926c6233d0d3ba67e818d5b45))
+
 # [3.9.0-alpha.15](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.14...3.9.0-alpha.15) (2024-11-15)
 
 
