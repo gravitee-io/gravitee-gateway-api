@@ -15,10 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api.connector.entrypoint;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.tcp.TcpExecutionContext;
 
 /**
- * Interface describing Entrypoint Connector which could be implemented to deal with HTTP protocol specification
+ * Interface describing Entrypoint Connector which could be implemented to deal with TCP protocol specification
  * @author GraviteeSource Team
  */
-public interface HttpEntrypointConnector extends BaseEntrypointConnector<HttpExecutionContext> {}
+public interface TcpEntrypointConnector extends BaseEntrypointConnector<TcpExecutionContext> {}
