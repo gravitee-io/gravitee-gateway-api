@@ -24,7 +24,8 @@ public interface ExecutionContext
         HttpExecutionContext,
         MessageExecutionContext,
         TcpExecutionContext,
-        io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext {
+        io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext,
+        io.gravitee.gateway.reactive.api.context.tcp.TcpExecutionContext {
     @Override
     Request request();
 
