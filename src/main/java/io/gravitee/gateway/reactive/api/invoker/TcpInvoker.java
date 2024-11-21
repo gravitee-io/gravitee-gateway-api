@@ -15,10 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api.invoker;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.tcp.TcpExecutionContext;
 
 /**
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface HttpInvoker extends BaseInvoker<HttpExecutionContext> {}
+public interface TcpInvoker extends BaseInvoker<TcpExecutionContext> {}

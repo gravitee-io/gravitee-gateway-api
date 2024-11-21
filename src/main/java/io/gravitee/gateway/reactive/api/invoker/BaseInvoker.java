@@ -15,10 +15,17 @@
  */
 package io.gravitee.gateway.reactive.api.invoker;
 
-import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
+import io.reactivex.rxjava3.core.Completable;
 
 /**
+ * Dedicated interface inspired from original {@link io.gravitee.gateway.api.Invoker} interface allowing to invoke an invoker in a reactive manner.
+ *
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface HttpInvoker extends BaseInvoker<HttpExecutionContext> {}
+public interface BaseInvoker<C extends BaseExecutionContext> {
+    String getId();
+
+    Completable invoke(C ctx);
+}
