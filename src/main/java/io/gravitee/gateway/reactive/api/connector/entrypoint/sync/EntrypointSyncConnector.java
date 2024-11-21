@@ -20,7 +20,7 @@ import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector
 
 /**
  * Specialized {@link EntrypointConnector} for {@link ApiType#PROXY}
- * @deprecated see {@link
+ * @deprecated see {@link HttpEntrypointSyncConnector}
  */
 @Deprecated(forRemoval = true)
 public abstract class EntrypointSyncConnector extends HttpEntrypointSyncConnector implements EntrypointConnector {}

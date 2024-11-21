@@ -21,11 +21,9 @@ import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector
 import java.util.Set;
 
 /**
- * Specialized factory for {@link EntrypointSyncConnector}
- * @deprecated see {@link HttpEntrypointSyncConnectorFactory}
+ * Specialized factory for {@link HttpEntrypointSyncConnector}
  */
-@Deprecated(forRemoval = true)
-public interface EntrypointSyncConnectorFactory extends EntrypointConnectorFactory<EntrypointSyncConnector> {
+public interface HttpEntrypointSyncConnectorFactory extends EntrypointConnectorFactory<HttpEntrypointSyncConnector> {
     @Override
     default Set<ConnectorMode> supportedModes() {
         return Set.of(ConnectorMode.REQUEST_RESPONSE);

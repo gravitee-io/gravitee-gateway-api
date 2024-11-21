@@ -23,11 +23,10 @@ import io.gravitee.gateway.reactive.api.qos.Qos;
 import java.util.Set;
 
 /**
- * Specialized factory for {@link EntrypointAsyncConnector}
- * @deprecated see {@link HttpEntrypointAsyncConnectorFactory}
+ * Specialized factory for {@link HttpEntrypointAsyncConnector}
  */
-@Deprecated(forRemoval = true)
-public interface EntrypointAsyncConnectorFactory<T extends EntrypointAsyncConnector> extends HttpEntrypointAsyncConnectorFactory<T> {
+public interface HttpEntrypointAsyncConnectorFactory<T extends HttpEntrypointAsyncConnector>
+    extends EntrypointConnectorFactory<HttpEntrypointAsyncConnector> {
     @Override
     default ApiType supportedApi() {
         return ApiType.MESSAGE;
