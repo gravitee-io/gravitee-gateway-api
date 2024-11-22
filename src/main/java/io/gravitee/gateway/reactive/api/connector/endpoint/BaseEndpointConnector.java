@@ -15,18 +15,14 @@
  */
 package io.gravitee.gateway.reactive.api.connector.endpoint;
 
-import io.gravitee.gateway.reactive.api.context.ExecutionContext;
-import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.connector.Connector;
+import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
 import io.reactivex.rxjava3.core.Completable;
 
 /**
  * Interface describing Endpoint Connector which could be implemented to deal with new protocol specification
- *
  * @author GraviteeSource Team
  */
-public interface HttpEndpointConnector extends BaseEndpointConnector<HttpExecutionContext> {
-    @Override
-    default Completable connect(final HttpExecutionContext ctx) {
-        return connect((ExecutionContext) ctx);
-    }
+public interface BaseEndpointConnector<C extends BaseExecutionContext> extends Connector {
+    Completable connect(final C ctx);
 }
