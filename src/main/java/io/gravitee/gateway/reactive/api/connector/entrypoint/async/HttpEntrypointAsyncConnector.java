@@ -20,6 +20,7 @@ import io.gravitee.common.utils.RxHelper;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.reactive.api.ApiType;
 import io.gravitee.gateway.reactive.api.connector.Connector;
+import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector;
 import io.gravitee.gateway.reactive.api.connector.entrypoint.HttpEntrypointConnector;
 import io.gravitee.gateway.reactive.api.message.DefaultMessage;
 import io.gravitee.gateway.reactive.api.message.Message;
@@ -31,7 +32,9 @@ import io.reactivex.rxjava3.processors.BehaviorProcessor;
 /**
  * Specialized {@link HttpEntrypointConnector} for {@link ApiType#MESSAGE}
  */
-public abstract class HttpEntrypointAsyncConnector extends AbstractService<Connector> implements HttpEntrypointConnector {
+public abstract class HttpEntrypointAsyncConnector
+    extends AbstractService<Connector>
+    implements HttpEntrypointConnector, EntrypointConnector {
 
     public static final String STOP_MESSAGE_ID = "goaway";
     public static final String STOP_MESSAGE_CONTENT = "Stopping, please reconnect";
