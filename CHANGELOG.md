@@ -1,3 +1,10 @@
+# [3.9.0-alpha.17](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.16...3.9.0-alpha.17) (2024-11-22)
+
+
+### Bug Fixes
+
+* init tracing attributes if necessary when adding new attributes ([3209f8d](https://github.com/gravitee-io/gravitee-gateway-api/commit/3209f8da0f29ee8a9f6a2ace89c096ad03bde8d3))
+
 # [3.9.0-alpha.16](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.15...3.9.0-alpha.16) (2024-11-18)
 
 
