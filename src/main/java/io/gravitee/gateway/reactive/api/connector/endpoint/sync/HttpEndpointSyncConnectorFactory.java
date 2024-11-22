@@ -17,15 +17,13 @@ package io.gravitee.gateway.reactive.api.connector.endpoint.sync;
 
 import io.gravitee.gateway.reactive.api.ApiType;
 import io.gravitee.gateway.reactive.api.ConnectorMode;
-import io.gravitee.gateway.reactive.api.connector.endpoint.EndpointConnectorFactory;
+import io.gravitee.gateway.reactive.api.connector.endpoint.HttpEndpointConnectorFactory;
 import java.util.Set;
 
 /**
- * Specialized factory for {@link EndpointSyncConnector}
- * @deprecated see {@link HttpEndpointSyncConnectorFactory}
+ * Specialized factory for {@link HttpEndpointSyncConnector}
  */
-@Deprecated(forRemoval = true)
-public interface EndpointSyncConnectorFactory<T extends EndpointSyncConnector> extends EndpointConnectorFactory<T> {
+public interface HttpEndpointSyncConnectorFactory<T extends HttpEndpointSyncConnector> extends HttpEndpointConnectorFactory<T> {
     @Override
     default Set<ConnectorMode> supportedModes() {
         return Set.of(ConnectorMode.REQUEST_RESPONSE);
