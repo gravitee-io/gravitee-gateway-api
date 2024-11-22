@@ -15,7 +15,9 @@
  */
 package io.gravitee.gateway.reactive.api.context.tcp;
 
+import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.reactive.api.context.base.BaseResponse;
+import io.reactivex.rxjava3.core.Flowable;
 
 /**
  * Response specialized for TCP allowing piping traffic from client to backend.
@@ -28,4 +30,30 @@ public interface TcpResponse extends BaseResponse {
      * Setup internally a pipe downstream traffic bytes from backend to the client
      */
     void pipeDownstream();
+
+    /**
+     * Set the current response body chunks from a {@link Flowable} of {@link Buffer}.
+     * This is useful to directly pump the upstream chunks to the downstream without having to load all the chunks in memory.
+     * <p>
+     * <b>WARN:</b>
+     * <ul>
+     *  <li>replacing the response chunks will <b>NOT</b> "drain" the previous response that was in place.</li>
+     *  <li>You <b>MUST</b> ensure to consume the previous chunks by yourself when using it.</li>
+     * </ul>
+     * </p>
+     *
+     * @param chunks the {@link Flowable} of chunks representing the response to push back to the downstream.
+     */
+    void chunks(final Flowable<Buffer> chunks);
+
+    /**
+     * Get the current response body chunks as {@link Flowable} of {@link Buffer}.
+     * This is useful when you want to manipulate the entire body without having to load it in memory.
+     * <p>
+     * <b>WARN:</b> you should not keep a direct reference on the body chunks as they could be overridden by others at anytime.
+     * </p>
+     *
+     * @return a {@link Flowable} containing the current body response chunks.
+     */
+    Flowable<Buffer> chunks();
 }
