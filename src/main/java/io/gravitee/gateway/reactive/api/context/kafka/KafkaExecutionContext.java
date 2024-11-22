@@ -16,6 +16,10 @@
 package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
+import io.reactivex.rxjava3.core.Completable;
+import java.util.List;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 import org.apache.kafka.common.protocol.ApiKeys;
 import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
@@ -42,4 +46,17 @@ public interface KafkaExecutionContext extends NativeExecutionContext {
      * @return the network controller of the current execution context.
      */
     NetworkController networkController();
+
+    /**
+     * Allows defining an action in the request phase to be executed at the response phase.
+     * @param onResponseCallback the action to be executed at the response phase.
+     */
+    void addActionOnResponse(Function<KafkaExecutionContext, Completable> onResponseCallback);
+
+    /**
+     * Get the list of actions to be executed at the response phase.
+     * @return a list of actions to be executed at the response phase.
+     */
+    @Nullable
+    List<Function<KafkaExecutionContext, Completable>> getOnResponseActions();
 }
