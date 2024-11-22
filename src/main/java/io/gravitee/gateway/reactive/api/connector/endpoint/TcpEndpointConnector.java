@@ -17,6 +17,7 @@ package io.gravitee.gateway.reactive.api.connector.endpoint;
 
 import io.gravitee.gateway.reactive.api.context.ExecutionContext;
 import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.tcp.TcpExecutionContext;
 import io.reactivex.rxjava3.core.Completable;
 
 /**
@@ -24,9 +25,9 @@ import io.reactivex.rxjava3.core.Completable;
  *
  * @author GraviteeSource Team
  */
-public interface HttpEndpointConnector extends BaseEndpointConnector<HttpExecutionContext> {
+public interface TcpEndpointConnector extends BaseEndpointConnector<TcpExecutionContext> {
     @Override
-    default Completable connect(final HttpExecutionContext ctx) {
+    default Completable connect(final TcpExecutionContext ctx) {
         return connect((ExecutionContext) ctx);
     }
 }
