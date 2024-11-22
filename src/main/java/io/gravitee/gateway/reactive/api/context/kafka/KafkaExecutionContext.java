@@ -17,7 +17,6 @@ package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
 import org.apache.kafka.common.protocol.ApiKeys;
-import org.apache.kafka.common.requests.AbstractResponse;
 import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
 /**
@@ -37,4 +36,10 @@ public interface KafkaExecutionContext extends NativeExecutionContext {
      * @return the principal of the current execution context.
      */
     KafkaPrincipal principal();
+
+    /**
+     * Access the network controller of the current execution context.
+     * @return the network controller of the current execution context.
+     */
+    NetworkController networkController();
 }
