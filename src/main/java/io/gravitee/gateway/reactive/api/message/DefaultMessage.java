@@ -129,6 +129,9 @@ public class DefaultMessage extends AbstractMessage implements TracingMessage {
         if (key == null || value == null) {
             throw new IllegalArgumentException("Key or value of tracing attribute cannot be null");
         }
+        if (this.tracingAttributes == null) {
+            this.tracingAttributes = new HashMap<>();
+        }
         tracingAttributes.put(key, value);
     }
 
