@@ -17,16 +17,14 @@ package io.gravitee.gateway.reactive.api.connector.endpoint.async;
 
 import io.gravitee.gateway.reactive.api.ApiType;
 import io.gravitee.gateway.reactive.api.ConnectorMode;
-import io.gravitee.gateway.reactive.api.connector.endpoint.EndpointConnectorFactory;
+import io.gravitee.gateway.reactive.api.connector.endpoint.HttpEndpointConnectorFactory;
 import io.gravitee.gateway.reactive.api.qos.Qos;
 import java.util.Set;
 
 /**
- * Specialized factory for {@link EndpointAsyncConnector}
- * @deprecated see {@link HttpEndpointAsyncConnectorFactory}
+ * Specialized factory for {@link HttpEndpointAsyncConnector}
  */
-@Deprecated(forRemoval = true)
-public interface EndpointAsyncConnectorFactory<T extends EndpointAsyncConnector> extends EndpointConnectorFactory<T> {
+public interface HttpEndpointAsyncConnectorFactory<T extends HttpEndpointAsyncConnector> extends HttpEndpointConnectorFactory<T> {
     @Override
     default ApiType supportedApi() {
         return ApiType.MESSAGE;
