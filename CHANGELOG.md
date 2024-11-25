@@ -1,3 +1,16 @@
+# [3.9.0-alpha.18](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.17...3.9.0-alpha.18) (2024-11-25)
+
+
+### Bug Fixes
+
+* ExecutionContext should also extend TcpExecutionContext ([c54a97d](https://github.com/gravitee-io/gravitee-gateway-api/commit/c54a97dd8eff57b3caa9018b3ec79d94eb49c017))
+
+
+### Features
+
+* add chunks capabilities for Tcp Request and Response ([2439549](https://github.com/gravitee-io/gravitee-gateway-api/commit/2439549e517a4dd6bd5a79c27a36d2b82cea34de))
+* introduce TcpInvoker interface ([f8e3408](https://github.com/gravitee-io/gravitee-gateway-api/commit/f8e3408f1b49de3ba036cf2baf8b2fe657d60be8))
+
 # [3.9.0-alpha.17](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.16...3.9.0-alpha.17) (2024-11-22)
 
 
