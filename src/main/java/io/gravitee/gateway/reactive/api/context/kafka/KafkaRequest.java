@@ -30,4 +30,9 @@ public interface KafkaRequest extends NativeRequest {
      * @return the Kafka native request.
      */
     <T extends AbstractRequest> T delegate();
+
+    /**
+     * Register that the request has been updated during its processing and need to be rebuilt before sending it.
+     */
+    void notifyChange();
 }
