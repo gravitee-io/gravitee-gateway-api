@@ -1,3 +1,10 @@
+# [3.9.0-alpha.20](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.19...3.9.0-alpha.20) (2024-11-26)
+
+
+### Bug Fixes
+
+* remove getOnResponseActions from KafkaExecutionContext ([256eabf](https://github.com/gravitee-io/gravitee-gateway-api/commit/256eabf49860fb2c69bed8e7d2c0f35cf5650ea6))
+
 # [3.9.0-alpha.19](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.18...3.9.0-alpha.19) (2024-11-26)
 
 
