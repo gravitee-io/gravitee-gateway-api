@@ -1,3 +1,12 @@
+# [3.9.0-alpha.19](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.18...3.9.0-alpha.19) (2024-11-26)
+
+
+### Features
+
+* access to NetworkController in KafkaExecutionContext ([cc8abff](https://github.com/gravitee-io/gravitee-gateway-api/commit/cc8abff62f82124c05cd9ca975cf8201fde5b36b))
+* add action that will be executed at response phase ([7081171](https://github.com/gravitee-io/gravitee-gateway-api/commit/708117140e0e17509801e69feed10a5fe74b50f9))
+* add notifyChange to Kafka request/response ([36c7904](https://github.com/gravitee-io/gravitee-gateway-api/commit/36c7904f4807bbeeba55a641c3858f7d897c87d6))
+
 # [3.9.0-alpha.18](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.17...3.9.0-alpha.18) (2024-11-25)
 
 
