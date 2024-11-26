@@ -30,4 +30,9 @@ public interface KafkaResponse extends NativeResponse {
      * @return the Kafka native response.
      */
     <T extends AbstractResponse> T delegate();
+
+    /**
+     * Register that the response has been updated during its processing and need to be rebuilt before sending it.
+     */
+    void notifyChange();
 }
