@@ -15,7 +15,9 @@
  */
 package io.gravitee.gateway.reactive.api.context.kafka;
 
+import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.reactive.api.context.base.NativeMessageExecutionContext;
+import io.gravitee.gateway.reactive.api.message.kafka.KafkaMessage;
 import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
 /**
@@ -25,6 +27,8 @@ import org.apache.kafka.common.security.auth.KafkaPrincipal;
  * @author GraviteeSource Team
  */
 public interface KafkaMessageExecutionContext extends NativeMessageExecutionContext {
+    String TEMPLATE_ATTRIBUTE_MESSAGE = "message";
+
     /**
      * Get the current request attached to this execution context.
      * @return the request.
@@ -42,4 +46,12 @@ public interface KafkaMessageExecutionContext extends NativeMessageExecutionCont
      * @return the principal of the current execution context.
      */
     KafkaPrincipal principal();
+
+    /**
+     * Get the {@link TemplateEngine} that can be used to evaluate EL expressions.
+     *
+     * @param message the message to evaluate.
+     * @return the El {@link TemplateEngine}.
+     */
+    TemplateEngine getTemplateEngine(KafkaMessage message);
 }

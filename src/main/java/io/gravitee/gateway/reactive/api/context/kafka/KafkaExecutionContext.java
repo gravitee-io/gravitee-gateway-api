@@ -28,6 +28,10 @@ import org.apache.kafka.common.security.auth.KafkaPrincipal;
  * @author GraviteeSource Team
  */
 public interface KafkaExecutionContext extends NativeExecutionContext {
+    String TEMPLATE_ATTRIBUTE_REQUEST = "request";
+    String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
+    String TEMPLATE_ATTRIBUTE_CONTEXT = "context";
+
     ApiKeys apiKey();
     int correlationId();
     KafkaRequest request();
