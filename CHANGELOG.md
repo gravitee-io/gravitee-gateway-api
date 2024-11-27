@@ -1,3 +1,10 @@
+# [3.9.0-alpha.21](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.20...3.9.0-alpha.21) (2024-11-27)
+
+
+### Features
+
+* add TemplateEngine for native Kafka ([4556524](https://github.com/gravitee-io/gravitee-gateway-api/commit/4556524b64bb0066f991286db7b2164da34a3da7))
+
 # [3.9.0-alpha.20](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.19...3.9.0-alpha.20) (2024-11-26)
 
 
