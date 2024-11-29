@@ -1,3 +1,10 @@
+# [3.9.0-alpha.22](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.21...3.9.0-alpha.22) (2024-11-29)
+
+
+### Features
+
+* add TemplateEngine for KafkaConnectionContext ([6689cdf](https://github.com/gravitee-io/gravitee-gateway-api/commit/6689cdfde4f9bdaab90f77a94d61e4b76691072f))
+
 # [3.9.0-alpha.21](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.20...3.9.0-alpha.21) (2024-11-27)
 
 
