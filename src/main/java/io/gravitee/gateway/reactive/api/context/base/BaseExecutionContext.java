@@ -32,6 +32,7 @@ import javax.net.ssl.SSLSession;
  * @author GraviteeSource Team
  */
 public interface BaseExecutionContext {
+    String TEMPLATE_ATTRIBUTE_CONTEXT = "context";
     /**
      * Get the metrics associated to the context.
      *
