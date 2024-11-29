@@ -29,7 +29,6 @@ import io.reactivex.rxjava3.core.Maybe;
 public interface HttpPlainExecutionContext extends HttpBaseExecutionContext {
     String TEMPLATE_ATTRIBUTE_REQUEST = "request";
     String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
-    String TEMPLATE_ATTRIBUTE_CONTEXT = "context";
 
     /**
      * Get the current request stuck to this execution context.
