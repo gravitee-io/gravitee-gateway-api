@@ -1,3 +1,10 @@
+# [3.9.0-alpha.23](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.22...3.9.0-alpha.23) (2024-12-03)
+
+
+### Features
+
+* add interact & connect in ConnectorMode ([424f7f6](https://github.com/gravitee-io/gravitee-gateway-api/commit/424f7f69d0d0db6c1d43d5552fbf884e8783cb10))
+
 # [3.9.0-alpha.22](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.21...3.9.0-alpha.22) (2024-11-29)
 
 
