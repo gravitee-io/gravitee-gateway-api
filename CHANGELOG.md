@@ -1,3 +1,10 @@
+# [3.9.0-alpha.24](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.23...3.9.0-alpha.24) (2024-12-09)
+
+
+### Features
+
+* add interruptWith with KafkaExecutionFailure ([64aff42](https://github.com/gravitee-io/gravitee-gateway-api/commit/64aff423c2f2555c8a7b7c46e4ccae1e9f4167b7))
+
 # [3.9.0-alpha.23](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.22...3.9.0-alpha.23) (2024-12-03)
 
 
