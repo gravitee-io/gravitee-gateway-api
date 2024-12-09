@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
+import io.gravitee.gateway.reactive.api.exception.kafka.KafkaExecutionFailure;
 import io.reactivex.rxjava3.core.Completable;
 import java.util.function.Function;
 import org.apache.kafka.common.protocol.ApiKeys;
@@ -53,4 +54,10 @@ public interface KafkaExecutionContext extends NativeExecutionContext {
      * @param onResponseCallback the action to be executed at the response phase.
      */
     void addActionOnResponse(Function<KafkaExecutionContext, Completable> onResponseCallback);
+
+    /**
+     * Interrupts the current execution while indicating that the response can be sent "as is" to the downstream.
+     * @param failure {@link KafkaExecutionFailure} object that indicates that the execution has failed.
+     */
+    Completable interruptWith(final KafkaExecutionFailure failure);
 }
