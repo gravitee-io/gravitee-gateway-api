@@ -1,3 +1,10 @@
+# [3.9.0-alpha.25](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.24...3.9.0-alpha.25) (2024-12-10)
+
+
+### Features
+
+* access to Kafka connection context from execution context ([afb9103](https://github.com/gravitee-io/gravitee-gateway-api/commit/afb91030b8c9e09e3ce643fb1a5e869504445809))
+
 # [3.9.0-alpha.24](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.23...3.9.0-alpha.24) (2024-12-09)
 
 
