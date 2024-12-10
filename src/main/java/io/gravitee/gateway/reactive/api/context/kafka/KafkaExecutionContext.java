@@ -38,6 +38,12 @@ public interface KafkaExecutionContext extends NativeExecutionContext {
     KafkaResponse response();
 
     /**
+     * Access the connection context.
+     * @return the connection context.
+     */
+    KafkaConnectionContext connectionContext();
+
+    /**
      * Access the principal of the current execution context.
      * @return the principal of the current execution context.
      */
