@@ -16,10 +16,11 @@
 package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
-import io.gravitee.gateway.reactive.api.exception.kafka.KafkaExecutionFailure;
 import io.reactivex.rxjava3.core.Completable;
 import java.util.function.Function;
 import org.apache.kafka.common.protocol.ApiKeys;
+import org.apache.kafka.common.protocol.Errors;
+import org.apache.kafka.common.requests.AbstractResponse;
 import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
 /**
@@ -33,8 +34,11 @@ public interface KafkaExecutionContext extends NativeExecutionContext {
     String TEMPLATE_ATTRIBUTE_RESPONSE = "response";
 
     ApiKeys apiKey();
+
     int correlationId();
+
     KafkaRequest request();
+
     KafkaResponse response();
 
     /**
@@ -63,7 +67,13 @@ public interface KafkaExecutionContext extends NativeExecutionContext {
 
     /**
      * Interrupts the current execution while indicating that the response can be sent "as is" to the downstream.
-     * @param failure {@link KafkaExecutionFailure} object that indicates that the execution has failed.
+     * @param errors the {@link Errors} to interrupt the chain and create a response with.
      */
-    Completable interruptWith(final KafkaExecutionFailure failure);
+    Completable interruptWith(final Errors errors);
+
+    /**
+     * Interrupts the current execution while indicating that the response can be sent "as is" to the downstream.
+     * @param response the {@link AbstractResponse} to interrupt the chain with.
+     */
+    <T extends AbstractResponse> Completable interruptWith(T response);
 }
