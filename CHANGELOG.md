@@ -1,3 +1,10 @@
+# [3.9.0-alpha.26](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.25...3.9.0-alpha.26) (2024-12-17)
+
+
+### Features
+
+* rework kafka interruptWith ([f55b0a7](https://github.com/gravitee-io/gravitee-gateway-api/commit/f55b0a7572559fcb5d54c47b0de4855f8a37b802))
+
 # [3.9.0-alpha.25](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.24...3.9.0-alpha.25) (2024-12-10)
 
 
