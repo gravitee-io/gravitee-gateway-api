@@ -15,134 +15,56 @@
  */
 package io.gravitee.gateway.reactive.api.message;
 
-import io.gravitee.common.util.ListUtils;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.api.http.HttpHeaders;
-import java.util.Collections;
+import io.gravitee.gateway.reactive.api.tracing.message.TracingMessage;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
 @Accessors(fluent = true)
-public class DefaultMessage implements Message {
+public class DefaultMessage extends AbstractMessage implements TracingMessage {
 
-    public static final String SOURCE_TIMESTAMP = "sourceTimestamp";
     private String id;
 
-    @Builder.Default
-    private String correlationId = UUID.randomUUID().toString();
+    private String correlationId;
 
     private String parentCorrelationId;
 
-    @Builder.Default
-    private long timestamp = System.currentTimeMillis();
-
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    private long sourceTimestamp = timestamp;
-
-    private Map<String, Object> attributes;
-    private Map<String, Object> internalAttributes;
-    private Map<String, Object> metadata;
     private HttpHeaders headers;
     private Buffer content;
     private boolean error;
     private Runnable ackRunnable;
+    private Runnable endRunnable;
+    private boolean ended;
+    private Map<String, String> tracingAttributes;
 
-    public DefaultMessage(final String content) {
-        this(); // Due to @Builder.Default annotation
-        if (content != null) {
-            this.content = Buffer.buffer(content);
-        }
-    }
-
-    private static Map<String, Object> unmodifiableMetadata(final Map<String, Object> metadata) {
-        if (metadata != null) {
-            return Collections.unmodifiableMap(metadata);
+    private DefaultMessage(DefaultMessageBuilder b) {
+        super(b.timestamp, b.sourceTimestamp, b.metadata, b.attributes, b.internalAttributes);
+        this.attributes = b.attributes;
+        this.internalAttributes = b.internalAttributes;
+        this.id = b.id;
+        if (b.correlationId != null) {
+            this.correlationId = b.correlationId;
         } else {
-            return Map.of();
+            this.correlationId = UUID.randomUUID().toString();
         }
-    }
-
-    @Override
-    public <T> T attribute(final String name) {
-        return (T) getOrInitAttribute().get(name);
-    }
-
-    @Override
-    public <T> List<T> attributeAsList(String name) {
-        return ListUtils.toList(getOrInitAttribute().get(name));
-    }
-
-    @Override
-    public DefaultMessage attribute(final String name, final Object value) {
-        getOrInitAttribute().put(name, value);
-        return this;
-    }
-
-    @Override
-    public DefaultMessage removeAttribute(final String name) {
-        getOrInitAttribute().remove(name);
-        return this;
-    }
-
-    @Override
-    public Set<String> attributeNames() {
-        return getOrInitAttribute().keySet();
-    }
-
-    @Override
-    public <T> Map<String, T> attributes() {
-        return Collections.unmodifiableMap((Map<String, T>) getOrInitAttribute());
-    }
-
-    @Override
-    public <T> T internalAttribute(final String name) {
-        return (T) getOrInitInternalAttribute().get(name);
-    }
-
-    @Override
-    public DefaultMessage internalAttribute(final String name, final Object value) {
-        getOrInitInternalAttribute().put(name, value);
-        return this;
-    }
-
-    @Override
-    public DefaultMessage removeInternalAttribute(final String name) {
-        getOrInitInternalAttribute().remove(name);
-        return this;
-    }
-
-    @Override
-    public Set<String> internalAttributeNames() {
-        return getOrInitInternalAttribute().keySet();
-    }
-
-    @Override
-    public <T> Map<String, T> internalAttributes() {
-        return Collections.unmodifiableMap((Map<String, T>) getOrInitInternalAttribute());
-    }
-
-    @Override
-    public Map<String, Object> metadata() {
-        if (metadata == null) {
-            metadata = Map.of();
-        }
-        return metadata;
+        this.parentCorrelationId = b.parentCorrelationId;
+        this.headers = b.headers;
+        this.content = b.content;
+        this.error = b.error;
+        this.ackRunnable = b.ackRunnable;
+        this.endRunnable = b.endRunnable;
+        this.ended = b.ended;
+        this.tracingAttributes = b.tracingAttributes;
     }
 
     @Override
@@ -170,55 +92,89 @@ public class DefaultMessage implements Message {
         return this;
     }
 
-    public DefaultMessage metadata(Map<String, Object> metadata) {
-        this.metadata = unmodifiableMetadata(metadata);
-        return this;
-    }
-
+    @Override
     public void ack() {
         if (ackRunnable != null) {
             ackRunnable.run();
         }
+        if (!this.ended) {
+            this.end();
+        }
+    }
+
+    @Override
+    public DefaultMessage doOnEnd(final Runnable runnable) {
+        this.endRunnable = runnable;
+        return this;
+    }
+
+    @Override
+    public void end() {
+        if (this.endRunnable != null) {
+            this.endRunnable.run();
+        }
+        this.ended = true;
+    }
+
+    @Override
+    public Map<String, String> tracingAttributes() {
+        if (this.tracingAttributes == null) {
+            this.tracingAttributes = new HashMap<>();
+        }
+        return tracingAttributes;
+    }
+
+    @Override
+    public void addTracingAttribute(final String key, final String value) {
+        if (key == null || value == null) {
+            throw new IllegalArgumentException("Key or value of tracing attribute cannot be null");
+        }
+        if (this.tracingAttributes == null) {
+            this.tracingAttributes = new HashMap<>();
+        }
+        tracingAttributes.put(key, value);
     }
 
     public static DefaultMessageBuilder builder() {
-        return new DefaultMessageBuilder() {
-            @Override
-            public DefaultMessage build() {
-                prebuild();
-                return super.build();
-            }
-        };
+        return new DefaultMessageBuilder();
     }
 
+    @Data
     public static class DefaultMessageBuilder {
 
-        // Insert sourceTimestamp into metadata before building the object
-        void prebuild() {
-            if (!timestamp$set) {
-                timestamp(System.currentTimeMillis());
-            }
-            if (metadata == null) {
-                metadata = new HashMap<>();
-            }
-            if (!metadata.containsKey(SOURCE_TIMESTAMP)) {
-                metadata.put(SOURCE_TIMESTAMP, sourceTimestamp != 0L ? sourceTimestamp : timestamp$value);
-            }
-            metadata = unmodifiableMetadata(metadata);
-        }
-    }
+        // Fields from AbstractMessage
+        private long timestamp;
+        private long sourceTimestamp;
+        private Map<String, Object> metadata;
+        private Map<String, Object> attributes;
+        private Map<String, Object> internalAttributes;
 
-    private Map<String, Object> getOrInitAttribute() {
-        if (this.attributes == null) {
-            this.attributes = new HashMap<>();
-        }
-        return this.attributes;
-    }
+        // Fields from DefaultMessage
+        private String id;
+        private String correlationId;
+        private String parentCorrelationId;
+        private HttpHeaders headers;
+        private Buffer content;
+        private boolean error;
+        private Runnable ackRunnable;
+        private Runnable endRunnable;
+        private boolean ended;
+        private Map<String, String> tracingAttributes;
 
-    private Map<String, Object> getOrInitInternalAttribute() {
-        if (this.internalAttributes == null) {
-            this.internalAttributes = new HashMap<>();
+        public DefaultMessageBuilder content(String content) {
+            if (content != null) {
+                this.content = Buffer.buffer(content);
+            }
+            return this;
         }
-        return this.internalAttributes;
+
+        public DefaultMessageBuilder content(Buffer content) {
+            this.content = content;
+            return this;
+        }
+
+        public DefaultMessage build() {
+            return new DefaultMessage(this);
+        }
     }
 }

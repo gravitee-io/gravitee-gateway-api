@@ -19,20 +19,37 @@ import io.gravitee.common.util.MultiValueMap;
 import io.gravitee.gateway.api.el.EvaluableSSLSession;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.reactive.api.context.GenericRequest;
+import io.gravitee.gateway.reactive.api.context.http.HttpBaseRequest;
 import java.util.Map;
 
 public class EvaluableRequest {
 
-    private final GenericRequest request;
+    private final HttpBaseRequest request;
     private String content;
     private Map<String, Object> jsonContent;
     private Map<String, Object> xmlContent;
 
+    /**
+     * @deprecated see {@link #EvaluableRequest(HttpBaseRequest)}
+     */
+    @Deprecated
     public EvaluableRequest(final GenericRequest request) {
         this(request, null);
     }
 
+    /**
+     * @deprecated see {@link #EvaluableRequest(HttpBaseRequest, String)}
+     */
+    @Deprecated
     public EvaluableRequest(final GenericRequest request, final String content) {
+        this((HttpBaseRequest) request, content);
+    }
+
+    public EvaluableRequest(final HttpBaseRequest request) {
+        this(request, null);
+    }
+
+    public EvaluableRequest(final HttpBaseRequest request, final String content) {
         this.request = request;
         this.content = content;
     }
@@ -118,7 +135,7 @@ public class EvaluableRequest {
     }
 
     public EvaluableSSLSession getSsl() {
-        return new EvaluableSSLSession(request.sslSession());
+        return new EvaluableSSLSession(request.tlsSession());
     }
 
     public void setContent(String content) {

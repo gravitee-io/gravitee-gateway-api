@@ -16,7 +16,7 @@
 package io.gravitee.gateway.api;
 
 import io.gravitee.el.TemplateEngine;
-import io.gravitee.tracing.api.Tracer;
+import io.gravitee.gateway.reactive.api.tracing.Tracer;
 import java.util.Enumeration;
 import java.util.Map;
 

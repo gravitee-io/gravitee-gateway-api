@@ -22,7 +22,9 @@ import java.util.Set;
 
 /**
  * Specialized factory for {@link EntrypointSyncConnector}
+ * @deprecated see {@link HttpEntrypointSyncConnectorFactory}
  */
+@Deprecated(forRemoval = true)
 public interface EntrypointSyncConnectorFactory extends EntrypointConnectorFactory<EntrypointSyncConnector> {
     @Override
     default Set<ConnectorMode> supportedModes() {

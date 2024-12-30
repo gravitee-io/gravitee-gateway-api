@@ -18,9 +18,12 @@ package io.gravitee.gateway.api.context;
 import io.gravitee.gateway.api.ExecutionContext;
 import io.gravitee.gateway.api.Request;
 import io.gravitee.gateway.api.Response;
+import io.gravitee.gateway.reactive.api.tracing.Tracer;
 
 public interface MutableExecutionContext extends ExecutionContext {
     MutableExecutionContext request(Request request);
 
     MutableExecutionContext response(Response response);
+
+    MutableExecutionContext tracer(Tracer tracer);
 }

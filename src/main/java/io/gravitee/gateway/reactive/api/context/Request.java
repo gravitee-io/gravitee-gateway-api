@@ -18,5 +18,8 @@ package io.gravitee.gateway.reactive.api.context;
 /**
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
+ *
+ * @deprecated see {@link io.gravitee.gateway.reactive.api.context.http.HttpRequest}
  */
-public interface Request extends HttpRequest, MessageRequest, TcpRequest {}
+@Deprecated(forRemoval = true)
+public interface Request extends HttpRequest, MessageRequest, TcpRequest, io.gravitee.gateway.reactive.api.context.http.HttpRequest {}

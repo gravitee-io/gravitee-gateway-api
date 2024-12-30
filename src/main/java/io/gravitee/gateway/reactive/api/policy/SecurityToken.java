@@ -18,6 +18,7 @@ package io.gravitee.gateway.reactive.api.policy;
 import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.API_KEY;
 import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.CERTIFICATE;
 import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.CLIENT_ID;
+import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.MD5_API_KEY;
 import static io.gravitee.gateway.reactive.api.policy.SecurityToken.TokenType.NONE;
 
 import lombok.Builder;
@@ -32,6 +33,7 @@ public class SecurityToken {
     public enum TokenType {
         CLIENT_ID,
         API_KEY,
+        MD5_API_KEY,
         CERTIFICATE,
         NONE;
 
@@ -65,6 +67,15 @@ public class SecurityToken {
      */
     public static SecurityToken forApiKey(String apiKey) {
         return SecurityToken.builder().tokenType(API_KEY.name()).tokenValue(apiKey).build();
+    }
+
+    /**
+     * Creates an MD5 version of an API key based security token.
+     *
+     * @return security token
+     */
+    public static SecurityToken forMD5ApiKey(String md5ApiKey) {
+        return SecurityToken.builder().tokenType(MD5_API_KEY.name()).tokenValue(md5ApiKey).build();
     }
 
     /**

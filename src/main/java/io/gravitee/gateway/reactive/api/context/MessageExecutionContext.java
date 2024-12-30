@@ -15,15 +15,13 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
-import io.gravitee.el.TemplateEngine;
-import io.gravitee.gateway.reactive.api.ExecutionFailure;
-import io.gravitee.gateway.reactive.api.message.Message;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Maybe;
+import io.gravitee.gateway.reactive.api.context.http.HttpMessageExecutionContext;
 
-public interface MessageExecutionContext extends GenericExecutionContext {
-    String TEMPLATE_ATTRIBUTE_MESSAGE = "message";
-
+/**
+ * @deprecated see {@link io.gravitee.gateway.reactive.api.context.http.HttpMessageExecutionContext}
+ */
+@Deprecated(forRemoval = true)
+public interface MessageExecutionContext extends GenericExecutionContext, HttpMessageExecutionContext {
     /**
      * Get the current request stuck to this execution context.
      *
@@ -37,32 +35,4 @@ public interface MessageExecutionContext extends GenericExecutionContext {
      * @return the response attached to this execution context.
      */
     MessageResponse response();
-
-    /**
-     * Interrupts the current execution while indicating that the flow of messages can be consumed "as is" to the downstream.
-     * This has direct impact on how the remaining execution flow will behave (ex: remaining policies in a policy chain won't be executed).
-     */
-    Flowable<Message> interruptMessages();
-
-    /**
-     * Same as {@link #interruptMessages()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
-     */
-    Flowable<Message> interruptMessagesWith(final ExecutionFailure failure);
-
-    /**
-     * Same as {@link MessageExecutionContext#interruptMessages} but at message level
-     */
-    Maybe<Message> interruptMessage();
-
-    /**
-     * Same as {@link MessageExecutionContext#interruptMessagesWith(ExecutionFailure)} but at message level
-     */
-    Maybe<Message> interruptMessageWith(final ExecutionFailure failure);
-
-    /**
-     * Get the {@link TemplateEngine} that can be used to evaluate EL expressions.
-     *
-     * @return the El {@link TemplateEngine}.
-     */
-    TemplateEngine getTemplateEngine(Message message);
 }

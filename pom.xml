@@ -29,20 +29,21 @@
 
     <groupId>io.gravitee.gateway</groupId>
     <artifactId>gravitee-gateway-api</artifactId>
-    <version>3.8.1</version>
+    <version>3.9.0-alpha.26</version>
     <name>Gravitee.io APIM - Gateway - API</name>
 
     <properties>
-        <gravitee-bom.version>6.0.4</gravitee-bom.version>
-        <gravitee-tracing-api.version>1.0.0</gravitee-tracing-api.version>
-        <gravitee-common.version>3.0.0</gravitee-common.version>
+        <gravitee-bom.version>8.1.16</gravitee-bom.version>
+        <gravitee-node.version>7.0.0</gravitee-node.version>
+        <gravitee-common.version>4.5.1</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-reporter-api.version>1.31.2</gravitee-reporter-api.version>
-        <gravitee-expression-language.version>3.1.0</gravitee-expression-language.version>
+        <gravitee-expression-language.version>3.2.1</gravitee-expression-language.version>
         <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
 
         <bouncycastle.version>1.70</bouncycastle.version>
         <json-smart.version>2.4.10</json-smart.version>
+        <kafka-clients.version>3.7.1</kafka-clients.version>
     </properties>
 
     <dependencyManagement>
@@ -55,6 +56,19 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>io.gravitee.node</groupId>
+                <artifactId>gravitee-node</artifactId>
+                <version>${gravitee-node.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>io.gravitee.common</groupId>
+                <artifactId>gravitee-common</artifactId>
+                <version>${gravitee-common.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -62,13 +76,12 @@
         <dependency>
             <groupId>io.gravitee.common</groupId>
             <artifactId>gravitee-common</artifactId>
-            <version>${gravitee-common.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>io.gravitee.tracing</groupId>
-            <artifactId>gravitee-tracing-api</artifactId>
-            <version>${gravitee-tracing-api.version}</version>
+            <groupId>io.gravitee.node</groupId>
+            <artifactId>gravitee-node-api</artifactId>
+            <version>${gravitee-node.version}</version>
         </dependency>
         <dependency>
             <groupId>io.gravitee.reporter</groupId>
@@ -98,6 +111,12 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk15on</artifactId>
             <version>${bouncycastle.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka-clients.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

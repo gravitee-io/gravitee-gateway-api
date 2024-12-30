@@ -23,7 +23,9 @@ import java.util.Set;
 
 /**
  * Specialized factory for {@link EndpointAsyncConnector}
+ * @deprecated see {@link HttpEndpointAsyncConnectorFactory}
  */
+@Deprecated(forRemoval = true)
 public interface EndpointAsyncConnectorFactory<T extends EndpointAsyncConnector> extends EndpointConnectorFactory<T> {
     @Override
     default ApiType supportedApi() {

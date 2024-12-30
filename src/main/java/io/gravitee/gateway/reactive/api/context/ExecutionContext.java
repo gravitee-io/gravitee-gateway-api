@@ -15,7 +15,17 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
-public interface ExecutionContext extends HttpExecutionContext, MessageExecutionContext, TcpExecutionContext {
+/**
+ * @deprecated see {@link io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext}
+ */
+@Deprecated(forRemoval = true)
+public interface ExecutionContext
+    extends
+        HttpExecutionContext,
+        MessageExecutionContext,
+        TcpExecutionContext,
+        io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext,
+        io.gravitee.gateway.reactive.api.context.tcp.TcpExecutionContext {
     @Override
     Request request();
 

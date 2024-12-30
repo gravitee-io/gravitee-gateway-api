@@ -20,9 +20,9 @@ import io.gravitee.gateway.reactive.api.connector.ConnectorFactory;
 import io.gravitee.gateway.reactive.api.context.DeploymentContext;
 
 /**
- * Specialized factory for {@link EntrypointConnector}
+ * Specialized factory for {@link BaseEntrypointConnector}
  */
-public interface EntrypointConnectorFactory<T extends EntrypointConnector> extends ConnectorFactory<T> {
+public interface EntrypointConnectorFactory<T extends BaseEntrypointConnector> extends ConnectorFactory<T> {
     ListenerType supportedListenerType();
 
     /**

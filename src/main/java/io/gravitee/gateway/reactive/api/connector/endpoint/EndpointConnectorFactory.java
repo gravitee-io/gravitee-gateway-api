@@ -15,15 +15,17 @@
  */
 package io.gravitee.gateway.reactive.api.connector.endpoint;
 
-import io.gravitee.gateway.reactive.api.connector.ConnectorFactory;
 import io.gravitee.gateway.reactive.api.context.DeploymentContext;
 
 /**
  * Specialized factory for {@link EndpointConnector}
+ * @deprecated see {@link HttpEndpointConnectorFactory}
  */
-public interface EndpointConnectorFactory<T extends EndpointConnector> extends ConnectorFactory<T> {
+@Deprecated(forRemoval = true)
+public interface EndpointConnectorFactory<T extends EndpointConnector> extends HttpEndpointConnectorFactory<T> {
     /**
      * Allow creating new endpoint connector from the given strings configuration.
+     * This method might look redundant with {@link BaseEndpointConnectorFactory#createConnector(DeploymentContext, String, String)} but it needs to remain here for the existing plugins which inherit from it.
      *
      * @param deploymentContext context containing useful deployment entities (api, services, ...).
      * @param configuration the configuration as json string.

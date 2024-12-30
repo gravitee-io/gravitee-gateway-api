@@ -1,3 +1,193 @@
+# [3.9.0-alpha.26](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.25...3.9.0-alpha.26) (2024-12-17)
+
+
+### Features
+
+* rework kafka interruptWith ([f55b0a7](https://github.com/gravitee-io/gravitee-gateway-api/commit/f55b0a7572559fcb5d54c47b0de4855f8a37b802))
+
+# [3.9.0-alpha.25](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.24...3.9.0-alpha.25) (2024-12-10)
+
+
+### Features
+
+* access to Kafka connection context from execution context ([afb9103](https://github.com/gravitee-io/gravitee-gateway-api/commit/afb91030b8c9e09e3ce643fb1a5e869504445809))
+
+# [3.9.0-alpha.24](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.23...3.9.0-alpha.24) (2024-12-09)
+
+
+### Features
+
+* add interruptWith with KafkaExecutionFailure ([64aff42](https://github.com/gravitee-io/gravitee-gateway-api/commit/64aff423c2f2555c8a7b7c46e4ccae1e9f4167b7))
+
+# [3.9.0-alpha.23](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.22...3.9.0-alpha.23) (2024-12-03)
+
+
+### Features
+
+* add interact & connect in ConnectorMode ([424f7f6](https://github.com/gravitee-io/gravitee-gateway-api/commit/424f7f69d0d0db6c1d43d5552fbf884e8783cb10))
+
+# [3.9.0-alpha.22](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.21...3.9.0-alpha.22) (2024-11-29)
+
+
+### Features
+
+* add TemplateEngine for KafkaConnectionContext ([6689cdf](https://github.com/gravitee-io/gravitee-gateway-api/commit/6689cdfde4f9bdaab90f77a94d61e4b76691072f))
+
+# [3.9.0-alpha.21](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.20...3.9.0-alpha.21) (2024-11-27)
+
+
+### Features
+
+* add TemplateEngine for native Kafka ([4556524](https://github.com/gravitee-io/gravitee-gateway-api/commit/4556524b64bb0066f991286db7b2164da34a3da7))
+
+# [3.9.0-alpha.20](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.19...3.9.0-alpha.20) (2024-11-26)
+
+
+### Bug Fixes
+
+* remove getOnResponseActions from KafkaExecutionContext ([256eabf](https://github.com/gravitee-io/gravitee-gateway-api/commit/256eabf49860fb2c69bed8e7d2c0f35cf5650ea6))
+
+# [3.9.0-alpha.19](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.18...3.9.0-alpha.19) (2024-11-26)
+
+
+### Features
+
+* access to NetworkController in KafkaExecutionContext ([cc8abff](https://github.com/gravitee-io/gravitee-gateway-api/commit/cc8abff62f82124c05cd9ca975cf8201fde5b36b))
+* add action that will be executed at response phase ([7081171](https://github.com/gravitee-io/gravitee-gateway-api/commit/708117140e0e17509801e69feed10a5fe74b50f9))
+* add notifyChange to Kafka request/response ([36c7904](https://github.com/gravitee-io/gravitee-gateway-api/commit/36c7904f4807bbeeba55a641c3858f7d897c87d6))
+
+# [3.9.0-alpha.18](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.17...3.9.0-alpha.18) (2024-11-25)
+
+
+### Bug Fixes
+
+* ExecutionContext should also extend TcpExecutionContext ([c54a97d](https://github.com/gravitee-io/gravitee-gateway-api/commit/c54a97dd8eff57b3caa9018b3ec79d94eb49c017))
+
+
+### Features
+
+* add chunks capabilities for Tcp Request and Response ([2439549](https://github.com/gravitee-io/gravitee-gateway-api/commit/2439549e517a4dd6bd5a79c27a36d2b82cea34de))
+* introduce TcpInvoker interface ([f8e3408](https://github.com/gravitee-io/gravitee-gateway-api/commit/f8e3408f1b49de3ba036cf2baf8b2fe657d60be8))
+
+# [3.9.0-alpha.17](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.16...3.9.0-alpha.17) (2024-11-22)
+
+
+### Bug Fixes
+
+* init tracing attributes if necessary when adding new attributes ([3209f8d](https://github.com/gravitee-io/gravitee-gateway-api/commit/3209f8da0f29ee8a9f6a2ace89c096ad03bde8d3))
+
+# [3.9.0-alpha.16](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.15...3.9.0-alpha.16) (2024-11-18)
+
+
+### Bug Fixes
+
+* delombok superbuilders ([6d66e2b](https://github.com/gravitee-io/gravitee-gateway-api/commit/6d66e2b0ee75ead926c6233d0d3ba67e818d5b45))
+
+# [3.9.0-alpha.15](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.14...3.9.0-alpha.15) (2024-11-15)
+
+
+### Features
+
+* add putRecordHeader & removeRecordHeader to manage kafka header ([b5ecb43](https://github.com/gravitee-io/gravitee-gateway-api/commit/b5ecb435330f5c6cd98dc7929a85bb49ea4a1aae))
+
+# [3.9.0-alpha.14](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.13...3.9.0-alpha.14) (2024-11-14)
+
+
+### Features
+
+* access KafkaPrincipal from KafkaContext ([bc1e3e2](https://github.com/gravitee-io/gravitee-gateway-api/commit/bc1e3e20aaa8b3464b717b13adb1c0c53e25896a))
+
+# [3.9.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.12...3.9.0-alpha.13) (2024-11-13)
+
+
+### Features
+
+* allow to inject message tracing context to any carrier ([4f11ce5](https://github.com/gravitee-io/gravitee-gateway-api/commit/4f11ce5274d4f20bbe2ef51acacfee59b167a9df))
+
+# [3.9.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.11...3.9.0-alpha.12) (2024-11-08)
+
+
+### Features
+
+* add native to api type enum ([e8d5442](https://github.com/gravitee-io/gravitee-gateway-api/commit/e8d5442b143b6b9ac247324afea62f46a0bc154e))
+
+# [3.9.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.10...3.9.0-alpha.11) (2024-11-08)
+
+
+### Features
+
+* specialize endpoint entrypoint and invoker for http ([59c75bd](https://github.com/gravitee-io/gravitee-gateway-api/commit/59c75bdb0ca3e1b4de0ca13052953c0932130190))
+
+# [3.9.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.9...3.9.0-alpha.10) (2024-11-05)
+
+
+### Features
+
+* add kafka as listener type ([8b12612](https://github.com/gravitee-io/gravitee-gateway-api/commit/8b126127b43ff01de5dab58dfe2638b1a9dcedc7))
+
+# [3.9.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.8...3.9.0-alpha.9) (2024-11-05)
+
+
+### Bug Fixes
+
+* prefer use Buffer instead of Object for recordHeaders ([1a622fc](https://github.com/gravitee-io/gravitee-gateway-api/commit/1a622fca6877a2cb2e768d0d2ddf9a46ff3830bd))
+
+# [3.9.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.7...3.9.0-alpha.8) (2024-11-05)
+
+
+### Bug Fixes
+
+* bump gravitee node version ([0082de8](https://github.com/gravitee-io/gravitee-gateway-api/commit/0082de863086354dc9629662c1c827efb456166c))
+
+# [3.9.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.6...3.9.0-alpha.7) (2024-11-05)
+
+
+### Features
+
+* add OpenTelemetry feature on Async API ([6e2d554](https://github.com/gravitee-io/gravitee-gateway-api/commit/6e2d55441d4f551c50b7d463d68617e9146e40c6))
+
+# [3.9.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.5...3.9.0-alpha.6) (2024-10-28)
+
+
+### Features
+
+* add property for KafkaMessage interfaces ([efb63e8](https://github.com/gravitee-io/gravitee-gateway-api/commit/efb63e8c6d43725c2647dda4afc27f83d9a29e48))
+
+# [3.9.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.4...3.9.0-alpha.5) (2024-10-18)
+
+
+### Features
+
+* add new fields to help with security chains ([62bc8d4](https://github.com/gravitee-io/gravitee-gateway-api/commit/62bc8d43eaeb583478cb4e79906bb1128f7172af))
+
+# [3.9.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.3...3.9.0-alpha.4) (2024-10-11)
+
+
+### Bug Fixes
+
+* restore previous constructor as deprecated ([c20fbe8](https://github.com/gravitee-io/gravitee-gateway-api/commit/c20fbe854cdfdc99904a138615703308294f9cc7))
+
+# [3.9.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.2...3.9.0-alpha.3) (2024-10-09)
+
+
+### Features
+
+* enrich KafkaExecutionContext with request and response ([08e3920](https://github.com/gravitee-io/gravitee-gateway-api/commit/08e392088b4e4c8db259fb7d5b35a89740a0474f))
+
+# [3.9.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0-alpha.1...3.9.0-alpha.2) (2024-10-09)
+
+
+### Bug Fixes
+
+* adapt interfaces to prepare for apim switch ([8768132](https://github.com/gravitee-io/gravitee-gateway-api/commit/8768132c0dc36917dbcdc697f08a7f13d26f8beb))
+
+# [3.9.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.8.1...3.9.0-alpha.1) (2024-10-04)
+
+
+### Features
+
+* introduce new interfaces for native api support ([c0f0041](https://github.com/gravitee-io/gravitee-gateway-api/commit/c0f00415e17f73771fdb82183fed6b4b7bccd6aa))
+
 ## [3.8.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.8.0...3.8.1) (2024-09-20)
 
 

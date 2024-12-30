@@ -15,18 +15,14 @@
  */
 package io.gravitee.gateway.reactive.api.context;
 
-public interface TcpExecutionContext extends GenericExecutionContext {
-    /**
-     * Get the current request stuck to this execution context.
-     *
-     * @return the request attached to this execution context.
-     */
+/**
+ * @deprecated see {@link io.gravitee.gateway.reactive.api.context.tcp.TcpExecutionContext}
+ */
+@Deprecated(forRemoval = true)
+public interface TcpExecutionContext extends GenericExecutionContext, io.gravitee.gateway.reactive.api.context.tcp.TcpExecutionContext {
+    @Override
     TcpRequest request();
 
-    /**
-     * Get the current response stuck to this execution context.
-     *
-     * @return the response attached to this execution context.
-     */
+    @Override
     TcpResponse response();
 }

@@ -24,8 +24,10 @@ import java.util.Set;
 
 /**
  * Specialized factory for {@link EntrypointAsyncConnector}
+ * @deprecated see {@link HttpEntrypointAsyncConnectorFactory}
  */
-public interface EntrypointAsyncConnectorFactory<T extends EntrypointAsyncConnector> extends EntrypointConnectorFactory<T> {
+@Deprecated(forRemoval = true)
+public interface EntrypointAsyncConnectorFactory<T extends EntrypointAsyncConnector> extends HttpEntrypointAsyncConnectorFactory<T> {
     @Override
     default ApiType supportedApi() {
         return ApiType.MESSAGE;
