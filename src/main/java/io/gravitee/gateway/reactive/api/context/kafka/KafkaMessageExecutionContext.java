@@ -30,6 +30,12 @@ public interface KafkaMessageExecutionContext extends NativeMessageExecutionCont
     String TEMPLATE_ATTRIBUTE_MESSAGE = "message";
 
     /**
+     * Access the execution context.
+     * @return the execution context.
+     */
+    KafkaExecutionContext executionContext();
+
+    /**
      * Get the current request attached to this execution context.
      * @return the request.
      */
