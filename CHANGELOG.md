@@ -1,3 +1,10 @@
+## [3.9.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0...3.9.1) (2025-01-08)
+
+
+### Bug Fixes
+
+* access Kafka execution context from KafkaMessageExecutionContext ([45d71d0](https://github.com/gravitee-io/gravitee-gateway-api/commit/45d71d08a977a0976c67727f223ce36dd281875b))
+
 # [3.9.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.8.1...3.9.0) (2024-12-30)
 
 
