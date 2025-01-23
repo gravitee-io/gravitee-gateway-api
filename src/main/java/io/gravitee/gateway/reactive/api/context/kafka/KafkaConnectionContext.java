@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context.kafka;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
+import io.gravitee.gateway.reactive.api.context.kafka.topicidentity.TopicIdentityRegistry;
 import javax.security.auth.callback.Callback;
 import org.apache.kafka.common.security.auth.KafkaPrincipal;
 
@@ -43,4 +44,13 @@ public interface KafkaConnectionContext extends NativeExecutionContext {
      * @return the principal of the current connection.
      */
     KafkaPrincipal principal();
+
+    /**
+     * Access the registry of topic identities.
+     * This registry store any Kafka topics (by there name & Uuid) from the broker (source=BROKER). But also those which could
+     * be created by our policy ( e.g. TopicMappingPolicy ) and used by clients (source=CLIENT).
+     * The registry can be used to find the name of a topic from an id or vice versa.
+     * @return {@link TopicIdentityRegistry}
+     */
+    TopicIdentityRegistry topicIdentityRegistry();
 }
