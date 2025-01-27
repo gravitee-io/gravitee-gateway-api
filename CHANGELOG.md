@@ -1,3 +1,11 @@
+# [3.10.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.1...3.10.0) (2025-01-27)
+
+
+### Features
+
+* add interface for kafka TopicIdentityRegistry ([50d7611](https://github.com/gravitee-io/gravitee-gateway-api/commit/50d7611220b715d9c448b01e197b716db8825562))
+* add onInitialize to KafkaPolicy ([aa352e8](https://github.com/gravitee-io/gravitee-gateway-api/commit/aa352e8eaba2885f1bc6d4c53731b12a48a8fec7))
+
 ## [3.9.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.0...3.9.1) (2025-01-08)
 
 
