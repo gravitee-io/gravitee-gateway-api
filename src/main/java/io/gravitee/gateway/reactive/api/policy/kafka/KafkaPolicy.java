@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.policy.kafka;
 
 import io.gravitee.gateway.reactive.api.ExecutionPhase;
+import io.gravitee.gateway.reactive.api.context.kafka.KafkaConnectionContext;
 import io.gravitee.gateway.reactive.api.context.kafka.KafkaExecutionContext;
 import io.gravitee.gateway.reactive.api.context.kafka.KafkaMessageExecutionContext;
 import io.gravitee.gateway.reactive.api.policy.base.BasePolicy;
@@ -37,6 +38,17 @@ import io.reactivex.rxjava3.core.Completable;
  * @author GraviteeSource Team
  */
 public interface KafkaPolicy extends BasePolicy {
+    /**
+     * Define the actions to perform once api is deployed and the connection is established.
+     * The <code>onInitialize(KafkaConnectionContext)</code> method will be called once before any policy chain construction.
+     *
+     * @param ctx the current connection context allowing to access the connection attributes & topicIdentityRegistry.
+     * @return a {@link Completable} that must complete when all the actions have been performed.
+     */
+    default Completable onInitialize(final KafkaConnectionContext ctx) {
+        return Completable.complete();
+    }
+
     /**
      * Define the actions to perform during the {@link ExecutionPhase#REQUEST} phase.
      * The <code>onRequest(KafkaExecutionContext)</code> method will be called during the policy chain construction.

@@ -47,8 +47,8 @@ public interface KafkaConnectionContext extends NativeExecutionContext {
 
     /**
      * Access the registry of topic identities.
-     * This registry store any Kafka topics (by there name & Uuid) from the broker (source=BROKER). But also those which could
-     * be created by our policy ( e.g. TopicMappingPolicy ) and used by clients (source=CLIENT).
+     * This registry store any Kafka topics (by their name & Uuid) from the broker (source=BROKER). But also those which could
+     * be created by our policies ( e.g. TopicMappingPolicy ) and used by clients (source=CLIENT).
      * The registry can be used to find the name of a topic from an id or vice versa.
      * @return {@link TopicIdentityRegistry}
      */
