@@ -33,7 +33,7 @@
     <name>Gravitee.io APIM - Gateway - API</name>
 
     <properties>
-        <gravitee-bom.version>8.1.16</gravitee-bom.version>
+        <gravitee-bom.version>8.2.9</gravitee-bom.version>
         <gravitee-node.version>7.0.0</gravitee-node.version>
         <gravitee-common.version>4.5.1</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
