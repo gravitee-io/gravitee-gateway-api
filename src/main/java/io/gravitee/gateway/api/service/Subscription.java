@@ -42,6 +42,8 @@ public class Subscription {
 
     private String application;
 
+    private String applicationName;
+
     private String clientId;
 
     private String clientCertificate;
