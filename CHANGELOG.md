@@ -1,3 +1,10 @@
+## [3.10.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.10.0...3.10.1) (2025-02-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.gravitee:gravitee-bom to v8.2.9 ([7a49662](https://github.com/gravitee-io/gravitee-gateway-api/commit/7a496621431640cf6ace021ff80e78c954c67d34))
+
 # [3.10.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.9.1...3.10.0) (2025-01-27)
 
 
