@@ -35,7 +35,7 @@
     <properties>
         <gravitee-bom.version>8.2.10</gravitee-bom.version>
         <gravitee-node.version>7.0.7</gravitee-node.version>
-        <gravitee-common.version>4.5.1</gravitee-common.version>
+        <gravitee-common.version>4.6.0</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-reporter-api.version>1.31.2</gravitee-reporter-api.version>
         <gravitee-expression-language.version>3.2.1</gravitee-expression-language.version>
