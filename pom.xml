@@ -42,7 +42,7 @@
         <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
 
         <bouncycastle.version>1.78.1</bouncycastle.version>
-        <json-smart.version>2.4.10</json-smart.version>
+        <json-smart.version>2.5.2</json-smart.version>
         <kafka-clients.version>3.7.1</kafka-clients.version>
     </properties>
 
