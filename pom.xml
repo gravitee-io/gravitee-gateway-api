@@ -41,7 +41,7 @@
         <gravitee-expression-language.version>3.2.1</gravitee-expression-language.version>
         <gravitee-apim-gateway-buffer.version>3.19.0</gravitee-apim-gateway-buffer.version>
 
-        <bouncycastle.version>1.70</bouncycastle.version>
+        <bouncycastle.version>1.78.1</bouncycastle.version>
         <json-smart.version>2.4.10</json-smart.version>
         <kafka-clients.version>3.7.1</kafka-clients.version>
     </properties>
@@ -109,7 +109,7 @@
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
+            <artifactId>bcpkix-jdk18on</artifactId>
             <version>${bouncycastle.version}</version>
             <scope>provided</scope>
         </dependency>
