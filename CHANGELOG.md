@@ -1,3 +1,10 @@
+## [3.11.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.11.0...3.11.1) (2025-02-21)
+
+
+### Bug Fixes
+
+* **deps:** bump json-smart to 2.5.2 ([880aee6](https://github.com/gravitee-io/gravitee-gateway-api/commit/880aee68dad25b3c7611318630933215684e5c59))
+
 # [3.11.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.10.1...3.11.0) (2025-02-21)
 
 
