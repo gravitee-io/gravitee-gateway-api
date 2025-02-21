@@ -1,3 +1,10 @@
+# [3.11.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.10.1...3.11.0) (2025-02-21)
+
+
+### Features
+
+* include applicationName in subscription ([fa362ef](https://github.com/gravitee-io/gravitee-gateway-api/commit/fa362efe1f220c6920de8a38a405b6a3117e5b5e))
+
 ## [3.10.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.10.0...3.10.1) (2025-02-19)
 
 
