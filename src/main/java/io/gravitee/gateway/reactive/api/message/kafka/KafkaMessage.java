@@ -52,6 +52,23 @@ public interface KafkaMessage extends Message {
     Buffer key();
 
     /**
+     * Set the Kafka record key associated with the message.
+     * Allows modification of the Kafka key.
+     *
+     * @param key the buffer representing the Kafka key
+     * @return reference to itself for easily chain calls.
+     */
+    KafkaMessage key(final Buffer key);
+
+    /**
+     * Overloaded setter for the Kafka key accepting a String.
+     *
+     * @param key the string representing the Kafka key
+     * @return reference to itself for easily chain calls.
+     */
+    KafkaMessage key(final String key);
+
+    /**
      * Get the Kafka record offset value associated to the message.
      * @return the Kafka offset
      */
