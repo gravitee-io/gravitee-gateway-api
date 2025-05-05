@@ -1,3 +1,10 @@
+# [3.12.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.11.1...3.12.0) (2025-05-05)
+
+
+### Features
+
+* **kafka:** add key setter methods to KafkaMessage interface ([0acb071](https://github.com/gravitee-io/gravitee-gateway-api/commit/0acb07152cb244f2e02a8eabd37df661cc7de337))
+
 ## [3.11.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.11.0...3.11.1) (2025-02-21)
 
 
