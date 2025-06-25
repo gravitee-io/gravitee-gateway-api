@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context.http;
 
 import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
+import io.gravitee.reporter.api.v4.metric.Metrics;
 
 /**
  * Base interface any http-based execution context interface can inherit from.
@@ -24,6 +25,13 @@ import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
  *  @author GraviteeSource Team
  */
 public interface HttpBaseExecutionContext extends BaseExecutionContext {
+    /**
+     * Get the metrics associated with the context.
+     *
+     * @return a {@link Metrics} object.
+     */
+    Metrics metrics();
+
     /**
      * Get the current request stuck to this execution context.
      *
