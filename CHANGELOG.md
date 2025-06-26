@@ -1,3 +1,17 @@
+# [4.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.12.0...4.0.0-alpha.1) (2025-06-26)
+
+
+### Features
+
+* move metrics to HttpBaseExecutionContext ([6f0b3cd](https://github.com/gravitee-io/gravitee-gateway-api/commit/6f0b3cdf652625ce08f422d5e8d1f2035bdfb21d))
+
+
+### BREAKING CHANGES
+
+* remove the use of metrics into BaseExecutionContext impl
+
+because Metrics obj is dedicated to Http and cannot be used for the Native concept
+
 # [3.12.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.11.1...3.12.0) (2025-05-05)
 
 
