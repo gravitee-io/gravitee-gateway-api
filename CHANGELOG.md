@@ -1,3 +1,10 @@
+# [4.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.0-alpha.1...4.0.0-alpha.2) (2025-07-16)
+
+
+### Features
+
+* allow to get the size of the message in bytes ([8ea1060](https://github.com/gravitee-io/gravitee-gateway-api/commit/8ea10602d8d5e4fce95e41899fa19451d6dac3cb))
+
 # [4.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.12.0...4.0.0-alpha.1) (2025-06-26)
 
 
