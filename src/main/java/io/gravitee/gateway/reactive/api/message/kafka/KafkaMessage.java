@@ -92,6 +92,12 @@ public interface KafkaMessage extends Message {
      */
     String topic();
 
+    /**
+     * Get the size in bytes of that message.
+     * @return the size in bytes
+     */
+    int sizeInBytes();
+
     @Deprecated
     default void ack() {
         throw new IllegalStateException("Ack not supported for Kafka messages");
