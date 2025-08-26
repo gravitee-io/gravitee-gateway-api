@@ -39,7 +39,7 @@ public abstract class HttpEntrypointAsyncConnector
     public static final String STOP_MESSAGE_ID = "goaway";
     public static final String STOP_MESSAGE_CONTENT = "Stopping, please reconnect";
 
-    protected final BehaviorProcessor<Message> stopHook = BehaviorProcessor.create();
+    protected BehaviorProcessor<Message> stopHook = BehaviorProcessor.create();
 
     @Override
     public ApiType supportedApi() {
@@ -51,13 +51,32 @@ public abstract class HttpEntrypointAsyncConnector
      */
     public abstract QosRequirement qosRequirement();
 
-    protected void emitStopMessage() {
-        if (stopHook.hasSubscribers()) {
+    /**
+     * Initiates a connection drain process.
+     * <p>
+     * Draining connections means gracefully stopping message delivery so that clients are encouraged to close the current connection and reconnect.
+     * <p>
+     * This method can be overridden in case the behavior need to be adapted (ex: Webhook).
+     */
+    public void drainConnections() {
+        emitStopMessage();
+    }
+
+    /**
+     * Emit a stop message to force reconnection.
+     */
+    public void emitStopMessage() {
+        BehaviorProcessor<Message> currentStopHook = stopHook;
+
+        // Reinit the stopHook for any new connection.
+        stopHook = BehaviorProcessor.create();
+
+        if (currentStopHook.hasSubscribers()) {
             try {
-                stopHook.onNext(
+                currentStopHook.onNext(
                     DefaultMessage.builder().id(STOP_MESSAGE_ID).error(true).content(Buffer.buffer(STOP_MESSAGE_CONTENT)).build()
                 );
-                stopHook.onComplete();
+                currentStopHook.onComplete();
             } catch (UndeliverableException unused) {
                 // Undeliverable exception may occur if the subscriber already cancelled the subscription.We can safely ignore it.
             }
