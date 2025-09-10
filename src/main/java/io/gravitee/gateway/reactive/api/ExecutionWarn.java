@@ -15,43 +15,27 @@
  */
 package io.gravitee.gateway.reactive.api;
 
-import java.util.Map;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
 @EqualsAndHashCode
-public class ExecutionFailure {
+public class ExecutionWarn {
 
-    private int statusCode;
-    private String message;
     private String key;
-    private Map<String, Object> parameters;
-    private String contentType;
+    private String message;
     private Throwable cause;
 
-    public ExecutionFailure() {}
-
-    public ExecutionFailure(int statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public int statusCode() {
-        return statusCode;
-    }
-
-    public ExecutionFailure statusCode(int statusCode) {
-        this.statusCode = statusCode;
-        return this;
+    public ExecutionWarn(String key) {
+        this.key = key;
     }
 
     public String message() {
         return message;
     }
 
-    public ExecutionFailure message(String message) {
+    public ExecutionWarn message(String message) {
         this.message = message;
         return this;
     }
@@ -60,26 +44,8 @@ public class ExecutionFailure {
         return key;
     }
 
-    public ExecutionFailure key(String key) {
+    public ExecutionWarn key(String key) {
         this.key = key;
-        return this;
-    }
-
-    public Map<String, Object> parameters() {
-        return parameters;
-    }
-
-    public ExecutionFailure parameters(Map<String, Object> parameters) {
-        this.parameters = parameters;
-        return this;
-    }
-
-    public String contentType() {
-        return contentType;
-    }
-
-    public ExecutionFailure contentType(String contentType) {
-        this.contentType = contentType;
         return this;
     }
 
@@ -87,7 +53,7 @@ public class ExecutionFailure {
         return cause;
     }
 
-    public ExecutionFailure cause(Throwable cause) {
+    public ExecutionWarn cause(Throwable cause) {
         this.cause = cause;
         return this;
     }
