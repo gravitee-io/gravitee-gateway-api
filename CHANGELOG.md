@@ -1,3 +1,10 @@
+# [4.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.0-alpha.2...4.0.0-alpha.3) (2025-09-12)
+
+
+### Features
+
+* add  support for connection draining ([98b417a](https://github.com/gravitee-io/gravitee-gateway-api/commit/98b417a5941b91ec352512fa1743bd63991634dc))
+
 # [4.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.0-alpha.1...4.0.0-alpha.2) (2025-07-16)
 
 
