@@ -1,3 +1,10 @@
+# [4.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.0-alpha.3...4.0.0-alpha.4) (2025-09-12)
+
+
+### Features
+
+* improve error handling with execution failure and warn ([cbaa73c](https://github.com/gravitee-io/gravitee-gateway-api/commit/cbaa73cf4d58daf639e8149dc60b62929bbc1e62))
+
 # [4.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.0-alpha.2...4.0.0-alpha.3) (2025-09-12)
 
 
