@@ -1,3 +1,20 @@
+# [4.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.13.0...4.0.0) (2025-09-15)
+
+
+### Features
+
+* add  support for connection draining ([98b417a](https://github.com/gravitee-io/gravitee-gateway-api/commit/98b417a5941b91ec352512fa1743bd63991634dc))
+* allow to get the size of the message in bytes ([8ea1060](https://github.com/gravitee-io/gravitee-gateway-api/commit/8ea10602d8d5e4fce95e41899fa19451d6dac3cb))
+* improve error handling with execution failure and warn ([cbaa73c](https://github.com/gravitee-io/gravitee-gateway-api/commit/cbaa73cf4d58daf639e8149dc60b62929bbc1e62))
+* move metrics to HttpBaseExecutionContext ([6f0b3cd](https://github.com/gravitee-io/gravitee-gateway-api/commit/6f0b3cdf652625ce08f422d5e8d1f2035bdfb21d))
+
+
+### BREAKING CHANGES
+
+* remove the use of metrics into BaseExecutionContext impl
+
+because Metrics obj is dedicated to Http and cannot be used for the Native concept
+
 # [3.13.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.12.0...3.13.0) (2025-07-16)
 
 
