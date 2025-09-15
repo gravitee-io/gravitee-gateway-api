@@ -16,9 +16,9 @@
 package io.gravitee.gateway.reactive.api.context.base;
 
 import io.gravitee.el.TemplateEngine;
+import io.gravitee.gateway.reactive.api.ExecutionWarn;
 import io.gravitee.gateway.reactive.api.context.TlsSession;
 import io.gravitee.gateway.reactive.api.tracing.Tracer;
-import io.gravitee.reporter.api.v4.metric.Metrics;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,12 +33,6 @@ import javax.net.ssl.SSLSession;
  */
 public interface BaseExecutionContext {
     String TEMPLATE_ATTRIBUTE_CONTEXT = "context";
-    /**
-     * Get the metrics associated to the context.
-     *
-     * @return a {@link Metrics} object.
-     */
-    Metrics metrics();
 
     <T> T getComponent(Class<T> componentClass);
 
@@ -208,4 +202,10 @@ public interface BaseExecutionContext {
      * @see SSLSession
      */
     TlsSession tlsSession();
+
+    /**
+     * Adds a warning to the execution context without interrupting the flow.
+     * The warning will be stored and can be accessed later through metrics.
+     */
+    void warnWith(final ExecutionWarn warn);
 }

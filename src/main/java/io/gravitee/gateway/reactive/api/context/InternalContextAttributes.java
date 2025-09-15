@@ -34,11 +34,15 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_INVOKER = "invoker";
     public static final String ATTR_INTERNAL_INVOKER_SKIP = "invoker.skip";
     public static final String ATTR_INTERNAL_EXECUTION_FAILURE = "executionFailure";
+    public static final String ATTR_INTERNAL_EXECUTION_WARN = "executionWarn";
+    public static final String ATTR_INTERNAL_EXECUTION_COMPONENT_TYPE = "execution.component.type";
+    public static final String ATTR_INTERNAL_EXECUTION_COMPONENT_NAME = "execution.component.name";
     public static final String ATTR_INTERNAL_FLOW_STAGE = "flow.stage";
     public static final String ATTR_INTERNAL_SUBSCRIPTION = "subscription";
     public static final String ATTR_INTERNAL_SUBSCRIPTION_TYPE = "subscriptionType";
     public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
     public static final String ATTR_INTERNAL_SECURITY_SKIP = "securityChain.skip";
+    public static final String ATTR_INTERNAL_SECURITY_DIAGNOSTIC = "securityChain.diagnostic";
     public static final String ATTR_INTERNAL_ANALYTICS_CONTEXT = "analytics.context";
     public static final String ATTR_INTERNAL_TRACING_ENABLED = "analytics.tracing.enabled";
     public static final String ATTR_INTERNAL_TRACING_ROOT_SPAN = "analytics.tracing.root.span";
