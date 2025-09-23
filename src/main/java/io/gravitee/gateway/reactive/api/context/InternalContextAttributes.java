@@ -35,8 +35,7 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_INVOKER_SKIP = "invoker.skip";
     public static final String ATTR_INTERNAL_EXECUTION_FAILURE = "executionFailure";
     public static final String ATTR_INTERNAL_EXECUTION_WARN = "executionWarn";
-    public static final String ATTR_INTERNAL_EXECUTION_COMPONENT_TYPE = "execution.component.type";
-    public static final String ATTR_INTERNAL_EXECUTION_COMPONENT_NAME = "execution.component.name";
+    public static final String ATTR_INTERNAL_EXECUTION_COMPONENT_SCOPE = "execution.component.scope";
     public static final String ATTR_INTERNAL_FLOW_STAGE = "flow.stage";
     public static final String ATTR_INTERNAL_SUBSCRIPTION = "subscription";
     public static final String ATTR_INTERNAL_SUBSCRIPTION_TYPE = "subscriptionType";
