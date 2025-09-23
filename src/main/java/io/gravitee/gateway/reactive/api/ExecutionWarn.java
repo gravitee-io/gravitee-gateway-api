@@ -21,7 +21,7 @@ import lombok.EqualsAndHashCode;
  * @author GraviteeSource Team
  */
 @EqualsAndHashCode
-public class ExecutionWarn {
+public class ExecutionWarn implements ExecutionIssue {
 
     private String key;
     private String message;

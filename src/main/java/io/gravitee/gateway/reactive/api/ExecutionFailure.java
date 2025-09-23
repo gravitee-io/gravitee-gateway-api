@@ -23,7 +23,7 @@ import lombok.EqualsAndHashCode;
  * @author GraviteeSource Team
  */
 @EqualsAndHashCode
-public class ExecutionFailure {
+public class ExecutionFailure implements ExecutionIssue {
 
     private int statusCode;
     private String message;
