@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.0...4.0.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* replace component attributes with scope and add ExecutionIssue interface ([92e631a](https://github.com/gravitee-io/gravitee-gateway-api/commit/92e631aaedf29f6602ecc264342b6f4becde708b))
+
 # [4.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/3.13.0...4.0.0) (2025-09-15)
 
 
