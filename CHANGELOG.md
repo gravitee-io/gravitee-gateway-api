@@ -1,3 +1,11 @@
+# [4.1.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.1...4.1.0-alpha.1) (2025-10-06)
+
+
+### Features
+
+* add llm-proxy api type ([454a365](https://github.com/gravitee-io/gravitee-gateway-api/commit/454a3650b81f541d96ce12e9e36bb3d67e854e81))
+* add mcp-proxy api type ([6ececc5](https://github.com/gravitee-io/gravitee-gateway-api/commit/6ececc5b949f8a280572cfe34b37231389c3c9ee))
+
 ## [4.0.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.0...4.0.1) (2025-09-25)
 
 
