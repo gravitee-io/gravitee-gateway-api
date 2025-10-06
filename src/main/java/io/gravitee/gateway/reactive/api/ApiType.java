@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 public enum ApiType {
     LLM_PROXY("llm-proxy"),
+    MCP_PROXY("mcp-proxy"),
     PROXY("proxy"),
     MESSAGE("message"),
     NATIVE("native");
@@ -35,6 +36,8 @@ public enum ApiType {
     private static final Map<String, ApiType> LABELS_MAP = Map.of(
         LLM_PROXY.label,
         LLM_PROXY,
+        MCP_PROXY.label,
+        MCP_PROXY,
         PROXY.label,
         PROXY,
         MESSAGE.label,
