@@ -30,6 +30,8 @@ public class ExecutionFailure implements ExecutionIssue {
     private String key;
     private Map<String, Object> parameters;
     private String contentType;
+
+    @EqualsAndHashCode.Exclude
     private Throwable cause;
 
     public ExecutionFailure() {}
