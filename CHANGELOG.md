@@ -1,3 +1,10 @@
+# [4.1.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.1...4.1.0-alpha.2) (2025-10-10)
+
+
+### Bug Fixes
+
+* ignore cause in ExecutionFailure.equals ([935f0d9](https://github.com/gravitee-io/gravitee-gateway-api/commit/935f0d9cde1b1f2e267626c5dafa2113af058a12))
+
 # [4.1.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.1...4.1.0-alpha.1) (2025-10-06)
 
 
