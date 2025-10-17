@@ -1,3 +1,10 @@
+# [4.1.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.2...4.1.0-alpha.3) (2025-10-17)
+
+
+### Features
+
+* create new LLM proxy interfaces ([69f5b88](https://github.com/gravitee-io/gravitee-gateway-api/commit/69f5b88c22211dbbbdca3c9635cf1d298043ee0d))
+
 # [4.1.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.1...4.1.0-alpha.2) (2025-10-10)
 
 
