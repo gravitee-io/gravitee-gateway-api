@@ -19,6 +19,7 @@ import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.reactive.api.ExecutionFailure;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
+import java.util.function.Function;
 
 /**
  * Http execution context allowing access to {@link HttpPlainRequest} and {@link HttpPlainResponse} that manipulates raw http bodies (content or chunks).
@@ -65,4 +66,12 @@ public interface HttpPlainExecutionContext extends HttpBaseExecutionContext {
      * Same as {@link #interruptBody()} but with an {@link ExecutionFailure} object that indicates that the execution has failed. The {@link ExecutionFailure} can be processed in order to build a proper response (ex: based on templating, with appropriate accept-encoding, ...).
      */
     Maybe<Buffer> interruptBodyWith(final ExecutionFailure failure);
+
+    /**
+     * Registers an action defined during the request phase to be executed later during the response phase.
+     * When multiple actions are registered, they are executed in reverse order of registration (LIFO).
+     *
+     * @param onResponseCallback the action to be executed during the response phase
+     */
+    void addActionOnResponse(Function<HttpExecutionContext, Completable> onResponseCallback);
 }
