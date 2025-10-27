@@ -1,3 +1,10 @@
+# [4.1.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.3...4.1.0-alpha.4) (2025-10-27)
+
+
+### Features
+
+* add action that will be executed at http request response phase ([68e499c](https://github.com/gravitee-io/gravitee-gateway-api/commit/68e499caaaf608684a3dac4d393f257728e7f304))
+
 # [4.1.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.2...4.1.0-alpha.3) (2025-10-17)
 
 
