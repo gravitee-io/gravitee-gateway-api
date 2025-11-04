@@ -1,3 +1,10 @@
+# [4.1.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.4...4.1.0-alpha.5) (2025-11-04)
+
+
+### Features
+
+* create a new internal attribute to override Content-Type filtering in logs ([4af927b](https://github.com/gravitee-io/gravitee-gateway-api/commit/4af927b5c93fc4be6ed2a06462895a8f42a2c40c))
+
 # [4.1.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.3...4.1.0-alpha.4) (2025-10-27)
 
 
