@@ -80,4 +80,10 @@ public final class InternalContextAttributes {
      * Attribute used to store the ID of the last message received by the client.
      */
     public static final String ATTR_INTERNAL_MESSAGES_RECOVERY_LAST_ID = "messages.recovery.lastId";
+
+    /**
+     * <i>Type: Pattern</i> <br/>
+     * Attribute used to override the content type filtering for reporting.
+     */
+    public static final String ATTR_INTERNAL_OVERRIDE_LOGGABLE_CONTENT_TYPE_PATTERN = "override.loggable.content.type.pattern";
 }
