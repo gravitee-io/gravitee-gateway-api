@@ -31,10 +31,12 @@ public interface ExecutionContext {
     String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
     String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     String ATTR_APPLICATION = ATTR_PREFIX + "application";
+    String ATTR_APPLICATION_NAME = ATTR_PREFIX + "applicationName";
     String ATTR_API = ATTR_PREFIX + "api";
     String ATTR_API_DEPLOYED_AT = ATTR_PREFIX + "api.deployed-at";
     String ATTR_SUBSCRIPTION_ID = ATTR_PREFIX + "user-id";
     String ATTR_PLAN = ATTR_PREFIX + "plan";
+    String ATTR_PLAN_NAME = ATTR_PREFIX + "planName";
     String ATTR_REQUEST_METHOD = ATTR_PREFIX + "request.method";
     String ATTR_REQUEST_ENDPOINT = ATTR_PREFIX + "request.endpoint";
     String ATTR_INVOKER = ATTR_PREFIX + "request.invoker";
