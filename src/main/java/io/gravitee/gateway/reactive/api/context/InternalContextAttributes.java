@@ -80,6 +80,20 @@ public final class InternalContextAttributes {
      * Attribute used to store the ID of the last message received by the client.
      */
     public static final String ATTR_INTERNAL_MESSAGES_RECOVERY_LAST_ID = "messages.recovery.lastId";
+    /**
+     * <i>Type: string</i> <br/>
+     * Attribute key used to indicate whether a message has been sent to the Dead Letter Queue (DLQ).
+     * This attribute is typically used in message processing scenarios to track messages
+     * that could not be successfully processed and were redirected to a DLQ for further analysis or retry.
+     */
+    public static final String ATTR_INTERNAL_MESSAGE_SENT_TO_DLQ = "message.sent-to-dlq";
+
+    /**
+     * <b>Feature: metrics</b> <br/>
+     * <i>Type: Collection&lt;AdditionalMetrics&gt;</i> <br/>
+     * Attribute used to store additional metrics to be added to the metrics.
+     */
+    public static final String ATTR_INTERNAL_MESSAGE_ADDITIONAL_METRICS = "message.metrics.additional";
 
     /**
      * <i>Type: Pattern</i> <br/>
