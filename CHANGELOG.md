@@ -1,3 +1,10 @@
+# [4.1.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.5...4.1.0-alpha.6) (2025-11-17)
+
+
+### Features
+
+* add additional internal attributes ([dac33f5](https://github.com/gravitee-io/gravitee-gateway-api/commit/dac33f50585941f0ca97206fc165103cc4c15827))
+
 # [4.1.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.4...4.1.0-alpha.5) (2025-11-04)
 
 
