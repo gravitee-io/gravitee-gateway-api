@@ -44,6 +44,7 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_SECURITY_DIAGNOSTIC = "securityChain.diagnostic";
     public static final String ATTR_INTERNAL_ANALYTICS_CONTEXT = "analytics.context";
     public static final String ATTR_INTERNAL_TRACING_ENABLED = "analytics.tracing.enabled";
+    public static final String ATTR_INTERNAL_TRACING_VERBOSE_ENABLED = "analytics.tracing.verbose.enabled";
     public static final String ATTR_INTERNAL_TRACING_ROOT_SPAN = "analytics.tracing.root.span";
     public static final String ATTR_INTERNAL_MESSAGE_EXECUTION_PHASE = "message.execution-phase";
     public static final String ATTR_INTERNAL_MESSAGE_THROWABLE = "message.throwable";
