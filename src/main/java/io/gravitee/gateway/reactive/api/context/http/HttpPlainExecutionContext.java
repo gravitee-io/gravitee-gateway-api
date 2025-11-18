@@ -73,5 +73,5 @@ public interface HttpPlainExecutionContext extends HttpBaseExecutionContext {
      *
      * @param onResponseCallback the action to be executed during the response phase
      */
-    void addActionOnResponse(Function<HttpExecutionContext, Completable> onResponseCallback);
+    void addActionOnResponse(Function<HttpPlainExecutionContext, Completable> onResponseCallback);
 }
