@@ -1,3 +1,10 @@
+# [4.1.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.6...4.1.0-alpha.7) (2025-11-25)
+
+
+### Features
+
+* add attribute for tracing with verbose ([b949df6](https://github.com/gravitee-io/gravitee-gateway-api/commit/b949df68545c4f375a5ee403f0bf4ebebc308b05))
+
 # [4.1.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.5...4.1.0-alpha.6) (2025-11-17)
 
 
