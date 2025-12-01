@@ -1,3 +1,10 @@
+# [4.1.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.7...4.1.0-alpha.8) (2025-12-01)
+
+
+### Features
+
+* add the wwwAuthenticate() and onWellKnown() default methods to HttpSecurityPolicy ([7c57b48](https://github.com/gravitee-io/gravitee-gateway-api/commit/7c57b48d82c051b8c8d8b7e88a58818f5deeae8e))
+
 # [4.1.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.6...4.1.0-alpha.7) (2025-11-25)
 
 
