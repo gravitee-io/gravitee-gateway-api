@@ -1,3 +1,10 @@
+# [4.1.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.8...4.1.0-alpha.9) (2025-12-01)
+
+
+### Bug Fixes
+
+* add default implementation ([5d1b39c](https://github.com/gravitee-io/gravitee-gateway-api/commit/5d1b39cff1641580cac9dc65e2ed3f6611229737))
+
 # [4.1.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.7...4.1.0-alpha.8) (2025-12-01)
 
 
