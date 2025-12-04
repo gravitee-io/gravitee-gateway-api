@@ -71,9 +71,10 @@ public interface HttpPlainExecutionContext extends HttpBaseExecutionContext {
      * Registers an action defined during the request phase to be executed later during the response phase.
      * When multiple actions are registered, they are executed in reverse order of registration (LIFO).
      *
-     * @param onResponseCallback the action to be executed during the response phase
+     * @param source the object that initiated the action.
+     * @param onResponseCallback the action to be executed during the response phase, receiving the HTTP execution context and returning a Completable.
      */
-    default void addActionOnResponse(Function<HttpExecutionContext, Completable> onResponseCallback) {
+    default void addActionOnResponse(Object source, Function<HttpExecutionContext, Completable> onResponseCallback) {
         // Nothing is registered by default
     }
 }
