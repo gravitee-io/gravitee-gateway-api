@@ -1,3 +1,10 @@
+# [4.1.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.9...4.1.0-alpha.10) (2025-12-05)
+
+
+### Bug Fixes
+
+* identify the source of the action to execute on response ([9d675f5](https://github.com/gravitee-io/gravitee-gateway-api/commit/9d675f513506137dab8f154480597e35946eb20c))
+
 # [4.1.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.8...4.1.0-alpha.9) (2025-12-01)
 
 
