@@ -1,3 +1,10 @@
+# [4.1.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.10...4.1.0-alpha.11) (2025-12-09)
+
+
+### Features
+
+* add the BaseSecurityPolicy.requireSubscription(BaseExecutionContext context) method ([5309c2a](https://github.com/gravitee-io/gravitee-gateway-api/commit/5309c2abd88fe06cec22b32fe907a4cfef9780bb))
+
 # [4.1.0-alpha.10](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.9...4.1.0-alpha.10) (2025-12-05)
 
 
