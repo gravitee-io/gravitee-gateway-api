@@ -53,6 +53,7 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_VALIDATE_SUBSCRIPTION = "api.validateSubscription";
     public static final String ATTR_INTERNAL_TRACING_ERROR = "message.tracing.error";
     public static final String ATTR_INTERNAL_TRACING_MESSAGE_SPAN = "message.tracing.span";
+    public static final String ATTR_INTERNAL_API_TYPE = "api.type";
 
     /**
      * Adapted ExecutionContext for V3 compatibility.
