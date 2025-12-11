@@ -44,6 +44,7 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_SECURITY_DIAGNOSTIC = "securityChain.diagnostic";
     public static final String ATTR_INTERNAL_ANALYTICS_CONTEXT = "analytics.context";
     public static final String ATTR_INTERNAL_TRACING_ENABLED = "analytics.tracing.enabled";
+    public static final String ATTR_INTERNAL_TRACING_VERBOSE_ENABLED = "analytics.tracing.verbose.enabled";
     public static final String ATTR_INTERNAL_TRACING_ROOT_SPAN = "analytics.tracing.root.span";
     public static final String ATTR_INTERNAL_MESSAGE_EXECUTION_PHASE = "message.execution-phase";
     public static final String ATTR_INTERNAL_MESSAGE_THROWABLE = "message.throwable";
@@ -52,6 +53,7 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_VALIDATE_SUBSCRIPTION = "api.validateSubscription";
     public static final String ATTR_INTERNAL_TRACING_ERROR = "message.tracing.error";
     public static final String ATTR_INTERNAL_TRACING_MESSAGE_SPAN = "message.tracing.span";
+    public static final String ATTR_INTERNAL_API_TYPE = "api.type";
 
     /**
      * Adapted ExecutionContext for V3 compatibility.
@@ -80,4 +82,24 @@ public final class InternalContextAttributes {
      * Attribute used to store the ID of the last message received by the client.
      */
     public static final String ATTR_INTERNAL_MESSAGES_RECOVERY_LAST_ID = "messages.recovery.lastId";
+    /**
+     * <i>Type: string</i> <br/>
+     * Attribute key used to indicate whether a message has been sent to the Dead Letter Queue (DLQ).
+     * This attribute is typically used in message processing scenarios to track messages
+     * that could not be successfully processed and were redirected to a DLQ for further analysis or retry.
+     */
+    public static final String ATTR_INTERNAL_MESSAGE_SENT_TO_DLQ = "message.sent-to-dlq";
+
+    /**
+     * <b>Feature: metrics</b> <br/>
+     * <i>Type: Collection&lt;AdditionalMetrics&gt;</i> <br/>
+     * Attribute used to store additional metrics to be added to the metrics.
+     */
+    public static final String ATTR_INTERNAL_MESSAGE_ADDITIONAL_METRICS = "message.metrics.additional";
+
+    /**
+     * <i>Type: Pattern</i> <br/>
+     * Attribute used to override the content type filtering for reporting.
+     */
+    public static final String ATTR_INTERNAL_OVERRIDE_LOGGABLE_CONTENT_TYPE_PATTERN = "override.loggable.content.type.pattern";
 }

@@ -22,6 +22,7 @@ import io.gravitee.gateway.reactive.api.policy.SecurityToken;
 import io.gravitee.gateway.reactive.api.policy.base.BaseSecurityPolicy;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
 
 /**
  * {@link HttpSecurityPolicy} is a {@link Policy} that can be used for securing a plan that can require a subscription.
@@ -59,5 +60,26 @@ public interface HttpSecurityPolicy extends HttpPolicy, BaseSecurityPolicy {
      */
     default Completable onMessageResponse(final HttpMessageExecutionContext ctx) {
         return Completable.error(new UnsupportedOperationException("onMessageResponse method is not supported by a security policy"));
+    }
+
+    /**
+     * This method is used to add the WWW-Authenticate header when no plan is found for the current API and a 401 error message response is sent
+     * (See the <a href="https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response">Section 5.1 of the RFC 9728</a>).
+     *
+     * @return Single.just(true) if the WWW-Authenticate header is added, Single.just(false) otherwise.
+     */
+    default Single<Boolean> wwwAuthenticate(final HttpPlainExecutionContext ctx) {
+        return Single.just(false);
+    }
+
+    /**
+     * This method should be applied if the current API is called on the "/.well-known/oauth-protected-resource" endpoint to send a response
+     * with the OAuth protected resource metadata JSON (see <a href="https://datatracker.ietf.org/doc/html/rfc9728">RFC 9728</a>)
+     *
+     * @param ctx
+     * @return Single.just(true) if the current call returns the OAuth protected resource metadata JSON, Single.just(false) otherwise.
+     */
+    default Single<Boolean> onWellKnown(final HttpPlainExecutionContext ctx) {
+        return Single.just(false);
     }
 }
