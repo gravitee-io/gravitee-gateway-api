@@ -1,3 +1,10 @@
+# [4.1.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.11...4.1.0-alpha.12) (2025-12-11)
+
+
+### Features
+
+* add A2A Proxy specialized connector interfaces ([188b637](https://github.com/gravitee-io/gravitee-gateway-api/commit/188b637767749436e0b60945badb638a11dbe3ad))
+
 # [4.1.0-alpha.11](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.10...4.1.0-alpha.11) (2025-12-09)
 
 
