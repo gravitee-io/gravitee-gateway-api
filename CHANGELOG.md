@@ -1,3 +1,10 @@
+# [4.1.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.12...4.1.0-alpha.13) (2025-12-11)
+
+
+### Features
+
+* add connection id in KafkaConnectionContext ([e1d6663](https://github.com/gravitee-io/gravitee-gateway-api/commit/e1d66639edefe4f3b78a4cf0872002f191c69538))
+
 # [4.1.0-alpha.12](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.11...4.1.0-alpha.12) (2025-12-11)
 
 
