@@ -1,3 +1,27 @@
+# [4.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.2...4.1.0) (2025-12-12)
+
+
+### Bug Fixes
+
+* add default implementation ([5d1b39c](https://github.com/gravitee-io/gravitee-gateway-api/commit/5d1b39cff1641580cac9dc65e2ed3f6611229737))
+* identify the source of the action to execute on response ([9d675f5](https://github.com/gravitee-io/gravitee-gateway-api/commit/9d675f513506137dab8f154480597e35946eb20c))
+* ignore cause in ExecutionFailure.equals ([935f0d9](https://github.com/gravitee-io/gravitee-gateway-api/commit/935f0d9cde1b1f2e267626c5dafa2113af058a12))
+
+
+### Features
+
+* add A2A Proxy specialized connector interfaces ([188b637](https://github.com/gravitee-io/gravitee-gateway-api/commit/188b637767749436e0b60945badb638a11dbe3ad))
+* add action that will be executed at http request response phase ([68e499c](https://github.com/gravitee-io/gravitee-gateway-api/commit/68e499caaaf608684a3dac4d393f257728e7f304))
+* add additional internal attributes ([dac33f5](https://github.com/gravitee-io/gravitee-gateway-api/commit/dac33f50585941f0ca97206fc165103cc4c15827))
+* add attribute for tracing with verbose ([b949df6](https://github.com/gravitee-io/gravitee-gateway-api/commit/b949df68545c4f375a5ee403f0bf4ebebc308b05))
+* add connection id in KafkaConnectionContext ([e1d6663](https://github.com/gravitee-io/gravitee-gateway-api/commit/e1d66639edefe4f3b78a4cf0872002f191c69538))
+* add llm-proxy api type ([454a365](https://github.com/gravitee-io/gravitee-gateway-api/commit/454a3650b81f541d96ce12e9e36bb3d67e854e81))
+* add mcp-proxy api type ([6ececc5](https://github.com/gravitee-io/gravitee-gateway-api/commit/6ececc5b949f8a280572cfe34b37231389c3c9ee))
+* add the BaseSecurityPolicy.requireSubscription(BaseExecutionContext context) method ([5309c2a](https://github.com/gravitee-io/gravitee-gateway-api/commit/5309c2abd88fe06cec22b32fe907a4cfef9780bb))
+* add the wwwAuthenticate() and onWellKnown() default methods to HttpSecurityPolicy ([7c57b48](https://github.com/gravitee-io/gravitee-gateway-api/commit/7c57b48d82c051b8c8d8b7e88a58818f5deeae8e))
+* create a new internal attribute to override Content-Type filtering in logs ([4af927b](https://github.com/gravitee-io/gravitee-gateway-api/commit/4af927b5c93fc4be6ed2a06462895a8f42a2c40c))
+* create new LLM proxy interfaces ([69f5b88](https://github.com/gravitee-io/gravitee-gateway-api/commit/69f5b88c22211dbbbdca3c9635cf1d298043ee0d))
+
 # [4.1.0-alpha.13](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0-alpha.12...4.1.0-alpha.13) (2025-12-11)
 
 
