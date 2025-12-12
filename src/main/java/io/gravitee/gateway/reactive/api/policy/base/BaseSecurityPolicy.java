@@ -15,6 +15,8 @@
  */
 package io.gravitee.gateway.reactive.api.policy.base;
 
+import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
+
 /**
  *
  * {@link BaseSecurityPolicy} is a base that can be used for securing declaring a security policy.
@@ -39,6 +41,16 @@ public interface BaseSecurityPolicy extends BasePolicy {
      */
     default boolean requireSubscription() {
         return false;
+    }
+
+    /**
+     * Security policy can be used together with a plan that requires a subscription.
+     * By enabling the subscription requirement, the gateway will automatically validate the subscription associated with the current request and reject the request if the subscription is invalid.
+     *
+     * @return <code>true</code> to indicates to check the subscription after the security policy has been successfully executed, <code>false</code> else.
+     */
+    default boolean requireSubscription(BaseExecutionContext context) {
+        return requireSubscription();
     }
 
     /**

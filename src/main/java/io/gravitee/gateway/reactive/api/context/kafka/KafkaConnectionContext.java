@@ -28,6 +28,12 @@ import org.apache.kafka.common.security.auth.KafkaPrincipal;
  */
 public interface KafkaConnectionContext extends NativeExecutionContext {
     /**
+     * Access the connection id.
+     * @return the connection id.
+     */
+    String id();
+
+    /**
      * Access the array of {@link Callback} exchanged during connection. This can be used by a kafka security policy to extract a security token and to authenticate the connection.
      * @return an array of {@link Callback}
      */
