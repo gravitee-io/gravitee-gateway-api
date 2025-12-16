@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0...4.2.0) (2025-12-16)
+
+
+### Features
+
+* add the request original url attribute key ([e67f19e](https://github.com/gravitee-io/gravitee-gateway-api/commit/e67f19e8fe0987ea9a48eede8ff01a20f5620b04))
+
 # [4.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.2...4.1.0) (2025-12-12)
 
 
