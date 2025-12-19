@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.service.dlq;
 
+import io.gravitee.gateway.reactive.api.context.ExecutionContext;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.rxjava3.core.Flowable;
 import java.util.concurrent.Flow;
@@ -35,5 +36,5 @@ public interface DlqService {
      *
      * @return the original flow of messages, so it can be chained easily.
      */
-    Flowable<Message> apply(Flowable<Message> messages);
+    Flowable<Message> apply(Flowable<Message> messages, ExecutionContext executionContext);
 }
