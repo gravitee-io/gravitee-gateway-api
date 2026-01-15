@@ -16,7 +16,6 @@
 package io.gravitee.gateway.reactive.api.connector.entrypoint.async;
 
 import io.gravitee.common.service.AbstractService;
-import io.gravitee.common.utils.RxHelper;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.reactive.api.ApiType;
 import io.gravitee.gateway.reactive.api.connector.Connector;
@@ -25,6 +24,7 @@ import io.gravitee.gateway.reactive.api.connector.entrypoint.HttpEntrypointConne
 import io.gravitee.gateway.reactive.api.message.DefaultMessage;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.gravitee.gateway.reactive.api.qos.QosRequirement;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableTransformer;
 import io.reactivex.rxjava3.exceptions.UndeliverableException;
 import io.reactivex.rxjava3.processors.BehaviorProcessor;
@@ -84,6 +84,19 @@ public abstract class HttpEntrypointAsyncConnector
     }
 
     protected FlowableTransformer<Message, Message> applyStopHook() {
-        return RxHelper.mergeWithFirst(stopHook);
+        final BehaviorProcessor<Message> currentStopHook = stopHook;
+
+        return upstream ->
+            upstream
+                .takeUntil(currentStopHook)
+                .concatWith(
+                    Flowable.defer(() -> {
+                        if (currentStopHook.hasValue()) {
+                            return currentStopHook;
+                        }
+
+                        return Flowable.empty();
+                    })
+                );
     }
 }
