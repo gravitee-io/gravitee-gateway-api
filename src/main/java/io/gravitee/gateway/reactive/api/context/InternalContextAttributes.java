@@ -102,4 +102,10 @@ public final class InternalContextAttributes {
      * Attribute used to override the content type filtering for reporting.
      */
     public static final String ATTR_INTERNAL_OVERRIDE_LOGGABLE_CONTENT_TYPE_PATTERN = "override.loggable.content.type.pattern";
+
+    /**
+     * <i>Type: String</i> <br/>
+     * Attribute used to store the server ID related to the current request.
+     */
+    public static final String ATTR_INTERNAL_SERVER_ID = "serverId";
 }
