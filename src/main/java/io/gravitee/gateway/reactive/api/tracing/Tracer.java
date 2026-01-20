@@ -16,18 +16,15 @@
 package io.gravitee.gateway.reactive.api.tracing;
 
 import io.gravitee.node.api.opentelemetry.Span;
-import io.opentelemetry.context.propagation.TextMapSetter;
 import io.vertx.core.Context;
 import java.util.function.BiConsumer;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Guillaume LAMIRAND (guillaume.lamirand at graviteesource.com)
  * @author GraviteeSource Team
  */
 @RequiredArgsConstructor
-@Slf4j
 public class Tracer {
 
     private final Context vertxContext;
