@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.net.ssl.SSLSession;
+import org.slf4j.Logger;
 
 /**
  * Base interface any execution context interface can inherit from.
@@ -208,4 +209,14 @@ public interface BaseExecutionContext {
      * The warning will be stored and can be accessed later through metrics.
      */
     void warnWith(final ExecutionWarn warn);
+
+    /**
+     * Allows the delegation of logging operations to a specified {@link Logger}.
+     *
+     * @param delegate the {@link Logger} instance to be used for delegating logging operations.
+     * @return the provided {@link Logger} instance.
+     */
+    default Logger withLogger(Logger delegate) {
+        return delegate;
+    }
 }
