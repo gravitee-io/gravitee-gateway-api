@@ -46,6 +46,7 @@ public final class ContextAttributes {
     public static final String ATTR_APPLICATION = ATTR_PREFIX + "application";
     public static final String ATTR_RESOLVED_PATH = ATTR_PREFIX + "resolved-path";
     public static final String ATTR_CONTEXT_PATH = ATTR_PREFIX + "context-path";
+    public static final String ATTR_SNI = ATTR_PREFIX + "sni";
 
     public static final String ATTR_MAPPED_PATH = ATTR_PREFIX + "mapped-path";
 }
