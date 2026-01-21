@@ -1,3 +1,12 @@
+# [4.3.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.2.0...4.3.0-alpha.1) (2026-01-21)
+
+
+### Features
+
+* add new context attributes ([c768279](https://github.com/gravitee-io/gravitee-gateway-api/commit/c768279c01aa71fcdc5479ecd3432d5980448f31))
+* add withLogger method to BaseExecutionContext ([44a830e](https://github.com/gravitee-io/gravitee-gateway-api/commit/44a830e0b22ab2e294985282ae2613c73debba98))
+* introduce AbstractBaseExecutionContextAwareLogger for rich logging ([45d8980](https://github.com/gravitee-io/gravitee-gateway-api/commit/45d8980f205b833193b313dd8befb3780b6ff6c2))
+
 # [4.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0...4.2.0) (2025-12-16)
 
 
