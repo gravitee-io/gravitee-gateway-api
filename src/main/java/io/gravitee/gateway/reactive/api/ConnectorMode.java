@@ -32,7 +32,9 @@ public enum ConnectorMode {
     SUBSCRIBE("subscribe"),
     PUBLISH("publish"),
     REQUEST_RESPONSE("request_response"),
-    SOCKET("socket");
+    SOCKET("socket"),
+    ENTRYPOINT_CONNECT("entrypoint_connect"),
+    ENDPOINT_CONNECT("endpoint_connect");
 
     private static final Map<String, ConnectorMode> LABELS_MAP = Map.of(
         CONNECT.label,
@@ -46,7 +48,11 @@ public enum ConnectorMode {
         REQUEST_RESPONSE.label,
         REQUEST_RESPONSE,
         SOCKET.label,
-        SOCKET
+        SOCKET,
+        ENTRYPOINT_CONNECT.label,
+        ENTRYPOINT_CONNECT,
+        ENDPOINT_CONNECT.label,
+        ENDPOINT_CONNECT
     );
 
     @JsonValue
