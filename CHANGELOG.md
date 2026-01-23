@@ -1,3 +1,10 @@
+# [4.3.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.1...4.3.0-alpha.2) (2026-01-23)
+
+
+### Features
+
+* introduce ExecutionContextLazyLogger for lazy initialization of logging ([0d3afce](https://github.com/gravitee-io/gravitee-gateway-api/commit/0d3afce1bef4cd0d2dcb9eeb687db74c800cb92b))
+
 # [4.3.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.2.0...4.3.0-alpha.1) (2026-01-21)
 
 
