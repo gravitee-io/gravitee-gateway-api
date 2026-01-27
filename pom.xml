@@ -33,13 +33,12 @@
     <name>Gravitee.io APIM - Gateway - API</name>
 
     <properties>
-        <gravitee-bom.version>8.3.47</gravitee-bom.version>
-        <gravitee-node.version>8.0.1</gravitee-node.version>
+        <gravitee-bom.version>9.0.0-alpha.2</gravitee-bom.version>
+        <gravitee-node.version>9.0.0-alpha.1</gravitee-node.version>
         <gravitee-common.version>4.9.0</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-reporter-api.version>1.31.2</gravitee-reporter-api.version>
         <gravitee-expression-language.version>3.2.1</gravitee-expression-language.version>
-        <gravitee-apim-gateway-buffer.version>3.20.32</gravitee-apim-gateway-buffer.version>
 
         <bouncycastle.version>1.80</bouncycastle.version>
         <json-smart.version>2.5.2</json-smart.version>
@@ -166,12 +165,6 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.gravitee.apim.gateway</groupId>
-            <artifactId>gravitee-apim-gateway-buffer</artifactId>
-            <version>${gravitee-apim-gateway-buffer.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
