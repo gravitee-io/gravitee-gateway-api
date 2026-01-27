@@ -49,16 +49,6 @@ public interface Buffer {
     }
 
     /**
-     * Creates a buffer from a vertx {@link io.vertx.rxjava3.core.buffer.Buffer}.
-     *
-     * @return the newly created buffer.
-     * @see #buffer(ByteBuf)
-     */
-    static Buffer buffer(io.vertx.rxjava3.core.buffer.Buffer vertxBuffer) {
-        return factory.buffer(vertxBuffer.getDelegate());
-    }
-
-    /**
      * Creates a buffer from a netty {@link ByteBuf}.
      *
      * @return the newly created buffer.
@@ -83,14 +73,12 @@ public interface Buffer {
      * When creating a {@link Buffer} with the content of another one, it is recommended to use one of the alternative methods:
      * <ul>
      *     <li>{@link #buffer(io.vertx.core.buffer.Buffer)}</li>
-     *     <li>{@link #buffer(io.vertx.reactivex.core.buffer.Buffer)}</li>
      *     <li>{@link #buffer(ByteBuf)}</li>
      * </ul>
      *
      * @return the newly created buffer.
      * @see #buffer(ByteBuf)
      * @see #buffer(io.vertx.core.buffer.Buffer)
-     * @see #buffer(io.vertx.reactivex.core.buffer.Buffer)
      */
     static Buffer buffer(String string) {
         return factory.buffer(string);
@@ -103,7 +91,6 @@ public interface Buffer {
      * @see #buffer(String)
      * @see #buffer(ByteBuf)
      * @see #buffer(io.vertx.core.buffer.Buffer)
-     * @see #buffer(io.vertx.reactivex.core.buffer.Buffer)
      */
     static Buffer buffer(String string, String charset) {
         return factory.buffer(string, charset);
@@ -116,14 +103,12 @@ public interface Buffer {
      * When creating a {@link Buffer} with the content of another one, it is recommended to use one of the alternative methods:
      * <ul>
      *     <li>{@link #buffer(io.vertx.core.buffer.Buffer)}</li>
-     *     <li>{@link #buffer(io.vertx.reactivex.core.buffer.Buffer)}</li>
      *     <li>{@link #buffer(ByteBuf)}</li>
      * </ul>
      *
      * @return the newly created buffer.
      * @see #buffer(ByteBuf)
      * @see #buffer(io.vertx.core.buffer.Buffer)
-     * @see #buffer(io.vertx.reactivex.core.buffer.Buffer)
      */
     static Buffer buffer(byte[] bytes) {
         return factory.buffer(bytes);
