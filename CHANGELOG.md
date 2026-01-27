@@ -1,3 +1,10 @@
+# [4.3.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.2...4.3.0-alpha.3) (2026-01-27)
+
+
+### Features
+
+* add client and endpoint connect phases for native kafka apis ([0dfc433](https://github.com/gravitee-io/gravitee-gateway-api/commit/0dfc4337118fa387c4bbddcd8bcbcf7187522ae5))
+
 # [4.3.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.1...4.3.0-alpha.2) (2026-01-23)
 
 
