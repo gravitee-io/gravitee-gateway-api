@@ -102,7 +102,44 @@ public enum ExecutionPhase {
      *
      * </pre>
      */
-    MESSAGE_RESPONSE("message_response");
+    MESSAGE_RESPONSE("message_response"),
+
+    /**
+     * This phase represents the actions occurring after a client connection is accepted by the gateway,
+     * before any authentication or message processing begins.
+     *
+     * <pre>
+     *                                          ______________________________
+     *      ______________     TCP connect      |            GATEWAY           |
+     *     |              |   ------------->   |                              |
+     *     |  DOWNSTREAM  |                    |  -- ENTRYPOINT_CONNECT ----> |
+     *     |   (client)   |                    |  (before auth & upstream)    |
+     *     |______________|                    |______________________________|
+     *
+     * </pre>
+     *
+     * For Native Kafka APIs, this represents policies executed after the gateway accepts a TCP session
+     * but before authentication and before any upstream connection is established.
+     */
+    ENTRYPOINT_CONNECT("entrypoint_connect"),
+
+    /**
+     * This phase represents the actions occurring just before the gateway establishes a connection to the upstream endpoint.
+     *
+     * <pre>
+     *                                          ______________________________                     ______________
+     *      ______________                     |            GATEWAY           |   will connect    |              |
+     *     |              |                    |                              |   ------------>   |   UPSTREAM   |
+     *     |  DOWNSTREAM  |                    |  ---- ENDPOINT_CONNECT ----> |                   |  (endpoint)  |
+     *     |   (client)   |                    |  (after auth, before conn)   |                   |______________|
+     *     |______________|                    |______________________________|
+     *
+     * </pre>
+     *
+     * For Native Kafka APIs, this represents policies executed after client authentication
+     * and plan selection, but just before connecting to the upstream Kafka cluster.
+     */
+    ENDPOINT_CONNECT("endpoint_connect");
 
     private final String label;
 
