@@ -102,7 +102,14 @@ public enum ExecutionPhase {
      *
      * </pre>
      */
-    MESSAGE_RESPONSE("message_response");
+    MESSAGE_RESPONSE("message_response"),
+
+    /**
+     * This phase represents the actions occurring just after the connection has
+     * been accepted resulting on the creation of a protocol-specific connection or socket.
+     * It allows interacting with the connection before any real protocol processing starts.
+     */
+    ENTRYPOINT_CONNECT("entrypoint_connect");
 
     private final String label;
 
