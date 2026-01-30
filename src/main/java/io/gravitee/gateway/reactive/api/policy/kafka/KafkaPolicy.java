@@ -28,6 +28,8 @@ import io.reactivex.rxjava3.core.Completable;
  * In the case of records from ProduceRequest and FetchResponse.
  * The implemented methods will be called depending on the execution phase:
  * <ul>
+ *     <li>{@link ExecutionPhase#ENTRYPOINT_CONNECT}: {@link #onEntrypointConnect(KafkaConnectionContext)}</li>
+ *     <li>{@link ExecutionPhase#ENDPOINT_CONNECT}: {@link #onEndpointConnect(KafkaConnectionContext)}</li>
  *     <li>{@link ExecutionPhase#REQUEST}: {@link #onRequest(KafkaExecutionContext)}</li>
  *     <li>{@link ExecutionPhase#RESPONSE}: {@link #onResponse(KafkaExecutionContext)}</li>
  *     <li>{@link ExecutionPhase#MESSAGE_REQUEST}: {@link #onMessageRequest(KafkaMessageExecutionContext)}. Flow of messages is derived from Kakfa ProduceRequest data.</li>
@@ -46,6 +48,34 @@ public interface KafkaPolicy extends BasePolicy {
      * @return a {@link Completable} that must complete when all the actions have been performed.
      */
     default Completable onInitialize(final KafkaConnectionContext ctx) {
+        return Completable.complete();
+    }
+
+    /**
+     * Define the actions to perform during the {@link ExecutionPhase#ENTRYPOINT_CONNECT} phase.
+     * This phase executes after the client TCP connection is accepted but before any Kafka protocol handshake.
+     * The <code>onEntrypointConnect(KafkaConnectionContext)</code> method will be called during the policy chain construction.
+     * Once built, the subscription occurs and the execution is triggered.
+     * It is important that <b>nothing must be executed before the subscription occurs</b> as it could lead to important side effects.
+     *
+     * @param ctx the current connection context allowing to access the connection attributes.
+     * @return a {@link Completable} that must complete when all the actions have been performed.
+     */
+    default Completable onEntrypointConnect(final KafkaConnectionContext ctx) {
+        return Completable.complete();
+    }
+
+    /**
+     * Define the actions to perform during the {@link ExecutionPhase#ENDPOINT_CONNECT} phase.
+     * This phase executes just before the gateway establishes the upstream connection to the Kafka broker.
+     * The <code>onEndpointConnect(KafkaConnectionContext)</code> method will be called during the policy chain construction.
+     * Once built, the subscription occurs and the execution is triggered.
+     * It is important that <b>nothing must be executed before the subscription occurs</b> as it could lead to important side effects.
+     *
+     * @param ctx the current connection context allowing to access the connection attributes.
+     * @return a {@link Completable} that must complete when all the actions have been performed.
+     */
+    default Completable onEndpointConnect(final KafkaConnectionContext ctx) {
         return Completable.complete();
     }
 
