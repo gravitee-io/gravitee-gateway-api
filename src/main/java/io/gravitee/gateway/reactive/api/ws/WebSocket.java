@@ -42,6 +42,18 @@ public interface WebSocket {
     Completable write(Buffer buffer);
 
     /**
+     * Writes the provided buffer to the websocket as a text frame.
+     * Default implementation does nothing and completes immediately.
+     *
+     * @param buffer the buffer containing the text data to write.
+     *
+     * @return a {@link Completable} that completes once the text frame has been written.
+     */
+    default Completable writeTextFrame(Buffer buffer) {
+        return Completable.complete();
+    }
+
+    /**
      * Writes a ping frame to the connection.
      * <p>
      * This method should only be used for implementing a keep alive or to ensure the client is still responsive,
