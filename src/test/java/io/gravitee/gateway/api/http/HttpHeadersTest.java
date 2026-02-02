@@ -44,8 +44,7 @@ public class HttpHeadersTest {
     private static Stream<Arguments> provideHttpHeadersDataForDeeplyEqualsTest() {
         return Stream.of(
             Arguments.of(
-                HttpHeaders
-                    .create()
+                HttpHeaders.create()
                     .add((CharSequence) "Host", "test.gravitee.io")
                     .add("Accept", List.of("application/json", "application/json+vnd")),
                 HttpHeaders.create().add("Host", "test.gravitee.io").add("Accept", List.of("application/json", "application/json+vnd")),
@@ -72,8 +71,7 @@ public class HttpHeadersTest {
             ),
             Arguments.of(
                 HttpHeaders.create().add("Host", "test.gravitee.io").add("Accept", List.of("application/json", "application/json+vnd")),
-                HttpHeaders
-                    .create()
+                HttpHeaders.create()
                     .add("Host", "test.gravitee.io")
                     .add("X-Not-Expected-Header", List.of("application/json", "application/json+vnd")),
                 false,
@@ -91,8 +89,7 @@ public class HttpHeadersTest {
 
     @Test
     public void shouldReturnListValuesMap() {
-        final HttpHeaders headers = HttpHeaders
-            .create()
+        final HttpHeaders headers = HttpHeaders.create()
             .add("transfer-encoding", "chunked")
             .add("X-Gravitee-Transaction-Id", "transaction-id")
             .add("content-type", "application/json")
