@@ -44,9 +44,8 @@ class PluginConfigurationHelperTest {
     @Test
     @DisplayName("getConnectorConfiguration should throw PluginConfigurationException when configuration is invalid")
     void shouldThrowPluginConfigurationExceptionWithInvalidConfiguration() {
-        assertThrows(
-            PluginConfigurationException.class,
-            () -> pluginConfigurationHelper.readConfiguration(TestConfiguration.class, "THIS IS INVALID JSON")
+        assertThrows(PluginConfigurationException.class, () ->
+            pluginConfigurationHelper.readConfiguration(TestConfiguration.class, "THIS IS INVALID JSON")
         );
     }
 

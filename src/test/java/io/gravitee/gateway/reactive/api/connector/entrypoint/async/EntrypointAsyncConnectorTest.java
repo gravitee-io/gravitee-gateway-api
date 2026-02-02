@@ -36,9 +36,9 @@ class EntrypointAsyncConnectorTest {
     @Test
     void should_emit_stop_message() throws Exception {
         final TestScheduler testScheduler = new TestScheduler();
-        final Flowable<DefaultMessage> messages = Flowable
-            .interval(10, TimeUnit.MILLISECONDS, testScheduler)
-            .map(i -> DefaultMessage.builder().build());
+        final Flowable<DefaultMessage> messages = Flowable.interval(10, TimeUnit.MILLISECONDS, testScheduler).map(i ->
+            DefaultMessage.builder().build()
+        );
         final TestSubscriber<Message> obs = messages.compose(cut.applyStopHook()).test();
 
         obs.assertNotComplete();
@@ -56,9 +56,9 @@ class EntrypointAsyncConnectorTest {
     @Test
     void should_not_emit_stop_message_when_already_cancelled() throws Exception {
         final TestScheduler testScheduler = new TestScheduler();
-        final Flowable<DefaultMessage> messages = Flowable
-            .interval(10, TimeUnit.MILLISECONDS, testScheduler)
-            .map(i -> DefaultMessage.builder().build());
+        final Flowable<DefaultMessage> messages = Flowable.interval(10, TimeUnit.MILLISECONDS, testScheduler).map(i ->
+            DefaultMessage.builder().build()
+        );
         final TestSubscriber<Message> obs = messages.compose(cut.applyStopHook()).test();
 
         obs.assertNotComplete();
