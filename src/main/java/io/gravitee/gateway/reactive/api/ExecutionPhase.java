@@ -102,7 +102,23 @@ public enum ExecutionPhase {
      *
      * </pre>
      */
-    MESSAGE_RESPONSE("message_response");
+    MESSAGE_RESPONSE("message_response"),
+
+    /**
+     * This phase represents the actions occurring when a client connects to the entrypoint, before any authentication or message flow.
+     * This phase is only applicable to Native Kafka APIs.
+     *
+     * <pre>
+     *                                          ______________________________
+     *      ______________                     |            GATEWAY           |
+     *     |              |    connection      |                              |
+     *     |  DOWNSTREAM  |   ------------->   |  --- ENTRYPOINT_CONNECT ---> |
+     *     |   (client)   |                    |                              |
+     *     |______________|                    |______________________________|
+     *
+     * </pre>
+     */
+    ENTRYPOINT_CONNECT("entrypoint_connect");
 
     private final String label;
 
