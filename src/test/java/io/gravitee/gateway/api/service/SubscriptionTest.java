@@ -27,8 +27,7 @@ public class SubscriptionTest {
 
     @Test
     void isTimeValid_should_return_false_cause_not_yet_started() {
-        Subscription subscription = Subscription
-            .builder()
+        Subscription subscription = Subscription.builder()
             .startingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)))
             .endingAt(Date.from(Instant.now().plus(2, ChronoUnit.DAYS)))
             .build();
@@ -37,8 +36,7 @@ public class SubscriptionTest {
 
     @Test
     void isTimeValid_should_return_false_cause_already_expired() {
-        Subscription subscription = Subscription
-            .builder()
+        Subscription subscription = Subscription.builder()
             .startingAt(Date.from(Instant.now().minus(2, ChronoUnit.DAYS)))
             .endingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS)))
             .build();
@@ -48,8 +46,7 @@ public class SubscriptionTest {
 
     @Test
     void isTimeValid_should_return_true_cause_between_start_and_end() {
-        Subscription subscription = Subscription
-            .builder()
+        Subscription subscription = Subscription.builder()
             .startingAt(Date.from(Instant.now().minus(1, ChronoUnit.DAYS)))
             .endingAt(Date.from(Instant.now().plus(1, ChronoUnit.DAYS)))
             .build();

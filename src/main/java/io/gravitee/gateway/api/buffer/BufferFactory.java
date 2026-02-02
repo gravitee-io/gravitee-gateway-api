@@ -26,8 +26,6 @@ public interface BufferFactory {
 
     Buffer buffer(io.vertx.core.buffer.Buffer vertxBuffer);
 
-    Buffer buffer(io.vertx.rxjava3.core.buffer.Buffer vertxBuffer);
-
     Buffer buffer(int initialSizeHint);
 
     Buffer buffer();
