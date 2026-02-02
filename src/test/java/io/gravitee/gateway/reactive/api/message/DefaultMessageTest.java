@@ -140,8 +140,9 @@ class DefaultMessageTest {
         final DefaultMessage cut = DefaultMessage.builder().metadata(metadata).sourceTimestamp(twoDaysAgo).build();
 
         assertThat(cut.metadata()).contains(entry(DefaultMessage.SOURCE_TIMESTAMP, twoDaysAgo));
-        assertThatThrownBy(() -> cut.metadata().put("forbidden", "cannot add because unmodifiable map"))
-            .isInstanceOf(UnsupportedOperationException.class);
+        assertThatThrownBy(() -> cut.metadata().put("forbidden", "cannot add because unmodifiable map")).isInstanceOf(
+            UnsupportedOperationException.class
+        );
     }
 
     @Test
@@ -153,7 +154,8 @@ class DefaultMessageTest {
         final DefaultMessage cut = DefaultMessage.builder().timestamp(messageTimestamp).metadata(metadata).build();
 
         assertThat(cut.metadata()).contains(entry(DefaultMessage.SOURCE_TIMESTAMP, cut.timestamp()));
-        assertThatThrownBy(() -> cut.metadata().put("forbidden", "cannot add because unmodifiable map"))
-            .isInstanceOf(UnsupportedOperationException.class);
+        assertThatThrownBy(() -> cut.metadata().put("forbidden", "cannot add because unmodifiable map")).isInstanceOf(
+            UnsupportedOperationException.class
+        );
     }
 }
