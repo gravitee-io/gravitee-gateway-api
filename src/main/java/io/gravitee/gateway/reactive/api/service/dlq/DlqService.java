@@ -15,9 +15,9 @@
  */
 package io.gravitee.gateway.reactive.api.service.dlq;
 
+import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
 import io.gravitee.gateway.reactive.api.message.Message;
 import io.reactivex.rxjava3.core.Flowable;
-import java.util.concurrent.Flow;
 
 /**
  * Allows applying behavior on a flow of messages in order to filter messages in error and send them ot a Dead Letter Queue.
@@ -32,8 +32,8 @@ public interface DlqService {
      * (ex: message in error, message matching a particular condition, ..).
      *
      * @param messages the incoming flow of messages.
-     *
+     * @param ctx the execution context for EL evaluation.
      * @return the original flow of messages, so it can be chained easily.
      */
-    Flowable<Message> apply(Flowable<Message> messages);
+    Flowable<Message> apply(Flowable<Message> messages, HttpExecutionContext ctx);
 }
