@@ -16,7 +16,7 @@
 package io.gravitee.gateway.reactive.api.context;
 
 import io.gravitee.gateway.reactive.api.context.base.NativeExecutionContext;
-import io.reactivex.rxjava3.core.Completable;
+import io.gravitee.gateway.reactive.api.exception.InterruptConnectionException;
 
 /**
  * Context for the entrypoint connect phase in Native APIs.
@@ -31,10 +31,13 @@ import io.reactivex.rxjava3.core.Completable;
  */
 public interface EntrypointConnectContext extends NativeExecutionContext {
     /**
-     * Interrupts the connection by closing the socket.
-     * This method can be called by policies to reject a connection during the entrypoint connect phase.
+     * Interrupts the connection by throwing an exception.
+     * This method should be called by policies to reject a connection during the entrypoint connect phase.
+     * The reactor will catch the {@link InterruptConnectionException} and handle the connection interruption,
+     * typically by closing the socket.
      *
-     * @return a {@link Completable} that completes when the connection has been interrupted.
+     * @param reason the reason for interrupting the connection
+     * @throws InterruptConnectionException always throws this exception to signal connection interruption
      */
-    Completable interrupt();
+    void interrupt(String reason) throws InterruptConnectionException;
 }
