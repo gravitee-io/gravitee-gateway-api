@@ -19,7 +19,7 @@ import io.gravitee.gateway.reactive.api.ExecutionPhase;
 import io.gravitee.gateway.reactive.api.context.kafka.KafkaConnectionContext;
 import io.gravitee.gateway.reactive.api.context.kafka.KafkaExecutionContext;
 import io.gravitee.gateway.reactive.api.context.kafka.KafkaMessageExecutionContext;
-import io.gravitee.gateway.reactive.api.policy.base.BasePolicy;
+import io.gravitee.gateway.reactive.api.policy.NativePolicy;
 import io.reactivex.rxjava3.core.Completable;
 
 /**
@@ -28,6 +28,7 @@ import io.reactivex.rxjava3.core.Completable;
  * In the case of records from ProduceRequest and FetchResponse.
  * The implemented methods will be called depending on the execution phase:
  * <ul>
+ *     <li>{@link ExecutionPhase#ENTRYPOINT_CONNECT}: {@link #onEntrypointConnect(io.gravitee.gateway.reactive.api.context.EntrypointConnectContext)}</li>
  *     <li>{@link ExecutionPhase#REQUEST}: {@link #onRequest(KafkaExecutionContext)}</li>
  *     <li>{@link ExecutionPhase#RESPONSE}: {@link #onResponse(KafkaExecutionContext)}</li>
  *     <li>{@link ExecutionPhase#MESSAGE_REQUEST}: {@link #onMessageRequest(KafkaMessageExecutionContext)}. Flow of messages is derived from Kakfa ProduceRequest data.</li>
@@ -37,7 +38,7 @@ import io.reactivex.rxjava3.core.Completable;
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface KafkaPolicy extends BasePolicy {
+public interface KafkaPolicy extends NativePolicy {
     /**
      * Define the actions to perform once api is deployed and the connection is established.
      * The <code>onInitialize(KafkaConnectionContext)</code> method will be called once before any policy chain construction.
