@@ -1,3 +1,10 @@
+# [4.3.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.4...4.3.0-alpha.5) (2026-02-09)
+
+
+### Features
+
+* add InterruptConnectionException and update EntrypointConnectContext ([7c99d0d](https://github.com/gravitee-io/gravitee-gateway-api/commit/7c99d0d12175312022805fdc3bb67f6982c3b3e4))
+
 # [4.3.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.3...4.3.0-alpha.4) (2026-02-03)
 
 
