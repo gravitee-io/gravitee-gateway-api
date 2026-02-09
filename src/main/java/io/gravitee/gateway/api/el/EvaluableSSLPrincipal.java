@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.api.el;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.gravitee.common.util.LinkedCaseInsensitiveMultiValueMap;
 import io.gravitee.common.util.MultiValueMap;
 import java.security.Principal;
@@ -62,146 +63,182 @@ public class EvaluableSSLPrincipal {
     /*
      * Default attributes available in X509 SSLSession
      */
+    @JsonProperty
     public String getBusinessCategory() {
         return readFirstRDNByType(BCStyle.BUSINESS_CATEGORY);
     }
 
+    @JsonProperty
     public String getC() {
         return readFirstRDNByType(BCStyle.C);
     }
 
+    @JsonProperty
     public String getCn() {
         return readFirstRDNByType(BCStyle.CN);
     }
 
+    @JsonProperty
     public String getCountryOfCitizenship() {
         return readFirstRDNByType(BCStyle.COUNTRY_OF_CITIZENSHIP);
     }
 
+    @JsonProperty
     public String getCountryOfResidence() {
         return readFirstRDNByType(BCStyle.COUNTRY_OF_RESIDENCE);
     }
 
+    @JsonProperty
     public String getDateOfBirth() {
         return readFirstRDNByType(BCStyle.DATE_OF_BIRTH);
     }
 
+    @JsonProperty
     public String getDc() {
         return readFirstRDNByType(BCStyle.DC);
     }
 
+    @JsonProperty
     public String getDescription() {
         return readFirstRDNByType(BCStyle.DESCRIPTION);
     }
 
+    @JsonProperty
     public String getDmdName() {
         return readFirstRDNByType(BCStyle.DMD_NAME);
     }
 
+    @JsonProperty
     public String getDnQualifier() {
         return readFirstRDNByType(BCStyle.DN_QUALIFIER);
     }
 
+    @JsonProperty
     public String getE() {
         return readFirstRDNByType(BCStyle.E);
     }
 
+    @JsonProperty
     public String getEmailAddress() {
         return readFirstRDNByType(BCStyle.EmailAddress);
     }
 
+    @JsonProperty
     public String getGender() {
         return readFirstRDNByType(BCStyle.GENDER);
     }
 
+    @JsonProperty
     public String getGeneration() {
         return readFirstRDNByType(BCStyle.GENERATION);
     }
 
+    @JsonProperty
     public String getGivenname() {
         return readFirstRDNByType(BCStyle.GIVENNAME);
     }
 
+    @JsonProperty
     public String getInitials() {
         return readFirstRDNByType(BCStyle.INITIALS);
     }
 
+    @JsonProperty
     public String getL() {
         return readFirstRDNByType(BCStyle.L);
     }
 
+    @JsonProperty
     public String getName() {
         return readFirstRDNByType(BCStyle.NAME);
     }
 
+    @JsonProperty
     public String getNameAtBirth() {
         return readFirstRDNByType(BCStyle.NAME_AT_BIRTH);
     }
 
+    @JsonProperty
     public String getO() {
         return readFirstRDNByType(BCStyle.O);
     }
 
+    @JsonProperty
     public String getOrganizationIdentifier() {
         return readFirstRDNByType(BCStyle.ORGANIZATION_IDENTIFIER);
     }
 
+    @JsonProperty
     public String getOu() {
         return readFirstRDNByType(BCStyle.OU);
     }
 
+    @JsonProperty
     public String getPlaceOfBirth() {
         return readFirstRDNByType(BCStyle.PLACE_OF_BIRTH);
     }
 
+    @JsonProperty
     public String getPostalAddress() {
         return readFirstRDNByType(BCStyle.POSTAL_ADDRESS);
     }
 
+    @JsonProperty
     public String getPostalCode() {
         return readFirstRDNByType(BCStyle.POSTAL_CODE);
     }
 
+    @JsonProperty
     public String getPseudonym() {
         return readFirstRDNByType(BCStyle.PSEUDONYM);
     }
 
+    @JsonProperty
     public String getRole() {
         return readFirstRDNByType(BCStyle.ROLE);
     }
 
+    @JsonProperty
     public String getSerialnumber() {
         return readFirstRDNByType(BCStyle.SERIALNUMBER);
     }
 
+    @JsonProperty
     public String getSt() {
         return readFirstRDNByType(BCStyle.ST);
     }
 
+    @JsonProperty
     public String getStreet() {
         return readFirstRDNByType(BCStyle.STREET);
     }
 
+    @JsonProperty
     public String getSurname() {
         return readFirstRDNByType(BCStyle.SURNAME);
     }
 
+    @JsonProperty
     public String getT() {
         return readFirstRDNByType(BCStyle.T);
     }
 
+    @JsonProperty
     public String getTelephoneNumber() {
         return readFirstRDNByType(BCStyle.TELEPHONE_NUMBER);
     }
 
+    @JsonProperty
     public String getUid() {
         return readFirstRDNByType(BCStyle.UID);
     }
 
+    @JsonProperty
     public String getUniqueIdentifier() {
         return readFirstRDNByType(BCStyle.UNIQUE_IDENTIFIER);
     }
 
+    @JsonProperty
     public String getUnstructuredAddress() {
         return readFirstRDNByType(BCStyle.UnstructuredAddress);
     }
@@ -209,6 +246,7 @@ public class EvaluableSSLPrincipal {
     /*
      * Other getters
      */
+    @JsonProperty
     public String getDn() {
         return principal.getName();
     }
@@ -218,6 +256,7 @@ public class EvaluableSSLPrincipal {
      * The value returned is always an array of String
      * @return a case insensitive MultiValueMap of all available attributes. Meaning that, if "key" is an existing key, then getAttributes().get("KEY") returns the same value
      */
+    @JsonProperty
     public MultiValueMap<String, String> getAttributes() {
         if (attributes == null) {
             attributes = computeSSLAttributes();
