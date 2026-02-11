@@ -1,3 +1,15 @@
+# [5.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.5...5.0.0-alpha.1) (2026-02-11)
+
+
+### Code Refactoring
+
+* remove unused CONNECT phase ([6ee9db0](https://github.com/gravitee-io/gravitee-gateway-api/commit/6ee9db0115217bf632ce7630cde0617e714bc631))
+
+
+### BREAKING CHANGES
+
+* The CONNECT phase has been removed and is no longer available.
+
 # [4.3.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.4...4.3.0-alpha.5) (2026-02-09)
 
 
