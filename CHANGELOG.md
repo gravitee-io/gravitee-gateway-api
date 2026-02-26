@@ -1,3 +1,10 @@
+# [5.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.1...5.0.0-alpha.2) (2026-02-26)
+
+
+### Features
+
+* include apiProductId in subscription ([#322](https://github.com/gravitee-io/gravitee-gateway-api/issues/322)) ([657096b](https://github.com/gravitee-io/gravitee-gateway-api/commit/657096b1067052877ab8eefd7e539974b6a10dd2))
+
 # [5.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.3.0-alpha.5...5.0.0-alpha.1) (2026-02-11)
 
 
