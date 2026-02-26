@@ -40,6 +40,7 @@ public final class InternalContextAttributes {
     public static final String ATTR_INTERNAL_SUBSCRIPTION = "subscription";
     public static final String ATTR_INTERNAL_SUBSCRIPTION_TYPE = "subscriptionType";
     public static final String ATTR_INTERNAL_SECURITY_TOKEN = "securityChain.securityToken";
+    public static final String ATTR_INTERNAL_SECURITY_VERBOSE_401 = "securityChain.verbose401";
     public static final String ATTR_INTERNAL_SECURITY_SKIP = "securityChain.skip";
     public static final String ATTR_INTERNAL_SECURITY_DIAGNOSTIC = "securityChain.diagnostic";
     public static final String ATTR_INTERNAL_ANALYTICS_CONTEXT = "analytics.context";
