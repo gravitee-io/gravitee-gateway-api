@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.3...4.0.4) (2026-02-27)
+
+
+### Bug Fixes
+
+* revert internal property verbose401 ([2c2d8e4](https://github.com/gravitee-io/gravitee-gateway-api/commit/2c2d8e4c9e91c5c3c73952b4911c8a83ceb253f0))
+
 ## [4.0.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.0.2...4.0.3) (2026-02-26)
 
 
