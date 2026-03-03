@@ -1,3 +1,10 @@
+# [5.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.2...5.0.0-alpha.3) (2026-03-03)
+
+
+### Bug Fixes
+
+* avoid implementing EntrypointConnector in HttpEntrypointAsyncConnector ([ed7a59f](https://github.com/gravitee-io/gravitee-gateway-api/commit/ed7a59fd51571d3d2981c8ccb50dbb490ab6670b))
+
 # [5.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.1...5.0.0-alpha.2) (2026-02-26)
 
 
