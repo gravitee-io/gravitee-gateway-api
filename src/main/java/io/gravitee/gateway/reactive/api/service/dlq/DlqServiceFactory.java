@@ -16,9 +16,10 @@
 package io.gravitee.gateway.reactive.api.service.dlq;
 
 import io.gravitee.gateway.reactive.api.connector.entrypoint.EntrypointConnector;
+import io.gravitee.gateway.reactive.api.connector.entrypoint.HttpEntrypointConnector;
 
 /**
- * Factory allowing to instantiate a {@link DlqService} for the specified {@link EntrypointConnector}.
+ * Factory allowing to instantiate a {@link DlqService} for the specified {@link HttpEntrypointConnector}.
  *
  * @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
  * @author GraviteeSource Team
@@ -31,5 +32,10 @@ public interface DlqServiceFactory {
      * @param connector the entrypoint connector for which create a {@link DlqService}.
      * @return the created {@link DlqService}.
      */
-    DlqService create(final EntrypointConnector connector);
+    DlqService create(final HttpEntrypointConnector connector);
+
+    @Deprecated
+    default DlqService create(final EntrypointConnector connector) {
+        return create((HttpEntrypointConnector) connector);
+    }
 }
