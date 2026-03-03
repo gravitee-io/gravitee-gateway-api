@@ -1,3 +1,32 @@
+# [5.0.0-beta.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.2.0...5.0.0-beta.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* avoid implementing EntrypointConnector in HttpEntrypointAsyncConnector ([ed7a59f](https://github.com/gravitee-io/gravitee-gateway-api/commit/ed7a59fd51571d3d2981c8ccb50dbb490ab6670b))
+
+
+### Code Refactoring
+
+* remove unused CONNECT phase ([6ee9db0](https://github.com/gravitee-io/gravitee-gateway-api/commit/6ee9db0115217bf632ce7630cde0617e714bc631))
+
+
+### Features
+
+* add client and endpoint connect phases for native kafka apis ([02385d8](https://github.com/gravitee-io/gravitee-gateway-api/commit/02385d8d6feec15ffd1b68ac3c2ecca0992d8534))
+* add client and endpoint connect phases for native kafka apis ([0dfc433](https://github.com/gravitee-io/gravitee-gateway-api/commit/0dfc4337118fa387c4bbddcd8bcbcf7187522ae5))
+* add InterruptConnectionException and update EntrypointConnectContext ([7c99d0d](https://github.com/gravitee-io/gravitee-gateway-api/commit/7c99d0d12175312022805fdc3bb67f6982c3b3e4))
+* add new context attributes ([c768279](https://github.com/gravitee-io/gravitee-gateway-api/commit/c768279c01aa71fcdc5479ecd3432d5980448f31))
+* add withLogger method to BaseExecutionContext ([44a830e](https://github.com/gravitee-io/gravitee-gateway-api/commit/44a830e0b22ab2e294985282ae2613c73debba98))
+* include apiProductId in subscription ([#322](https://github.com/gravitee-io/gravitee-gateway-api/issues/322)) ([657096b](https://github.com/gravitee-io/gravitee-gateway-api/commit/657096b1067052877ab8eefd7e539974b6a10dd2))
+* introduce AbstractBaseExecutionContextAwareLogger for rich logging ([45d8980](https://github.com/gravitee-io/gravitee-gateway-api/commit/45d8980f205b833193b313dd8befb3780b6ff6c2))
+* introduce ExecutionContextLazyLogger for lazy initialization of logging ([0d3afce](https://github.com/gravitee-io/gravitee-gateway-api/commit/0d3afce1bef4cd0d2dcb9eeb687db74c800cb92b))
+
+
+### BREAKING CHANGES
+
+* The CONNECT phase has been removed and is no longer available.
+
 # [5.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.2...5.0.0-alpha.3) (2026-03-03)
 
 
