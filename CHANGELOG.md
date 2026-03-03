@@ -1,3 +1,10 @@
+# [5.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.3...5.0.0-alpha.4) (2026-03-03)
+
+
+### Bug Fixes
+
+* update DlqServiceFactory to use HttpEntrypointConnector ([df3b9ec](https://github.com/gravitee-io/gravitee-gateway-api/commit/df3b9ec95521a64c34beb4e235f28a1295ace038))
+
 # [5.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.2...5.0.0-alpha.3) (2026-03-03)
 
 
