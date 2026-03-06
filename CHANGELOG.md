@@ -1,3 +1,20 @@
+# [5.0.0-beta.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-beta.1...5.0.0-beta.2) (2026-03-06)
+
+
+### Bug Fixes
+
+* update gravitee parent and orb ([e296a2c](https://github.com/gravitee-io/gravitee-gateway-api/commit/e296a2c5edb3208e24d118b23d1f58fe6cdc6c9c))
+
+
+### Features
+
+* upgrade to vertx 5 ([134ea34](https://github.com/gravitee-io/gravitee-gateway-api/commit/134ea34e62149e4fa02309c63d1487035d8de5aa))
+
+
+### BREAKING CHANGES
+
+* upgrade to vertx 5.x
+
 # [5.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.5...5.0.0-alpha.6) (2026-03-09)
 
 
