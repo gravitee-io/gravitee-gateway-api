@@ -1,3 +1,10 @@
+# [5.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.4...5.0.0-alpha.5) (2026-03-06)
+
+
+### Features
+
+* **kafka:** add compression support to KafkaMessageRequest and KafkaMessageResponse ([51757c6](https://github.com/gravitee-io/gravitee-gateway-api/commit/51757c6961238c4f2244f9317e1afd67569a6554))
+
 # [5.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.3...5.0.0-alpha.4) (2026-03-03)
 
 
