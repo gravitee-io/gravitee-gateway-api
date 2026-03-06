@@ -86,4 +86,21 @@ public interface KafkaMessageResponse {
     default Completable onMessage(Function<KafkaMessage, Maybe<KafkaMessage>> onMessage) {
         return onMessages(messages -> messages.concatMapMaybe(onMessage::apply));
     }
+
+    /**
+     * Returns the compression type that will be used when rebuilding records after policy processing.
+     * Defaults to the original compression from the incoming batch.
+     * Possible values: "none", "gzip", "snappy", "lz4", "zstd".
+     *
+     * @return the current compression type name.
+     */
+    String compression();
+
+    /**
+     * Override the compression type used when rebuilding records after policy processing.
+     * Accepted values: "none", "gzip", "snappy", "lz4", "zstd".
+     *
+     * @param compressionType the desired compression type name.
+     */
+    void compression(String compressionType);
 }
