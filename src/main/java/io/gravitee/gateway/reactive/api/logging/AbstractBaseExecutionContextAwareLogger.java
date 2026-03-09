@@ -43,11 +43,11 @@ public abstract class AbstractBaseExecutionContextAwareLogger<C extends BaseExec
         LogEntryFactory.cached("apiId", BaseExecutionContext.class, context -> context.getAttribute(ATTR_API)),
         LogEntryFactory.cached("apiName", BaseExecutionContext.class, context -> context.getAttribute(ATTR_API_NAME)),
         LogEntryFactory.cached("apiType", BaseExecutionContext.class, context -> context.getInternalAttribute(ATTR_INTERNAL_API_TYPE)),
-        LogEntryFactory.cached("environment", BaseExecutionContext.class, context -> context.getAttribute(ATTR_ENVIRONMENT)),
-        LogEntryFactory.cached("organization", BaseExecutionContext.class, context -> context.getAttribute(ATTR_ORGANIZATION)),
+        LogEntryFactory.cached("envId", BaseExecutionContext.class, context -> context.getAttribute(ATTR_ENVIRONMENT)),
+        LogEntryFactory.cached("orgId", BaseExecutionContext.class, context -> context.getAttribute(ATTR_ORGANIZATION)),
         // Plan and Application will change for each request, so refreshable
-        LogEntryFactory.refreshable("application", BaseExecutionContext.class, context -> context.getAttribute(ATTR_APPLICATION)),
-        LogEntryFactory.refreshable("plan", BaseExecutionContext.class, context -> context.getAttribute(ATTR_PLAN)),
+        LogEntryFactory.refreshable("appId", BaseExecutionContext.class, context -> context.getAttribute(ATTR_APPLICATION)),
+        LogEntryFactory.refreshable("planId", BaseExecutionContext.class, context -> context.getAttribute(ATTR_PLAN)),
         LogEntryFactory.refreshable("user", BaseExecutionContext.class, context -> context.getAttribute(ATTR_USER))
     );
 
