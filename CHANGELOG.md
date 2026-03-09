@@ -1,3 +1,10 @@
+# [5.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.5...5.0.0-alpha.6) (2026-03-09)
+
+
+### Features
+
+* rename log entries to contain id suffix ([1363b1f](https://github.com/gravitee-io/gravitee-gateway-api/commit/1363b1f1ce51c9db9df6cbdd82608c4ffb3f5e6d))
+
 # [5.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-alpha.4...5.0.0-alpha.5) (2026-03-06)
 
 
