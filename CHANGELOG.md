@@ -1,3 +1,10 @@
+# [5.0.0-beta.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-beta.2...5.0.0-beta.3) (2026-03-13)
+
+
+### Bug Fixes
+
+* re-trigger release ([024a0ed](https://github.com/gravitee-io/gravitee-gateway-api/commit/024a0ed22ce2a9c595957592c26e234921941fc9))
+
 # [5.0.0-beta.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0-beta.1...5.0.0-beta.2) (2026-03-06)
 
 
