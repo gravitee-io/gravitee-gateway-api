@@ -42,13 +42,10 @@ class ExecutionContextLazyLoggerTest {
             FakeLogger delegate = new FakeLogger();
             delegate.setInfoEnabled(false);
 
-            ExecutionContextLazyLogger lazyLogger = new ExecutionContextLazyLogger(
-                delegate,
-                () -> {
-                    supplierCalls.incrementAndGet();
-                    return NOPLogger.NOP_LOGGER;
-                }
-            );
+            ExecutionContextLazyLogger lazyLogger = new ExecutionContextLazyLogger(delegate, () -> {
+                supplierCalls.incrementAndGet();
+                return NOPLogger.NOP_LOGGER;
+            });
 
             lazyLogger.info("message");
 
@@ -62,13 +59,10 @@ class ExecutionContextLazyLoggerTest {
             delegate.setInfoEnabled(false);
             Marker marker = MarkerFactory.getMarker("TEST");
 
-            ExecutionContextLazyLogger lazyLogger = new ExecutionContextLazyLogger(
-                delegate,
-                () -> {
-                    supplierCalls.incrementAndGet();
-                    return NOPLogger.NOP_LOGGER;
-                }
-            );
+            ExecutionContextLazyLogger lazyLogger = new ExecutionContextLazyLogger(delegate, () -> {
+                supplierCalls.incrementAndGet();
+                return NOPLogger.NOP_LOGGER;
+            });
 
             lazyLogger.info(marker, "message");
 
@@ -82,13 +76,10 @@ class ExecutionContextLazyLoggerTest {
             delegate.setInfoEnabled(true);
             FakeLogger contextLogger = new FakeLogger();
 
-            ExecutionContextLazyLogger lazyLogger = new ExecutionContextLazyLogger(
-                delegate,
-                () -> {
-                    supplierCalls.incrementAndGet();
-                    return contextLogger;
-                }
-            );
+            ExecutionContextLazyLogger lazyLogger = new ExecutionContextLazyLogger(delegate, () -> {
+                supplierCalls.incrementAndGet();
+                return contextLogger;
+            });
 
             lazyLogger.info("message 1");
             lazyLogger.info("message 2");

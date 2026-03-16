@@ -260,18 +260,16 @@ public class EvaluableSSLPrincipal {
         LinkedCaseInsensitiveMultiValueMap computedAttributes = new LinkedCaseInsensitiveMultiValueMap<>();
 
         RDN[] rdns = readAllRdnsFromPrincipalName();
-        Arrays
-            .stream(rdns)
-            .forEach(rdn -> {
-                final ASN1ObjectIdentifier type = rdn.getFirst().getType();
-                final String value = IETFUtils.valueToString(rdn.getFirst().getValue());
-                computedAttributes.add(type.getId(), value);
+        Arrays.stream(rdns).forEach(rdn -> {
+            final ASN1ObjectIdentifier type = rdn.getFirst().getType();
+            final String value = IETFUtils.valueToString(rdn.getFirst().getValue());
+            computedAttributes.add(type.getId(), value);
 
-                final String symbol = bcStyle.getDefaultSymbols().get(type);
-                if (symbol != null) {
-                    computedAttributes.add(symbol, value);
-                }
-            });
+            final String symbol = bcStyle.getDefaultSymbols().get(type);
+            if (symbol != null) {
+                computedAttributes.add(symbol, value);
+            }
+        });
 
         return computedAttributes;
     }
