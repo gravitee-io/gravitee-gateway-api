@@ -1,3 +1,42 @@
+# [5.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.2.0...5.0.0) (2026-03-16)
+
+
+### Bug Fixes
+
+* avoid implementing EntrypointConnector in HttpEntrypointAsyncConnector ([075e1b1](https://github.com/gravitee-io/gravitee-gateway-api/commit/075e1b1c1e6401c90f23e46cc367e2beccb39107))
+* update DlqServiceFactory to use HttpEntrypointConnector ([28e0ef4](https://github.com/gravitee-io/gravitee-gateway-api/commit/28e0ef4d9649f56c9960c8b7bae5b74a8c4a9b6f))
+
+
+### chore
+
+* bump gravitee-parent ([ebbc05d](https://github.com/gravitee-io/gravitee-gateway-api/commit/ebbc05d4677aee10bdc53e232a3c52cf938a597f))
+
+
+### Code Refactoring
+
+* remove unused CONNECT phase ([7b487a8](https://github.com/gravitee-io/gravitee-gateway-api/commit/7b487a868342671e7585bda538bab2713b58e1a6))
+
+
+### Features
+
+* add client and endpoint connect phases for native kafka apis ([0b9ae6b](https://github.com/gravitee-io/gravitee-gateway-api/commit/0b9ae6bf7374057417e1289ac87584b1089a1739))
+* add client and endpoint connect phases for native kafka apis ([2e2aa21](https://github.com/gravitee-io/gravitee-gateway-api/commit/2e2aa216a7dc46fea1dd677a840045279b4af813))
+* add InterruptConnectionException and update EntrypointConnectContext ([e85f281](https://github.com/gravitee-io/gravitee-gateway-api/commit/e85f2819e77a0b1a9b1ece3ebb724d25babcf923))
+* add new context attributes ([9f51762](https://github.com/gravitee-io/gravitee-gateway-api/commit/9f51762b642f26ed4f427c33d9a465155a557067))
+* add withLogger method to BaseExecutionContext ([906c832](https://github.com/gravitee-io/gravitee-gateway-api/commit/906c8328236e331ae295d80b6476024251fb1271))
+* improve execution context logging configuration ([ce5add9](https://github.com/gravitee-io/gravitee-gateway-api/commit/ce5add9bb1fa109e307284e8bef4f4c7becd26ea))
+* include apiProductId in subscription ([#322](https://github.com/gravitee-io/gravitee-gateway-api/issues/322)) ([ba16d33](https://github.com/gravitee-io/gravitee-gateway-api/commit/ba16d333655f581ece89780ffb1f978398e4a15d))
+* introduce AbstractBaseExecutionContextAwareLogger for rich logging ([530c1e8](https://github.com/gravitee-io/gravitee-gateway-api/commit/530c1e89dd18b4bc723fe6aec08a3f681ccf694a))
+* introduce ExecutionContextLazyLogger for lazy initialization of logging ([f4afe86](https://github.com/gravitee-io/gravitee-gateway-api/commit/f4afe86ec8854a38b27c9ab1e9dcbe4269864f57))
+* **kafka:** add compression support to KafkaMessageRequest and KafkaMessageResponse ([bcee878](https://github.com/gravitee-io/gravitee-gateway-api/commit/bcee878b731c9da8f40da9d73c9778c01f2938e5))
+* rename log entries to contain id suffix ([8253c5b](https://github.com/gravitee-io/gravitee-gateway-api/commit/8253c5b10432bce658a8e269ddcf25875e05f5fe))
+
+
+### BREAKING CHANGES
+
+* Requires JDK 21
+* The CONNECT phase has been removed and is no longer available.
+
 # [4.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0...4.2.0) (2025-12-16)
 
 
