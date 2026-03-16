@@ -119,8 +119,7 @@ public class EvaluableExtractor {
         Field[] declaredFields = HttpHeaders.class.getDeclaredFields();
         _enums.put(
             HttpHeaders.class.getSimpleName(),
-            Arrays
-                .stream(declaredFields)
+            Arrays.stream(declaredFields)
                 .filter(f -> Modifier.isPublic(f.getModifiers()))
                 .map(field -> {
                     try {
