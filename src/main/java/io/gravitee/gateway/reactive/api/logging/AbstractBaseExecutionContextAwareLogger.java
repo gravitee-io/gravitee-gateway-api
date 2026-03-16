@@ -34,9 +34,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 
 public abstract class AbstractBaseExecutionContextAwareLogger<C extends BaseExecutionContext> extends NodeAwareLogger {
+
+    private static final ConcurrentHashMap<Class<?>, Set<Class<?>>> HIERARCHY_CACHE = new ConcurrentHashMap<>();
 
     private static final Set<LogEntry<BaseExecutionContext>> BASE_EXECUTION_CONTEXT_LOG_ENTRIES = Set.of(
         // API will not change for a given execution context, so cached
@@ -67,6 +70,49 @@ public abstract class AbstractBaseExecutionContextAwareLogger<C extends BaseExec
     @Override
     protected void registerLogSources(Map<Class<?>, Object> logSources) {
         super.registerLogSources(logSources);
-        logSources.putIfAbsent(BaseExecutionContext.class, context);
+        Set<Class<?>> hierarchy = HIERARCHY_CACHE.computeIfAbsent(
+            context.getClass(),
+            AbstractBaseExecutionContextAwareLogger::collectHierarchy
+        );
+        for (Class<?> clazz : hierarchy) {
+            logSources.putIfAbsent(clazz, context);
+        }
+    }
+
+    /**
+     * Collects the full hierarchy of a specified class, including all superclasses and interfaces,
+     * and returns it as an immutable set. The result includes the provided class itself and
+     * stops traversal at a specific base class defined in the hierarchy logic.
+     *
+     * @param clazz the class whose hierarchy (superclasses and interfaces) is to be collected.
+     *              If {@code null}, an empty set is returned.
+     * @return an immutable set containing all collected classes and interfaces in the hierarchy of the given class.
+     */
+    private static Set<Class<?>> collectHierarchy(Class<?> clazz) {
+        Set<Class<?>> classes = new HashSet<>();
+        collectParentClasses(clazz, classes);
+        return Set.copyOf(classes);
+    }
+
+    /**
+     * Recursively collects all parent classes and interfaces of the given class
+     * and adds them to the specified set. The method stops traversing the hierarchy
+     * once the {@code BaseExecutionContext} class is encountered.
+     *
+     * @param clazz   the class whose parent classes and interfaces are to be collected.
+     *                If {@code null}, the method will immediately return.
+     * @param classes the set to which collected classes and interfaces are added.
+     *                This set should ideally be mutable and non-null.
+     */
+    private static void collectParentClasses(Class<?> clazz, Set<Class<?>> classes) {
+        if (clazz == null || clazz == Object.class) {
+            return;
+        }
+        if (classes.add(clazz) && !BaseExecutionContext.class.equals(clazz)) {
+            for (Class<?> inter : clazz.getInterfaces()) {
+                collectParentClasses(inter, classes);
+            }
+            collectParentClasses(clazz.getSuperclass(), classes);
+        }
     }
 }
