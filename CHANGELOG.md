@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.0.0...5.1.0) (2026-03-19)
+
+
+### Features
+
+* flexible API between LLM invoker and endpoint ([639d3b6](https://github.com/gravitee-io/gravitee-gateway-api/commit/639d3b670b785704cacdd6f33e626a96e5b4ac2c))
+
 # [5.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.2.0...5.0.0) (2026-03-16)
 
 
