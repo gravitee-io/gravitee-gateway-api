@@ -74,6 +74,14 @@ public interface HttpHeaderNames {
      */
     public static final String ACCESS_CONTROL_REQUEST_METHOD = "Access-Control-Request-Method";
     /**
+     * See {@link <a href="https://wicg.github.io/private-network-access/#headers">Private Network Access specification</a>}.
+     */
+    public static final String ACCESS_CONTROL_REQUEST_PRIVATE_NETWORK = "Access-Control-Request-Private-Network";
+    /**
+     * See {@link <a href="https://wicg.github.io/private-network-access/#headers">Private Network Access specification</a>}.
+     */
+    public static final String ACCESS_CONTROL_ALLOW_PRIVATE_NETWORK = "Access-Control-Allow-Private-Network";
+    /**
      * See {@link <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.6">HTTP/1.1 documentation</a>}.
      */
     public static final String AGE = "Age";
