@@ -1,3 +1,15 @@
+# [6.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.1.1...6.0.0-alpha.1) (2026-03-27)
+
+
+### Features
+
+* upgrade to vertx 5 ([6ee7951](https://github.com/gravitee-io/gravitee-gateway-api/commit/6ee7951c8d8d21af8b3449a8cad3ab671a0b75b3))
+
+
+### BREAKING CHANGES
+
+* upgrade to vertx 5.x
+
 ## [5.1.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.1.0...5.1.1) (2026-03-25)
 
 
