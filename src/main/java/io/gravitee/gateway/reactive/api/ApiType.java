@@ -16,7 +16,9 @@
 package io.gravitee.gateway.reactive.api;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.Map;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +36,9 @@ public enum ApiType {
     MCP_PROXY("mcp-proxy"),
     PROXY("proxy"),
     MESSAGE("message"),
-    NATIVE("native");
+    NATIVE("native"),
+    MCP("mcp"),
+    AGENT("agent");
 
     private static final Map<String, ApiType> LABELS_MAP = Map.ofEntries(
         Map.entry(A2A_PROXY.label, A2A_PROXY),
@@ -44,7 +48,9 @@ public enum ApiType {
         Map.entry(MCP_PROXY.label, MCP_PROXY),
         Map.entry(PROXY.label, PROXY),
         Map.entry(MESSAGE.label, MESSAGE),
-        Map.entry(NATIVE.label, NATIVE)
+        Map.entry(NATIVE.label, NATIVE),
+        Map.entry(MCP.label, MCP),
+        Map.entry(AGENT.label, AGENT)
     );
 
     @JsonValue
