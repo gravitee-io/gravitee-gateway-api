@@ -29,6 +29,7 @@
 
     <groupId>io.gravitee.gateway</groupId>
     <artifactId>gravitee-gateway-api</artifactId>
+    <version>6.2.0-agent</version>
     <name>Gravitee.io APIM - Gateway - API</name>
 
     <properties>
