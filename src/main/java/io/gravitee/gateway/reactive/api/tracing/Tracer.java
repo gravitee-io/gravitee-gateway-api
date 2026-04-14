@@ -73,4 +73,12 @@ public class Tracer {
     public <C> void injectSpanContext(final Span span, final BiConsumer<String, String> textMapSetter) {
         delegate.injectSpanContext(vertxContext, span, textMapSetter);
     }
+
+    public String traceId() {
+        return delegate.traceId(vertxContext);
+    }
+
+    public String spanId() {
+        return delegate.spanId(vertxContext);
+    }
 }
