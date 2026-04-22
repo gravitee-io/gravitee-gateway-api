@@ -17,6 +17,7 @@ package io.gravitee.gateway.reactive.api.context.http;
 
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.reactivex.rxjava3.core.*;
+import java.util.function.Consumer;
 
 /**
  * Represents a response that can manipulate a plain http body (as a single buffer or a flow of chunks).
@@ -153,4 +154,12 @@ public interface HttpPlainResponse extends HttpBaseResponse {
      * @param length The value of the `Content-Length` header
      */
     void contentLength(long length);
+
+    /**
+     * Registers a listener that will be notified when the body content changes.
+     * This can happen when the body is set imperatively or when a body transformation completes.
+     *
+     * @param listener the callback to invoke with the new body buffer.
+     */
+    default void registerBodyChangeListener(Consumer<Buffer> listener) {}
 }
