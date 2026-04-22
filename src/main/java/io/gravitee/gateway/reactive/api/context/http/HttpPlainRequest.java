@@ -19,6 +19,7 @@ import io.gravitee.common.http.HttpMethod;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.reactive.api.ws.WebSocket;
 import io.reactivex.rxjava3.core.*;
+import java.util.function.Consumer;
 
 /**
  * Represents a request that can manipulate a plain http body (as a single buffer or a flow of chunks).
@@ -200,4 +201,12 @@ public interface HttpPlainRequest extends HttpBaseRequest {
     void contentLength(long length);
 
     void method(HttpMethod method);
+
+    /**
+     * Registers a listener that will be notified when the body content changes.
+     * This can happen when the body is set imperatively or when a body transformation completes.
+     *
+     * @param listener the callback to invoke with the new body buffer.
+     */
+    default void registerBodyChangeListener(Consumer<Buffer> listener) {}
 }
