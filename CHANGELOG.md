@@ -1,6 +1,5 @@
 # [6.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.1.0...6.2.0) (2026-06-19)
 
-
 ### Features
 
 * add interface for entity resolvers ([b17f538](https://github.com/gravitee-io/gravitee-gateway-api/commit/b17f5385ec0f61348bac9e4bb3f3e940a74bd083))
