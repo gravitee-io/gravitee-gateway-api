@@ -1,3 +1,11 @@
+# [6.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.1...6.0.0-alpha.2) (2026-04-27)
+
+
+### Features
+
+* add LlmInspector ([3e81d5b](https://github.com/gravitee-io/gravitee-gateway-api/commit/3e81d5b642f97bb9afffc2d646c0ee4f2b964b56))
+* add register body change for HTTP request and response ([e0a3259](https://github.com/gravitee-io/gravitee-gateway-api/commit/e0a3259984ea74ac00f220ada2002fb6f2ac383e))
+
 # [6.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.1.1...6.0.0-alpha.1) (2026-03-27)
 
 
