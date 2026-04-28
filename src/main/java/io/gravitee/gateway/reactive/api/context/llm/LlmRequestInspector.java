@@ -17,14 +17,14 @@ package io.gravitee.gateway.reactive.api.context.llm;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.gravitee.gateway.api.buffer.Buffer;
-import io.gravitee.gateway.reactive.api.context.http.HttpExecutionContext;
+import io.gravitee.gateway.reactive.api.context.http.HttpBaseExecutionContext;
 import io.reactivex.rxjava3.core.Maybe;
 import org.jspecify.annotations.Nullable;
 
 public interface LlmRequestInspector {
-    KindSemantic kind(HttpExecutionContext context, JsonNode body);
+    KindSemantic kind(HttpBaseExecutionContext context, JsonNode body);
 
-    Maybe<String> prompt(@Nullable Buffer buffer, HttpExecutionContext context, PromptQuery promptQuery);
+    Maybe<String> prompt(HttpBaseExecutionContext context, PromptQuery promptQuery, @Nullable Buffer buffer);
 
     sealed interface PromptQuery {
         record LastUserPrompt() implements PromptQuery {}
