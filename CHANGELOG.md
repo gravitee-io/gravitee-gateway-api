@@ -1,3 +1,10 @@
+# [6.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.2...6.0.0-alpha.3) (2026-04-28)
+
+
+### Bug Fixes
+
+* use HttpBaseExecutionContext for API of LlmRequestInspector ([cfdee50](https://github.com/gravitee-io/gravitee-gateway-api/commit/cfdee508d068ad2115855ab76b980f69d5021fe8))
+
 # [6.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.1...6.0.0-alpha.2) (2026-04-27)
 
 
