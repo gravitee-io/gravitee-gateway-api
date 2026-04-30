@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.2.0...4.2.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* add Private Network Access header constants (APIM-13215) ([90e5236](https://github.com/gravitee-io/gravitee-gateway-api/commit/90e523680e041f83fdd4bf0e50ca146696d43658))
+
 # [4.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/4.1.0...4.2.0) (2025-12-16)
 
 
