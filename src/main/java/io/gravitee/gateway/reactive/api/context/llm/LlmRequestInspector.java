@@ -33,17 +33,17 @@ public interface LlmRequestInspector {
         record PendingUserPrompt() implements PromptQuery {}
 
         /**
-         * All messages of historic produced by user.
+         * All user prompts from history.
          */
         record AllUserPrompts() implements PromptQuery {}
 
         /**
-         * All prompt of historic (user, agent and tool)
+         * All prompts from history (user, agent, and tool).
          */
         record AllPrompts() implements PromptQuery {}
 
         /**
-         * Prompt defined by an Expression Langage
+         * Prompt defined by an Expression Language.
          */
         record CustomPrompt(String expressionLanguage) implements PromptQuery {}
     }
