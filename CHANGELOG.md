@@ -13,7 +13,6 @@
 
 # [6.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.1.1...6.0.0) (2026-06-17)
 
-
 ### Bug Fixes
 
 * fix javadoc ([1bcb767](https://github.com/gravitee-io/gravitee-gateway-api/commit/1bcb767b7e544f7d0e5de5cf7314c4bf2e99980a))
