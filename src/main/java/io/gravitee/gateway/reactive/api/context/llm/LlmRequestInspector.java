@@ -27,12 +27,24 @@ public interface LlmRequestInspector {
     Maybe<String> prompt(HttpBaseExecutionContext context, PromptQuery promptQuery, @Nullable Buffer buffer);
 
     sealed interface PromptQuery {
-        record LastUserPrompt() implements PromptQuery {}
+        /**
+         * The last message if it’s a user message.
+         */
+        record PendingUserPrompt() implements PromptQuery {}
 
+        /**
+         * All messages of historic produced by user.
+         */
         record AllUserPrompts() implements PromptQuery {}
 
+        /**
+         * All prompt of historic (user, agent and tool)
+         */
         record AllPrompts() implements PromptQuery {}
 
+        /**
+         * Prompt defined by an Expression Langage
+         */
         record CustomPrompt(String expressionLanguage) implements PromptQuery {}
     }
 
