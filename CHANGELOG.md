@@ -1,3 +1,10 @@
+# [6.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.3...6.0.0-alpha.4) (2026-05-04)
+
+
+### Bug Fixes
+
+* fix javadoc ([f54c17f](https://github.com/gravitee-io/gravitee-gateway-api/commit/f54c17f9216269c48c661b901b6b213ac43ea456))
+
 # [6.0.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.2...6.0.0-alpha.3) (2026-04-28)
 
 
