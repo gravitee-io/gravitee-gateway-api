@@ -1,3 +1,10 @@
+# [6.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.4...6.0.0-alpha.5) (2026-05-06)
+
+
+### Features
+
+* **APIM-13619:** expose traceId() and spanId() on gateway Tracer ([69c6c6f](https://github.com/gravitee-io/gravitee-gateway-api/commit/69c6c6ffd4b95088b33b5eae8db633cea6e6a0a6))
+
 # [6.0.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.3...6.0.0-alpha.4) (2026-05-04)
 
 
