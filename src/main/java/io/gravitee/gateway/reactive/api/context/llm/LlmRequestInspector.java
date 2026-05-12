@@ -19,12 +19,36 @@ import com.fasterxml.jackson.databind.JsonNode;
 import io.gravitee.gateway.api.buffer.Buffer;
 import io.gravitee.gateway.reactive.api.context.http.HttpBaseExecutionContext;
 import io.reactivex.rxjava3.core.Maybe;
+import java.util.List;
+import java.util.Optional;
 import org.jspecify.annotations.Nullable;
 
 public interface LlmRequestInspector {
     KindSemantic kind(HttpBaseExecutionContext context, JsonNode body);
 
-    Maybe<String> prompt(HttpBaseExecutionContext context, PromptQuery promptQuery, @Nullable Buffer buffer);
+    /**
+     * Indicates whether the response for this LLM request will be streamed
+     * back to the client (e.g. Server-Sent Events).
+     * <p>
+     * The detection source is provider-specific and left to the implementation.
+     * Typical sources include:
+     * <ul>
+     *   <li>a {@code "stream": true} flag in the JSON request body
+     *       (OpenAI-style providers),</li>
+     *   <li>an {@code Accept: text/event-stream} header,</li>
+     *   <li>a dedicated query parameter,</li>
+     *   <li>any combination of the above.</li>
+     * </ul>
+     *
+     * @param context the current execution context (headers, query params, etc. available via {@link HttpBaseExecutionContext#request()}).
+     * @param body    the parsed JSON request body, or {@code null} if unavailable.
+     * @return {@code true} if the upstream response is expected to be streamed.
+     */
+    boolean isStream(HttpBaseExecutionContext context, @Nullable Buffer body);
+
+    Optional<String> model(HttpBaseExecutionContext context, JsonNode body);
+
+    Maybe<List<String>> prompt(HttpBaseExecutionContext context, PromptQuery promptQuery, @Nullable Buffer buffer);
 
     sealed interface PromptQuery {
         /**
@@ -53,5 +77,6 @@ public interface LlmRequestInspector {
         TOOL_CALL,
         TOOL_RESULT,
         ERROR,
+        EMBEDDINGS,
     }
 }
