@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.api.el;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 
@@ -32,6 +33,7 @@ public class EvaluableSSLSession {
         this.sslSession = sslSession;
     }
 
+    @JsonProperty
     public String getClientHost() {
         if (sslSession != null) {
             return sslSession.getPeerHost();
@@ -39,6 +41,7 @@ public class EvaluableSSLSession {
         return null;
     }
 
+    @JsonProperty
     public Integer getClientPort() {
         if (sslSession != null) {
             return sslSession.getPeerPort();
@@ -46,6 +49,7 @@ public class EvaluableSSLSession {
         return null;
     }
 
+    @JsonProperty
     public EvaluableSSLPrincipal getClient() {
         try {
             if (sslSession != null && sslSession.getPeerPrincipal() != null) {
@@ -55,6 +59,7 @@ public class EvaluableSSLSession {
         return EMPTY_EVALUABLE_SSL_PRINCIPAL;
     }
 
+    @JsonProperty
     public EvaluableSSLPrincipal getServer() {
         if (sslSession != null && sslSession.getLocalPrincipal() != null) {
             return new EvaluableSSLPrincipal(sslSession.getLocalPrincipal());

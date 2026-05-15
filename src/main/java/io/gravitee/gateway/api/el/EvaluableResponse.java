@@ -15,8 +15,10 @@
  */
 package io.gravitee.gateway.api.el;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.gravitee.gateway.api.Response;
 import io.gravitee.gateway.api.http.HttpHeaders;
+import lombok.Getter;
 
 /**
  * @author David BRASSELY (david.brassely at graviteesource.com)
@@ -25,6 +27,8 @@ import io.gravitee.gateway.api.http.HttpHeaders;
 public class EvaluableResponse {
 
     private final Response response;
+
+    @Getter
     private final String content;
 
     public EvaluableResponse(final Response response) {
@@ -36,15 +40,13 @@ public class EvaluableResponse {
         this.content = content;
     }
 
+    @JsonProperty
     public int getStatus() {
         return response.status();
     }
 
+    @JsonProperty
     public HttpHeaders getHeaders() {
         return response.headers();
-    }
-
-    public String getContent() {
-        return content;
     }
 }

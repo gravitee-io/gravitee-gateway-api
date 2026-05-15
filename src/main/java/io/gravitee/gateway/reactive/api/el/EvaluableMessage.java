@@ -15,6 +15,7 @@
  */
 package io.gravitee.gateway.reactive.api.el;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.reactive.api.message.Message;
 import java.util.Map;
@@ -32,34 +33,42 @@ public class EvaluableMessage {
         this.message = message;
     }
 
+    @JsonProperty
     public Set<String> geAttributeNames() {
         return message.attributeNames();
     }
 
+    @JsonProperty
     public <T> Map<String, T> getAttributes() {
         return message.attributes();
     }
 
+    @JsonProperty
     public String getId() {
         return message.id();
     }
 
+    @JsonProperty
     public boolean getError() {
         return message.error();
     }
 
+    @JsonProperty
     public Map<String, Object> getMetadata() {
         return message.metadata();
     }
 
+    @JsonProperty
     public HttpHeaders getHeaders() {
         return message.headers();
     }
 
+    @JsonProperty
     public String getContent() {
         return message.content().toString();
     }
 
+    @JsonProperty
     public int getContentLength() {
         return message.content().length();
     }
