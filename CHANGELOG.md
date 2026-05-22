@@ -1,3 +1,10 @@
+# [6.0.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.6...6.0.0-alpha.7) (2026-05-22)
+
+
+### Features
+
+* rework LlmRequestInspector ([0b2647d](https://github.com/gravitee-io/gravitee-gateway-api/commit/0b2647dbbe23ba27c97f2ae7c98d092e3a519eb7))
+
 # [6.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.5...6.0.0-alpha.6) (2026-05-22)
 
 
