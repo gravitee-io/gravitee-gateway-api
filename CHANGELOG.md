@@ -1,3 +1,10 @@
+# [6.0.0-alpha.6](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.5...6.0.0-alpha.6) (2026-05-22)
+
+
+### Features
+
+* **edge:** add EDGE to ApiType enum ([345ce93](https://github.com/gravitee-io/gravitee-gateway-api/commit/345ce93d733426a0fb9bbe2b1cd379712d025a31))
+
 # [6.0.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.4...6.0.0-alpha.5) (2026-05-06)
 
 
