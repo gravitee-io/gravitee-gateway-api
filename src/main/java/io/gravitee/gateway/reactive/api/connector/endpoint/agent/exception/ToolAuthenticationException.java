@@ -13,22 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.connector.endpoint.agent;
+package io.gravitee.gateway.reactive.api.connector.endpoint.agent.exception;
 
-import lombok.Getter;
-import lombok.Setter;
+public class ToolAuthenticationException extends ToolException {
 
-/**
- * @author David BRASSELY (david.brassely at graviteesource.com)
- * @author GraviteeSource Team
- */
-@Getter
-@Setter
-public class Tool {
+    public ToolAuthenticationException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-    private String name;
-
-    private String description;
-
-    private String schema;
+    public ToolAuthenticationException(String message) {
+        super(message);
+    }
 }
