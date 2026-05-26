@@ -22,6 +22,7 @@ import io.gravitee.gateway.reactive.api.connector.Connector;
 import io.gravitee.gateway.reactive.api.connector.endpoint.BaseEndpointConnector;
 import io.gravitee.gateway.reactive.api.context.agent.ToolExecutionContext;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
 import java.util.List;
 import java.util.Set;
 
@@ -51,5 +52,5 @@ public abstract class ToolEndpointConnector extends AbstractService<Connector> i
         return execute(toolExecutionContext);
     }
 
-    public abstract List<Tool> getTools();
+    public abstract Single<List<Tool>> getTools();
 }
