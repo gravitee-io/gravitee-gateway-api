@@ -47,10 +47,9 @@ public abstract class ToolEndpointConnector extends AbstractService<Connector> i
     public abstract Completable execute(ToolExecutionContext context);
 
     @Override
-    @Deprecated
     public Completable connect(ToolExecutionContext toolExecutionContext) {
         return execute(toolExecutionContext);
     }
 
-    public abstract Single<List<Tool>> getTools();
+    public abstract Single<List<ToolSpecification>> getToolsSpecification();
 }
