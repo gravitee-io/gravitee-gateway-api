@@ -25,31 +25,26 @@ public class AuthenticationRequiredException extends ToolAuthenticationException
 
     private final String endpointGroupId;
     private final AuthenticationConfiguration authenticationConfiguration;
-    private final boolean shared;
 
     public AuthenticationRequiredException(
         String message,
         String endpointGroupId,
-        AuthenticationConfiguration authenticationConfiguration,
-        boolean shared
+        AuthenticationConfiguration authenticationConfiguration
     ) {
         super(message);
         this.endpointGroupId = endpointGroupId;
         this.authenticationConfiguration = authenticationConfiguration;
-        this.shared = shared;
     }
 
     public AuthenticationRequiredException(
         String message,
         String endpointGroupId,
         AuthenticationConfiguration authenticationConfiguration,
-        boolean shared,
         Throwable cause
     ) {
         super(message, cause);
         this.endpointGroupId = endpointGroupId;
         this.authenticationConfiguration = authenticationConfiguration;
-        this.shared = shared;
     }
 
     public String getEndpointGroupId() {
@@ -58,9 +53,5 @@ public class AuthenticationRequiredException extends ToolAuthenticationException
 
     public AuthenticationConfiguration getAuthenticationConfiguration() {
         return authenticationConfiguration;
-    }
-
-    public boolean isShared() {
-        return shared;
     }
 }
