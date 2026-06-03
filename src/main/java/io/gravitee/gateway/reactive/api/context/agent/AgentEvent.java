@@ -15,6 +15,8 @@
  */
 package io.gravitee.gateway.reactive.api.context.agent;
 
+import io.gravitee.gateway.reactive.api.connector.endpoint.agent.auth.AuthenticationConfiguration;
+
 /**
  * Typed event emitted by the agent layer on {@link AgentResponse#events()}.
  * Entrypoints pattern-match on the variant to translate each event into their protocol shape
@@ -51,4 +53,6 @@ public sealed interface AgentEvent {
      * surface them.
      */
     record Completed(String text, Integer inputTokens, Integer outputTokens, String finishReason) implements AgentEvent {}
+
+    record ToolAuthentication(String id, AuthenticationConfiguration configuration) implements AgentEvent {}
 }
