@@ -34,7 +34,7 @@ public interface AgentResponse extends HttpPlainResponse {
      * @return the {@link Flowable} of events attached to this response, or {@code null} if the
      *         invoker has not populated it.
      */
-    Flowable<String> events();
+    Flowable<AgentEvent> events();
 
     /**
      * Set the stream of events that the entrypoint will consume.
@@ -42,5 +42,5 @@ public interface AgentResponse extends HttpPlainResponse {
      * @param events the {@link Flowable} of events emitted by the agent.
      * @return this response.
      */
-    AgentResponse events(Flowable<String> events);
+    AgentResponse events(Flowable<AgentEvent> events);
 }
