@@ -17,6 +17,7 @@ package io.gravitee.gateway.reactive.api.context.agent;
 
 import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
 import io.reactivex.rxjava3.core.Completable;
+import java.util.List;
 
 /**
  * Agent execution context allowing access to {@link AgentRequest} and {@link AgentResponse}.
@@ -41,6 +42,23 @@ public interface AgentExecutionContext extends HttpPlainExecutionContext {
      */
     @Override
     AgentResponse response();
+
+    /**
+     * Get the tools attached to this execution context.
+     * Tools usually need to be populated before the agent can use them, so this method is designed to be called by the agent layer when building the LLM request.
+     *
+     * @param <T> the concrete tool type the agent expects.
+     * @return the list of tools attached to this execution context, or an empty list.
+     */
+    <T extends AgentTool> List<T> tools();
+
+    /**
+     * Set the tools attached to this execution context. Replaces any previously-attached list.
+     *
+     * @param tools the tools to attach to this execution context.
+     * @param <T> the concrete tool type produced by the agent layer.
+     */
+    <T extends AgentTool> void tools(List<T> tools);
 
     /**
      * Flushes the current response to the client and detaches the context from the wire.
