@@ -40,7 +40,6 @@ public interface AgentResponse extends HttpPlainResponse {
      * Set the stream of events that the entrypoint will consume.
      *
      * @param events the {@link Flowable} of events emitted by the agent.
-     * @return this response.
      */
-    AgentResponse events(Flowable<AgentEvent> events);
+    void events(Flowable<AgentEvent> events);
 }
