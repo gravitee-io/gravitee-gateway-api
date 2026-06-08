@@ -1,3 +1,10 @@
+# [6.0.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.7...6.0.0-alpha.8) (2026-06-08)
+
+
+### Features
+
+* add mcp proxy endpoint connector interfaces ([bb8f391](https://github.com/gravitee-io/gravitee-gateway-api/commit/bb8f3917a243afd38bf1776ce15d81e273b4fbfb))
+
 # [6.0.0-alpha.7](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.6...6.0.0-alpha.7) (2026-05-22)
 
 
