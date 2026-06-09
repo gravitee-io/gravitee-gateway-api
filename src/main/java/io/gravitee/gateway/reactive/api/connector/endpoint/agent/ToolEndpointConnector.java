@@ -51,5 +51,13 @@ public abstract class ToolEndpointConnector extends AbstractService<Connector> i
         return execute(toolExecutionContext);
     }
 
-    public abstract Single<List<ToolSpecification>> getToolsSpecification();
+    /**
+     * List the tools exposed by this endpoint, scoped to the caller carried in {@code context}.
+     * Connectors that hold per-caller state (per-subject MCP sessions, per-tenant tool catalogs, …)
+     * use the context to route the call; stateless connectors may ignore it.
+     *
+     * @param context the tool execution context — same shape as the one passed to
+     *                {@link #connect(ToolExecutionContext)}, carries subject and OAuth token.
+     */
+    public abstract Single<List<ToolSpecification>> getToolsSpecification(ToolExecutionContext context);
 }
