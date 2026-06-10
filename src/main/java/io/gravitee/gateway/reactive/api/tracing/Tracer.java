@@ -17,6 +17,9 @@ package io.gravitee.gateway.reactive.api.tracing;
 
 import io.gravitee.node.api.opentelemetry.Span;
 import io.vertx.core.Context;
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +32,9 @@ public class Tracer {
 
     private final Context vertxContext;
     private final io.gravitee.node.api.opentelemetry.Tracer delegate;
+
+    /** Throwable instances already recorded as an exception event, tracked by identity. */
+    private final Set<Throwable> recordedThrowables = Collections.synchronizedSet(Collections.newSetFromMap(new IdentityHashMap<>()));
 
     public <R> Span startRootSpanFrom(final R request) {
         return delegate.startRootSpanFrom(vertxContext, request);
@@ -46,12 +52,26 @@ public class Tracer {
         delegate.end(vertxContext, span);
     }
 
+    /**
+     * Ends the span on error. Records the exception event only the first time a given throwable
+     * instance is seen by this tracer; any later span fed the same instance is ended with a
+     * status-only error ({@link #endOnError(Span, String)}) so the failure stays visible without
+     * duplicating the event.
+     */
     public void endOnError(final Span span, final Throwable throwable) {
-        delegate.endOnError(vertxContext, span, throwable);
+        if (vertxContext == null || throwable == null || recordedThrowables.add(throwable)) {
+            delegate.endOnError(vertxContext, span, throwable);
+        } else {
+            delegate.endOnError(vertxContext, span, messageOf(throwable));
+        }
     }
 
     public void endOnError(final Span span, final String message) {
         delegate.endOnError(vertxContext, span, message);
+    }
+
+    private static String messageOf(final Throwable throwable) {
+        return throwable.getMessage() != null ? throwable.getMessage() : throwable.getClass().getName();
     }
 
     public <R> void endWithResponse(final Span span, final R response) {
