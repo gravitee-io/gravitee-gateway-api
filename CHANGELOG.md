@@ -1,3 +1,10 @@
+# [6.0.0-alpha.9](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.8...6.0.0-alpha.9) (2026-06-11)
+
+
+### Bug Fixes
+
+* **tracing:** record an exception event once per request ([e121b8a](https://github.com/gravitee-io/gravitee-gateway-api/commit/e121b8abd788d80432bd0218c82469f642ab299f))
+
 # [6.0.0-alpha.8](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0-alpha.7...6.0.0-alpha.8) (2026-06-08)
 
 
