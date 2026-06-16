@@ -21,4 +21,16 @@ import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
  * @author David BRASSELY (david.brassely at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface ToolExecutionContext extends BaseExecutionContext {}
+public interface ToolExecutionContext extends BaseExecutionContext {
+    /**
+     * The {@link AgentExecutionContext} this tool call was spawned from, or {@code null} when the
+     * tool is invoked outside an agent request (bare-context fallback).
+     *
+     * <p>Gives tool connectors access to the originating agent request — its identity (transaction
+     * id, request id, client identifier), tracer and attributes — so that work performed on behalf
+     * of a tool call (e.g. an in-process sub-request) can be correlated to the same agent request.</p>
+     *
+     * @return the originating agent execution context, or {@code null} if none.
+     */
+    AgentExecutionContext agentContext();
+}
