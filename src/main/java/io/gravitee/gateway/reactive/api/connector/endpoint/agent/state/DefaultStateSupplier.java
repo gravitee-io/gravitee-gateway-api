@@ -17,7 +17,6 @@ package io.gravitee.gateway.reactive.api.connector.endpoint.agent.state;
 
 import io.gravitee.gateway.reactive.api.connector.endpoint.agent.StateSupplier;
 import io.gravitee.gateway.reactive.api.context.agent.AgentExecutionContext;
-
 import java.util.UUID;
 
 /**

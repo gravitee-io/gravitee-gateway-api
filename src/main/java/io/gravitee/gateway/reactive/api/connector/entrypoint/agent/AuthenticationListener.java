@@ -8,7 +8,6 @@ import io.reactivex.rxjava3.core.Completable;
  * @author GraviteeSource Team
  */
 public interface AuthenticationListener {
-
     default Completable onAuthenticationSuccess(AgentExecutionContext ctx, String state) {
         return null;
     }
