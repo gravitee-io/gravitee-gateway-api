@@ -1,3 +1,28 @@
+# [6.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.1.1...6.0.0) (2026-06-17)
+
+
+### Bug Fixes
+
+* fix javadoc ([1bcb767](https://github.com/gravitee-io/gravitee-gateway-api/commit/1bcb767b7e544f7d0e5de5cf7314c4bf2e99980a))
+* **tracing:** record an exception event once per request ([49b97c0](https://github.com/gravitee-io/gravitee-gateway-api/commit/49b97c0fbc2deadb59b5944989a88bebc819bbc7))
+* use HttpBaseExecutionContext for API of LlmRequestInspector ([382b270](https://github.com/gravitee-io/gravitee-gateway-api/commit/382b270f2b81acfaf3c231f2a1f162cdaef5480c))
+
+
+### Features
+
+* add LlmInspector ([cfe840a](https://github.com/gravitee-io/gravitee-gateway-api/commit/cfe840accc28465b259c700749251cbb18aec73f))
+* add mcp proxy endpoint connector interfaces ([9187fb7](https://github.com/gravitee-io/gravitee-gateway-api/commit/9187fb794b302f22f6bef6207bea6c606fd10e98))
+* add register body change for HTTP request and response ([626e544](https://github.com/gravitee-io/gravitee-gateway-api/commit/626e5448c7c48130c4b6a1db0c4435f3aed7e8a3))
+* **APIM-13619:** expose traceId() and spanId() on gateway Tracer ([7d24f0c](https://github.com/gravitee-io/gravitee-gateway-api/commit/7d24f0c5669e8d0e7d5c6ad540d97936acc2a2ce))
+* **edge:** add EDGE to ApiType enum ([d81a781](https://github.com/gravitee-io/gravitee-gateway-api/commit/d81a7812de3fdee2b1e5acd482a17ff24054680b))
+* rework LlmRequestInspector ([8af9ee3](https://github.com/gravitee-io/gravitee-gateway-api/commit/8af9ee3f450943c34f1e8f12825f5938461a3877))
+* upgrade to vertx 5 ([48a48e7](https://github.com/gravitee-io/gravitee-gateway-api/commit/48a48e72dd2a9c4df3ddd7073b64f0fe2e5573e4))
+
+
+### BREAKING CHANGES
+
+* upgrade to vertx 5.x
+
 ## [5.1.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.1.0...5.1.1) (2026-03-25)
 
 
