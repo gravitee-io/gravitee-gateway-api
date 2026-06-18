@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.0.0...6.1.0) (2026-06-18)
+
+
+### Features
+
+* add AUTHZ to ApiType enum ([54440ea](https://github.com/gravitee-io/gravitee-gateway-api/commit/54440ea1c9ae9d866005b4b9f71928a2ff791fbc))
+
 # [6.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/5.1.1...6.0.0) (2026-06-17)
 
 
