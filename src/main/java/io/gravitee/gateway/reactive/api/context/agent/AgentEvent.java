@@ -54,5 +54,12 @@ public sealed interface AgentEvent {
      */
     record Completed(String text, Integer inputTokens, Integer outputTokens, String finishReason) implements AgentEvent {}
 
-    record ToolAuthentication(String id, AuthenticationConfiguration configuration) implements AgentEvent {}
+    record ToolAuthenticationRequired(String id, AuthenticationConfiguration configuration) implements AgentEvent {}
+
+    /**
+     * Notification that a tool requires explicit user approval before the agent can invoke it.
+     * Entrypoints should surface an approve/reject UI (e.g. Slack buttons, HTTP response body).
+     * Once the caller approves via {@code approveUrl} the original query must be retried.
+     */
+    record ToolApprovalRequired(String toolId, String toolName) implements AgentEvent {}
 }
