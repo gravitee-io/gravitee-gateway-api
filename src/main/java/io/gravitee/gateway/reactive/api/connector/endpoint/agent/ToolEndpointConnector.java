@@ -52,6 +52,14 @@ public abstract class ToolEndpointConnector extends AbstractService<Connector> i
     }
 
     /**
+     * Returns {@code true} if the given tool requires explicit user approval before the agent
+     * may invoke it. Subclasses override this to consult their {@code toolsApproval} configuration.
+     */
+    public boolean requiresApproval(String toolId) {
+        return false;
+    }
+
+    /**
      * List the tools exposed by this endpoint, scoped to the caller carried in {@code context}.
      * Connectors that hold per-caller state (per-subject MCP sessions, per-tenant tool catalogs, …)
      * use the context to route the call; stateless connectors may ignore it.
