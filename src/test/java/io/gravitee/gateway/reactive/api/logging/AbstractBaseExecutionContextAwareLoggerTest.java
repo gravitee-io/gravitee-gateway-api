@@ -17,9 +17,9 @@ package io.gravitee.gateway.reactive.api.logging;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import io.gravitee.gateway.reactive.api.ExecutionWarn;
+import io.gravitee.gateway.reactive.api.context.EntityResolver;
 import io.gravitee.gateway.reactive.api.context.TlsSession;
 import io.gravitee.gateway.reactive.api.context.base.BaseExecutionContext;
 import io.gravitee.gateway.reactive.api.tracing.Tracer;
@@ -167,6 +167,11 @@ class AbstractBaseExecutionContextAwareLoggerTest {
 
         @Override
         public Tracer getTracer() {
+            return null;
+        }
+
+        @Override
+        public EntityResolver entityResolver() {
             return null;
         }
 

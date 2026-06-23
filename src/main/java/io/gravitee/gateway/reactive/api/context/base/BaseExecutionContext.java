@@ -17,6 +17,7 @@ package io.gravitee.gateway.reactive.api.context.base;
 
 import io.gravitee.el.TemplateEngine;
 import io.gravitee.gateway.reactive.api.ExecutionWarn;
+import io.gravitee.gateway.reactive.api.context.EntityResolver;
 import io.gravitee.gateway.reactive.api.context.TlsSession;
 import io.gravitee.gateway.reactive.api.tracing.Tracer;
 import java.util.List;
@@ -181,6 +182,15 @@ public interface BaseExecutionContext {
      * @return the {@link Tracer} contextualized.
      */
     Tracer getTracer();
+
+    /**
+     * Get the {@link EntityResolver} that maps protocol-level resource names to catalog entity IDs.
+     *
+     * @return the {@link EntityResolver} for this execution context.
+     */
+    default EntityResolver entityResolver() {
+        return null;
+    }
 
     long timestamp();
 
