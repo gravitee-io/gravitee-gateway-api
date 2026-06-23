@@ -1,3 +1,10 @@
+# [6.3.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.2.0...6.3.0) (2026-06-23)
+
+
+### Features
+
+* add entity resolver to execution context ([efa57c8](https://github.com/gravitee-io/gravitee-gateway-api/commit/efa57c8ef0c9c820d538248b105caadb8b47bd42))
+
 # [6.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.1.0...6.2.0) (2026-06-19)
 
 
