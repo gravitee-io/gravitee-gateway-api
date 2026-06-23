@@ -41,7 +41,7 @@
         <gravitee-expression-language.version>3.2.1</gravitee-expression-language.version>
 
         <bouncycastle.version>1.84</bouncycastle.version>
-        <json-smart.version>2.5.2</json-smart.version>
+        <json-smart.version>2.6.0</json-smart.version>
         <kafka-clients.version>3.9.2</kafka-clients.version>
     </properties>
 
