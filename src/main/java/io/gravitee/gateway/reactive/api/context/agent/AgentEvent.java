@@ -62,4 +62,16 @@ public sealed interface AgentEvent {
      * Once the caller approves via {@code approveUrl} the original query must be retried.
      */
     record ToolApprovalRequired(String toolId, String toolName) implements AgentEvent {}
+
+    /**
+     * Notification that the MCP backend issued an {@code elicitation/create} during a tool call —
+     * the server needs additional user input before it can complete the invocation.
+     * Entrypoints should surface the prompt and schema to the user and POST the response to
+     * {@code submitUrl}. The original query must then be retried.
+     *
+     * @param elicitationId  Unique id stored in the pending-elicitation vault (passed as path segment to the submit URL).
+     * @param message         Human-readable message from the MCP server describing what input is needed.
+     * @param url JSON Schema describing the expected input fields (may be {@code null}).
+     */
+    record ElicitationRequired(String elicitationId, String message, String url) implements AgentEvent {}
 }
