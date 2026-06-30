@@ -40,7 +40,7 @@ public class AuthenticationConfiguration {
     @AllArgsConstructor
     @Getter
     @Setter
-    @Builder
+    @Builder(toBuilder = true)
     public static class OAuth2 {
 
         //@Secret
@@ -48,6 +48,15 @@ public class AuthenticationConfiguration {
 
         //@Secret
         private String clientSecret;
+
+        /**
+         * URL of the OAuth 2.0 / OpenID Connect discovery document (e.g.
+         * {@code https://idp.example.com/.well-known/openid-configuration}). When set, {@code
+         * authorizeUrl} and {@code tokenUrl} are resolved from the document's {@code
+         * authorization_endpoint} and {@code token_endpoint} fields instead of the statically
+         * configured values.
+         */
+        private String discoveryUrl;
 
         private String authorizeUrl;
 
