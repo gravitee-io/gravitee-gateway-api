@@ -50,6 +50,7 @@ public abstract class ToolEndpointConnector extends AbstractService<Connector> i
     public Completable connect(ToolExecutionContext toolExecutionContext) {
         return execute(toolExecutionContext);
     }
+
     /**
      * Returns {@code true} if the given tool requires explicit user approval before the agent
      * may invoke it. Subclasses override this to consult their {@code toolsApproval} configuration.
