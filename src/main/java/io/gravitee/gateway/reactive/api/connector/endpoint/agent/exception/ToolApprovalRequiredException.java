@@ -15,19 +15,33 @@
  */
 package io.gravitee.gateway.reactive.api.connector.endpoint.agent.exception;
 
+import java.util.List;
+
 /**
  * Thrown when a tool requires explicit user approval before the agent may invoke it.
  * The invoker catches this to pause the agent loop and return an approval-required response.
+ *
+ * <p>When thrown after pending result messages have already been injected into memory,
+ * {@code memoryId} and {@code pendingToolCallIds} carry the information needed for the
+ * approve/reject callbacks to rewind or update those messages.</p>
  */
 public class ToolApprovalRequiredException extends ToolException {
 
     private final String toolId;
     private final String toolName;
+    private final Object memoryId;
+    private final List<String> pendingToolCallIds;
 
     public ToolApprovalRequiredException(String toolId, String toolName) {
+        this(toolId, toolName, null, List.of());
+    }
+
+    public ToolApprovalRequiredException(String toolId, String toolName, Object memoryId, List<String> pendingToolCallIds) {
         super("Tool '" + toolId + "' requires user approval before it can be invoked.");
         this.toolId = toolId;
         this.toolName = toolName;
+        this.memoryId = memoryId;
+        this.pendingToolCallIds = pendingToolCallIds != null ? pendingToolCallIds : List.of();
     }
 
     public String getToolId() {
@@ -36,5 +50,13 @@ public class ToolApprovalRequiredException extends ToolException {
 
     public String getToolName() {
         return toolName;
+    }
+
+    public Object getMemoryId() {
+        return memoryId;
+    }
+
+    public List<String> getPendingToolCallIds() {
+        return pendingToolCallIds;
     }
 }
