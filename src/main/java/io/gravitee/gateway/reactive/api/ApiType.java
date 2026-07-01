@@ -16,9 +16,7 @@
 package io.gravitee.gateway.reactive.api;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import java.util.Map;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

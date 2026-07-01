@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context.agent;
 
 import io.gravitee.gateway.reactive.api.connector.endpoint.agent.auth.AuthenticationConfiguration;
+import java.util.List;
 
 /**
  * Typed event emitted by the agent layer on {@link AgentResponse#events()}.
@@ -60,8 +61,18 @@ public sealed interface AgentEvent {
      * Notification that a tool requires explicit user approval before the agent can invoke it.
      * Entrypoints should surface an approve/reject UI (e.g. Slack buttons, HTTP response body).
      * Once the caller approves via {@code approveUrl} the original query must be retried.
+     *
+     * <p>{@code memoryId} and {@code pendingToolCallIds} are internal routing fields used by the
+     * invoker to store the pending approval with enough context for the approve/reject callbacks to
+     * rewind or update the {@code ToolExecutionResultMessage} entries injected into working memory.
+     * Entrypoints can ignore these two fields.</p>
      */
-    record ToolApprovalRequired(String toolId, String toolName) implements AgentEvent {}
+    record ToolApprovalRequired(String toolId, String toolName, Object memoryId, List<String> pendingToolCallIds) implements AgentEvent {
+        /** Convenience factory for contexts where no working memory is in use. */
+        public static ToolApprovalRequired of(String toolId, String toolName) {
+            return new ToolApprovalRequired(toolId, toolName, null, List.of());
+        }
+    }
 
     /**
      * Notification that the MCP backend issued an {@code elicitation/create} during a tool call —
