@@ -37,7 +37,7 @@
         <gravitee-node.version>9.0.0</gravitee-node.version>
         <gravitee-common.version>4.9.1</gravitee-common.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
-        <gravitee-reporter-api.version>2.3.0</gravitee-reporter-api.version>
+        <gravitee-reporter-api.version>2.6.0</gravitee-reporter-api.version>
         <gravitee-expression-language.version>3.2.1</gravitee-expression-language.version>
 
         <bouncycastle.version>1.84</bouncycastle.version>
