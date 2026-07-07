@@ -91,4 +91,21 @@ public sealed interface AgentEvent {
      * @param url JSON Schema describing the expected input fields (may be {@code null}).
      */
     record ElicitationRequired(String elicitationId, String message, String url, String submitUrl) implements AgentEvent {}
+
+    /**
+     * Notification that the model wants to invoke a tool whose execution is delegated to the
+     * caller (an "external execution tool" — declared per-request by the entrypoint rather than
+     * resolved from a configured {@code ToolEndpointConnector}). The agent loop pauses; it is the
+     * entrypoint's responsibility to surface {@code toolName}/{@code arguments} to the caller,
+     * execute the tool on its side, and resume the conversation by feeding the result back through
+     * the entrypoint's own protocol (e.g. OpenAI Responses' {@code function_call_output} items).
+     *
+     * <p>Unlike {@link ToolApprovalRequired} or {@link ToolAuthenticationRequired} this carries no
+     * callback URL: resuming is driven by the entrypoint's native protocol, not a clickable link.</p>
+     *
+     * @param toolCallId Provider-assigned id correlating this call with the caller's eventual result.
+     * @param toolName   The external tool's name, as declared by the caller for this request.
+     * @param arguments  JSON-encoded arguments the model produced for the call.
+     */
+    record ExternalToolCallRequired(String toolCallId, String toolName, String arguments) implements AgentEvent {}
 }

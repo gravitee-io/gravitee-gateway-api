@@ -15,7 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api.context.agent;
 
+import io.gravitee.gateway.reactive.api.connector.endpoint.agent.ExternalToolResult;
+import io.gravitee.gateway.reactive.api.connector.endpoint.agent.ToolSpecification;
 import io.gravitee.gateway.reactive.api.context.http.HttpPlainRequest;
+import java.util.List;
 
 /**
  * Represents a request handled by the agent layer.
@@ -42,4 +45,45 @@ public interface AgentRequest extends HttpPlainRequest {
      * @return this request.
      */
     AgentRequest query(String query);
+
+    /**
+     * Get the tools declared by the caller for this request whose execution the caller performs
+     * itself (an "external execution tool") rather than a configured {@code ToolEndpointConnector}.
+     * Not every entrypoint protocol supports this; defaults to an empty list.
+     *
+     * @return the caller-declared external tools, or an empty list.
+     */
+    default List<ToolSpecification> externalTools() {
+        return List.of();
+    }
+
+    /**
+     * Set the tools declared by the caller for this request.
+     *
+     * @param externalTools the external tools to attach to this request.
+     * @return this request.
+     */
+    default AgentRequest externalTools(List<ToolSpecification> externalTools) {
+        return this;
+    }
+
+    /**
+     * Get the results the caller supplied for previously-issued external tool calls, used to
+     * resume the agent loop instead of starting a new turn from {@link #query()}.
+     *
+     * @return the caller-supplied external tool results, or an empty list.
+     */
+    default List<ExternalToolResult> externalToolResults() {
+        return List.of();
+    }
+
+    /**
+     * Set the results the caller supplied for previously-issued external tool calls.
+     *
+     * @param externalToolResults the external tool results to attach to this request.
+     * @return this request.
+     */
+    default AgentRequest externalToolResults(List<ExternalToolResult> externalToolResults) {
+        return this;
+    }
 }
