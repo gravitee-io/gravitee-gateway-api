@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.gateway.reactive.api.context.agent;
+package io.gravitee.gateway.reactive.api.connector.endpoint.agent;
 
 /**
- * Marker interface for a tool resolved by the agent layer and attached to the
- * {@link AgentExecutionContext}. The concrete shape (name, description, schema, transport binding…)
- * is intentionally opaque at this level — only the agent layer's own components downcast to a
- * specific implementation. Promote to a typed contract here only when a gateway-api consumer needs
- * to read tool metadata generically.
+ * One caller-supplied result for a previously-issued external tool call, fed back on the
+ * follow-up request to resume the agent loop.
  *
- *  @author Jeoffrey HAEYAERT (jeoffrey.haeyaert at graviteesource.com)
- *  @author GraviteeSource Team
+ * @param toolCallId Correlates this result with the {@code toolCallId} carried by the
+ *                    {@code ExternalToolCallRequired} event the caller received earlier.
+ * @param output     The tool's result, as computed by the caller.
+ * @param isError    Whether the caller's execution failed; surfaced to the model as a tool error.
  */
-public interface AgentTool {}
+public record ExternalToolResult(String toolCallId, String output, boolean isError) {}

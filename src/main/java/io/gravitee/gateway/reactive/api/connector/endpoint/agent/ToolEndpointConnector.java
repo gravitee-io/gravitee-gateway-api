@@ -21,7 +21,9 @@ import io.gravitee.gateway.reactive.api.ConnectorMode;
 import io.gravitee.gateway.reactive.api.connector.Connector;
 import io.gravitee.gateway.reactive.api.connector.endpoint.BaseEndpointConnector;
 import io.gravitee.gateway.reactive.api.context.agent.ToolExecutionContext;
+import io.gravitee.gateway.reactive.api.context.agent.ToolResult;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
 import java.util.List;
 import java.util.Set;
@@ -44,11 +46,11 @@ public abstract class ToolEndpointConnector extends AbstractService<Connector> i
         return ApiType.AGENT;
     }
 
-    public abstract Completable execute(ToolExecutionContext context);
+    public abstract Maybe<ToolResult> execute(ToolExecutionContext context);
 
     @Override
     public Completable connect(ToolExecutionContext toolExecutionContext) {
-        return execute(toolExecutionContext);
+        return execute(toolExecutionContext).ignoreElement();
     }
 
     /**

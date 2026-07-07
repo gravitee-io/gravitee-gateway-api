@@ -33,4 +33,6 @@ public interface ToolExecutionContext extends BaseExecutionContext {
      * @return the originating agent execution context, or {@code null} if none.
      */
     AgentExecutionContext agentContext();
+
+    ToolRequest request();
 }
