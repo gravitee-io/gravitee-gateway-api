@@ -50,7 +50,7 @@ public interface AgentExecutionContext extends HttpPlainExecutionContext {
      * @param <T> the concrete tool type the agent expects.
      * @return the list of tools attached to this execution context, or an empty list.
      */
-    <T extends AgentTool> List<T> tools();
+    <T extends Tool> List<T> tools();
 
     /**
      * Set the tools attached to this execution context. Replaces any previously-attached list.
@@ -58,7 +58,7 @@ public interface AgentExecutionContext extends HttpPlainExecutionContext {
      * @param tools the tools to attach to this execution context.
      * @param <T> the concrete tool type produced by the agent layer.
      */
-    <T extends AgentTool> void tools(List<T> tools);
+    <T extends Tool> void tools(List<T> tools);
 
     /**
      * Flushes the current response to the client and detaches the context from the wire.
