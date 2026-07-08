@@ -58,7 +58,7 @@ public interface AgentExecutionContext extends HttpPlainExecutionContext {
      * @param tools the tools to attach to this execution context.
      * @param <T> the concrete tool type produced by the agent layer.
      */
-    <T extends Tool> void tools(List<T> tools);
+    <T extends Tool> AgentExecutionContext tools(List<T> tools);
 
     /**
      * Flushes the current response to the client and detaches the context from the wire.
@@ -72,4 +72,8 @@ public interface AgentExecutionContext extends HttpPlainExecutionContext {
      *         context has been detached.
      */
     Completable async();
+
+    AgentExecutionContext memoryId(AgentMemoryId memoryId);
+
+    AgentMemoryId memoryId();
 }
