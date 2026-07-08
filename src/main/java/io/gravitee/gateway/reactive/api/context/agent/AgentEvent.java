@@ -47,6 +47,20 @@ public sealed interface AgentEvent {
         }
     }
 
+    /**
+     * Nesting envelope wrapping an event produced by a workflow sub-agent (a leaf of the composition), so the client can
+     * render sub-agent actions (its {@link AgentStart}/{@link AgentEnd}, {@link ToolCallStart}/{@link ToolCallEnd} and
+     * its {@link Completed} output) nested under the parent agent — the same events the top-level agent emits, but tagged
+     * with their position in the tree. Because sub-agent activity is carried inside this distinct variant, entrypoints
+     * that aggregate the top-level answer never fold a sub-agent's text into the main response; a renderer that wants to
+     * show the tree unwraps {@code event} and uses {@code parentAgentId}/{@code depth} to place it.
+     *
+     * @param parentAgentId The {@code agentId} of the enclosing agent (the workflow root for a direct child).
+     * @param depth         Nesting level below the root (1 for a direct child, deeper for nested workflows).
+     * @param event         The wrapped event the sub-agent produced.
+     */
+    record SubAgent(String parentAgentId, int depth, AgentEvent event) implements AgentEvent {}
+
     record ToolCallStart(String toolId, String toolName, String arguments) implements AgentEvent {}
 
     record ToolCallEnd(String toolId, String toolName, String arguments, String result) implements AgentEvent {}
