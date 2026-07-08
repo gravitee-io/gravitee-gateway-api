@@ -29,18 +29,12 @@ public class ExternalToolExecutionRequiredException extends ToolException {
     private final String toolCallId;
     private final String toolName;
     private final String arguments;
-    private final Object memoryId;
 
     public ExternalToolExecutionRequiredException(String toolCallId, String toolName, String arguments) {
-        this(toolCallId, toolName, arguments, null);
-    }
-
-    public ExternalToolExecutionRequiredException(String toolCallId, String toolName, String arguments, Object memoryId) {
         super("Tool '" + toolName + "' is executed externally by the caller and cannot be invoked server-side.");
         this.toolCallId = toolCallId;
         this.toolName = toolName;
         this.arguments = arguments;
-        this.memoryId = memoryId;
     }
 
     public String getToolCallId() {
@@ -53,9 +47,5 @@ public class ExternalToolExecutionRequiredException extends ToolException {
 
     public String getArguments() {
         return arguments;
-    }
-
-    public Object getMemoryId() {
-        return memoryId;
     }
 }
