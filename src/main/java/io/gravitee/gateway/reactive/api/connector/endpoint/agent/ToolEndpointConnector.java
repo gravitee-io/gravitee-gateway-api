@@ -57,7 +57,7 @@ public abstract class ToolEndpointConnector extends AbstractService<Connector> i
      * Returns {@code true} if the given tool requires explicit user approval before the agent
      * may invoke it. Subclasses override this to consult their {@code toolsApproval} configuration.
      */
-    public boolean requiresApproval(String toolId) {
+    public boolean requiresApproval(String toolName) {
         return false;
     }
 
