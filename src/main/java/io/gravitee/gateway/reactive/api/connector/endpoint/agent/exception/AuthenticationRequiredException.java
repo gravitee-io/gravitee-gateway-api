@@ -23,32 +23,28 @@ import io.gravitee.gateway.reactive.api.connector.endpoint.agent.auth.Authentica
  */
 public class AuthenticationRequiredException extends ToolAuthenticationException {
 
-    private final String endpointGroupId;
+    private final String upstreamId;
     private final AuthenticationConfiguration authenticationConfiguration;
 
-    public AuthenticationRequiredException(
-        String message,
-        String endpointGroupId,
-        AuthenticationConfiguration authenticationConfiguration
-    ) {
+    public AuthenticationRequiredException(String message, String upstreamId, AuthenticationConfiguration authenticationConfiguration) {
         super(message);
-        this.endpointGroupId = endpointGroupId;
+        this.upstreamId = upstreamId;
         this.authenticationConfiguration = authenticationConfiguration;
     }
 
     public AuthenticationRequiredException(
         String message,
-        String endpointGroupId,
+        String upstreamId,
         AuthenticationConfiguration authenticationConfiguration,
         Throwable cause
     ) {
         super(message, cause);
-        this.endpointGroupId = endpointGroupId;
+        this.upstreamId = upstreamId;
         this.authenticationConfiguration = authenticationConfiguration;
     }
 
-    public String getEndpointGroupId() {
-        return endpointGroupId;
+    public String getUpstreamId() {
+        return upstreamId;
     }
 
     public AuthenticationConfiguration getAuthenticationConfiguration() {
