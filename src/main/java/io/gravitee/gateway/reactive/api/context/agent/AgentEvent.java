@@ -31,17 +31,33 @@ public sealed interface AgentEvent {
      * Intermediate "reasoning" text produced by the model before it commits to its answer
      * (a.k.a. thinking / chain-of-thought tokens). Not all providers expose this.
      */
-    record Thinking(String text) implements AgentEvent {}
+    record Thinking(String text, long timestamp) implements AgentEvent {
+        public Thinking(String text) {
+            this(text, System.currentTimeMillis());
+        }
+    }
 
     /**
      * Partial chunk of the assistant's textual answer as it streams from the model.
      * Entrypoints typically concatenate consecutive tokens before rendering.
      */
-    record PartialResponse(String token) implements AgentEvent {}
+    record PartialResponse(String token, long timestamp) implements AgentEvent {
+        public PartialResponse(String token) {
+            this(token, System.currentTimeMillis());
+        }
+    }
 
-    record AgentStart(String agentId, String agentName) implements AgentEvent {}
+    record AgentStart(String agentId, String agentName, long timestamp) implements AgentEvent {
+        public AgentStart(String agentId, String agentName) {
+            this(agentId, agentName, System.currentTimeMillis());
+        }
+    }
 
-    record AgentEnd(String agentId, String agentName, boolean error, String reason) implements AgentEvent {
+    record AgentEnd(String agentId, String agentName, boolean error, String reason, long timestamp) implements AgentEvent {
+        public AgentEnd(String agentId, String agentName, boolean error, String reason) {
+            this(agentId, agentName, error, reason, System.currentTimeMillis());
+        }
+
         public static AgentEnd of(String agentId, String agentName) {
             return new AgentEnd(agentId, agentName, false, null);
         }
@@ -59,11 +75,23 @@ public sealed interface AgentEvent {
      * @param depth         Nesting level below the root (1 for a direct child, deeper for nested workflows).
      * @param event         The wrapped event the sub-agent produced.
      */
-    record SubAgent(String parentAgentId, int depth, AgentEvent event) implements AgentEvent {}
+    record SubAgent(String parentAgentId, int depth, AgentEvent event, long timestamp) implements AgentEvent {
+        public SubAgent(String parentAgentId, int depth, AgentEvent event) {
+            this(parentAgentId, depth, event, System.currentTimeMillis());
+        }
+    }
 
-    record ToolCallStart(String toolId, String toolName, String arguments) implements AgentEvent {}
+    record ToolCallStart(String toolId, String toolName, String arguments, long timestamp) implements AgentEvent {
+        public ToolCallStart(String toolId, String toolName, String arguments) {
+            this(toolId, toolName, arguments, System.currentTimeMillis());
+        }
+    }
 
-    record ToolCallEnd(String toolId, String toolName, String arguments, String result) implements AgentEvent {}
+    record ToolCallEnd(String toolId, String toolName, String arguments, String result, long timestamp) implements AgentEvent {
+        public ToolCallEnd(String toolId, String toolName, String arguments, String result) {
+            this(toolId, toolName, arguments, result, System.currentTimeMillis());
+        }
+    }
 
     /**
      * Notification that a tool call has been executed by the agent loop. Carried fields hold the
@@ -71,16 +99,28 @@ public sealed interface AgentEvent {
      * tool, and the serialized result the tool returned. Emitted <em>after</em> the tool ran
      * (success or recoverable failure).
      */
-    record ToolExecuted(String toolId, String toolName, String arguments, String result) implements AgentEvent {}
+    record ToolExecuted(String toolId, String toolName, String arguments, String result, long timestamp) implements AgentEvent {
+        public ToolExecuted(String toolId, String toolName, String arguments, String result) {
+            this(toolId, toolName, arguments, result, System.currentTimeMillis());
+        }
+    }
 
     /**
      * Terminal event marking the end of the agent loop. Carries the final answer text along with
      * the model's reported token usage and finish reason, both nullable when the provider doesn't
      * surface them.
      */
-    record Completed(String text, Integer inputTokens, Integer outputTokens, String finishReason) implements AgentEvent {}
+    record Completed(String text, Integer inputTokens, Integer outputTokens, String finishReason, long timestamp) implements AgentEvent {
+        public Completed(String text, Integer inputTokens, Integer outputTokens, String finishReason) {
+            this(text, inputTokens, outputTokens, finishReason, System.currentTimeMillis());
+        }
+    }
 
-    record ToolAuthenticationRequired(String toolId, String initiateUrl) implements AgentEvent {}
+    record ToolAuthenticationRequired(String toolId, String initiateUrl, long timestamp) implements AgentEvent {
+        public ToolAuthenticationRequired(String toolId, String initiateUrl) {
+            this(toolId, initiateUrl, System.currentTimeMillis());
+        }
+    }
 
     /**
      * Notification that a tool requires explicit user approval before the agent can invoke it.
@@ -92,7 +132,11 @@ public sealed interface AgentEvent {
      * rewind or update the {@code ToolExecutionResultMessage} entries injected into working memory.
      * Entrypoints can ignore these two fields.</p>
      */
-    record ToolApprovalRequired(String toolId, String toolName, String approveUrl, String rejectUrl) implements AgentEvent {}
+    record ToolApprovalRequired(String toolId, String toolName, String approveUrl, String rejectUrl, long timestamp) implements AgentEvent {
+        public ToolApprovalRequired(String toolId, String toolName, String approveUrl, String rejectUrl) {
+            this(toolId, toolName, approveUrl, rejectUrl, System.currentTimeMillis());
+        }
+    }
 
     /**
      * Notification that the MCP backend issued an {@code elicitation/create} during a tool call —
@@ -104,7 +148,11 @@ public sealed interface AgentEvent {
      * @param message         Human-readable message from the MCP server describing what input is needed.
      * @param url JSON Schema describing the expected input fields (may be {@code null}).
      */
-    record ElicitationRequired(String elicitationId, String message, String url, String submitUrl) implements AgentEvent {}
+    record ElicitationRequired(String elicitationId, String message, String url, String submitUrl, long timestamp) implements AgentEvent {
+        public ElicitationRequired(String elicitationId, String message, String url, String submitUrl) {
+            this(elicitationId, message, url, submitUrl, System.currentTimeMillis());
+        }
+    }
 
     /**
      * Notification that the model wants to invoke a tool whose execution is delegated to the
@@ -121,5 +169,9 @@ public sealed interface AgentEvent {
      * @param toolName   The external tool's name, as declared by the caller for this request.
      * @param arguments  JSON-encoded arguments the model produced for the call.
      */
-    record ExternalToolCallRequired(String toolCallId, String toolName, String arguments) implements AgentEvent {}
+    record ExternalToolCallRequired(String toolCallId, String toolName, String arguments, long timestamp) implements AgentEvent {
+        public ExternalToolCallRequired(String toolCallId, String toolName, String arguments) {
+            this(toolCallId, toolName, arguments, System.currentTimeMillis());
+        }
+    }
 }
