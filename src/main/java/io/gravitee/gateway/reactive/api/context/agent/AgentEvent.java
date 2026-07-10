@@ -174,4 +174,21 @@ public sealed interface AgentEvent {
             this(toolCallId, toolName, arguments, System.currentTimeMillis());
         }
     }
+
+    /**
+     * Notification that a workflow {@code human} (HITL) node needs input from a person before the
+     * workflow can continue. Entrypoints surface {@code prompt} (and the optional {@code schema}) and
+     * POST the collected answer to {@code submitUrl}; the run then resumes (the client re-invokes, or an
+     * async channel delivers the answer).
+     *
+     * @param interactionId Unique id stored in the pending-human-input vault (path segment of the submit URL).
+     * @param prompt        The question to show the human.
+     * @param schema        Optional JSON Schema describing the expected answer (may be {@code null}).
+     * @param submitUrl     Where to POST the human's answer.
+     * @param statusUrl     Where the caller polls for the result when the request was delegated to a channel (the
+     *                      approver answers out-of-band and the gateway resumes on its own); {@code null} for the inline
+     *                      case where the caller answers in place and re-sends to resume.
+     */
+    record HumanInputRequired(String interactionId, String prompt, String schema, String submitUrl, String statusUrl) implements
+        AgentEvent {}
 }
