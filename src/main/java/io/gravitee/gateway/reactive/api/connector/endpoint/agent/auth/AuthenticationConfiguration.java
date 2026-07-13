@@ -43,6 +43,14 @@ public class AuthenticationConfiguration {
     @Builder(toBuilder = true)
     public static class OAuth2 {
 
+        /**
+         * Which grant the upstream expects, i.e. whether the token stands for the end user (the connector must pause
+         * and let the reactor drive the authorization-code round-trip) or for the gateway itself (the connector mints
+         * it). Defaults to {@link OAuth2GrantType#AUTHORIZATION_CODE}, the historical behaviour.
+         */
+        @Builder.Default
+        private OAuth2GrantType grantType = OAuth2GrantType.AUTHORIZATION_CODE;
+
         //@Secret
         private String clientId;
 
