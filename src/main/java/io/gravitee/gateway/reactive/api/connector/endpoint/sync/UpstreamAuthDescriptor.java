@@ -23,7 +23,7 @@ import java.util.List;
  * reactor's credential resolver can perform pre-resolution without depending on
  * endpoint-specific configuration classes.
  *
- * @param type one of: {@code bearer}, {@code api-key}, {@code basic}, {@code passthrough}, {@code elicitation-oauth}, {@code none}
+ * @param type one of: {@code bearer}, {@code api-key}, {@code basic}, {@code passthrough}, {@code elicitation-oauth}, {@code token-exchange}, {@code none}
  * @param token static Bearer token (for {@code bearer} type)
  * @param apiKey static API key (for {@code api-key} type)
  * @param apiKeyHeader HTTP header name for the API key (defaults to {@code X-API-Key})
@@ -33,8 +33,9 @@ import java.util.List;
  * @param tokenUrl OAuth token endpoint URL (for {@code elicitation-oauth})
  * @param clientId OAuth client ID (for {@code elicitation-oauth})
  * @param clientSecret OAuth client secret (for {@code elicitation-oauth})
- * @param scopes OAuth scopes (for {@code elicitation-oauth})
- * @param audience OAuth audience (for {@code elicitation-oauth})
+ * @param scopes OAuth scopes (for {@code elicitation-oauth} and {@code token-exchange})
+ * @param audience OAuth audience (for {@code elicitation-oauth} and {@code token-exchange})
+ * @param resourceName name of the API's OAuth2 resource used to perform the exchange (for {@code token-exchange})
  *
  * @author Antoine CORDIER (antoine.cordier at graviteesource.com)
  * @author GraviteeSource Team
@@ -51,8 +52,30 @@ public record UpstreamAuthDescriptor(
     String clientId,
     String clientSecret,
     List<String> scopes,
-    String audience
+    String audience,
+    String resourceName
 ) {
+    /**
+     * Compatibility constructor keeping the pre {@code token-exchange} signature, so connectors
+     * compiled against an older version of this API keep working at runtime.
+     */
+    public UpstreamAuthDescriptor(
+        String type,
+        String token,
+        String apiKey,
+        String apiKeyHeader,
+        String username,
+        String password,
+        String authorizeUrl,
+        String tokenUrl,
+        String clientId,
+        String clientSecret,
+        List<String> scopes,
+        String audience
+    ) {
+        this(type, token, apiKey, apiKeyHeader, username, password, authorizeUrl, tokenUrl, clientId, clientSecret, scopes, audience, null);
+    }
+
     public boolean isPassthrough() {
         return "passthrough".equals(type);
     }
@@ -71,6 +94,10 @@ public record UpstreamAuthDescriptor(
 
     public boolean isElicitationOAuth() {
         return "elicitation-oauth".equals(type);
+    }
+
+    public boolean isTokenExchange() {
+        return "token-exchange".equals(type);
     }
 
     public String effectiveApiKeyHeader() {
