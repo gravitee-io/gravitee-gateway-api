@@ -15,7 +15,10 @@
  */
 package io.gravitee.gateway.reactive.api.context.agent;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Typed event emitted by the agent layer on {@link AgentResponse#events()}.
@@ -116,44 +119,6 @@ public sealed interface AgentEvent {
         }
     }
 
-    record ToolAuthenticationRequired(String toolId, String initiateUrl, long timestamp) implements AgentEvent {
-        public ToolAuthenticationRequired(String toolId, String initiateUrl) {
-            this(toolId, initiateUrl, System.currentTimeMillis());
-        }
-    }
-
-    /**
-     * Notification that a tool requires explicit user approval before the agent can invoke it.
-     * Entrypoints should surface an approve/reject UI (e.g. Slack buttons, HTTP response body).
-     * Once the caller approves via {@code approveUrl} the original query must be retried.
-     *
-     * <p>{@code memoryId} and {@code pendingToolCallIds} are internal routing fields used by the
-     * invoker to store the pending approval with enough context for the approve/reject callbacks to
-     * rewind or update the {@code ToolExecutionResultMessage} entries injected into working memory.
-     * Entrypoints can ignore these two fields.</p>
-     */
-    record ToolApprovalRequired(String toolId, String toolName, String approveUrl, String rejectUrl, long timestamp) implements AgentEvent {
-        public ToolApprovalRequired(String toolId, String toolName, String approveUrl, String rejectUrl) {
-            this(toolId, toolName, approveUrl, rejectUrl, System.currentTimeMillis());
-        }
-    }
-
-    /**
-     * Notification that the MCP backend issued an {@code elicitation/create} during a tool call —
-     * the server needs additional user input before it can complete the invocation.
-     * Entrypoints should surface the prompt and schema to the user and POST the response to
-     * {@code submitUrl}. The original query must then be retried.
-     *
-     * @param elicitationId  Unique id stored in the pending-elicitation vault (passed as path segment to the submit URL).
-     * @param message         Human-readable message from the MCP server describing what input is needed.
-     * @param url JSON Schema describing the expected input fields (may be {@code null}).
-     */
-    record ElicitationRequired(String elicitationId, String message, String url, String submitUrl, long timestamp) implements AgentEvent {
-        public ElicitationRequired(String elicitationId, String message, String url, String submitUrl) {
-            this(elicitationId, message, url, submitUrl, System.currentTimeMillis());
-        }
-    }
-
     /**
      * Notification that the model wants to invoke a tool whose execution is delegated to the
      * caller (an "external execution tool" — declared per-request by the entrypoint rather than
@@ -162,8 +127,8 @@ public sealed interface AgentEvent {
      * execute the tool on its side, and resume the conversation by feeding the result back through
      * the entrypoint's own protocol (e.g. OpenAI Responses' {@code function_call_output} items).
      *
-     * <p>Unlike {@link ToolApprovalRequired} or {@link ToolAuthenticationRequired} this carries no
-     * callback URL: resuming is driven by the entrypoint's native protocol, not a clickable link.</p>
+     * <p>Unlike {@link HumanInteractionRequired} this carries no callback URL: resuming is driven by
+     * the entrypoint's native protocol, not a clickable link.</p>
      *
      * @param toolCallId Provider-assigned id correlating this call with the caller's eventual result.
      * @param toolName   The external tool's name, as declared by the caller for this request.
@@ -176,19 +141,91 @@ public sealed interface AgentEvent {
     }
 
     /**
-     * Notification that a workflow {@code human} (HITL) node needs input from a person before the
-     * workflow can continue. Entrypoints surface {@code prompt} (and the optional {@code schema}) and
-     * POST the collected answer to {@code submitUrl}; the run then resumes (the client re-invokes, or an
-     * async channel delivers the answer).
-     *
-     * @param interactionId Unique id stored in the pending-human-input vault (path segment of the submit URL).
-     * @param prompt        The question to show the human.
-     * @param schema        Optional JSON Schema describing the expected answer (may be {@code null}).
-     * @param submitUrl     Where to POST the human's answer.
-     * @param statusUrl     Where the caller polls for the result when the request was delegated to a channel (the
-     *                      approver answers out-of-band and the gateway resumes on its own); {@code null} for the inline
-     *                      case where the caller answers in place and re-sends to resume.
+     * The kind of human interaction a {@link HumanInteractionRequired} event is pausing for. The name lower-cased
+     * (e.g. {@code TOOL_APPROVAL_REQUIRED} -> {@code "tool_approval_required"}) is the canonical wire value entrypoints
+     * should use as the sub-type discriminator in their protocol payloads.
      */
-    record HumanInputRequired(String interactionId, String prompt, String schema, String submitUrl, String statusUrl) implements
-        AgentEvent {}
+    enum HumanInteractionType {
+        TOOL_AUTHENTICATION_REQUIRED,
+        TOOL_APPROVAL_REQUIRED,
+        ELICITATION_REQUIRED,
+        HUMAN_INPUT_REQUIRED,
+    }
+
+    /**
+     * Notification that the agent loop is paused waiting on a human — an OAuth sign-in, a tool-call approval, an MCP
+     * elicitation, or a workflow {@code human} (HITL) node input. {@code type} discriminates which of these it is;
+     * {@code metadata} carries the type-specific details entrypoints need to surface the right UI and resume the run:
+     *
+     * <ul>
+     *   <li>{@link HumanInteractionType#TOOL_AUTHENTICATION_REQUIRED}: {@code toolId}, {@code initiateUrl}.</li>
+     *   <li>{@link HumanInteractionType#TOOL_APPROVAL_REQUIRED}: {@code toolId}, {@code toolName}, {@code approveUrl},
+     *       {@code rejectUrl}.</li>
+     *   <li>{@link HumanInteractionType#ELICITATION_REQUIRED}: {@code elicitationId}, {@code message}, {@code url}
+     *       (JSON Schema, may be absent), {@code submitUrl}.</li>
+     *   <li>{@link HumanInteractionType#HUMAN_INPUT_REQUIRED}: {@code interactionId}, {@code prompt}, {@code schema}
+     *       (may be absent), {@code submitUrl}, {@code statusUrl} (present only when the ask was delegated to an
+     *       out-of-band channel; absent for the inline case where the caller answers in place and re-sends to resume).</li>
+     * </ul>
+     *
+     * A key absent from {@code metadata} is equivalent to a {@code null} value for that field.
+     */
+    record HumanInteractionRequired(HumanInteractionType type, Map<String, String> metadata, long timestamp) implements AgentEvent {
+        public HumanInteractionRequired(HumanInteractionType type, Map<String, String> metadata) {
+            this(type, metadata, System.currentTimeMillis());
+        }
+
+        public static HumanInteractionRequired toolAuthenticationRequired(String toolId, String initiateUrl) {
+            return new HumanInteractionRequired(
+                HumanInteractionType.TOOL_AUTHENTICATION_REQUIRED,
+                metadataOf("toolId", toolId, "initiateUrl", initiateUrl)
+            );
+        }
+
+        public static HumanInteractionRequired toolApprovalRequired(String toolId, String toolName, String approveUrl, String rejectUrl) {
+            return new HumanInteractionRequired(
+                HumanInteractionType.TOOL_APPROVAL_REQUIRED,
+                metadataOf("toolId", toolId, "toolName", toolName, "approveUrl", approveUrl, "rejectUrl", rejectUrl)
+            );
+        }
+
+        public static HumanInteractionRequired elicitationRequired(String elicitationId, String message, String url, String submitUrl) {
+            return new HumanInteractionRequired(
+                HumanInteractionType.ELICITATION_REQUIRED,
+                metadataOf("elicitationId", elicitationId, "message", message, "url", url, "submitUrl", submitUrl)
+            );
+        }
+
+        public static HumanInteractionRequired humanInputRequired(
+            String interactionId,
+            String prompt,
+            String schema,
+            String submitUrl,
+            String statusUrl
+        ) {
+            return new HumanInteractionRequired(
+                HumanInteractionType.HUMAN_INPUT_REQUIRED,
+                metadataOf(
+                    "interactionId",
+                    interactionId,
+                    "prompt",
+                    prompt,
+                    "schema",
+                    schema,
+                    "submitUrl",
+                    submitUrl,
+                    "statusUrl",
+                    statusUrl
+                )
+            );
+        }
+
+        private static Map<String, String> metadataOf(String... keysAndValues) {
+            Map<String, String> metadata = new LinkedHashMap<>();
+            for (int i = 0; i < keysAndValues.length; i += 2) {
+                metadata.put(keysAndValues[i], keysAndValues[i + 1]);
+            }
+            return Collections.unmodifiableMap(metadata);
+        }
+    }
 }
