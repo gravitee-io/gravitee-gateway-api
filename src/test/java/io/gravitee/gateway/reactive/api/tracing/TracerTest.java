@@ -15,9 +15,13 @@
  */
 package io.gravitee.gateway.reactive.api.tracing;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import io.gravitee.node.api.opentelemetry.Span;
 import io.vertx.core.Context;
@@ -135,5 +139,43 @@ class TracerTest {
 
         verify(delegate).endOnError(vertxContext, span, (Throwable) null);
         verifyNoMoreInteractions(delegate);
+    }
+
+    @Test
+    void should_stamp_deferred_attributes_on_root_span_when_it_ends() {
+        Tracer tracer = new Tracer(vertxContext, delegate);
+        when(span.isRoot()).thenReturn(true);
+
+        tracer.deferRootSpanAttribute("gravitee.entrypoint.id", "web-ai");
+        tracer.deferRootSpanAttribute("gravitee.conversation.id", "conv-1");
+        tracer.endWithResponseAndError(span, "response", (Throwable) null);
+
+        verify(span).withAttribute("gravitee.entrypoint.id", "web-ai");
+        verify(span).withAttribute("gravitee.conversation.id", "conv-1");
+        verify(delegate).endWithResponseAndError(vertxContext, span, "response", (Throwable) null);
+    }
+
+    @Test
+    void should_not_stamp_deferred_attributes_on_a_non_root_span() {
+        Tracer tracer = new Tracer(vertxContext, delegate);
+        // span.isRoot() defaults to false — a child (phase/hook) span must not receive root attributes.
+
+        tracer.deferRootSpanAttribute("gravitee.entrypoint.id", "web-ai");
+        tracer.end(span);
+
+        verify(span, never()).withAttribute(anyString(), any());
+        verify(delegate).end(vertxContext, span);
+    }
+
+    @Test
+    void should_ignore_null_key_or_value_when_deferring() {
+        Tracer tracer = new Tracer(vertxContext, delegate);
+        when(span.isRoot()).thenReturn(true);
+
+        tracer.deferRootSpanAttribute(null, "value");
+        tracer.deferRootSpanAttribute("key", null);
+        tracer.endWithResponse(span, "response");
+
+        verify(span, never()).withAttribute(anyString(), any());
     }
 }
