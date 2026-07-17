@@ -19,7 +19,9 @@ import io.gravitee.node.api.opentelemetry.Span;
 import io.vertx.core.Context;
 import java.util.Collections;
 import java.util.IdentityHashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiConsumer;
 import lombok.RequiredArgsConstructor;
 
@@ -36,6 +38,14 @@ public class Tracer {
     /** Throwable instances already recorded as an exception event, tracked by identity. */
     private final Set<Throwable> recordedThrowables = Collections.synchronizedSet(Collections.newSetFromMap(new IdentityHashMap<>()));
 
+    /**
+     * Attributes deferred by request-scoped code (reactors, entrypoints, policies) to be stamped on the
+     * root span when it ends. Lets any caller enrich the root span through {@code ctx.getTracer()} without
+     * holding a reference to the span or knowing when it closes. Concurrent so a deferral from a thread other
+     * than the one closing the span (e.g. an off-context tool connector) stays visible at drain time.
+     */
+    private final Map<String, Object> deferredRootSpanAttributes = new ConcurrentHashMap<>();
+
     public <R> Span startRootSpanFrom(final R request) {
         return delegate.startRootSpanFrom(vertxContext, request);
     }
@@ -48,7 +58,27 @@ public class Tracer {
         return delegate.startSpanWithParentFrom(vertxContext, parentSpan, request);
     }
 
+    /**
+     * Defers a custom attribute to be stamped on the root span when it ends. Any request-scoped code with
+     * access to this {@link Tracer} (via {@code ctx.getTracer()}) can enrich the root span without holding a
+     * reference to it; the attribute is applied automatically at root-span close. No-op when {@code key} or
+     * {@code value} is {@code null}.
+     */
+    public void deferRootSpanAttribute(final String key, final Object value) {
+        if (key != null && value != null) {
+            deferredRootSpanAttributes.put(key, value);
+        }
+    }
+
+    /** Stamps the deferred attributes onto the span, but only when it is the root span. */
+    private void applyDeferredRootAttributes(final Span span) {
+        if (span != null && span.isRoot() && !deferredRootSpanAttributes.isEmpty()) {
+            deferredRootSpanAttributes.forEach(span::withAttribute);
+        }
+    }
+
     public void end(final Span span) {
+        applyDeferredRootAttributes(span);
         delegate.end(vertxContext, span);
     }
 
@@ -59,6 +89,7 @@ public class Tracer {
      * duplicating the event.
      */
     public void endOnError(final Span span, final Throwable throwable) {
+        applyDeferredRootAttributes(span);
         if (vertxContext == null || throwable == null || recordedThrowables.add(throwable)) {
             delegate.endOnError(vertxContext, span, throwable);
         } else {
@@ -67,6 +98,7 @@ public class Tracer {
     }
 
     public void endOnError(final Span span, final String message) {
+        applyDeferredRootAttributes(span);
         delegate.endOnError(vertxContext, span, message);
     }
 
@@ -75,14 +107,17 @@ public class Tracer {
     }
 
     public <R> void endWithResponse(final Span span, final R response) {
+        applyDeferredRootAttributes(span);
         delegate.endWithResponse(vertxContext, span, response);
     }
 
     public <R> void endWithResponseAndError(final Span span, final R response, final Throwable throwable) {
+        applyDeferredRootAttributes(span);
         delegate.endWithResponseAndError(vertxContext, span, response, throwable);
     }
 
     public <R> void endWithResponseAndError(final Span span, final R response, final String message) {
+        applyDeferredRootAttributes(span);
         delegate.endWithResponseAndError(vertxContext, span, response, message);
     }
 
