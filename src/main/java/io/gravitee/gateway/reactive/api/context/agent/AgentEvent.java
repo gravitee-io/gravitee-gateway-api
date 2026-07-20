@@ -90,21 +90,40 @@ public sealed interface AgentEvent {
         }
     }
 
-    record ToolCallEnd(String toolId, String toolName, String arguments, String result, long timestamp) implements AgentEvent {
+    /**
+     * A tool-call failure. {@code type} is a low-cardinality classifier of the failure — the exception's class name,
+     * or {@code null} when the tool failed without a concrete type (a protocol-level {@code isError} result).
+     * {@code cause} is the raised exception when one is available (else {@code null}), so consumers that need the full
+     * detail — message, stack trace, cause chain — can inspect it. A tool event's {@code error} is {@code null} when
+     * the call succeeded.
+     */
+    record ToolError(String type, Throwable cause) {}
+
+    record ToolCallEnd(String toolId, String toolName, String arguments, String result, ToolError error, long timestamp) implements
+        AgentEvent {
         public ToolCallEnd(String toolId, String toolName, String arguments, String result) {
-            this(toolId, toolName, arguments, result, System.currentTimeMillis());
+            this(toolId, toolName, arguments, result, null, System.currentTimeMillis());
+        }
+
+        public ToolCallEnd(String toolId, String toolName, String arguments, String result, ToolError error) {
+            this(toolId, toolName, arguments, result, error, System.currentTimeMillis());
         }
     }
 
     /**
      * Notification that a tool call has been executed by the agent loop. Carried fields hold the
      * provider-assigned tool-call id, the tool name, the serialized arguments the agent sent to the
-     * tool, and the serialized result the tool returned. Emitted <em>after</em> the tool ran
-     * (success or recoverable failure).
+     * tool, and the serialized result the tool returned. Emitted <em>after</em> the tool ran (success or recoverable
+     * failure). {@code error} is {@code null} on success, else the failure's {@link ToolError} (type + optional cause).
      */
-    record ToolExecuted(String toolId, String toolName, String arguments, String result, long timestamp) implements AgentEvent {
+    record ToolExecuted(String toolId, String toolName, String arguments, String result, ToolError error, long timestamp) implements
+        AgentEvent {
         public ToolExecuted(String toolId, String toolName, String arguments, String result) {
-            this(toolId, toolName, arguments, result, System.currentTimeMillis());
+            this(toolId, toolName, arguments, result, null, System.currentTimeMillis());
+        }
+
+        public ToolExecuted(String toolId, String toolName, String arguments, String result, ToolError error) {
+            this(toolId, toolName, arguments, result, error, System.currentTimeMillis());
         }
     }
 
