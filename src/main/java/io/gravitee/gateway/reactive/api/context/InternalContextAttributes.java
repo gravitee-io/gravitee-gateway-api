@@ -108,4 +108,12 @@ public final class InternalContextAttributes {
      * Attribute used to store the server ID related to the current request.
      */
     public static final String ATTR_INTERNAL_SERVER_ID = "serverId";
+
+    /**
+     * <i>Type: {@link io.gravitee.gateway.reactive.api.context.llm.LlmRequest}</i> <br/>
+     * Attribute used to store the vendor-agnostic view of the current llm request, set by the llm entrypoint connector
+     * once the incoming body has been parsed. It is plumbing between the connector and the reactor: policies must not
+     * read it directly but go through {@link io.gravitee.gateway.reactive.api.context.llm.LlmExecutionContext#request()}.
+     */
+    public static final String ATTR_INTERNAL_LLM_REQUEST = "llm.request";
 }
