@@ -128,13 +128,18 @@ public sealed interface AgentEvent {
     }
 
     /**
-     * Terminal event marking the end of the agent loop. Carries the final answer text along with
-     * the model's reported token usage and finish reason, both nullable when the provider doesn't
-     * surface them.
+     * Terminal event marking the end of an agent's work: the final answer text, what it consumed, and the finish
+     * reason ({@code null} when the provider doesn't surface one).
+     *
+     * <p>The scope of {@code usage} is the scope of the event. On a workflow's root it is the whole run — every
+     * sub-agent plus whatever the orchestration itself spent. On a sub-agent's event (wrapped in {@link SubAgent})
+     * it is that <em>invocation</em>, so a leaf run twice by a loop reports each pass on its own rather than a
+     * growing total. It is never {@code null}; a scope where no provider reported usage is
+     * {@link TokenCounts#NONE}, which {@link TokenCounts#measured()} tells apart from a scope that cost nothing.</p>
      */
-    record Completed(String text, Integer inputTokens, Integer outputTokens, String finishReason, long timestamp) implements AgentEvent {
-        public Completed(String text, Integer inputTokens, Integer outputTokens, String finishReason) {
-            this(text, inputTokens, outputTokens, finishReason, System.currentTimeMillis());
+    record Completed(String text, TokenCounts usage, String finishReason, long timestamp) implements AgentEvent {
+        public Completed(String text, TokenCounts usage, String finishReason) {
+            this(text, usage != null ? usage : TokenCounts.NONE, finishReason, System.currentTimeMillis());
         }
     }
 
