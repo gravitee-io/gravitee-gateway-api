@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context.llm;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * A single, vendor-agnostic entry of an llm conversation (either part of the request history, or an
@@ -30,10 +31,15 @@ import java.util.List;
  * @param name an optional name qualifying the author of the turn (ex: the tool name for a {@link Role#TOOL} turn).
  * @param toolCallId the id of the tool call this turn answers, set only for {@link Role#TOOL} turns.
  * @param toolCalls the tool calls requested by the model as part of this turn, set only for {@link Role#ASSISTANT} turns.
+ * @param metadata metadata vendor specific
  *
  * @author GraviteeSource Team
  */
-public record Turn(Role role, String content, String name, String toolCallId, List<ToolCall> toolCalls) {
+public record Turn(Role role, String content, String name, String toolCallId, List<ToolCall> toolCalls, Map<String, Object> metadata) {
+    Turn(Role role, String content, String name, String toolCallId, List<ToolCall> toolCalls) {
+        this(role, content, name, toolCallId, toolCalls, Map.of());
+    }
+
     /**
      * A tool call requested by the model.
      *
@@ -42,6 +48,11 @@ public record Turn(Role role, String content, String name, String toolCallId, Li
      * @param arguments the arguments the tool is being called with, as raw JSON text. May be a partial,
      *                   non-parseable fragment when observed via {@link LlmResponse#deltas()}; guaranteed to be
      *                   complete, parseable JSON when observed via {@link LlmResponse#aggregated()}.
+     * @param metadata metadata vendor specific
      */
-    public record ToolCall(String id, String name, String arguments) {}
+    public record ToolCall(String id, String name, String arguments, Map<String, Object> metadata) {
+        ToolCall(String id, String name, String arguments) {
+            this(id, name, arguments, Map.of());
+        }
+    }
 }
