@@ -20,6 +20,7 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableTransformer;
 import io.reactivex.rxjava3.core.Single;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -113,7 +114,15 @@ public interface LlmResponse extends HttpPlainResponse {
      *
      * @param promptTokens number of tokens consumed by the prompt.
      * @param completionTokens number of tokens generated in the completion.
-     * @param totalTokens total number of tokens consumed.
+     * @param specific others type of tokens vendors specific.
      */
-    record Usage(long promptTokens, long completionTokens, long totalTokens) {}
+    record Usage(long promptTokens, long completionTokens, Map<String, Long> specific) {
+        Usage(long promptTokens, long completionTokens) {
+            this(promptTokens, completionTokens, Map.of());
+        }
+
+        public long total() {
+            return promptTokens + completionTokens + specific.values().stream().mapToLong(Long::longValue).sum();
+        }
+    }
 }
