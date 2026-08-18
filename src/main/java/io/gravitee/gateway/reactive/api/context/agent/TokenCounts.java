@@ -76,4 +76,24 @@ public record TokenCounts(
             llmCalls + other.llmCalls
         );
     }
+
+    /**
+     * What this scope holds beyond {@code other} — the inverse of {@link #plus}, for a caller that knows a total and
+     * the part of it already accounted for and wants the remainder. Every component is clamped at zero: a provider
+     * whose total is inconsistent with its parts must not yield a negative count, which no consumer of a
+     * {@code gen_ai.usage.*} attribute would know how to read.
+     *
+     * <p>A remainder of nothing is {@link #NONE} — {@link #measured()} false — so a leftover no one reported reads as
+     * unmeasured rather than as a call that was free.</p>
+     */
+    public TokenCounts minus(final TokenCounts other) {
+        return new TokenCounts(
+            Math.max(0, inputTokens - other.inputTokens),
+            Math.max(0, cacheReadInputTokens - other.cacheReadInputTokens),
+            Math.max(0, cacheCreationInputTokens - other.cacheCreationInputTokens),
+            Math.max(0, outputTokens - other.outputTokens),
+            Math.max(0, reasoningOutputTokens - other.reasoningOutputTokens),
+            Math.max(0, llmCalls - other.llmCalls)
+        );
+    }
 }

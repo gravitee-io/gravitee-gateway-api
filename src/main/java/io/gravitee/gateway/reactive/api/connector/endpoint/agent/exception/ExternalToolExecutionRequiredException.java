@@ -21,20 +21,28 @@ package io.gravitee.gateway.reactive.api.connector.endpoint.agent.exception;
  * invoker catches this to pause the agent loop and return an {@code ExternalToolCallRequired}
  * event instead of executing anything server-side.
  *
- * <p>{@code memoryId} carries the information needed to later replace the placeholder result
- * message injected into memory with the real result once the caller reports it back.</p>
+ * <p>{@code memoryId} is where the paused state lives: the placeholder result message injected
+ * into memory, which the caller's real result replaces when it resumes the turn. Whoever pauses
+ * supplies it, because only it knows — a workflow leaf keys its memory by its own reference,
+ * not by the run's id. {@code null} means "the run's own memory", which is a standalone agent's.</p>
  */
 public class ExternalToolExecutionRequiredException extends ToolException {
 
     private final String toolCallId;
     private final String toolName;
     private final String arguments;
+    private final Object memoryId;
 
     public ExternalToolExecutionRequiredException(String toolCallId, String toolName, String arguments) {
+        this(toolCallId, toolName, arguments, null);
+    }
+
+    public ExternalToolExecutionRequiredException(String toolCallId, String toolName, String arguments, Object memoryId) {
         super("Tool '" + toolName + "' is executed externally by the caller and cannot be invoked server-side.");
         this.toolCallId = toolCallId;
         this.toolName = toolName;
         this.arguments = arguments;
+        this.memoryId = memoryId;
     }
 
     public String getToolCallId() {
@@ -47,5 +55,10 @@ public class ExternalToolExecutionRequiredException extends ToolException {
 
     public String getArguments() {
         return arguments;
+    }
+
+    /** Where the paused state lives, or {@code null} for the run's own memory. */
+    public Object getMemoryId() {
+        return memoryId;
     }
 }

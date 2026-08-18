@@ -144,6 +144,95 @@ public sealed interface AgentEvent {
     }
 
     /**
+     * A call to the model provider is starting. One per provider request, so an agent turn with tools produces
+     * several: call, tool, call, tool, call, answer. Paired with the {@link ModelCallEnd} carrying the same
+     * {@code callId} — which is what lets a consumer time the call rather than only the turn around it.
+     *
+     * <p>Unlike a sub-agent's own events these are <em>not</em> wrapped in {@link SubAgent}: they name their caller
+     * directly through {@code agentId}, which is what a consumer needs to attribute the call. That id is the workflow
+     * leaf's ref for a leaf, {@code <parent>:supervisor} for a planner, and the agent's own id on the standalone path.</p>
+     *
+     * @param callId       Correlates this start with its {@link ModelCallEnd}; opaque and unique within a run.
+     * @param agentId      The agent whose turn made the call.
+     * @param requestModel The model the call asked for ({@code gen_ai.request.model}), {@code null} when the caller
+     *                     cannot know it before the response.
+     * @param messages     The serialized prompt, or {@code null} — populated only when the run traces verbosely, since
+     *                     it carries whatever the user typed.
+     */
+    record ModelCallStart(String callId, String agentId, String requestModel, String messages, long timestamp) implements AgentEvent {
+        public ModelCallStart(String callId, String agentId, String requestModel, String messages) {
+            this(callId, agentId, requestModel, messages, System.currentTimeMillis());
+        }
+    }
+
+    /**
+     * The outcome of the {@link ModelCallStart} sharing its {@code callId}.
+     *
+     * <p>{@code usage} is <b>that call alone</b>, never a running total: the point of the pair is to break a turn's
+     * aggregate down, so summing the calls of a scope must reproduce the {@link Completed} total of that scope rather
+     * than double it. {@link TokenCounts#NONE} when the provider reported nothing — unmeasured, not free.</p>
+     *
+     * @param responseModel The model that actually answered ({@code gen_ai.response.model}); providers may resolve an
+     *                      alias to a dated version, so it can differ from the requested one.
+     * @param responseId    The provider's own id for the response, {@code null} when it exposes none.
+     * @param finishReason  Why the model stopped, {@code null} when the provider doesn't surface one.
+     * @param output        The serialized completion, or {@code null} — populated only when tracing verbosely.
+     * @param error         The failure when the call did not return, else {@code null}.
+     */
+    record ModelCallEnd(
+        String callId,
+        String agentId,
+        String responseModel,
+        String responseId,
+        TokenCounts usage,
+        String finishReason,
+        String output,
+        ModelError error,
+        long timestamp
+    ) implements AgentEvent {
+        public ModelCallEnd(
+            String callId,
+            String agentId,
+            String responseModel,
+            String responseId,
+            TokenCounts usage,
+            String finishReason,
+            String output,
+            ModelError error
+        ) {
+            this(
+                callId,
+                agentId,
+                responseModel,
+                responseId,
+                usage != null ? usage : TokenCounts.NONE,
+                finishReason,
+                output,
+                error,
+                System.currentTimeMillis()
+            );
+        }
+
+        /** The call failed: no response, no usage, just the cause. */
+        public static ModelCallEnd failed(String callId, String agentId, ModelError error) {
+            return new ModelCallEnd(callId, agentId, null, null, TokenCounts.NONE, null, null, error);
+        }
+    }
+
+    /**
+     * A model-call failure, the {@link ToolError} of the {@code chat} operation: {@code type} is a low-cardinality
+     * classifier — the exception's class name — and {@code cause} the raised exception when one is available. Kept
+     * distinct from {@link ToolError} because a consumer that maps a failure into its protocol has to know whether it
+     * is describing a tool or a provider call, and a shared type would leave that to a comment.
+     */
+    record ModelError(String type, Throwable cause) {
+        /** Classifies {@code throwable} by its own class, the shape {@code error.type} wants. */
+        public static ModelError of(Throwable throwable) {
+            return throwable == null ? null : new ModelError(throwable.getClass().getName(), throwable);
+        }
+    }
+
+    /**
      * Notification that the model wants to invoke a tool whose execution is delegated to the
      * caller (an "external execution tool" — declared per-request by the entrypoint rather than
      * resolved from a configured {@code ToolEndpointConnector}). The agent loop pauses; it is the

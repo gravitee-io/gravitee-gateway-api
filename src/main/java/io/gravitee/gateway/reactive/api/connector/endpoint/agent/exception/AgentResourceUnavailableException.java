@@ -86,7 +86,10 @@ public class AgentResourceUnavailableException extends ToolException {
     /** The operator-facing form: safe for a log, a span attribute or anywhere else the caller cannot read. */
     public String detail() {
         return (
-            "agent [" + (agentRef != null ? agentRef : "unknown") + "] declares resource [" + resourceRef +
+            "agent [" +
+            (agentRef != null ? agentRef : "unknown") +
+            "] declares resource [" +
+            resourceRef +
             "], which is deployed nowhere it can reach"
         );
     }
