@@ -99,6 +99,17 @@ public sealed interface AgentEvent {
      */
     record ToolError(String type, Throwable cause) {}
 
+    /**
+     * A tool call that has finished: the provider-assigned id, the tool's name, the arguments the agent sent, and the
+     * result it returned. Emitted after the tool ran, on success and on recoverable failure alike — {@code error} is
+     * {@code null} on success, else the failure's {@link ToolError}.
+     *
+     * <p>This is the <b>only</b> terminal tool event. It closes the {@link ToolCallStart} that opened the call, and it
+     * is equally the standalone "this tool ran" fact a client renders a finished tool card from — a consumer that
+     * wants one does not have to know about the other. There used to be a second event carrying identical components
+     * for the latter purpose, and entrypoints split between the two arbitrarily: one that listened for the wrong one
+     * showed the call starting and never finishing, with nothing to say why.</p>
+     */
     record ToolCallEnd(String toolId, String toolName, String arguments, String result, ToolError error, long timestamp) implements
         AgentEvent {
         public ToolCallEnd(String toolId, String toolName, String arguments, String result) {
@@ -106,23 +117,6 @@ public sealed interface AgentEvent {
         }
 
         public ToolCallEnd(String toolId, String toolName, String arguments, String result, ToolError error) {
-            this(toolId, toolName, arguments, result, error, System.currentTimeMillis());
-        }
-    }
-
-    /**
-     * Notification that a tool call has been executed by the agent loop. Carried fields hold the
-     * provider-assigned tool-call id, the tool name, the serialized arguments the agent sent to the
-     * tool, and the serialized result the tool returned. Emitted <em>after</em> the tool ran (success or recoverable
-     * failure). {@code error} is {@code null} on success, else the failure's {@link ToolError} (type + optional cause).
-     */
-    record ToolExecuted(String toolId, String toolName, String arguments, String result, ToolError error, long timestamp) implements
-        AgentEvent {
-        public ToolExecuted(String toolId, String toolName, String arguments, String result) {
-            this(toolId, toolName, arguments, result, null, System.currentTimeMillis());
-        }
-
-        public ToolExecuted(String toolId, String toolName, String arguments, String result, ToolError error) {
             this(toolId, toolName, arguments, result, error, System.currentTimeMillis());
         }
     }
