@@ -35,4 +35,18 @@ public interface ToolExecutionContext extends BaseExecutionContext {
     AgentExecutionContext agentContext();
 
     ToolRequest request();
+
+    /**
+     * The scope this tool call belongs to — what anything keyed by identity must agree on: a stored approval, an
+     * upstream OAuth token.
+     *
+     * <p>The run's by default, which is right whenever the run is the only agent involved. A narrower context
+     * substitutes its own for the same reason it may substitute a component: a workflow leaf is not the run, its
+     * memory lives under its own key, and a pause inside it is recorded there. Asking the run instead looks somewhere
+     * nothing was ever written — an approval granted for a leaf's tool was never found again, so the agent asked for
+     * it on every turn.</p>
+     */
+    default AgentMemoryId memoryId() {
+        return agentContext() != null ? agentContext().memoryId() : null;
+    }
 }
