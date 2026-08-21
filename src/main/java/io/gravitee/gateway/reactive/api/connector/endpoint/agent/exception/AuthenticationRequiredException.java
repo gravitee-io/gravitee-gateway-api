@@ -26,10 +26,21 @@ public class AuthenticationRequiredException extends ToolAuthenticationException
     private final String upstreamId;
     private final AuthenticationConfiguration authenticationConfiguration;
 
+    /**
+     * The scope the granted token belongs to, or {@code null} to let the handler fall back to the run's.
+     *
+     * <p>Whoever raises this knows which agent needs the authorization; the handler that stores the token does not.
+     * Without it the token is filed against the run, so a workflow leaf's token is written under one key and looked
+     * for under another, and the user is asked to connect again on every turn.</p>
+     *
+     * <p>It also decides how far a grant reaches. Filed against the leaf, two sub-agents naming the same upstream hold
+     * separate grants — which is what keeps a leaf that asked for read access from inheriting one that asked for
+     * write. Sharing is a thing to opt into, not a default to discover.</p>
+     */
+    private final Object memoryId;
+
     public AuthenticationRequiredException(String message, String upstreamId, AuthenticationConfiguration authenticationConfiguration) {
-        super(message);
-        this.upstreamId = upstreamId;
-        this.authenticationConfiguration = authenticationConfiguration;
+        this(message, upstreamId, authenticationConfiguration, null, null);
     }
 
     public AuthenticationRequiredException(
@@ -38,9 +49,20 @@ public class AuthenticationRequiredException extends ToolAuthenticationException
         AuthenticationConfiguration authenticationConfiguration,
         Throwable cause
     ) {
+        this(message, upstreamId, authenticationConfiguration, cause, null);
+    }
+
+    public AuthenticationRequiredException(
+        String message,
+        String upstreamId,
+        AuthenticationConfiguration authenticationConfiguration,
+        Throwable cause,
+        Object memoryId
+    ) {
         super(message, cause);
         this.upstreamId = upstreamId;
         this.authenticationConfiguration = authenticationConfiguration;
+        this.memoryId = memoryId;
     }
 
     public String getUpstreamId() {
@@ -49,5 +71,10 @@ public class AuthenticationRequiredException extends ToolAuthenticationException
 
     public AuthenticationConfiguration getAuthenticationConfiguration() {
         return authenticationConfiguration;
+    }
+
+    /** The scope to file the token under, or {@code null} when the raiser has no narrower one than the run. */
+    public Object getMemoryId() {
+        return memoryId;
     }
 }
