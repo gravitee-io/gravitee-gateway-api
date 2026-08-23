@@ -31,11 +31,31 @@ public class ElicitationRequiredException extends ToolException {
     private final String message;
     private final String url;
 
+    /**
+     * The scope the answer belongs to, or {@code null} to let the handler fall back to the run's.
+     *
+     * <p>Whoever raises this knows which agent is being asked; the handler that files the answer does not. Without it
+     * the answer is stored against the run while the tool that will read it looks under its own key, so the two never
+     * meet and the server goes on asking. The same reasoning, and the same fix, as
+     * {@link AuthenticationRequiredException#getMemoryId()}.</p>
+     */
+    private final Object memoryId;
+
     public ElicitationRequiredException(String elicitationId, String message, String url) {
+        this(elicitationId, message, url, null);
+    }
+
+    public ElicitationRequiredException(String elicitationId, String message, String url, Object memoryId) {
         super("MCP server requested URL elicitation: " + message);
         this.elicitationId = elicitationId;
         this.message = message;
         this.url = url;
+        this.memoryId = memoryId;
+    }
+
+    /** The scope to file the answer under, or {@code null} when the raiser has no narrower one than the run. */
+    public Object getMemoryId() {
+        return memoryId;
     }
 
     public String getElicitationId() {
