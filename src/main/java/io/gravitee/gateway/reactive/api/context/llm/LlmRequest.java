@@ -48,4 +48,27 @@ public interface LlmRequest extends HttpPlainRequest {
      * {@link HttpBaseRequest#parameters()} (the http query parameters).
      */
     LlmParameters llmParameters();
+
+    /**
+     * Selects, for reading, the parts of this request that will be transmitted to the model: the conversation
+     * messages and the tool definitions, in the state left by the policies that ran before.
+     * <p>
+     * The given criteria are combined with {@code OR}: a part is returned as soon as it satisfies at least one
+     * of them, and is returned once even if it satisfies several. Inside a single criterion the axes are
+     * combined with {@code AND}, see {@link LlmPartCriteria}.
+     * <p>
+     * Passing {@link LlmPartCriteria#everything()} returns everything that goes to the model. Passing an empty
+     * list would select nothing, so it is rejected rather than silently returning an empty result.
+     * <p>
+     * Read-only: mutating the returned parts has no effect on the request. Rewrite the history through
+     * {@link #messages(List)} and the tools through {@link LlmParameters#tools(List)}.
+     * <p>
+     * Named {@code llmParts()} rather than {@code parts()} for the same reason as {@link #llmParameters()}: this
+     * type also carries the whole {@link HttpPlainRequest} surface.
+     *
+     * @param criteria the criteria to select on, combined with {@code OR}. Must not be {@code null} nor empty.
+     * @return the selected parts, in the order they will be transmitted to the model. Never {@code null}.
+     * @throws IllegalArgumentException if {@code criteria} is empty.
+     */
+    List<LlmContextPart> llmParts(List<LlmPartCriteria> criteria);
 }
