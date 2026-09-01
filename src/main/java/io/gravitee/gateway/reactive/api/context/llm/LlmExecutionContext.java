@@ -24,6 +24,12 @@ import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
  * {@link HttpPlainExecutionContext} to expose that http-level information (headers, raw body, metrics, ...) and
  * chain control ({@link #interrupt()}, {@link #interruptWith(io.gravitee.gateway.reactive.api.ExecutionFailure)}, ...)
  * alongside the vendor-agnostic {@link #request()}/{@link #response()} view.
+ * <p>
+ * Interrupting builds an error body, so it only applies as long as nothing has been flushed downstream: during
+ * the request phase, or during the response phase before the response started streaming. Pass an
+ * {@link LlmFailure} rather than a plain {@link io.gravitee.gateway.reactive.api.ExecutionFailure} when the body
+ * needs vendor-specific attributes. Once the response is streaming, end the flow with an
+ * {@link ErrorFrame} through {@link LlmResponse#interruptDeltasWith(ErrorFrame)} instead.
  *
  * @author GraviteeSource Team
  */
