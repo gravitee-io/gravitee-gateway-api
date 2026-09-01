@@ -35,7 +35,14 @@ import java.util.Map;
  *
  * @author GraviteeSource Team
  */
-public record Turn(Role role, String content, String name, String toolCallId, List<ToolCall> toolCalls, Map<String, Object> metadata) {
+public record Turn(
+    Role role,
+    String content,
+    String name,
+    String toolCallId,
+    List<ToolCall> toolCalls,
+    Map<String, Object> metadata
+) implements Frame {
     Turn(Role role, String content, String name, String toolCallId, List<ToolCall> toolCalls) {
         this(role, content, name, toolCallId, toolCalls, Map.of());
     }
