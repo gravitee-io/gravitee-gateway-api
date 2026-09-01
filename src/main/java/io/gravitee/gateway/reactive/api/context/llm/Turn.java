@@ -47,7 +47,7 @@ public record Turn(
     String toolCallId,
     List<ToolCall> toolCalls,
     Map<String, Object> metadata
-) implements LlmContextPart {
+) implements Frame, LlmContextPart {
     public Turn {
         toolCalls = toolCalls == null ? List.of() : List.copyOf(toolCalls);
         metadata = metadata == null ? Map.of() : Map.copyOf(metadata);
