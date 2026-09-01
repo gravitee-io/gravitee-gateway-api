@@ -95,9 +95,9 @@ public interface LlmResponse extends HttpPlainResponse {
     Single<Turn> aggregated();
 
     /**
-     * @return the reason given by the provider for why generation stopped (ex: {@code "stop"}, {@code "length"}, {@code "tool_calls"}), if any.
+     * @return the reason why generation stopped, normalized onto {@link StopReason}, if any.
      */
-    Optional<String> finishReason();
+    Optional<StopReason> stopReason();
 
     /**
      * @return the token usage reported for this response, if any.
