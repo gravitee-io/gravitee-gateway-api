@@ -20,6 +20,7 @@ import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.FlowableTransformer;
 import io.reactivex.rxjava3.core.Single;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
@@ -56,10 +57,13 @@ public interface LlmResponse extends HttpPlainResponse {
      *  <li>Replacing the delta flow <b>DOES NOT</b> take care of the previous delta flow in place.</li>
      *  <li>You <b>MUST</b> ensure to consume the previous delta flow when using it.</li>
      *  <li>You <b>SHOULD</b> consider using {@link #onDeltas(FlowableTransformer)} or {@link #onDelta(Function)} that may be more appropriate for delta transformation.</li>
+     *  <li>This changes what a reader observes of an answer the model produced. Writing a response <b>in the
+     *      model's place</b>, with nothing upstream to patch, is {@link #answer(Turn)}.</li>
      * </ul>
      *
      * @see #onDelta(Function)
      * @see #onDeltas(FlowableTransformer)
+     * @see #answer(Turn)
      */
     void deltas(final Flowable<Frame> deltas);
 
@@ -87,6 +91,85 @@ public interface LlmResponse extends HttpPlainResponse {
      */
     default Completable onDelta(Function<Frame, Frame> onDelta) {
         return onDeltas(deltas -> deltas.map(onDelta::apply));
+    }
+
+    /**
+     * Answers in the model's place: the given {@link Turn} becomes what the client reads, written exactly as if
+     * the model had produced it.
+     * <p>
+     * Deliberately distinct from {@link #deltas(Flowable)}. Replacing the delta flow patches the text of an
+     * answer the model really produced, and only the text: everything else that answer carries (reasoning
+     * signatures, cache markers, the vendor cargo the client-facing side rebuilds the provider's format from) is
+     * left untouched, because it is still true of the answer being sent. Answering in the model's place is the
+     * opposite situation: there is nothing to preserve, possibly no upstream answer at all, and the whole
+     * response has to be fabricated. Use this one whenever the client has to read something the model did not
+     * say: an answer served from a cache, a canned reply that is not an error, a response a policy produces on
+     * its own.
+     * <p>
+     * Distinct from {@link LlmExecutionContext#interrupt()} as well, which terminates the call: interrupting
+     * writes an <b>error</b> body, with an error status and the response templates configured on the api. This
+     * writes a <b>successful</b> answer, so the call keeps the status a completed one has and the chain keeps
+     * running: the response policies placed after still observe the turn, and still get to scan or transform it.
+     * <p>
+     * Called during {@link io.gravitee.gateway.reactive.api.policy.llm.LlmPolicy#onRequest(LlmExecutionContext)},
+     * it short-circuits the model: no upstream call is made, and the given turn is what the response phase, then
+     * the client, see. Called during
+     * {@link io.gravitee.gateway.reactive.api.policy.llm.LlmPolicy#onResponse(LlmExecutionContext)}, it discards
+     * what the model answered, so it only applies as long as nothing has been flushed downstream.
+     * <p>
+     * <b>Whether the response is streamed is none of the policy's business.</b> Only the gateway knows whether
+     * the client asked for a stream, and it encodes the turn accordingly: one complete body for a plain call, or
+     * the chunk sequence the provider's stream format expects, terminal markers included, for a streamed one.
+     * The very same call therefore serves both, and a policy that tried to tell them apart would only get the
+     * chance to get it wrong.
+     * <p>
+     * <b>The gateway owns the status code and the framing headers.</b> An answer is a completed call, so it is
+     * written with the status and the content type a completed call has, and with the framing a streaming client
+     * expects when there is one: a policy cannot leave a client with a response it cannot parse as its
+     * provider's format. A policy that needs another status is not answering, it is failing, and says so with
+     * {@link LlmExecutionContext#interruptWith(io.gravitee.gateway.reactive.api.ExecutionFailure)} and an
+     * {@link LlmFailure}. Headers the policy set itself are otherwise left alone.
+     * <p>
+     * <b>Ordering</b>, so that combining this with the delta operations stays predictable:
+     * <ul>
+     *   <li>Everything registered <b>before</b> goes away with the answer it targeted: a
+     *       {@link #onDeltas(FlowableTransformer)} transformer, a flow set through {@link #deltas(Flowable)}, an
+     *       earlier {@code answer}. They were transforming a response that is no longer the one being sent.</li>
+     *   <li>Everything that comes <b>after</b> behaves exactly as it would on a model-produced answer:
+     *       {@link #deltas()}, {@link #turns()} and {@link #aggregated()} report the given turn, and a
+     *       transformer registered afterwards applies to it. A guardrail placed after the policy that answers
+     *       still inspects what the client will actually read.</li>
+     * </ul>
+     * <p>
+     * <b>What the response reports afterwards:</b> {@link #failure()} stays empty and {@link #stopReason()} is
+     * derived from the turn ({@link StopReason#TOOL_CALLS} when it carries tool calls, {@link StopReason#STOP}
+     * otherwise), a fabricated answer being a successful one. {@link #usage()} keeps reporting what the provider
+     * reported, hence nothing when no upstream call was made: the gateway does not invent token counts for text
+     * no provider billed.
+     *
+     * @param turn the answer to write. Its {@link Turn#role()} must be {@link Role#ASSISTANT}, it standing for
+     *             what the model would have authored. Its {@link Turn#content()} and its {@link Turn#toolCalls()}
+     *             are both written, the latter as tool calls the client is expected to run; {@link Turn#name()}
+     *             and {@link Turn#toolCallId()} carry no meaning on an assistant turn and are ignored, and
+     *             {@link Turn#metadata()} is carried over only where the target format has somewhere to put it.
+     * @return a {@link Completable} that completes once the answer has been set as the response (not written on
+     * the wire yet), and that fails when the turn cannot be answered with: a role other than
+     * {@link Role#ASSISTANT}, or a response already flushed downstream.
+     */
+    Completable answer(final Turn turn);
+
+    /**
+     * Answers in the model's place with a plain assistant message, the common case of {@link #answer(Turn)}: a
+     * cached answer, a canned reply, anything a policy writes as a single block of text and no tool call.
+     * <p>
+     * Everything {@link #answer(Turn)} documents applies unchanged, streaming included: the gateway decides how
+     * this text reaches the client.
+     *
+     * @param content the text the client will read, as the model would have written it. Must not be {@code null}.
+     * @return a {@link Completable} that completes once the answer has been set as the response.
+     */
+    default Completable answer(final String content) {
+        return answer(new Turn(Role.ASSISTANT, content, null, null, List.of(), Map.of()));
     }
 
     /**
