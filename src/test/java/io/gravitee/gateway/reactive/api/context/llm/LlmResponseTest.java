@@ -48,6 +48,15 @@ class LlmResponseTest {
     }
 
     @Test
+    void should_answer_a_plain_text_with_an_assistant_turn_carrying_no_tool_call() {
+        doReturn(Completable.complete()).when(cut).answer(any(Turn.class));
+
+        cut.answer("cached answer").test().assertComplete();
+
+        verify(cut).answer(new Turn(Role.ASSISTANT, "cached answer", null, null, List.of(), Map.of()));
+    }
+
+    @Test
     void should_apply_the_delta_transformation_on_every_frame_including_the_error_one() {
         doReturn(Completable.complete()).when(cut).onDeltas(any());
 
