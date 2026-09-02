@@ -88,9 +88,7 @@ public record LlmPartCriteria(Set<Kind> kinds, Set<Source> sources, Set<Role> ro
      */
     public boolean matches(LlmContextPart part) {
         return switch (part) {
-            case LlmContextPart.Message message -> accepts(kinds, Kind.PROMPT) &&
-            accepts(sources, Source.of(message.role())) &&
-            accepts(roles, message.role());
+            case Turn turn -> accepts(kinds, Kind.PROMPT) && accepts(sources, Source.of(turn.role())) && accepts(roles, turn.role());
             // a tool definition has no role, so any role constraint excludes it (strict AND).
             case LlmContextPart.ToolDefinition ignored -> accepts(kinds, Kind.TOOL_DESCRIPTION) &&
             accepts(sources, Source.HARNESS) &&
@@ -117,7 +115,7 @@ public record LlmPartCriteria(Set<Kind> kinds, Set<Source> sources, Set<Role> ro
      * {@link LlmContextPart}.
      */
     public enum Kind {
-        /** A message of the conversation history, see {@link LlmContextPart.Message}. */
+        /** A message of the conversation history, see {@link Turn}. */
         PROMPT,
         /** A tool definition made available to the model, see {@link LlmContextPart.ToolDefinition}. */
         TOOL_DESCRIPTION,

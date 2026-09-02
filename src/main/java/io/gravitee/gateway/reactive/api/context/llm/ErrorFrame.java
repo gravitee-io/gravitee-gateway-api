@@ -23,8 +23,8 @@ import java.util.Objects;
  * stream format (ex: for OpenAI, a chunk carrying the stop reason followed by {@code [DONE]}; for Anthropic, an
  * {@code error} event).
  * <p>
- * Emitted either by the connector, when the provider itself failed mid-generation, or by a policy ending the
- * flow through {@link LlmResponse#interruptDeltasWith(ErrorFrame)}.
+ * Emitted by the connector, when the provider itself failed mid-generation. A policy transforming the flow
+ * observes it and states what it does with it, but has no way of its own to end a flow that did not fail.
  * <p>
  * Deliberately absent from this type:
  * <ul>

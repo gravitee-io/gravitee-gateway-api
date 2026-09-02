@@ -28,8 +28,9 @@ import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
  * Interrupting builds an error body, so it only applies as long as nothing has been flushed downstream: during
  * the request phase, or during the response phase before the response started streaming. Pass an
  * {@link LlmFailure} rather than a plain {@link io.gravitee.gateway.reactive.api.ExecutionFailure} when the body
- * needs vendor-specific attributes. Once the response is streaming, end the flow with an
- * {@link ErrorFrame} through {@link LlmResponse#interruptDeltasWith(ErrorFrame)} instead.
+ * needs vendor-specific attributes. Once the response is streaming there is nothing left to interrupt: the
+ * status code and the headers are already sent, and the flow ends on an {@link ErrorFrame} only if the
+ * provider itself failed mid-generation.
  *
  * @author GraviteeSource Team
  */
