@@ -104,26 +104,12 @@ public interface LlmResponse extends HttpPlainResponse {
     }
 
     /**
-     * Ends the delta flow on the given frame: what was already emitted downstream is left untouched, the
-     * remaining deltas are dropped, and {@code frame} is emitted as the last frame of the flow.
-     * <p>
-     * This is the streaming counterpart of
-     * {@link LlmExecutionContext#interruptWith(io.gravitee.gateway.reactive.api.ExecutionFailure)}: once the
-     * response is streaming, the status code and the headers are already sent and there is no error body left
-     * to write, only a last frame for the entrypoint to render in the provider's own stream format.
-     *
-     * @param frame the frame to end the flow with.
-     * @return a {@link Completable} that completes once the interruption has been set up on the delta flow (not executed).
-     */
-    Completable interruptDeltasWith(final ErrorFrame frame);
-
-    /**
      * Get the fully assembled {@link Turn}, buffering {@link #deltas()} internally if the response is streamed.
      * Reflects any transformation applied via {@link #onDeltas(FlowableTransformer)}.
      * <p>
      * Never signals an error: a flow that ended on an {@link ErrorFrame} assembles into the turn built from
      * what was generated before it, possibly empty. What reached the client is what an auditing policy needs to
-     * see, whether generation completed or not; whether it failed is read from {@link #stopReason()}.
+     * see, whether generation completed or not; whether it failed is read from {@link #failure()}.
      *
      * @return the fully assembled {@link Turn}.
      */
@@ -141,25 +127,31 @@ public interface LlmResponse extends HttpPlainResponse {
     Optional<Usage> usage();
 
     /**
-     * @return the error message reported for this response, if it failed. Reflects the terminal
-     * {@link ErrorFrame} when the flow ended on one.
+     * @return the failure this response ended on, if it failed: the terminal {@link ErrorFrame} the flow ended
+     * on, carrying the error message and the vendor-specific attributes that came with it.
+     * <p>
+     * Kept separate from {@link #stopReason()}, which is not restricted to a failure: it also reports why a
+     * successful generation stopped. When a failure is present the two agree, the frame's own
+     * {@link ErrorFrame#stopReason()} being what {@link #stopReason()} reports.
      */
-    Optional<String> errorMessage();
+    Optional<ErrorFrame> failure();
 
     /**
      * Token usage reported for an llm response.
+     * <p>
+     * {@code totalTokens} is the total <b>the provider itself reported</b>, never a sum computed from the other
+     * components: whether a vendor-specific count sits inside or outside the two primary ones is the provider's
+     * own convention, so adding them up would over-count on every provider whose breakdown is inclusive (a
+     * cached prompt count, a reasoning completion count). A provider reporting no total leaves it {@code null}.
      *
      * @param promptTokens number of tokens consumed by the prompt.
      * @param completionTokens number of tokens generated in the completion.
+     * @param totalTokens the total the provider reported, or {@code null} if it reported none.
      * @param specific others type of tokens vendors specific.
      */
-    record Usage(long promptTokens, long completionTokens, Map<String, Long> specific) {
-        Usage(long promptTokens, long completionTokens) {
-            this(promptTokens, completionTokens, Map.of());
-        }
-
-        public long total() {
-            return promptTokens + completionTokens + specific.values().stream().mapToLong(Long::longValue).sum();
+    record Usage(long promptTokens, long completionTokens, Long totalTokens, Map<String, Long> specific) {
+        public Usage {
+            specific = specific == null ? Map.of() : Map.copyOf(specific);
         }
     }
 }

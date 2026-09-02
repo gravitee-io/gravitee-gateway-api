@@ -17,6 +17,7 @@ package io.gravitee.gateway.reactive.api.context.llm;
 
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 /**
  * A single, vendor-agnostic entry of an llm conversation (either part of the request history, or an
@@ -25,6 +26,10 @@ import java.util.Map;
  * When emitted from {@link LlmResponse#deltas()}, {@code content()} and a {@link ToolCall}'s {@code arguments()}
  * are <b>incremental fragments</b> (the text/JSON appended since the previous delta for this turn), matching how
  * providers stream over SSE. Use {@link LlmResponse#aggregated()} to get the fully assembled turn instead.
+ * <p>
+ * Also an {@link LlmContextPart}: a message of the history is one of the two things that reach the model, so a
+ * consumer selecting parts through {@link LlmRequest#llmParts(List)} gets the very turns
+ * {@link LlmRequest#messages()} exposes, not a copy of them.
  *
  * @param role the role that authored this turn.
  * @param content the textual content of the turn (or fragment thereof, see above), or {@code null} for a turn that only carries tool calls.
@@ -42,9 +47,28 @@ public record Turn(
     String toolCallId,
     List<ToolCall> toolCalls,
     Map<String, Object> metadata
-) implements Frame {
-    Turn(Role role, String content, String name, String toolCallId, List<ToolCall> toolCalls) {
-        this(role, content, name, toolCallId, toolCalls, Map.of());
+) implements Frame, LlmContextPart {
+    public Turn {
+        toolCalls = toolCalls == null ? List.of() : List.copyOf(toolCalls);
+        metadata = metadata == null ? Map.of() : Map.copyOf(metadata);
+    }
+
+    /**
+     * The turn content, followed by the name and raw json arguments of each tool call it carries.
+     * <p>
+     * Tool call arguments are included because they are text the model receives, and because they are a data
+     * exfiltration path a dlp scan has to see. Leaving them out would make this accessor miss content that
+     * {@link LlmContextPart.ToolDefinition#textContent()} would have caught on the very same payload.
+     */
+    @Override
+    public String textContent() {
+        var joiner = new StringJoiner("\n");
+        TextContents.append(joiner, content);
+        for (var toolCall : toolCalls) {
+            TextContents.append(joiner, toolCall.name());
+            TextContents.append(joiner, toolCall.arguments());
+        }
+        return joiner.toString();
     }
 
     /**
@@ -58,8 +82,8 @@ public record Turn(
      * @param metadata metadata vendor specific
      */
     public record ToolCall(String id, String name, String arguments, Map<String, Object> metadata) {
-        ToolCall(String id, String name, String arguments) {
-            this(id, name, arguments, Map.of());
+        public ToolCall {
+            metadata = metadata == null ? Map.of() : Map.copyOf(metadata);
         }
     }
 }
