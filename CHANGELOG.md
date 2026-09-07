@@ -1,3 +1,75 @@
+# [7.0.0-beta.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.3.0...7.0.0-beta.1) (2026-09-07)
+
+
+### Bug Fixes
+
+* **agent:** restore the Tool model removed by an earlier commit ([6f1258d](https://github.com/gravitee-io/gravitee-gateway-api/commit/6f1258d4863f84e852068f14c2c1c17612f0af31))
+* remove useless shared proeprty ([252af77](https://github.com/gravitee-io/gravitee-gateway-api/commit/252af7738588a04de06b63b81c58dd0a2def006b))
+* Rename endpointGroupId to upstreamId ([d1c5780](https://github.com/gravitee-io/gravitee-gateway-api/commit/d1c5780e9f8b8d0ec582befea88996a1c18e8e94))
+
+
+### chore
+
+* version the branch as 7.0.0-amp-demo-SNAPSHOT ([8064dfc](https://github.com/gravitee-io/gravitee-gateway-api/commit/8064dfcc2b2551bba5cfbbe3c143c517705d799c))
+
+
+### Code Refactoring
+
+* **llm:** replace LlmRequestInspector with vendor-agnostic LLM context API ([3b219f2](https://github.com/gravitee-io/gravitee-gateway-api/commit/3b219f2e907d6d7260cf17137d1cfc00232fc614))
+
+
+### Features
+
+* Add support for full agent event stream ([2a9892e](https://github.com/gravitee-io/gravitee-gateway-api/commit/2a9892e40696c5367350d541e48e30c533d3963b))
+* add support for MCP URL elicitation ([930c156](https://github.com/gravitee-io/gravitee-gateway-api/commit/930c1566e625508e6f1cd3c463f00573995f2227))
+* Add support for OIDC discovery endpoint ([8565153](https://github.com/gravitee-io/gravitee-gateway-api/commit/856515369364f14427250411453cc98f5d4287e4))
+* Add support for tools approval ([b6d9b2c](https://github.com/gravitee-io/gravitee-gateway-api/commit/b6d9b2cee14ea0e486b3f8f148aa38574896e22d))
+* add timestamp to agent events ([2acabac](https://github.com/gravitee-io/gravitee-gateway-api/commit/2acabacdfc9090009ae6a88e20ae0ce377155f0e))
+* add vendor specific map to help in futur ([b70f90a](https://github.com/gravitee-io/gravitee-gateway-api/commit/b70f90ad8f893be6a77193fe4c1f9a341d332daf))
+* **agent:** add a typed failure for a resource an agent cannot reach ([b103c2f](https://github.com/gravitee-io/gravitee-gateway-api/commit/b103c2f000267430025a4661158d66aa44e5bba8))
+* **agent:** add an agent endpoint connector SPI ([ad36e5b](https://github.com/gravitee-io/gravitee-gateway-api/commit/ad36e5bc61ed5306dfb4afe7e872d451e8be8308))
+* **agent:** add specialized agent interfaces ([6e5367f](https://github.com/gravitee-io/gravitee-gateway-api/commit/6e5367f4a47c7e4b1bdbcd8cae3aacfe266b57a0))
+* **agent:** add support for SubAgent events ([b8d6aca](https://github.com/gravitee-io/gravitee-gateway-api/commit/b8d6aca0ee30f9cde1c4cc0a071e50961744add2))
+* **agent:** add support for workflow hitl step ([ee101ae](https://github.com/gravitee-io/gravitee-gateway-api/commit/ee101aea25f443f12d17949c07982bb665fd7758))
+* **agent:** add tool error detail to tool call events ([3721f92](https://github.com/gravitee-io/gravitee-gateway-api/commit/3721f92ec5461739ba3b650decdd08a7ca0404c1))
+* **agent:** allow accessing agent context from tool context ([a23bf4d](https://github.com/gravitee-io/gravitee-gateway-api/commit/a23bf4ddea43ae4e31e0d81b53e29ff0d43a3b43))
+* **agent:** carry per-call model events and a pause's memory id ([26387d8](https://github.com/gravitee-io/gravitee-gateway-api/commit/26387d8d3cc9a377fcca39a2d47bcb4b3bfca690))
+* **agent:** carry token usage as a TokenCounts on the Completed event ([1101cf0](https://github.com/gravitee-io/gravitee-gateway-api/commit/1101cf031824e8b1dc93556068243d5b013b8672))
+* **agent:** introduce AgentEvent ([2a1c9d1](https://github.com/gravitee-io/gravitee-gateway-api/commit/2a1c9d1a845e0586055724dd678ad2923b65bef6))
+* **agent:** introduce AgentTool and align typed setters ([fad76ec](https://github.com/gravitee-io/gravitee-gateway-api/commit/fad76eca35484cac7edc7121b3734cc3261deaaa))
+* **agent:** introduce the MCP and AGENT api types ([33f1154](https://github.com/gravitee-io/gravitee-gateway-api/commit/33f11542f6e9405f80b54bee5f689ed214cffadc))
+* **agent:** let a tool context carry the scope its call belongs to ([a99e15b](https://github.com/gravitee-io/gravitee-gateway-api/commit/a99e15b00ee0eb4a25346b0b5e5a2f7a1bd485cd))
+* **agent:** let an authentication pause name the scope its grant belongs to ([92157b1](https://github.com/gravitee-io/gravitee-gateway-api/commit/92157b112d2911421eade6aca1c943b7150d18f0))
+* **agent:** let an elicitation pause name the scope it was raised in ([12a6e56](https://github.com/gravitee-io/gravitee-gateway-api/commit/12a6e5648747e4691bf09de196de84c9b117b74b))
+* **agent:** pass ToolExecutionContext to getToolsSpecification ([03fbb84](https://github.com/gravitee-io/gravitee-gateway-api/commit/03fbb84779073a406e2711e49294402ab48973ff))
+* Extract the tool execution from LC4J ([9545a2e](https://github.com/gravitee-io/gravitee-gateway-api/commit/9545a2ea412e890236eb5513dcb192750349f408))
+* keep rejected tools into working memory ([420f83e](https://github.com/gravitee-io/gravitee-gateway-api/commit/420f83eefd41caa814eafc8b231ff83e57ca45b1))
+* **llm:** add ATTR_INTERNAL_LLM_REQUEST constant to internal context ([2673b49](https://github.com/gravitee-io/gravitee-gateway-api/commit/2673b494a8f5f9e23c6d7315be764e8bfbcf7de4))
+* **llm:** add criteria-based selection of llm request parts ([aeb511d](https://github.com/gravitee-io/gravitee-gateway-api/commit/aeb511d67a68d29944ac64e616c4c7ca5f6a3aeb))
+* **llm:** carry vendor-specific attributes on an llm failure ([2c891eb](https://github.com/gravitee-io/gravitee-gateway-api/commit/2c891eb89ae286d2e5ae347d7cead9da795df6da))
+* **llm:** let a policy answer in the model's place ([06f3341](https://github.com/gravitee-io/gravitee-gateway-api/commit/06f334191fe3e5604b9f289837bc1b5776047f4a))
+* **llm:** let the response flow end on an error frame ([84d1300](https://github.com/gravitee-io/gravitee-gateway-api/commit/84d13007116cb4de404774c5f52adad4ebec887d))
+* **llm:** normalize the stop reason into a dedicated type ([5d44398](https://github.com/gravitee-io/gravitee-gateway-api/commit/5d44398ff3095f0093b15b00a76f5354242ad198))
+* Manage exception and authentication configuration ([83cf595](https://github.com/gravitee-io/gravitee-gateway-api/commit/83cf595bd02b15623a67e308a9e7338d10ede852))
+* Manage oauth2 authentication flow ([571694c](https://github.com/gravitee-io/gravitee-gateway-api/commit/571694c7e9b42fc359cb6cdcdb6011a109299908))
+* Merge AgentEvent requiring human interaction into one single event type ([0b0d42d](https://github.com/gravitee-io/gravitee-gateway-api/commit/0b0d42d54fef2c9a002417a1b44d8877b62b5434))
+* **tracing:** defer root-span attributes via the reactive Tracer ([7d2a48e](https://github.com/gravitee-io/gravitee-gateway-api/commit/7d2a48ef7ab2e68340c618d32f390707b091a5d2))
+* upgrade to vertx 5 ([052a82d](https://github.com/gravitee-io/gravitee-gateway-api/commit/052a82d7fd2f9ea66bebedee25aa7fd61ab67833))
+
+
+### BREAKING CHANGES
+
+* **llm:** LlmRequestInspector is removed, together with its nested
+PromptQuery sealed interface (PendingUserPrompt, AllUserPrompts, AllPrompts,
+CustomPrompt) and its KindSemantic enum. A plugin reading prompts through it
+must implement io.gravitee.gateway.reactive.api.policy.llm.LlmPolicy and read
+io.gravitee.gateway.reactive.api.context.llm.LlmExecutionContext instead.
+
+AIAM-490
+* footer on the vertx 5 upgrade makes that 7.0.0. A custom
+version has to match ^7.0.0-[a-zA-Z0-9_-]+-SNAPSHOT$ to pass the check.
+* upgrade to vertx 5.x
+
 # [6.3.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.2.0...6.3.0) (2026-06-23)
 
 
