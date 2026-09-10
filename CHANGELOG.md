@@ -1,3 +1,10 @@
+# [6.4.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.3.0...6.4.0) (2026-09-10)
+
+
+### Features
+
+* **tracing:** defer root-span attributes via the reactive Tracer ([892892e](https://github.com/gravitee-io/gravitee-gateway-api/commit/892892e59a9d2c979c1821923b36103bdf358b61))
+
 # [6.3.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.2.0...6.3.0) (2026-06-23)
 
 
