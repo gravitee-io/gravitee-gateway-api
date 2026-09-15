@@ -146,16 +146,112 @@ public sealed interface AgentEvent {
      * directly through {@code agentId}, which is what a consumer needs to attribute the call. That id is the workflow
      * leaf's ref for a leaf, {@code <parent>:supervisor} for a planner, and the agent's own id on the standalone path.</p>
      *
-     * @param callId       Correlates this start with its {@link ModelCallEnd}; opaque and unique within a run.
-     * @param agentId      The agent whose turn made the call.
-     * @param requestModel The model the call asked for ({@code gen_ai.request.model}), {@code null} when the caller
-     *                     cannot know it before the response.
-     * @param messages     The serialized prompt, or {@code null} — populated only when the run traces verbosely, since
-     *                     it carries whatever the user typed.
+     * @param callId             Correlates this start with its {@link ModelCallEnd}; opaque and unique within a run.
+     * @param agentId            The agent whose turn made the call.
+     * @param requestModel       The model the call asked for ({@code gen_ai.request.model}), {@code null} when the
+     *                           caller cannot know it before the response.
+     * @param providerName       Who is being called ({@code gen_ai.provider.name}), {@code null} when unknown. Lets a
+     *                           consumer slice by provider without inferring it from the model name.
+     * @param serverAddress      The host the call was sent to ({@code server.address}), {@code null} when unknown.
+     *                           Two deployments of one model behind different routes are not the same call.
+     * @param serverPort         The port that host was reached on ({@code server.port}), {@code null} when the caller
+     *                           did not resolve one — which includes a scheme's default going unstated.
+     * @param systemInstructions The system prompt as actually sent ({@code gen_ai.system_instructions}), separated
+     *                           from {@code messages} because it is the thing most often changed between two runs
+     *                           that are otherwise identical. {@code null} when there is none, and — like
+     *                           {@code messages} — only populated when the run captures payloads, since it is prompt
+     *                           content.
+     * @param parameters         What the call was configured to do, or {@code null} when the caller exposes nothing.
+     * @param toolDefinitions    The tools the model was offered ({@code gen_ai.tool.definitions}), serialized, or
+     *                           {@code null}. Populated only when the run captures payloads: it is large, and which
+     *                           tools were on offer is as much a part of reproducing a call as the prompt is.
+     * @param messages           The serialized prompt, or {@code null} — populated only when the run captures
+     *                           payloads, since it carries whatever the user typed.
      */
-    record ModelCallStart(String callId, String agentId, String requestModel, String messages, long timestamp) implements AgentEvent {
+    record ModelCallStart(
+        String callId,
+        String agentId,
+        String requestModel,
+        String providerName,
+        String serverAddress,
+        Integer serverPort,
+        String systemInstructions,
+        ModelRequestParameters parameters,
+        String toolDefinitions,
+        String messages,
+        long timestamp
+    ) implements AgentEvent {
+        public ModelCallStart(
+            String callId,
+            String agentId,
+            String requestModel,
+            String providerName,
+            String serverAddress,
+            Integer serverPort,
+            String systemInstructions,
+            ModelRequestParameters parameters,
+            String toolDefinitions,
+            String messages
+        ) {
+            this(
+                callId,
+                agentId,
+                requestModel,
+                providerName,
+                serverAddress,
+                serverPort,
+                systemInstructions,
+                parameters,
+                toolDefinitions,
+                messages,
+                System.currentTimeMillis()
+            );
+        }
+
+        /** For a caller that knows nothing about the call beyond the model it asked for. */
         public ModelCallStart(String callId, String agentId, String requestModel, String messages) {
-            this(callId, agentId, requestModel, messages, System.currentTimeMillis());
+            this(callId, agentId, requestModel, null, null, null, null, null, null, messages, System.currentTimeMillis());
+        }
+    }
+
+    /**
+     * How a model call was configured — the {@code gen_ai.request.*} settings that decide what the model does with
+     * the same prompt. Two runs that differ only here are not comparable, which is why they belong on the event
+     * rather than being inferred from the deployed configuration: what was configured and what was sent can differ.
+     *
+     * <p>Only the settings every provider exposes are carried. Provider-specific ones — {@code seed} chief among
+     * them — are deliberately absent, so a consumer reproducing a call from this record cannot claim
+     * sampler-level determinism. Each field is {@code null} when the provider or the caller did not set it, which is
+     * not the same as it being zero.</p>
+     *
+     * <p>{@code outputType} and {@code stream} are settings rather than payload: they say what shape of answer was
+     * asked for ({@code text} or {@code json}) and whether it was streamed, both of which change what the same prompt
+     * produces. They are carried here — never gated on payload capture — because neither reveals what was said.</p>
+     */
+    record ModelRequestParameters(
+        Double temperature,
+        Double topP,
+        Integer topK,
+        Double frequencyPenalty,
+        Double presencePenalty,
+        Integer maxOutputTokens,
+        List<String> stopSequences,
+        String outputType,
+        Boolean stream
+    ) {
+        /** {@code true} when the provider surfaced nothing at all — an empty set of settings, not a set of zeroes. */
+        public boolean isEmpty() {
+            return (
+                temperature == null &&
+                topP == null &&
+                topK == null &&
+                frequencyPenalty == null &&
+                presencePenalty == null &&
+                maxOutputTokens == null &&
+                (stopSequences == null || stopSequences.isEmpty()) &&
+                outputType == null &&
+                stream == null
+            );
         }
     }
 
@@ -172,6 +268,11 @@ public sealed interface AgentEvent {
      * @param finishReason  Why the model stopped, {@code null} when the provider doesn't surface one.
      * @param output        The serialized completion, or {@code null} — populated only when tracing verbosely.
      * @param error         The failure when the call did not return, else {@code null}.
+     * @param timeToFirstChunkMillis
+     *                      How long the provider took to produce anything at all, in milliseconds, on a streamed
+     *                      call ({@code gen_ai.response.time_to_first_chunk}). {@code null} on a call that was not
+     *                      streamed, and on a streamed one that failed before its first chunk — in both cases there
+     *                      was no first chunk to time, which is not the same as it having been instant.
      */
     record ModelCallEnd(
         String callId,
@@ -182,6 +283,7 @@ public sealed interface AgentEvent {
         String finishReason,
         String output,
         ModelError error,
+        Long timeToFirstChunkMillis,
         long timestamp
     ) implements AgentEvent {
         public ModelCallEnd(
@@ -192,7 +294,8 @@ public sealed interface AgentEvent {
             TokenCounts usage,
             String finishReason,
             String output,
-            ModelError error
+            ModelError error,
+            Long timeToFirstChunkMillis
         ) {
             this(
                 callId,
@@ -203,13 +306,28 @@ public sealed interface AgentEvent {
                 finishReason,
                 output,
                 error,
+                timeToFirstChunkMillis,
                 System.currentTimeMillis()
             );
         }
 
+        /** For a call whose provider streamed nothing to time — every non-streamed call. */
+        public ModelCallEnd(
+            String callId,
+            String agentId,
+            String responseModel,
+            String responseId,
+            TokenCounts usage,
+            String finishReason,
+            String output,
+            ModelError error
+        ) {
+            this(callId, agentId, responseModel, responseId, usage, finishReason, output, error, null);
+        }
+
         /** The call failed: no response, no usage, just the cause. */
         public static ModelCallEnd failed(String callId, String agentId, ModelError error) {
-            return new ModelCallEnd(callId, agentId, null, null, TokenCounts.NONE, null, null, error);
+            return new ModelCallEnd(callId, agentId, null, null, TokenCounts.NONE, null, null, error, null);
         }
     }
 
