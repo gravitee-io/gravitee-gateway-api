@@ -168,4 +168,34 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- Since JDK 23 javac no longer runs annotation processors implicitly; without this Lombok is skipped. -->
+                    <proc>full</proc>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <!--
+                gravitee-archrules-maven-plugin 1.0.0, pinned by gravitee-parent 24, cannot read Java 25
+                class files and warns with a stack trace on every JDK class it resolves; 2.0.0 reads them
+                but requires Java 25 itself, so it is only used when the build runs on 25 or later.
+            -->
+            <id>jdk25-archrules</id>
+            <activation>
+                <jdk>[25,)</jdk>
+            </activation>
+            <properties>
+                <gravitee-archrules-maven-plugin.version>2.0.0</gravitee-archrules-maven-plugin.version>
+            </properties>
+        </profile>
+    </profiles>
 </project>
