@@ -1,3 +1,28 @@
+# [7.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.4.0...7.0.0-alpha.1) (2026-09-21)
+
+
+* refactor(llm)!: replace LlmRequestInspector with a vendor-agnostic llm context api ([71d67af](https://github.com/gravitee-io/gravitee-gateway-api/commit/71d67afd574eed9fe63c9d0cb03ccc914b131c76))
+
+
+### Features
+
+* **llm:** add criteria-based selection of llm request parts ([8d07aea](https://github.com/gravitee-io/gravitee-gateway-api/commit/8d07aea9ec571b82e81b2bbb28b13155935d08b9))
+* **llm:** carry vendor-specific attributes on an llm failure ([556f566](https://github.com/gravitee-io/gravitee-gateway-api/commit/556f566f88494a838e27c2c5fa54a2ced7a1b2c5))
+* **llm:** expose the parsed llm request as an internal context attribute ([bd9ffda](https://github.com/gravitee-io/gravitee-gateway-api/commit/bd9ffda6cb4811e843f639f24fd025d177259196))
+* **llm:** let a policy answer in the model's place ([c37f90d](https://github.com/gravitee-io/gravitee-gateway-api/commit/c37f90d514b201588c9a256f989c916874b6c8d5))
+* **llm:** let the response flow end on an error frame ([b0c75db](https://github.com/gravitee-io/gravitee-gateway-api/commit/b0c75db708c187e60bf7e48b06269c4cc1aebeaf))
+
+
+### BREAKING CHANGES
+
+* LlmRequestInspector is removed, together with its nested
+PromptQuery sealed interface (PendingUserPrompt, AllUserPrompts, AllPrompts,
+CustomPrompt) and its KindSemantic enum. A plugin reading prompts through it
+must implement io.gravitee.gateway.reactive.api.policy.llm.LlmPolicy and read
+io.gravitee.gateway.reactive.api.context.llm.LlmExecutionContext instead.
+
+AIAM-490
+
 # [6.4.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.3.0...6.4.0) (2026-09-10)
 
 
