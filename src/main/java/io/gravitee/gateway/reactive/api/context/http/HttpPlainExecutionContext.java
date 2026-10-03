@@ -78,4 +78,27 @@ public interface HttpPlainExecutionContext extends HttpBaseExecutionContext {
     default void addActionOnResponse(BasePolicy source, Function<HttpExecutionContext, Completable> onResponseCallback) {
         // Nothing is registered by default
     }
+
+    /**
+     * Registers an action defined during the request phase to be executed once the request has ended, whichever
+     * way it ended.
+     *
+     * <p>Unlike {@link #addActionOnResponse(BasePolicy, Function)}, which is executed at the start of the
+     * response phase, this is also executed for a request that never reaches that phase — one interrupted by a
+     * policy or by the invocation. A policy that has taken something it must give back, such as a reserved quota,
+     * cannot rely on the response phase for it.
+     *
+     * <p>It is executed after the response has been written, so an action must confine itself to reconciling what
+     * the policy owns and cannot alter the response. That order matters for a policy reconciling against what the
+     * request reported: a response still being written has reported nothing yet, so an action running before it
+     * would reconcile against nothing and leave the real figure unclaimed. An action that fails does not replace
+     * the failure the client is being told about, and an action is executed at most once however many times the
+     * registered actions are executed.
+     *
+     * @param source the policy that initiated the action.
+     * @param onTerminateCallback the action to be executed once the request has ended, receiving the HTTP execution context and returning a Completable.
+     */
+    default void addActionOnTerminate(BasePolicy source, Function<HttpExecutionContext, Completable> onTerminateCallback) {
+        // Nothing is registered by default
+    }
 }
