@@ -1,3 +1,10 @@
+# [7.0.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.0.0-alpha.1...7.0.0-alpha.2) (2026-10-05)
+
+
+### Features
+
+* add an action a policy can register for the end of a request ([6512045](https://github.com/gravitee-io/gravitee-gateway-api/commit/6512045b80cfdd29f9660924f3fedc988b667d46))
+
 # [7.0.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.4.0...7.0.0-alpha.1) (2026-09-21)
 
 
