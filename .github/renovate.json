@@ -1,4 +1,3 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["local>gravitee-io/renovate-config:lib"]
+    "extends": ["github>gravitee-io/renovate-config:lib"]
 }
