@@ -105,4 +105,16 @@ public interface KafkaPolicy extends NativePolicy {
     default Completable onMessageResponse(final KafkaMessageExecutionContext ctx) {
         return Completable.complete();
     }
+
+    /**
+     * Tells whether a per-message condition (the <code>messageCondition</code> of a flow step) can be honoured by this policy.
+     * A condition on messages is applied by filtering the stream of messages exposed by the message request/response.
+     * A policy that works on the raw Kafka frames (ProduceRequest, FetchResponse) instead of that stream cannot honour it
+     * and must return <code>false</code>, so that the condition is not silently ignored.
+     *
+     * @return <code>true</code> (default) if the policy honours a message condition, <code>false</code> otherwise.
+     */
+    default boolean supportsMessageCondition() {
+        return true;
+    }
 }
