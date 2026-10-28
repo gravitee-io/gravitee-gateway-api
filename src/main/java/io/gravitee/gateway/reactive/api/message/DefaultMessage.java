@@ -64,7 +64,9 @@ public class DefaultMessage extends AbstractMessage implements TracingMessage {
         this.ackRunnable = b.ackRunnable;
         this.endRunnable = b.endRunnable;
         this.ended = b.ended;
-        this.tracingAttributes = b.tracingAttributes;
+        if (b.tracingAttributes != null) {
+            this.tracingAttributes = new HashMap<>(b.tracingAttributes);
+        }
     }
 
     @Override
