@@ -110,7 +110,7 @@ public interface KafkaPolicy extends NativePolicy {
      * Tells whether a per-message condition (the <code>messageCondition</code> of a flow step) can be honoured by this policy.
      * A condition on messages is applied by filtering the stream of messages exposed by the message request/response.
      * A policy that works on the raw Kafka frames (ProduceRequest, FetchResponse) instead of that stream cannot honour it
-     * and must return <code>false</code>, so that the condition is not silently ignored.
+     * and must return <code>false</code>, so that the gateway can warn that the condition is ignored instead of ignoring it silently.
      *
      * @return <code>true</code> (default) if the policy honours a message condition, <code>false</code> otherwise.
      */

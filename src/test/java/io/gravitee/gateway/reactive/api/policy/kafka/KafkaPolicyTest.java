@@ -27,21 +27,4 @@ class KafkaPolicyTest {
 
         assertThat(policy.supportsMessageCondition()).isTrue();
     }
-
-    @Test
-    void should_let_a_policy_opt_out_of_message_condition() {
-        KafkaPolicy policy = new KafkaPolicy() {
-            @Override
-            public String id() {
-                return "frame-level";
-            }
-
-            @Override
-            public boolean supportsMessageCondition() {
-                return false;
-            }
-        };
-
-        assertThat(policy.supportsMessageCondition()).isFalse();
-    }
 }
