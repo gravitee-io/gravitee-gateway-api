@@ -80,6 +80,35 @@ public interface HttpPlainExecutionContext extends HttpBaseExecutionContext {
     }
 
     /**
+     * Registers an action defined during the request phase to be executed just before the endpoint (backend) is invoked.
+     * When multiple actions are registered, they are executed in the same order of registration (FIFO).
+     *
+     * <p>A request that never reaches the endpoint invocation — one interrupted by a policy, for instance — never
+     * executes it.</p>
+     *
+     * @param source the policy that initiated the action.
+     * @param onEndpointRequestCallback the action to be executed just before the endpoint invocation, receiving the HTTP execution context and returning a Completable.
+     */
+    default void addActionOnEndpointRequest(BasePolicy source, Function<HttpExecutionContext, Completable> onEndpointRequestCallback) {
+        // Nothing is registered by default
+    }
+
+    /**
+     * Registers an action defined during the request phase to be executed just before the response is sent to the
+     * client by the entrypoint.
+     * When multiple actions are registered, they are executed in reverse order of registration (LIFO).
+     *
+     * @param source the policy that initiated the action.
+     * @param onEntrypointResponseCallback the action to be executed just before the response is sent to the client, receiving the HTTP execution context and returning a Completable.
+     */
+    default void addActionOnEntrypointResponse(
+        BasePolicy source,
+        Function<HttpExecutionContext, Completable> onEntrypointResponseCallback
+    ) {
+        // Nothing is registered by default
+    }
+
+    /**
      * Registers an action defined during the request phase to be executed once the request has ended, whichever
      * way it ended.
      *
