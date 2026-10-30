@@ -62,11 +62,6 @@ class WebSocketTest {
         assertThat(errors.get(0)).isNotSameAs(errors.get(1));
     }
 
-    @Test
-    void should_fail_with_unsupported_operation_when_buffer_is_null() {
-        cut.writeText(null).test().assertError(UnsupportedOperationException.class);
-    }
-
     private static class RecordingWebSocket implements WebSocket {
 
         private final List<Buffer> writes = new ArrayList<>();

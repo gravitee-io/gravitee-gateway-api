@@ -46,7 +46,7 @@ public interface WebSocket {
      * Indicates whether this websocket can send text frames with {@link #writeText(Buffer)}.
      * <p>
      * The answer does not change during the lifetime of the gateway, so a caller may check it once and keep the result.
-     * Callers must check it before relying on {@link #writeText(Buffer)}, never once per message.
+     * Check it once per connector before relying on {@link #writeText(Buffer)}, not once per message.
      *
      * @return <code>true</code> if {@link #writeText(Buffer)} is supported, <code>false</code> otherwise.
      */
@@ -59,7 +59,7 @@ public interface WebSocket {
      * <p>
      * The buffer is decoded as strict UTF-8. A buffer that is not valid UTF-8 is not sent: the returned
      * {@link Completable} fails with {@link InvalidTextPayloadException} and the websocket stays open, so the caller
-     * decides how to close it. On a closed websocket, it fails the same way as {@link #write(Buffer)}.
+     * decides how to close it. On a closed websocket, it fails with the same closed-socket error as {@link #write(Buffer)}.
      * An implementation may split a large message into several frames; the client still receives one text message.
      * <p>
      * Implementations that do not support text frames fail with {@link UnsupportedOperationException} and write nothing.
