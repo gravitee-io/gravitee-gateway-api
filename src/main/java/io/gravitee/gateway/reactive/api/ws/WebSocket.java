@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.ws;
 
 import io.gravitee.gateway.api.buffer.Buffer;
+import io.gravitee.gateway.reactive.api.exception.InvalidTextPayloadException;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
@@ -40,6 +41,37 @@ public interface WebSocket {
      * @return a {@link Completable} that completes once writing has been performed.
      */
     Completable write(Buffer buffer);
+
+    /**
+     * Indicates whether this websocket can send text frames with {@link #writeText(Buffer)}.
+     * <p>
+     * The answer does not change during the lifetime of the gateway, so a caller may check it once and keep the result.
+     * Callers must check it before relying on {@link #writeText(Buffer)}, never once per message.
+     *
+     * @return <code>true</code> if {@link #writeText(Buffer)} is supported, <code>false</code> otherwise.
+     */
+    default boolean supportsTextFrames() {
+        return false;
+    }
+
+    /**
+     * Writes the buffer to the websocket as a text message.
+     * <p>
+     * The buffer is decoded as strict UTF-8. A buffer that is not valid UTF-8 is not sent: the returned
+     * {@link Completable} fails with {@link InvalidTextPayloadException} and the websocket stays open, so the caller
+     * decides how to close it. On a closed websocket, it fails the same way as {@link #write(Buffer)}.
+     * An implementation may split a large message into several frames; the client still receives one text message.
+     * <p>
+     * Implementations that do not support text frames fail with {@link UnsupportedOperationException} and write nothing.
+     *
+     * @param buffer the buffer to write, holding UTF-8 encoded text.
+     *
+     * @return a {@link Completable} that completes once writing has been performed.
+     * @see #supportsTextFrames()
+     */
+    default Completable writeText(Buffer buffer) {
+        return Completable.error(() -> new UnsupportedOperationException("Text frames are not supported by this WebSocket implementation"));
+    }
 
     /**
      * Writes a ping frame to the connection.
