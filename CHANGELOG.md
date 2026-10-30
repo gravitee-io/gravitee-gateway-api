@@ -1,3 +1,10 @@
+# [7.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.0.0...7.1.0) (2026-10-30)
+
+
+### Features
+
+* **ws:** WebSocket text frame capability ([86239ad](https://github.com/gravitee-io/gravitee-gateway-api/commit/86239ad60da83f9b721aa36904250e59d5b3f4fb))
+
 # [7.0.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/6.4.0...7.0.0) (2026-10-12)
 
 
