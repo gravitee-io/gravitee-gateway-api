@@ -116,4 +116,14 @@ public final class InternalContextAttributes {
      * read it directly but go through {@link io.gravitee.gateway.reactive.api.context.llm.LlmExecutionContext#request()}.
      */
     public static final String ATTR_INTERNAL_LLM_REQUEST = "llm.request";
+
+    /**
+     * <i>Type: {@link io.gravitee.gateway.reactive.api.context.llm.LlmResponse}</i> <br/>
+     * Attribute used to store the vendor-agnostic view of the current llm response, set by the llm proxy reactor
+     * before the policies run. Like {@link #ATTR_INTERNAL_LLM_REQUEST} it is plumbing between the reactors: policies
+     * must not read it directly but go through
+     * {@link io.gravitee.gateway.reactive.api.context.llm.LlmExecutionContext#response()}. The value is the key the
+     * llm proxy has always used, so a reactor reading it does not depend on the llm proxy's own constants.
+     */
+    public static final String ATTR_INTERNAL_LLM_RESPONSE = "llm.response";
 }
