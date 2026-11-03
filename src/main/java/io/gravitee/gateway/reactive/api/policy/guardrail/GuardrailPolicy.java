@@ -17,15 +17,16 @@ package io.gravitee.gateway.reactive.api.policy.guardrail;
 
 import io.gravitee.gateway.reactive.api.ExecutionPhase;
 import io.gravitee.gateway.reactive.api.context.guardrail.GuardrailExecutionContext;
+import io.gravitee.gateway.reactive.api.context.guardrail.LlmGuardrailExecutionContext;
 import io.gravitee.gateway.reactive.api.policy.base.BasePolicy;
 import io.reactivex.rxjava3.core.Completable;
 
 /**
  * A {@link GuardrailPolicy} is a policy of a Guardian: a reusable sequence of guardrails deployed on its own and run
  * by the APIs that enable it, on the request before their own policies or on the response after them. It works
- * against the {@link GuardrailExecutionContext}, which exposes the typed view of the exchange the Guardian protects
- * ({@link GuardrailExecutionContext#llm()} for an LLM proxy API) so that one guardrail reads the conversation without
- * knowing the wire format of the API it runs for.
+ * against the {@link GuardrailExecutionContext}, whose subtype carries the typed view of the exchange the Guardian
+ * protects ({@link LlmGuardrailExecutionContext#llm()} for an LLM proxy API) so that one guardrail reads the
+ * conversation without knowing the wire format of the API it runs for.
  * <p>
  * A guardrail decides on its own what happens when it matches: it blocks the call with
  * {@link GuardrailExecutionContext#interruptWith(io.gravitee.gateway.reactive.api.ExecutionFailure)}, reports it
