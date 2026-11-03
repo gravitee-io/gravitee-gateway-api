@@ -1,3 +1,11 @@
+# [7.2.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.1.0...7.2.0-alpha.1) (2026-11-03)
+
+
+### Features
+
+* add actions around the endpoint invocation ([25daaa1](https://github.com/gravitee-io/gravitee-gateway-api/commit/25daaa19f41d962259096b2913f72d50a8f3ae89))
+* add the guardrail policy contract ([9f42db8](https://github.com/gravitee-io/gravitee-gateway-api/commit/9f42db874ece98e1aa52a59afe26fd591d236482))
+
 # [7.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.0.0...7.1.0) (2026-10-30)
 
 
