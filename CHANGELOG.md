@@ -1,3 +1,10 @@
+# [7.2.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0-alpha.1...7.2.0-alpha.2) (2026-11-05)
+
+
+### Features
+
+* **genericevent:** add the generic event SPI ([556462c](https://github.com/gravitee-io/gravitee-gateway-api/commit/556462c3b099048501d4fed7bd01170aa5087b20))
+
 # [7.2.0-alpha.1](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.1.0...7.2.0-alpha.1) (2026-11-03)
 
 
