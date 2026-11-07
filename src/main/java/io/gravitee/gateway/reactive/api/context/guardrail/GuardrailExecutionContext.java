@@ -16,6 +16,7 @@
 package io.gravitee.gateway.reactive.api.context.guardrail;
 
 import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
+import io.gravitee.gateway.reactive.api.policy.guardrail.GuardrailVerdict;
 
 /**
  * Execution context of a guardrail: the execution context of the API that enabled the Guardian, with the typed view
@@ -28,4 +29,11 @@ import io.gravitee.gateway.reactive.api.context.http.HttpPlainExecutionContext;
  *
  * @author GraviteeSource Team
  */
-public sealed interface GuardrailExecutionContext extends HttpPlainExecutionContext permits LlmGuardrailExecutionContext {}
+public sealed interface GuardrailExecutionContext extends HttpPlainExecutionContext permits LlmGuardrailExecutionContext {
+    /**
+     * Records what this guardrail concluded on this run. Called once per run, before interrupting when it blocks.
+     *
+     * @param verdict what the guardrail concluded.
+     */
+    void verdict(GuardrailVerdict verdict);
+}
