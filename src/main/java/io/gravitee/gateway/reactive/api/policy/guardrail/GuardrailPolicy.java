@@ -29,9 +29,12 @@ import io.reactivex.rxjava3.core.Completable;
  * conversation without knowing the wire format of the API it runs for.
  * <p>
  * A guardrail decides on its own what happens when it matches: it blocks the call with
- * {@link GuardrailExecutionContext#interruptWith(io.gravitee.gateway.reactive.api.ExecutionFailure)}, reports it
- * through the metrics and logs of the context, or lets it through. A guardrail that modifies the exchange (a
- * redaction) does so through the typed view and lets the call continue.
+ * {@link GuardrailExecutionContext#interruptWith(io.gravitee.gateway.reactive.api.ExecutionFailure)} or lets it
+ * through. A guardrail that modifies the exchange (a redaction) does so through the typed view and lets the call
+ * continue.
+ * <p>
+ * A guardrail reports its verdict through {@link GuardrailExecutionContext#verdict(GuardrailVerdict)}; the Guardian
+ * turns the verdicts of its guardrails into one decision.
  * <p>
  * The implemented methods will be called depending on the execution phase of the Guardian:
  * <ul>
