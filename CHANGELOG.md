@@ -1,3 +1,10 @@
+# [7.2.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0-alpha.2...7.2.0-alpha.3) (2026-11-09)
+
+
+### Features
+
+* let a guardrail report its verdict to the guardian ([adf1c64](https://github.com/gravitee-io/gravitee-gateway-api/commit/adf1c648677b4db6a61c8f3f0967e40d86c7d624))
+
 # [7.2.0-alpha.2](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0-alpha.1...7.2.0-alpha.2) (2026-11-05)
 
 
