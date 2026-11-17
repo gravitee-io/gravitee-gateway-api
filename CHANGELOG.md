@@ -1,3 +1,10 @@
+# [7.2.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0-alpha.3...7.2.0-alpha.4) (2026-11-17)
+
+
+### Features
+
+* **kafka:** add a service sealing the DescribeTopicPartitions cursors hidden from the client ([c7e61c7](https://github.com/gravitee-io/gravitee-gateway-api/commit/c7e61c749f09775c3eacb42ba67f17d298ae32ef))
+
 # [7.2.0-alpha.3](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0-alpha.2...7.2.0-alpha.3) (2026-11-09)
 
 
