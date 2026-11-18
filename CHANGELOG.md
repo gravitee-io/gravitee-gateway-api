@@ -1,3 +1,10 @@
+# [7.2.0-alpha.5](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0-alpha.4...7.2.0-alpha.5) (2026-11-18)
+
+
+### Features
+
+* **runtimeoverlay:** add the runtime overlay registry SPI ([fb2a155](https://github.com/gravitee-io/gravitee-gateway-api/commit/fb2a155cfde1ca2de39824783c0e77b9be68aa2c))
+
 # [7.2.0-alpha.4](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0-alpha.3...7.2.0-alpha.4) (2026-11-17)
 
 
