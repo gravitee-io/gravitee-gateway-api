@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0...7.3.0) (2026-11-24)
+
+
+### Features
+
+* add pkce flag and code verifier ([6d8142b](https://github.com/gravitee-io/gravitee-gateway-api/commit/6d8142b5864509cb5b5213a06c6b12bd6a705c39))
+
 # [7.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.1.0...7.2.0) (2026-11-24)
 
 
