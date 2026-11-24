@@ -38,6 +38,12 @@ import java.util.List;
  * @param pkce whether the authorization code grant uses PKCE with {@code S256} (for {@code elicitation-oauth});
  *             with PKCE the client may have no secret (a public client). This record does not check it:
  *             the reactor leaves {@code client_secret} out of the token request when it is blank
+ * @param authorizationServerMetadataUrl URL of the authorization server metadata (RFC 8414 or OpenID Connect
+ *             discovery), read to check that the server supports PKCE with {@code S256} (for {@code elicitation-oauth}).
+ *             When {@code null}, the consumer may look for the metadata from {@code authorizeUrl}, on a best-effort
+ *             basis: RFC 8414 locates the metadata from the issuer, not the authorization endpoint, and the two differ
+ *             for path-based tenants (Keycloak realms, Entra ID, Gravitee AM domains). Setting it is the reliable way to
+ *             find the metadata
  *
  * <p>{@link #toString()} masks {@code token}, {@code apiKey}, {@code password} and {@code clientSecret}
  * so none of them ends up in logs.
@@ -58,13 +64,57 @@ public record UpstreamAuthDescriptor(
     String clientSecret,
     List<String> scopes,
     String audience,
-    boolean pkce
+    boolean pkce,
+    String authorizationServerMetadataUrl
 ) {
     private static final String MASKED = "****";
 
     /**
-     * A descriptor without PKCE, kept for endpoints built before {@code pkce} existed.
+     * A descriptor without an authorization server metadata URL, kept for endpoints built before
+     * {@code authorizationServerMetadataUrl} existed.
+     *
+     * @deprecated use the canonical constructor, which also takes {@code authorizationServerMetadataUrl}
      */
+    @Deprecated
+    public UpstreamAuthDescriptor(
+        String type,
+        String token,
+        String apiKey,
+        String apiKeyHeader,
+        String username,
+        String password,
+        String authorizeUrl,
+        String tokenUrl,
+        String clientId,
+        String clientSecret,
+        List<String> scopes,
+        String audience,
+        boolean pkce
+    ) {
+        this(
+            type,
+            token,
+            apiKey,
+            apiKeyHeader,
+            username,
+            password,
+            authorizeUrl,
+            tokenUrl,
+            clientId,
+            clientSecret,
+            scopes,
+            audience,
+            pkce,
+            null
+        );
+    }
+
+    /**
+     * A descriptor without PKCE, kept for endpoints built before {@code pkce} existed.
+     *
+     * @deprecated use the canonical constructor, which also takes {@code pkce} and {@code authorizationServerMetadataUrl}
+     */
+    @Deprecated
     public UpstreamAuthDescriptor(
         String type,
         String token,
@@ -92,7 +142,8 @@ public record UpstreamAuthDescriptor(
             clientSecret,
             scopes,
             audience,
-            false
+            false,
+            null
         );
     }
 
@@ -157,6 +208,8 @@ public record UpstreamAuthDescriptor(
             audience +
             ", pkce=" +
             pkce +
+            ", authorizationServerMetadataUrl=" +
+            authorizationServerMetadataUrl +
             "]"
         );
     }
