@@ -1,3 +1,15 @@
+# [7.2.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.1.0...7.2.0) (2026-11-24)
+
+
+### Features
+
+* add actions around the endpoint invocation ([4a6c3f0](https://github.com/gravitee-io/gravitee-gateway-api/commit/4a6c3f0a0a41b6d8324376c953d1ad57277f169f))
+* add the guardrail policy contract ([4e505c5](https://github.com/gravitee-io/gravitee-gateway-api/commit/4e505c58549bf77a22decf50284456767a500bb0))
+* **genericevent:** add the generic event SPI ([3478166](https://github.com/gravitee-io/gravitee-gateway-api/commit/3478166c8a80037e01b9fef980aab71268ee8c1a))
+* **kafka:** add a service sealing the DescribeTopicPartitions cursors hidden from the client ([e341254](https://github.com/gravitee-io/gravitee-gateway-api/commit/e341254965244c10beb16f577495676dc75743dd))
+* let a guardrail report its verdict to the guardian ([349d6ab](https://github.com/gravitee-io/gravitee-gateway-api/commit/349d6ab752c6e000e69ed4213d779869fec3d31a))
+* **runtimeoverlay:** add the runtime overlay registry SPI ([bb66f7f](https://github.com/gravitee-io/gravitee-gateway-api/commit/bb66f7fbc95ff83ff4c5aaa0008372d17aae06a4))
+
 # [7.1.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.0.0...7.1.0) (2026-10-30)
 
 
