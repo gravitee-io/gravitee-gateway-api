@@ -48,9 +48,60 @@ class UpstreamAuthDescriptorTest {
                 "secret",
                 List.of("read"),
                 "audience",
-                false
+                false,
+                null
             )
         );
+    }
+
+    @Test
+    void should_leave_the_metadata_url_null_when_built_without_it() {
+        assertThat(elicitation(true).authorizationServerMetadataUrl()).isNull();
+    }
+
+    @Test
+    void should_hold_the_metadata_url_it_is_given() {
+        var descriptor = new UpstreamAuthDescriptor(
+            "elicitation-oauth",
+            null,
+            null,
+            null,
+            null,
+            null,
+            "https://as.example.com/authorize",
+            "https://as.example.com/token",
+            "public-client",
+            null,
+            List.of("read"),
+            null,
+            true,
+            "https://as.example.com/tenant/.well-known/openid-configuration"
+        );
+
+        assertThat(descriptor.authorizationServerMetadataUrl()).isEqualTo("https://as.example.com/tenant/.well-known/openid-configuration");
+        assertThat(descriptor.usesPkce()).isTrue();
+    }
+
+    @Test
+    void should_print_the_metadata_url_unmasked_in_to_string() {
+        var printed = new UpstreamAuthDescriptor(
+            "elicitation-oauth",
+            null,
+            null,
+            null,
+            null,
+            null,
+            "https://as.example.com/authorize",
+            "https://as.example.com/token",
+            "public-client",
+            null,
+            List.of("read"),
+            null,
+            true,
+            "https://as.example.com/tenant/.well-known/openid-configuration"
+        ).toString();
+
+        assertThat(printed).contains("authorizationServerMetadataUrl=https://as.example.com/tenant/.well-known/openid-configuration");
     }
 
     @Test
