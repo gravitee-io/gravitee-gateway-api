@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.3.0...7.4.0) (2026-11-26)
+
+
+### Features
+
+* add the authorization server metadata url to the upstream auth descriptor ([c618c7c](https://github.com/gravitee-io/gravitee-gateway-api/commit/c618c7caa61c7f82d02c8ea1494843fe4b557f2b))
+
 # [7.3.0](https://github.com/gravitee-io/gravitee-gateway-api/compare/7.2.0...7.3.0) (2026-11-24)
 
 
